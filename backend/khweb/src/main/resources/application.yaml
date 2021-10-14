@@ -9,6 +9,9 @@ spring:
     #url: jdbc:mysql://localhost:3306/non_jpa_db?serverTimezone=UTC&useSSL=false
     url: jdbc:mysql://localhost:3306/esc_jpa_db?serverTimezone=UTC&useSSL=false
     username: khweb
+    #[한상우: password부분 제가 초기에 khWeb@123 이 아니라 khweb@123 으로 설정해놔서 만약에 fetchupstream/main 후에
+    # 스프링쪽 에러가 나시면 , password khWeb@123이나 본인 비밀번호로 변경해주시길바랍니다. 추후 이문제는 해결해보곘습니다.
+    #]
     password: khweb@123
     driver-class-name: com.mysql.cj.jdbc.Driver
     dialect: org.hibernate.dialect.MySQL8Dialect
