@@ -15,9 +15,9 @@ export default {
         commit(COOKIE_TO_SESSION, data)
     },
     // 로그인 유무 확인
-    setIsLogin ({ commit, state }) {
+    setIsLogin ({ commit }) {
         let temp
-        if(state.session !== null) {
+        if(this.$cookies.get("user") !== null) {
             temp = true
         }else{
             temp = false
