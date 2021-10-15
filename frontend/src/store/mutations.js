@@ -1,5 +1,6 @@
 import {
-    COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN
+  
+    COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN, FETCH_MEMBER_LIST
 
 } from './mutation-types'
 
@@ -16,5 +17,9 @@ export default {
     [REMOVE_IS_LOGIN] (state,payload) {
         state.isLogin = payload;
     },
+    [FETCH_MEMBER_LIST] (state,memberList) {
+       state.memberList = memberList
+    },
+  
 }
 
