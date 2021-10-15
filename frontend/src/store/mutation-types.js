@@ -1,0 +1,5 @@
+export const SET_IS_LOGIN = 'SET_IS_LOGIN'
+export const COOKIE_TO_SESSION = 'COOKIE_TO_SESSION'
+export const REMOVE_SESSION = 'REMOVE_SESSION'
+export const REMOVE_IS_LOGIN = 'REMOVE_IS_LOGIN'
+
