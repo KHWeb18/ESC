@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {
-    FETCH_MEMBER_LIST
+    FETCH_MEMBER_LIST,
     COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN,
 
 } from './mutation-types'
@@ -14,7 +14,6 @@ export default {
             commit(FETCH_MEMBER_LIST, res.data)
         }).catch(err=>{alert(err.response.data.message)})
     },
-}
     // 쿠키값을 state.session에 저장함
     cookieToSession ({ commit }) {
         let data
