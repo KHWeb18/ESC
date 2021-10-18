@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-/*
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -22,4 +22,3 @@ public class MyBoard {
     @Column(length = 3000, nullable = false)
     private  Integer boardNo;
 }
-*/

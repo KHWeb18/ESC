@@ -8,9 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -39,12 +37,14 @@ public class Member {
 
     @OneToMany(cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "member_no")
-    private List<InterestedCar> interestedCarList  = new ArrayList<InterestedCar>();
-/*
+    private Set<InterestedCar> interestedCarList  = new HashSet<InterestedCar>();
+
     @OneToMany(cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "member_no")
-    private List<MyBoard> MyBoardList = new ArrayList<MyBoard>();
-*/
+    private Set<MyBoard> myBoardList = new HashSet<MyBoard>();
+
+
+
     @CreationTimestamp
     private Date regDate;
 
