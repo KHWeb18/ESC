@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import SignupPage from '../views/member/SignupPage'
 import FindByIdPage from '../views/member/FindByIdPage'
 import FindByPwPage from '../views/member/FindByPwPage'
+import MainHomePage from '../views/MainHomePage'
 Vue.use(VueRouter)
 
 const routes = [
@@ -34,6 +35,11 @@ const routes = [
     path: '/findByPwPage',
     name: 'FindByPwPage',
     component: FindByPwPage
+  },
+  {
+    path: '/mainHomePage',
+    name: 'MainHomePage',
+    component: MainHomePage
   },
 ]
 
