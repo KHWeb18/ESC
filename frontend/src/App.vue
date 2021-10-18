@@ -40,14 +40,17 @@
     <v-main>
       <router-view/>
     </v-main>
+    <footer-component/>
   </v-app>
 </template>
 
 <script>
-
+import footerComponent from './components/footer/footerComponent.vue'
 export default {
   name: 'App',
-
+  components: {
+    footerComponent
+  },
   data: () => ({
     //
   }),
