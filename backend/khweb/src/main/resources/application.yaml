@@ -14,6 +14,8 @@ spring:
     dialect: org.hibernate.dialect.MySQL8Dialect
 
   jpa:
+    properties:
+      hibernate: default_batch_fetch_size =1000
     open-in-view: false
     database: mysql
     show-sql: true
