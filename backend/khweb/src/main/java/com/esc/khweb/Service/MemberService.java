@@ -18,4 +18,7 @@ public interface MemberService {
     public  boolean IdMatchedBirthday (MemberRequest memberRequest) throws  Exception ;
 
     public List<Member> getMeberList() throws  Exception;
+
+    public void deleteMember (Long memberNo)throws  Exception;
+
 }

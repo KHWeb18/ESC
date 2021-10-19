@@ -6,6 +6,7 @@ import com.esc.khweb.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -70,4 +71,12 @@ public class MemberServiceimpl implements MemberService{
     public List<Member> getMeberList() throws Exception {
         return memberRepository.findAll();
     }
+
+    @Override
+    public void deleteMember(Long memberNo) throws Exception {
+        memberRepository.deleteById(memberNo);
+    }
+
+
 }
+
