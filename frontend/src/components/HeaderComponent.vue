@@ -85,6 +85,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Do Hyeon', sans-serif;
+  user-select: none;
 }
 
 a{
@@ -110,6 +111,9 @@ a{
   font-size: 1.8em;
   cursor: pointer;
 }
+.menus:hover{
+  color: grey;
+}
 
 .menusScroll{
   margin-top: 10px;
@@ -118,13 +122,21 @@ a{
   color: white;
   cursor: pointer;
 }
+.menusScroll:hover{
+  color: grey;
+}
 
 .menus span{
   padding: 0 30px
 }
 .menusScroll span{
   padding: 0 30px
-
+}
+.menus span:hover{
+  color: black;
+}
+.menusScroll span:hover{
+  color: white;
 }
 
 .memberItems{
