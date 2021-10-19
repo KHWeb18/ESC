@@ -1,16 +1,21 @@
 package com.esc.khweb.controller;
 
 import com.esc.khweb.Service.MemberService;
+import com.esc.khweb.Service.MemberServiceimpl;
 import com.esc.khweb.controller.request.MemberRequest;
 import com.esc.khweb.entity.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -78,6 +83,17 @@ public class MeberContorller {
 
                 return new ResponseEntity<>(list,HttpStatus.OK);
         }
+
+        @DeleteMapping("/deleteMember/{memberNo}")
+        public ResponseEntity<Void> deleteMember(@PathVariable("memberNo")Long memberNo) throws  Exception {
+
+                log.info("memberNo : " + memberNo);
+
+                service.deleteMember(memberNo);
+
+                return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+
 
 
 
