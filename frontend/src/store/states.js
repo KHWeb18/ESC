@@ -16,5 +16,6 @@ export default {
     memberList: [],
     session: [],
     isLogin: false,
+    loginMemberNo: null,
 }
 
