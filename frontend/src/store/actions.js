@@ -1,4 +1,7 @@
+import Vue from "vue";
 import axios from 'axios'
+import cookies from "vue-cookies";
+Vue.use(cookies)
 import {
     FETCH_MEMBER_LIST,
     COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN,
@@ -24,7 +27,7 @@ export default {
         }
         commit(COOKIE_TO_SESSION, data)
     },
-    // 로그인 유무 확인
+    // isLogin(로그인 확인용) 세팅
     setIsLogin ({ commit }) {
         let temp
         if(this.$cookies.get("user") !== null) {

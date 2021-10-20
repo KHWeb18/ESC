@@ -33,10 +33,11 @@ Vue.use(cookies)
                               this.$cookies.set("user", res.data, '1h')
                               this.cookieToSession()
                               this.setIsLogin()
+                              this.$router.push('/')
 
                             } else {
                               alert('로그인 실패! - ' + res.data)
-                              this.setIsLogin()
+                              this.$router.push('/')
                             }
                             
     })
