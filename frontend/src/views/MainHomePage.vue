@@ -20,9 +20,8 @@
 				</v-container>
 			</div>
 		</header>
-<br>
-
-<div id="mouse-here"></div>
+	
+	<div id="mouse-here"></div><br><br>
 
 	<!-- welcome section 시작-->
 	<section id="welcome">
@@ -35,6 +34,7 @@
 		</v-container>
 	</section>
 <!-- welcome section 끝 -->
+<!-- 전기차 원리 버튼 (시작) -->
 <section id="what-ev">
 	<v-container>
 		<div style="display: inline-block;">
@@ -67,6 +67,8 @@
 		</div>
 	</v-container>
 </section>
+<!-- 전기차 원리 버튼 (끝) -->
+
 <!--주차장, 충전소, 고객센터 카드 시작 -->
 <section id="par-char-center">
 	<v-container>
@@ -201,9 +203,8 @@ export default {
 
 
 <style scoped>
-body{
-	padding: 0%;
-	margin: 0%
+.v-card{
+	font-family: 'Do Hyeon', sans-serif;
 }
 #what-ev{
 	padding-top: 200px;
@@ -224,11 +225,12 @@ body{
 	}
 h1{
 	font-family: 'Montserrat', sans-serif;
-	font-weight: 700;
+	font-weight: 400;
+	font-size: 70px;
 }
 h3 {
 	color: black;
-	font-weight: 700;
+	font-weight: 600;
 	font-size: 70px;
 	font-family: 'Montserrat', sans-serif;
 	text-align: center;
@@ -284,7 +286,7 @@ h3:hover:after {
 
 .intro .intro-body .intro-text {
 	font-size: 25px;
-	font-family: 'Montserrat', sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
 	text-align: left;
 }
 
