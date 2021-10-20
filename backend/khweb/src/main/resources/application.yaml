@@ -9,7 +9,7 @@ spring:
     #url: jdbc:mysql://localhost:3306/non_jpa_db?serverTimezone=UTC&useSSL=false
     url: jdbc:mysql://localhost:3306/esc_jpa_db?serverTimezone=UTC&useSSL=false
     username: khweb
-    passord: khWeb@123
+    password: khWeb@123
     driver-class-name: com.mysql.cj.jdbc.Driver
     dialect: org.hibernate.dialect.MySQL8Dialect
 
