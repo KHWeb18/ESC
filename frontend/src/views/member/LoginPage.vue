@@ -1,6 +1,6 @@
 <template>
 <div>
-  <login-page-form @submit="OnSubmit" />
+  <login-page-form @submit="onSubmit" />
 
 </div>
 </template>
@@ -13,6 +13,7 @@ import Vue from 'vue'
 import cookies from 'vue-cookies'
 import axios from 'axios'
 import LoginPageForm from '../../components/member/LoginPageForm.vue'
+import {mapActions} from "vuex";
 
 Vue.use(cookies)
   export default {
@@ -21,19 +22,21 @@ Vue.use(cookies)
         LoginPageForm
     },
       methods: {
-        
+     ...mapActions(['cookieToSession', 'setIsLogin']),
     onSubmit (payload) {
-            if (this.$store.state.session == null) {
+            if (this.$store.state.session === null) {
                 const { id, pw } = payload
                 axios.post('http://localhost:7777/login', { memberId: id, password: pw, auth: null })
                         .then(res => {
                             if (res.data != "") {
-                                alert('로그인 성공! - ' + res.data.auth)
-                                this.isLogin = true
-                                this.$cookies.set("user", res.data, '1h')
+                              alert('로그인 성공! - ' + res.data.auth)
+                              this.$cookies.set("user", res.data, '1h')
+                              this.cookieToSession()
+                              this.setIsLogin()
+
                             } else {
-                                alert('로그인 실패! - ' + res.data)
-                                this.isLogin = false
+                              alert('로그인 실패! - ' + res.data)
+                              this.setIsLogin()
                             }
                             
     })
