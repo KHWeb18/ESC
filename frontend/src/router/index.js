@@ -6,6 +6,7 @@ import FindByIdPage from '../views/member/FindByIdPage'
 import FindByPwPage from '../views/member/FindByPwPage'
 import MainHomePage from '../views/MainHomePage'
 import DeleteMember from '../views/member/DeleteMember'
+import LoginPage from '../views/member/LoginPage'
 Vue.use(VueRouter)
 
 const routes = [
@@ -46,6 +47,11 @@ const routes = [
     path: '/deleteMember',
     name: 'DeleteMember',
     component: DeleteMember
+  },
+  {
+    path: '/loginPage',
+    name: 'LoginPage',
+    component: LoginPage
   },
 ]
 
