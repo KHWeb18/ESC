@@ -70,6 +70,7 @@ export default {
               if(coin ==null){                                                  
             if(this.memberCar !=''){this.$emit('submit', {memberId, memberPw , name, email, memberCar,memberBirthDay})}
             else{ alert(this.loginAlert)}
+                this.$router.push({name: 'MainHomePage'})
               }
         }
     },
