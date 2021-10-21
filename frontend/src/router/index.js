@@ -6,7 +6,14 @@ import FindByIdPage from '../views/member/FindByIdPage'
 import FindByPwPage from '../views/member/FindByPwPage'
 import MainHomePage from '../views/MainHomePage'
 import DeleteMember from '../views/member/DeleteMember'
+
+//게시판
+import BoardRegister from '../views/board/BoardRegister'
+import BoardListPage from '../views/board/BoardListPage'
+import BoardReadPage from '../views/board/BoardReadPage'
+
 import LoginPage from '../views/member/LoginPage'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -49,6 +56,24 @@ const routes = [
     component: DeleteMember
   },
   {
+    path: '/boardRegister',
+    name: 'BoardRegister',
+    component: BoardRegister
+  },
+  {
+    path: '/boardListPage',
+    name: 'BoardListPage',
+    component: BoardListPage
+  },
+  {
+    path: '/boardReadPage',
+    name: 'BoardReadPage',
+    components: {
+      default:BoardReadPage
+    },
+    props: {
+      default: true
+    }
     path: '/loginPage',
     name: 'LoginPage',
     component: LoginPage
