@@ -17,5 +17,8 @@ export default {
     session: [],
     isLogin: false,
     loginMemberNo: null,
+    //게시판
+    boardList: [],
+    board: null
 }
 

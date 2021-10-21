@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {
     FETCH_MEMBER_LIST,
-    COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN,
+    COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN,FETCH_BOARD_LIST,FETCH_BOARD
 
 } from './mutation-types'
 
@@ -39,4 +39,17 @@ export default {
         commit(REMOVE_SESSION, null)
         commit(REMOVE_IS_LOGIN, false)
     },
+    //게시판
+    fetchBoardList({commit}) {
+        return axios.post('http://localhost:7777/board/getBoardList')
+        .then( (res) => {
+            commit( FETCH_BOARD_LIST,res.data )
+        })
+    },
+    fetchBoard({commit},boardNo) {
+        return axios.post(`http://localhost:7777/board/getBoard/${boardNo}`)
+        .then( (res) => { console.log(res.data)
+            commit (FETCH_BOARD,res.data)
+        })
+    }
 }

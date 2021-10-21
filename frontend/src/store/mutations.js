@@ -1,6 +1,7 @@
 import {
   
-    COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN, FETCH_MEMBER_LIST
+    COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN, FETCH_MEMBER_LIST,
+    FETCH_BOARD_LIST,FETCH_BOARD
 
 } from './mutation-types'
 
@@ -20,6 +21,13 @@ export default {
     [FETCH_MEMBER_LIST] (state,memberList) {
        state.memberList = memberList
     },
+    //게시판
+    [FETCH_BOARD_LIST] (state, boardList) {
+        state.boardList = boardList
+    },
+    [FETCH_BOARD] (state, board) {
+        state.board = board
+    }
   
 }
 
