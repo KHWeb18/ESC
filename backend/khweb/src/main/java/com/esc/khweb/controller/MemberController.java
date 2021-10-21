@@ -1,22 +1,16 @@
 package com.esc.khweb.controller;
 
-import com.esc.khweb.Service.MemberService;
-import com.esc.khweb.Service.MemberServiceimpl;
+import com.esc.khweb.service.MemberService;
 import com.esc.khweb.controller.request.MemberRequest;
 import com.esc.khweb.entity.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.security.Principal;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +18,7 @@ import java.util.Optional;
 @RequestMapping("/member")
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 @Slf4j
-public class MeberContorller {
+public class MemberController {
 
         @Autowired
         MemberService service;
@@ -45,14 +39,14 @@ public class MeberContorller {
                 return  new ResponseEntity<>(result,HttpStatus.OK);
         }
 
-        @PostMapping("/FindBymemberImp")
-        public  ResponseEntity<Member> FindBymemberImp (@Validated @RequestBody MemberRequest memberRequest) throws  Exception {
-                try {
-                        String memberId = memberRequest.getMemberId();
-                        Optional<Member> member = service.FindBymemberImp(memberId);
-                        Member member1 = member.get();
-                        return new ResponseEntity<>(member1, HttpStatus.OK);
-                }
+                @PostMapping("/FindBymemberImp")
+                public  ResponseEntity<Member> FindBymemberImp (@Validated @RequestBody MemberRequest memberRequest) throws  Exception {
+                        try {
+                                String memberId = memberRequest.getMemberId();
+                                Optional<Member> member = service.FindBymemberImp(memberId);
+                                Member member1 = member.get();
+                                return new ResponseEntity<>(member1, HttpStatus.OK);
+                        }
                 catch (Exception e){
 
                         return  new ResponseEntity<>(null,HttpStatus.OK);

@@ -1,4 +1,4 @@
-package com.esc.khweb.Service;
+package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.MemberRequest;
 import com.esc.khweb.entity.Member;
@@ -6,7 +6,6 @@ import com.esc.khweb.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

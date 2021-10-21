@@ -1,9 +1,8 @@
-package com.esc.khweb.Service;
+package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.MemberRequest;
 import com.esc.khweb.entity.Member;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

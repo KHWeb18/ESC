@@ -1,4 +1,4 @@
-package com.esc.khweb.Service;
+package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.BoardRequest;
 import com.esc.khweb.entity.Board;
@@ -37,5 +37,30 @@ public class BoardServiceimpl implements  BoardService{
     @Override
     public void viewcount(Long boardNo) throws Exception {
         boardRepository.viewcount(boardNo);
+    }
+
+    @Override
+    public void goodCount(Long boardNo) throws Exception {
+        boardRepository.goodCount(boardNo);
+    }
+
+    @Override
+    public void badCount(Long boardNo) throws Exception {
+        boardRepository.badCount(boardNo);
+    }
+
+    @Override
+    public void report(Long boardNo,String reportWord) throws Exception {
+        boardRepository.report(boardNo,reportWord);
+    }
+
+    @Override
+    public void boardModify(BoardRequest boardRequest, Long boardNo) throws Exception {
+        String title = boardRequest.getTitle();
+        String content = boardRequest.getContent();
+        String img = boardRequest.getImg();
+        boardRepository.boardModifyAtTitle(title,boardNo);
+        boardRepository.boardModifyAtcontent(content,boardNo);
+        boardRepository.boardModifyAtimg(img,boardNo);
     }
 }
