@@ -1,6 +1,6 @@
 <template>
     <div>
-         <v-btn v-if="board.memberId == '한상우'" @click="Modifyfing">수정</v-btn> <!--세션없어서 제이름넣었습니다-->
+         
         <v-container>
     <v-row id="input-usage">
       <v-col cols="12">
@@ -8,6 +8,10 @@
           <p align="left">[{{$moment(board.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{board.viewcount}}추천:{{board.good}},비추천:{{board.bad}}]</p>
   <img v-if="board.img != ''" width="1000px" :src="require(`@/assets/게시판/${board.img}`)"/>
         <pre>{{board.content}}</pre>
+        <v-btn @click="good(board.boardNo)">추천</v-btn><v-btn @click="bad(board.boardNo)">비추천</v-btn>
+        <v-btn v-if="board.memberId == '한상우'" @click="modifying(board.boardNo)">수정</v-btn> <!--세션없어서 제이름넣었습니다-->
+        <v-btn @click="report(board.boardNo)">신고하기</v-btn>
+        <v-btn route :to="{name: 'BoardListPage'}">글목록</v-btn>
       </v-col>
     </v-row>
   
@@ -30,24 +34,6 @@ export default {
     },
 
     methods: {
-        check() {
-            console.log(this.board)
-           },
-
-        ModifyOn(boardCommentNo){
-
-                this.commentBox = 0
-                this.Modify = boardCommentNo
-
-                                },
-
-        ModifyOFF(){
-
-                this.commentBox = 1
-                this.Modify = null
-
-                   },
-
         OnSubmit() {
 
                 const {ui , comments } = this
@@ -60,52 +46,37 @@ export default {
                 })
 
                   },
-
-        CommemtsModify(item){
-
-            console.log(item)
-            const {boardCommentNo, ui, regDate} = item
-                const {comments} =this
-            axios.post(`http://localhost:9999/jpaBoard/ModifyComments/${this.board.boardNo}`,{ui,boardCommentNo,comments,regDate})
-            .then(res =>{
-                alert('수정성공'+ res) 
-                this.$router.go()
-                this.commentBox = 1
-            }).catch(err=>{alert(err.response.data.message)})
-            
-
-                            },
-        
-        deleteComment(boardCommentNo){
-            
-               console.log(boardCommentNo)
-            axios.delete(`http://localhost:9999/jpaBoard/deleteComment/${boardCommentNo}`)
-            .then( res => {
-                alert('삭제성공'+ res)
-                this.$router.go()
-                         }).catch(err=>{alert(err.response.data.message)})
-
-                                     },
-
-        checkingman(value) {
-                console.log(value)
-                          },
-        Modifyfing(){
-            this.$router.push({ name: 'CommunityModifyPage', params: {board: this.board}})
-        },
-          appendIconCallback () {},
-      prependIconCallback () {},
+                  good(boardNo){
+                    axios.post(`http://localhost:7777/board/goodCount/${boardNo}`)
+                    .then( () =>{
+                        alert('추천하였습니다.')
+                        this.$router.go()
+                    })
+                  },
+                  bad(boardNo){
+                      axios.post(`http://localhost:7777/board/badCount/${boardNo}`)
+                    .then( () =>{
+                        alert('비추천하였습니다.')
+                        this.$router.go()
+                    })
+                  },
+                  report(boardNo){
+                      const {reportWord} =  this
+                      axios.post(`http://localhost:7777/board/report/${boardNo}`,{reportWord})
+                      .then( () =>{
+                          alert('게시글이 신고되었습니다.')
+                          this.$router.go()
+                      })
+                  },
+                  modifying(boardNo) {
+                      this.$router.push({name: 'BoardModifyPage', params:{boardNo} })
+                  }
+                  
     },
     data() {
 
         return {
-
-            comments: '',
-            ui: this.$store.state.User,
-            Modify: '',
-            commentBox: 1,
-            text: ''
-
+                reportWord: '신고됨'
                }
            },
 
@@ -120,7 +91,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300&display=swap');
 pre{
     width: 1000px;
-    height: 700px;
     border-block: 1px;
 }
 h4{

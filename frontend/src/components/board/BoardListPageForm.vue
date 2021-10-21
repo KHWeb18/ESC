@@ -30,6 +30,7 @@
         다음
       </button>
     </div>
+    <v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
       </v-container>
   </div>
 </template>
@@ -76,7 +77,7 @@ export default {
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
       if (listLeng % listSize > 0) page += 1;
-      
+
       return page;
     },
     paginatedData () {

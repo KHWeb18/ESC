@@ -14,4 +14,5 @@ public class BoardRequest {
     private String content;
     private String img;
     private String category;
+    private String reportWord;
 }

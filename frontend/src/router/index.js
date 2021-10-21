@@ -11,7 +11,7 @@ import DeleteMember from '../views/member/DeleteMember'
 import BoardRegister from '../views/board/BoardRegister'
 import BoardListPage from '../views/board/BoardListPage'
 import BoardReadPage from '../views/board/BoardReadPage'
-
+import BoardModifyPage from '../views/board/BoardModifyPage'
 import LoginPage from '../views/member/LoginPage'
 
 Vue.use(VueRouter)
@@ -62,14 +62,24 @@ const routes = [
   },
   {
     path: '/boardListPage',
-    name: 'BoardListPage',
+    name: 'BoardListPage',   
     component: BoardListPage
   },
   {
-    path: '/boardReadPage',
+    path: '/boardReadPage:boardNo',
     name: 'BoardReadPage',
     components: {
       default: BoardReadPage
+    },
+    props: {
+      default: true
+    },
+  },
+  {
+    path: '/boardModifyPage:boardNo',
+    name: 'BoardModifyPage',
+    components: {
+      default: BoardModifyPage
     },
     props: {
       default: true

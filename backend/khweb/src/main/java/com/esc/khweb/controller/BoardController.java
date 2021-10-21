@@ -1,6 +1,6 @@
 package com.esc.khweb.controller;
 
-import com.esc.khweb.Service.BoardService;
+import com.esc.khweb.service.BoardService;
 import com.esc.khweb.controller.request.BoardRequest;
 import com.esc.khweb.entity.Board;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +25,11 @@ public class BoardController {
     @Autowired
     BoardService service;
 
-    @PostMapping("/uploadImg/{name}/{category}")
+    @PostMapping("/uploadImg/{name}/{randomNumToString}")
     @ResponseBody
-    public String requestUploadFile(@RequestParam("fileList") List<MultipartFile> fileList , @PathVariable("name") String name ,@PathVariable("category") String category) {
+    public String requestUploadFile(@RequestParam("fileList") List<MultipartFile> fileList , @PathVariable("name") String name ,@PathVariable("randomNumToString") String randomNumToString )
+    {
+
         System.out.println("name = " +name );
         log.info("requestUploadFile(): " + fileList);
 
@@ -37,8 +39,7 @@ public class BoardController {
 
             for (MultipartFile multipartFile : fileList) {
                 log.info("requestUploadFile(): Make File");
-                FileOutputStream writer = new FileOutputStream("C:\\proj\\ESC\\frontend\\src\\assets\\게시판/"+category+"에등록된"
-                        + name+"의"+multipartFile.getOriginalFilename());
+                FileOutputStream writer = new FileOutputStream("C:\\proj\\ESC\\frontend\\src\\assets\\게시판/"+randomNumToString+name+"의"+multipartFile.getOriginalFilename());
                 writer.write(multipartFile.getBytes());
                 writer.close();
 
@@ -85,5 +86,34 @@ public class BoardController {
         service.viewcount(boardNo);
 
         return  new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/goodCount/{boardNo}")
+    public ResponseEntity<Void> goodCount (@PathVariable ("boardNo") Long boardNo) throws  Exception {
+
+        service.goodCount(boardNo);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/badCount/{boardNo}")
+    public ResponseEntity<Void> badCount (@PathVariable ("boardNo") Long boardNo) throws  Exception {
+
+        service.badCount(boardNo);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/report/{boardNo}")
+    public ResponseEntity<Void> report (@PathVariable ("boardNo")Long boardNo, @Validated @RequestBody BoardRequest boardRequest) throws  Exception {
+        String reportWord = boardRequest.getReportWord();
+        service.report(boardNo,reportWord);
+
+        return  new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/boardModify/{boardNo}")
+    public ResponseEntity<Void> boardModify(@PathVariable("boardNo")Long boardNo, @Validated @RequestBody BoardRequest boardRequest) throws  Exception {
+
+        service.boardModify(boardRequest,boardNo);
+
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
  }

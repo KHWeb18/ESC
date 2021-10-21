@@ -30,7 +30,6 @@
 
 <script>
 import axios from 'axios'
-
 //import {mapState } from 'vuex'
 export default {
         name: 'BoardRegisterForm',
@@ -39,6 +38,7 @@ export default {
         },
         data () {
             return {
+                randomNumToString: '',
                // memberId: this.$store.state.User, <- 쿠키넣으면 이거쓸것
                 memberId: '한상우', //로그인정보가없어서 이걸로 대체
                 title: '',
@@ -52,13 +52,12 @@ export default {
                 ]
             }
         },
-
         methods: {
             handleFileUpload () {
             this.files = this.$refs.files.files
             const info = this.files
             
-            this.img = this.category+"에등록된"+this.memberId+"의"+ info[0].name
+            this.img = this.randomNumToString+this.memberId+"의"+ info[0].name
         }, 
             
             OnSubmit() {
@@ -82,7 +81,7 @@ export default {
                 this.files.name = this.img
                 formData.append('fileList', this.files[idx])
             }
-            axios.post(`http://localhost:7777/board/uploadImg/${this.memberId}/${this.category}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
+            axios.post(`http://localhost:7777/board/uploadImg/${this.memberId}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
             .then (res => {
                 this.response = res.data
             })
@@ -96,6 +95,10 @@ export default {
             //...mapState[('loginUser')], 쿠키없어서 비활성화
            
         },
+        created() {
+            this.randomNumToString = String(Math.floor(Math.random() * 99999) +1 )
+            console.log(this.randomNumToString)
+        }
         
         
     
@@ -113,7 +116,6 @@ padding: 10px;
 			border-radius: 5px;
 			font-size: 16px;
 			resize: both;
-
 }
 #contentTitle{width:1000px; height:50px; border: 1px;
 border-style:solid;

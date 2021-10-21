@@ -13,4 +13,37 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
     @Modifying
     @Query("UPDATE Board b set b.viewcount = b.viewcount +1 where b.boardNo = :boardNo")
     void viewcount( Long boardNo);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Board b set b.good = b.good +1 where b.boardNo = :boardNo")
+    void goodCount( Long boardNo);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Board b set b.bad = b.bad +1 where b.boardNo = :boardNo")
+    void badCount( Long boardNo);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Board b set b.report = :reportWord where b.boardNo = :boardNo")
+    void report( Long boardNo,String reportWord);
+
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Board b set b.title = :title where b.boardNo = :boardNo")
+    void boardModifyAtTitle(String title, Long boardNo);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Board b set b.content = :content where b.boardNo = :boardNo")
+    void boardModifyAtcontent(String content, Long boardNo);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Board b set b.img = :img where b.boardNo = :boardNo")
+    void boardModifyAtimg(String img, Long boardNo);
+
+
 }
