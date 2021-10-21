@@ -11,6 +11,9 @@ import DeleteMember from '../views/member/DeleteMember'
 import BoardRegister from '../views/board/BoardRegister'
 import BoardListPage from '../views/board/BoardListPage'
 import BoardReadPage from '../views/board/BoardReadPage'
+
+import LoginPage from '../views/member/LoginPage'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -71,6 +74,9 @@ const routes = [
     props: {
       default: true
     }
+    path: '/loginPage',
+    name: 'LoginPage',
+    component: LoginPage
   },
 ]
 

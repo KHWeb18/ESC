@@ -17,14 +17,21 @@
         </v-toolbar-items>
 
         <v-spacer></v-spacer>
-
         <v-toolbar-items class="memberItems">
-          <router-link to="/">
-            <span :class="text" class="hidden-sm-and-down">로그인</span>
-          </router-link>
-          <router-link to="signUpPage">
-            <span :class="text" class="hidden-sm-and-down">회원가입</span>
-          </router-link>
+
+          <div v-if="!LoginCheck">
+            <router-link to="/loginPage">
+              <span :class="text" class="hidden-sm-and-down">로그인</span>
+            </router-link>
+            <router-link to="signUpPage">
+              <span :class="text" class="hidden-sm-and-down">회원가입</span>
+            </router-link>
+          </div>
+
+          <div v-if="LoginCheck">
+            {{ session.member_id }}
+          </div>
+
         </v-toolbar-items>
 
         <!-- hamburger icon -->
@@ -38,12 +45,20 @@
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex";
+
 export default {
   name: "HeaderComponent",
   mounted() {
     window.onscroll = () => {
       this.changeColor();
     };
+  },
+  computed: {
+    ...mapState(['isLogin', 'session']),
+    LoginCheck(){
+      return this.isLogin
+    }
   },
   data() {
     return {
@@ -56,6 +71,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setIsLogin']),
     changeColor() {
       if (
           document.body.scrollTop > 50 ||
