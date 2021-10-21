@@ -24,21 +24,21 @@ Vue.use(cookies)
       methods: {
      ...mapActions(['cookieToSession', 'setIsLogin']),
     onSubmit (payload) {
-            if (this.$store.state.session === null) {
-                const { id, pw } = payload
-                axios.post('http://localhost:7777/login', { memberId: id, password: pw, auth: null })
-                        .then(res => {
-                            if (res.data != "") {
-                              alert('로그인 성공! - ' + res.data.auth)
-                              this.$cookies.set("user", res.data, '1h')
-                              this.cookieToSession()
-                              this.setIsLogin()
-                              this.$router.push('/')
+        if (this.$store.state.session === null) {
+            const { id, pw } = payload
+            axios.post('http://localhost:7777/login', { memberId: id, password: pw, auth: null })
+                .then(res => {
+                    if (res.data != "") {
+                      alert('로그인 성공! - ' + res.data.auth)
+                      this.$cookies.set("user", res.data, '1h')
+                      this.cookieToSession()
+                      this.setIsLogin()
+                      this.$router.push('/')
 
-                            } else {
-                              alert('로그인 실패! - ' + res.data)
-                              this.$router.push('/')
-                            }
+                    } else {
+                      alert('로그인 실패! - ' + res.data)
+                      this.$router.push('/')
+                    }
                             
     })
   

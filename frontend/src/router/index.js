@@ -69,11 +69,13 @@ const routes = [
     path: '/boardReadPage',
     name: 'BoardReadPage',
     components: {
-      default:BoardReadPage
+      default: BoardReadPage
     },
     props: {
       default: true
-    }
+    },
+  },
+  {
     path: '/loginPage',
     name: 'LoginPage',
     component: LoginPage
