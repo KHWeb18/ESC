@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -24,5 +26,21 @@ public class CommentServiceImpl implements CommentService {
                 commentRequest.getMemberId(), commentRequest.getContent(), commentRequest.getRegDate());
 
         commentRepository.save(commentEntity);
+    }
+
+    @Override
+    public List<Comment> getCommentsOfBoard(Long boardNo) throws Exception {
+        return commentRepository.getCommentsOfBoard(boardNo);
+    }
+
+    @Override
+    public List<Comment> findByCommentNo(Long commentNo) throws Exception {
+        return commentRepository.findByCommentNo(commentNo);
+    }
+
+    @Override
+    public void modify(Comment comment, CommentRequest commentRequest) throws Exception {
+        comment.updateComment(commentRequest);
+        commentRepository.save(comment);
     }
 }
