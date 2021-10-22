@@ -152,7 +152,7 @@
                 color="white"
                 outlined
                 rounded
-                href="#"
+                href="evinfo"
               >
                 전기차 정보 바로가기
               </v-btn>
