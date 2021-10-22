@@ -50,4 +50,7 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
     @Query("select t from Board t where t.category = :target")
     List<Board> getTargetList(String target);
 
+    @Query("select t from Board t where t.title = :search")
+    List<Board> getSearchList(String search);
+
 }

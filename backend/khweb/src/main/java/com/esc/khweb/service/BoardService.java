@@ -28,4 +28,6 @@ public interface BoardService {
 
     public List<Board> getTargetList (String target) throws  Exception ;
 
+    public List<Board> getSearchList (String search) throws  Exception ;
+
 }
