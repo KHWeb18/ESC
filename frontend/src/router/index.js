@@ -19,6 +19,8 @@ import ParkingBoardListPage from '../views/board/ParkingBoardListPage'
 
 import LoginPage from '../views/member/LoginPage'
 
+import EvInfoPage from '../views/EvInfo/EvInfoPage'
+
 
 Vue.use(VueRouter)
 
@@ -110,6 +112,11 @@ const routes = [
     path: '/chargingBoardListPage',
     name: 'ChargingBoardListPage',   
     component: ChargingBoardListPage
+  },
+  {
+    path: '/evinfo',
+    name: 'EvInfoPage',   
+    component: EvInfoPage
   },
 ]
 
