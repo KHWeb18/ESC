@@ -6,19 +6,26 @@
 
         <v-card-title class="commentAuthor">{{ item.memberId }}</v-card-title>
         <v-card-text class="grey--text commentDate">{{ item.regDate }}</v-card-text>
+
+        <!-- 수정 / 삭제 버튼 -->
+        <comment-edit-menu class="editBtn"></comment-edit-menu>
+
         <v-card-text class="commentContent">{{ item.content }}</v-card-text>
 
         <v-divider></v-divider>
       </div>
+
     </v-card>
   </div>
 </template>
 
 <script>
 import {mapActions, mapState} from "vuex";
+import CommentEditMenu from "./CommentEditMenu";
 
 export default {
   name: "BoardCommentList",
+  components: {CommentEditMenu},
   props: {
     boardNo: {
       type: String,
@@ -56,8 +63,14 @@ export default {
   margin: -42px 0 0 47px;
 }
 
+.editBtn{
+  position: relative;
+  margin: -45px 0 10px 88%;
+}
+
 .commentContent{
   font-size: 0.95em;
-  margin: -20px 0 30px 0;
+  margin: -20px 0 40px 0;
+  min-height: 50px;
 }
 </style>

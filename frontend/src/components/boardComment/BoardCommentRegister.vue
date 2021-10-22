@@ -41,12 +41,13 @@ export default {
         axios.post(`http://localhost:7777/comment/register/${boardNo}`, { memberId, content })
             .then(() => {
               alert('댓글 등록 성공!')
-              //window.location.reload();
-              //this.fetchCommentList(this.board.boardNo)
+              this.fetchCommentList(this.board.boardNo)
               this.content = ""
             })
             .catch(res => {
-              alert(res.response.data.message)
+              //alert(res.response.data.message)
+              console.log(res.data)
+              alert('댓글 등록 오류')
             })
       }else {
         alert('내용을 입력해 주세요')
