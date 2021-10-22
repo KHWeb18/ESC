@@ -5,6 +5,9 @@
 
       <!-- 댓글 등록 -->
       <board-comment-register v-if="board" :board="board"></board-comment-register>
+
+      <!-- 댓글 리스트 -->
+      <board-comment-list v-if="board" :board-no="boardNo"></board-comment-list>
     </v-container>
   </div>
 <!--  <v-container>-->
@@ -22,8 +25,9 @@
 import { mapActions, mapState } from 'vuex'
 import BoardReadPageFom from '../../components/board/BoardReadPageFom.vue'
 import BoardCommentRegister from "../../components/boardComment/BoardCommentRegister";
+import BoardCommentList from "../../components/boardComment/BoardCommentList";
 export default {
-  components: {BoardCommentRegister, BoardReadPageFom },
+  components: {BoardCommentList, BoardCommentRegister, BoardReadPageFom },
     name: 'BoardReadPage',
     props: {
         boardNo: {

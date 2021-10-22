@@ -294,7 +294,7 @@ h2 {
   height: 100%;
   text-align: center;
   color: white;
-  background: url(C:/proj/ESC/frontend/src/assets/img/tycan2.jpg) no-repeat
+  background: url("https://user-images.githubusercontent.com/83811729/138458042-aa6068d7-9d54-402d-802d-3e277e4d46f0.jpg") no-repeat
     center scroll;
   background-size: cover;
 }

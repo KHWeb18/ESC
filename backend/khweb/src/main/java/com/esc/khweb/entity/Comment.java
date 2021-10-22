@@ -42,8 +42,8 @@ public class Comment {
         this.regDate = regDate;
     }
 
-//    public void updateComment(CommentRequest commentRequest){
-//        this.memberId = commentRequest.getWriter();
-//        this.content = commentRequest.getContent();
-//    }
+    public void updateComment(CommentRequest commentRequest){
+        this.memberId = commentRequest.getMemberId();
+        this.content = commentRequest.getContent();
+    }
 }
