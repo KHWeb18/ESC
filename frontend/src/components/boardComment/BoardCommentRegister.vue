@@ -4,7 +4,6 @@
     <v-textarea @focus="setWriter" solo auto-grow class="commentBox"
                 rows="3" row-height="20" placeholder="댓글 작성" v-model="content">
     </v-textarea>
-
     <v-btn @click="onClick" depressed color="primary" class="commentBtn">댓글 등록</v-btn>
 
   </v-card-actions>
@@ -38,16 +37,21 @@ export default {
       const { memberId, content } = this
       const { boardNo } = this.board
 
-      axios.post(`http://localhost:7777/comment/register/${boardNo}`, { memberId, content })
-          .then(() => {
-            alert('댓글 등록 성공!')
-            //window.location.reload();
-            //this.fetchCommentList(this.board.boardNo)
-            this.content = ""
-          })
-          .catch(res => {
-            alert(res.response.data.message)
-          })
+      if(content !== '') {
+        axios.post(`http://localhost:7777/comment/register/${boardNo}`, { memberId, content })
+            .then(() => {
+              alert('댓글 등록 성공!')
+              this.fetchCommentList(this.board.boardNo)
+              this.content = ""
+            })
+            .catch(res => {
+              //alert(res.response.data.message)
+              console.log(res.data)
+              alert('댓글 등록 오류')
+            })
+      }else {
+        alert('내용을 입력해 주세요')
+      }
     },
     setWriter() {
       let temp = this.$store.state.session.member_id
@@ -62,7 +66,8 @@ export default {
   position: relative;
   top: 50px;
   width: 50%;
-  margin: auto;
+  max-width: 900px;
+  margin: auto 0 auto 7%;
   padding: 0 20px;
   box-sizing: border-box;
   border-radius: 5px;
@@ -71,6 +76,7 @@ export default {
 .commentBtn{
   position: relative;
   top: 35px;
+  margin: 0 auto;
   min-height: 50px;
 }
 </style>
