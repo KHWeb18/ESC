@@ -30,4 +30,5 @@ public interface BoardService {
 
     public List<Board> getSearchList (String search) throws  Exception ;
 
+
 }
