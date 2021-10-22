@@ -61,16 +61,16 @@ public class BoardServiceimpl implements  BoardService{
         String img = boardRequest.getImg();
         boardRepository.boardModifyAtTitle(title,boardNo);
         boardRepository.boardModifyAtcontent(content,boardNo);
-        boardRepository.boardModifyAtimg(img,boardNo);
-    }
+           boardRepository.boardModifyAtimg(img,boardNo);
+           }
 
-    @Override
-    public void DeleteBoard(Long boardNo) throws Exception {
+@Override
+public void DeleteBoard(Long boardNo) throws Exception {
         boardRepository.deleteById(boardNo);
-    }
+        }
 
-    @Override
-    public List<Board> getTargetList(String target) throws Exception {
+@Override
+public List<Board> getTargetList(String target) throws Exception {
         return boardRepository.getTargetList(target);
-    }
-}
+        }
+        }
