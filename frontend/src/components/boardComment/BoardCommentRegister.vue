@@ -65,7 +65,8 @@ export default {
   position: relative;
   top: 50px;
   width: 50%;
-  margin: auto;
+  max-width: 900px;
+  margin: auto 0 auto 7%;
   padding: 0 20px;
   box-sizing: border-box;
   border-radius: 5px;
@@ -74,6 +75,7 @@ export default {
 .commentBtn{
   position: relative;
   top: 35px;
+  margin: 0 auto;
   min-height: 50px;
 }
 </style>

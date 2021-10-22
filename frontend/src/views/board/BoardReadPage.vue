@@ -5,6 +5,7 @@
 
       <!-- 댓글 등록 -->
       <board-comment-register v-if="board" :board="board"></board-comment-register>
+
       <!-- 댓글 리스트 -->
       <board-comment-list v-if="board" :board-no="boardNo"></board-comment-list>
     </v-container>

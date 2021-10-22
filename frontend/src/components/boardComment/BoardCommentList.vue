@@ -1,16 +1,17 @@
 <template>
-  <v-card max-width="95%" class="mx-auto" elevation="0">
+  <div class="commentListBox">
+    <v-card max-width="90%" elevation="0">
 
-    <div v-for="(item,idx) in comments" :key="idx">
+      <div v-for="(item,idx) in comments" :key="idx">
 
-      <v-card-title class="text-subtitle-1 font-weight-bold">{{ item.memberId }}</v-card-title>
-      <v-card-text class="grey--text mt-n5">{{ item.regDate }}</v-card-text>
-      <v-card-text class="text-body-1 mt-n2 mb-1 font-weight-light black-text">{{ item.content }}</v-card-text>
+        <v-card-title class="commentAuthor">{{ item.memberId }}</v-card-title>
+        <v-card-text class="grey--text commentDate">{{ item.regDate }}</v-card-text>
+        <v-card-text class="commentContent">{{ item.content }}</v-card-text>
 
-      <v-divider></v-divider>
-    </div>
-
-  </v-card>
+        <v-divider></v-divider>
+      </div>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -39,4 +40,24 @@ export default {
 
 <style scoped>
 
+.commentListBox{
+  margin-top: 30px;
+  margin-left: 8%;
+  max-width: 83%;
+}
+
+.commentAuthor{
+  font-size: 1.2em;
+  margin-left: 5px;
+}
+
+.commentDate{
+  font-size: 0.8em;
+  margin: -42px 0 0 47px;
+}
+
+.commentContent{
+  font-size: 0.95em;
+  margin: -20px 0 30px 0;
+}
 </style>
