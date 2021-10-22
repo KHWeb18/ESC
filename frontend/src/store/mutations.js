@@ -1,7 +1,7 @@
 import {
   
     COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN, FETCH_MEMBER_LIST,
-    FETCH_BOARD_LIST,FETCH_BOARD
+    FETCH_BOARD_LIST,FETCH_BOARD,FETCH_TARGET_LIST,
 
 } from './mutation-types'
 
@@ -27,6 +27,9 @@ export default {
     },
     [FETCH_BOARD] (state, board) {
         state.board = board
+    },
+    [FETCH_TARGET_LIST] (state,TargetList) {
+        state.TargetList = TargetList
     }
   
 }

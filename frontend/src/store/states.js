@@ -19,6 +19,7 @@ export default {
     loginMemberNo: null,
     //게시판
     boardList: [],
-    board: null
+    board: null,
+    TargetList: [],
 }
 

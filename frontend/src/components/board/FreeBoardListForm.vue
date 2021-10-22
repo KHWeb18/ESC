@@ -1,6 +1,9 @@
 <template>
   <div>
       <v-container>
+          검색
+      <input v-model="search"/>
+          
     <table>
       <tr>
         <th>번호</th>
@@ -12,12 +15,12 @@
        
       </tr>
       <tr v-for="p in paginatedData" :key="p.no">
-        <td>{{p.boardNo}}</td>
-        <td  @click="goDetail(p.boardNo)">{{p.title}}</td>
-        <td>{{p.memberId}}</td>
-        <td>{{p.viewcount}}</td>
-        <td style="width:70px">{{p.good}}</td>
-        <td style="width:70px">{{p.bad}}</td>
+        <td v-if="p.title.includes(search)">{{p.boardNo}}</td>
+        <td v-if="p.title.includes(search)"  @click="goDetail(p.boardNo)">{{p.title}}</td>
+        <td v-if="p.title.includes(search)">{{p.memberId}}</td>
+        <td v-if="p.title.includes(search)">{{p.viewcount}}</td>
+        <td v-if="p.title.includes(search)" style="width:70px">{{p.good}}</td>
+        <td v-if="p.title.includes(search)" style="width:70px">{{p.bad}}</td>
       </tr>
     </table>
     <div class="btn-cover">
@@ -37,14 +40,18 @@
 <script>
 import axios from 'axios';
 export default {
-  name: 'paginated-list',
+  name: 'FreeBoardListForm',
   data () {
     return {
-      pageNum: 0
+      pageNum: 0,
+      search: '',
+      target: '자유게시판',
+      ip: ''
+     
     }
   },
   props: {
-    boardList: {
+    TargetList: {
       type: Array,
       required: true
     },
@@ -68,11 +75,12 @@ export default {
         .then( () =>{
 
         })
-    }
+    },
+
   },
   computed: {
     pageCount () {
-      let listLeng = this.boardList.length,
+      let listLeng = this.TargetList.length,
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
       if (listLeng % listSize > 0) page += 1;
@@ -82,9 +90,18 @@ export default {
     paginatedData () {
       const start = this.pageNum * this.pageSize,
             end = start + this.pageSize;
-      return this.boardList.slice(start, end);
+      return this.TargetList.slice(start, end);
     }
+  },
+  created(){
+
+    axios.post('https://ipapi.co/json/')
+    .then( (res) =>{
+      this.ip = res.data.ip
+      console.log(this.ip)
+    })
   }
+
 }
 </script>
 

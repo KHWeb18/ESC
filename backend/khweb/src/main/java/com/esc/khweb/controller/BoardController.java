@@ -116,4 +116,18 @@ public class BoardController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/DeleteBoard/{boardNo}")
+    public ResponseEntity<Void> DeleteBoard (@PathVariable("boardNo")Long boardNo) throws  Exception {
+
+        service.DeleteBoard(boardNo);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/getTargetList/{target}")
+    public  ResponseEntity<List<Board>> getTargetList (@PathVariable ("target") String target) throws  Exception {
+
+        List<Board> list = service.getTargetList(target);
+
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
  }

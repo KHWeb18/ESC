@@ -13,7 +13,7 @@ export default {
     name: 'BoardReadPage',
     props: {
         boardNo: {
-            type: String,
+            type: Number,
             required: true
         },
         },

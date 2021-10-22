@@ -4,7 +4,7 @@ import cookies from "vue-cookies";
 Vue.use(cookies)
 import {
     FETCH_MEMBER_LIST,
-    COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN,FETCH_BOARD_LIST,FETCH_BOARD
+    COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN,FETCH_BOARD_LIST,FETCH_BOARD,FETCH_TARGET_LIST
 
 } from './mutation-types'
 
@@ -54,5 +54,12 @@ export default {
         .then( (res) => { console.log(res.data)
             commit (FETCH_BOARD,res.data)
         })
+    },
+    fetchTargetList({commit},target) {
+        
+        return axios.post(`http://localhost:7777/board/getTargetList/${target}`)
+        .then( (res) =>{
+            commit(FETCH_TARGET_LIST,res.data) 
+        }) 
     }
 }

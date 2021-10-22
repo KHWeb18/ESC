@@ -37,14 +37,14 @@
 <script>
 import axios from 'axios';
 export default {
-  name: 'paginated-list',
+  name: 'ChargingBoardListPageForm',
   data () {
     return {
       pageNum: 0
     }
   },
   props: {
-    boardList: {
+    TargetList: {
       type: Array,
       required: true
     },
@@ -72,7 +72,7 @@ export default {
   },
   computed: {
     pageCount () {
-      let listLeng = this.boardList.length,
+      let listLeng = this.TargetList.length,
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
       if (listLeng % listSize > 0) page += 1;
@@ -82,7 +82,7 @@ export default {
     paginatedData () {
       const start = this.pageNum * this.pageSize,
             end = start + this.pageSize;
-      return this.boardList.slice(start, end);
+      return this.TargetList.slice(start, end);
     }
   }
 }
