@@ -72,7 +72,7 @@ const routes = [
     component: BoardListPage
   },
   {
-    path: '/boardReadPage:boardNo',
+    path: '/boardReadPage/:boardNo',
     name: 'BoardReadPage',
     components: {
       default: BoardReadPage
@@ -82,7 +82,7 @@ const routes = [
     },
   },
   {
-    path: '/boardModifyPage:boardNo',
+    path: '/boardModifyPage/:boardNo',
     name: 'BoardModifyPage',
     components: {
       default: BoardModifyPage  

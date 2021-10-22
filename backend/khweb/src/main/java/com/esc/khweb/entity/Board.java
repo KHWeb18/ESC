@@ -46,6 +46,11 @@ public class Board {
     @UpdateTimestamp
     private LocalDateTime lastModifiedDate;
 
+    // 댓글
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "boardNo")
+    private List<Comment> commentList = new ArrayList<Comment>();
+
     public  Board (String memberId, String title, String content, String img , String category) {
         this.memberId = memberId;
         this.title = title;
