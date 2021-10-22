@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div v-if="coin == 0">
+
       <v-container>
-          검색
-      <input v-model="search"/>
-          
     <table>
       <tr>
         <th>번호</th>
@@ -14,15 +12,16 @@
         <th>비추천</th>
        
       </tr>
-      <tr v-for="p in paginatedData" :key="p.no">
-        <td v-if="p.title.includes(search)">{{p.boardNo}}</td>
-        <td v-if="p.title.includes(search)"  @click="goDetail(p.boardNo)">{{p.title}}</td>
-        <td v-if="p.title.includes(search)">{{p.memberId}}</td>
-        <td v-if="p.title.includes(search)">{{p.viewcount}}</td>
-        <td v-if="p.title.includes(search)" style="width:70px">{{p.good}}</td>
-        <td v-if="p.title.includes(search)" style="width:70px">{{p.bad}}</td>
+      <tr  v-for="p in paginatedData" :key="p.no">
+        <td>{{p.boardNo}}</td>
+        <td  @click="goDetail(p.boardNo)">{{p.title}}</td>
+        <td>{{p.memberId}}</td>
+        <td>{{p.viewcount}}</td>
+        <td style="width:70px">{{p.good}}</td>
+        <td style="width:70px">{{p.bad}}</td>
       </tr>
     </table>
+
     <div class="btn-cover">
       <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
         이전
@@ -31,10 +30,51 @@
       <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
         다음
       </button>
+      <span @click="searching(search)">검색</span> 
+      <input type="text"  v-model="search"/>
     </div>
     <v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
       </v-container>
   </div>
+  <div v-else>
+    <v-container>
+    <table>
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>조회수</th>
+        <th>추천</th>
+        <th>비추천</th>
+       
+      </tr>
+      <tr  v-for="p in searchpaginatedData" :key="p.no">
+        <td>{{p.boardNo}}</td>
+        <td  @click="goDetail(p.boardNo)">{{p.title}}</td>
+        <td>{{p.memberId}}</td>
+        <td>{{p.viewcount}}</td>
+        <td style="width:70px">{{p.good}}</td>
+        <td style="width:70px">{{p.bad}}</td>
+      </tr>
+    </table>
+
+    <div class="btn-cover">
+      <v-btn @click="showAllBoard()" > 게시글전체보기</v-btn>
+      <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+        이전
+      </button>
+      <span class="page-count">{{ pageNum + 1 }} / {{ searchpageCount }} 페이지</span>
+      <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
+        다음
+      </button>
+      <span @click="searching(search)">검색</span> 
+      <input type="text"  v-model="search"/>
+    </div>
+    <v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
+      </v-container>
+    
+  </div>
+
 </template>
 
 <script>
@@ -45,8 +85,9 @@ export default {
     return {
       pageNum: 0,
       search: '',
-      target: '자유게시판',
-      ip: ''
+      ip: '',
+      coin: 0,
+      searchList: [],
      
     }
   },
@@ -58,7 +99,7 @@ export default {
     pageSize: {
       type: Number,
       required: false,
-      default: 10
+      default: 5
     }
   },
   methods: {
@@ -76,11 +117,31 @@ export default {
 
         })
     },
+    searching(search){
+      axios.post(`http://localhost:7777/board/getSearchList/${search}`)
+      .then( (res)=>
+        this.searchList = res.data,
+        this.coin= 1,
+        
+      )
+    },
+    showAllBoard(){
+      this.coin = 0;
+    }
 
   },
   computed: {
+      
     pageCount () {
       let listLeng = this.TargetList.length,
+          listSize = this.pageSize,
+          page = Math.floor(listLeng / listSize);
+      if (listLeng % listSize > 0) page += 1;
+
+      return page;
+    },
+    searchpageCount () {
+      let listLeng = this.searchList.length,
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
       if (listLeng % listSize > 0) page += 1;
@@ -91,7 +152,12 @@ export default {
       const start = this.pageNum * this.pageSize,
             end = start + this.pageSize;
       return this.TargetList.slice(start, end);
-    }
+    },
+    searchpaginatedData () {
+      const start = this.pageNum * this.pageSize,
+            end = start + this.pageSize;
+      return this.searchList.slice(start, end);
+    },
   },
   created(){
 
