@@ -82,7 +82,7 @@ const routes = [
     },
   },
   {
-    path: '/boardModifyPage:boardNo',
+    path: '/boardModifyPage/:boardNo',
     name: 'BoardModifyPage',
     components: {
       default: BoardModifyPage  

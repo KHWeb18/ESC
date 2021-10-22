@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileOutputStream;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -128,6 +130,18 @@ public class BoardController {
 
         List<Board> list = service.getTargetList(target);
 
+        Collections.reverse(list);
+
         return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
+    @PostMapping("/getSearchList/{search}")
+    public ResponseEntity<List<Board>> getSearchList (@PathVariable("search") String search) throws  Exception {
+
+        List<Board> list  = service.getSearchList(search);
+        Collections.reverse(list);
+
+        return  new ResponseEntity<>(list,HttpStatus.OK);
+
     }
  }
