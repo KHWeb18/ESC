@@ -129,7 +129,7 @@ public class BoardController {
     public  ResponseEntity<List<Board>> getTargetList (@PathVariable ("target") String target) throws  Exception {
 
         List<Board> list = service.getTargetList(target);
-
+        //거꾸로
         Collections.reverse(list);
 
         return new ResponseEntity<>(list,HttpStatus.OK);
