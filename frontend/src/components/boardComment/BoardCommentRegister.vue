@@ -28,20 +28,21 @@ export default {
   data() {
     return {
       content: '',
+      memberId: 'test',
       writer: '',
     }
   },
   methods: {
     ...mapActions(["fetchCommentList"]),
     onClick() {
-      const { writer, content } = this
+      const { memberId, content } = this
       const { boardNo } = this.board
 
-      axios.post(`http://localhost:7777/comment/register/${boardNo}`, { writer, content })
+      axios.post(`http://localhost:7777/comment/register/${boardNo}`, { memberId, content })
           .then(() => {
             alert('댓글 등록 성공!')
             //window.location.reload();
-            this.fetchCommentList(this.board.boardNo)
+            //this.fetchCommentList(this.board.boardNo)
             this.content = ""
           })
           .catch(res => {
@@ -49,7 +50,7 @@ export default {
           })
     },
     setWriter() {
-      const temp = this.$store.state.session.member_id
+      let temp = this.$store.state.session.member_id
       this.writer = temp
     }
   }

@@ -3,8 +3,8 @@
     <v-container class="pa-0">
       <board-read-page-fom v-if="board" :board="board"/>
 
-      <!-- 댓글 -->
-      <board-comment-register></board-comment-register>
+      <!-- 댓글 등록 -->
+      <board-comment-register v-if="board" :board="board"></board-comment-register>
     </v-container>
   </div>
 <!--  <v-container>-->
