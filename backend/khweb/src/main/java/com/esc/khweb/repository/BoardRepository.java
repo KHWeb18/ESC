@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board,Long> {
     @Transactional
@@ -45,5 +46,8 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
     @Query("UPDATE Board b set b.img = :img where b.boardNo = :boardNo")
     void boardModifyAtimg(String img, Long boardNo);
 
+
+    @Query("select t from Board t where t.category = :target")
+    List<Board> getTargetList(String target);
 
 }

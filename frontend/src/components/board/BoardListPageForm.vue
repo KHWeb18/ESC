@@ -20,7 +20,6 @@
         <td style="width:70px">{{p.bad}}</td>
       </tr>
     </table>
-    <v-btn style="float:right" v-if="this.$store.state.isLogin ==true" id="btn" route :to="{name: 'CommunityRegisterPage'}"><v-icon>mdi-lead-pencil</v-icon></v-btn>
     <div class="btn-cover">
       <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
         이전

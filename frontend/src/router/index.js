@@ -12,7 +12,13 @@ import BoardRegister from '../views/board/BoardRegister'
 import BoardListPage from '../views/board/BoardListPage'
 import BoardReadPage from '../views/board/BoardReadPage'
 import BoardModifyPage from '../views/board/BoardModifyPage'
+import FreeBoardListPage from '../views/board/FreeBoardListPage'
+import ChargingBoardListPage from '../views/board/ChargingBoardListPage'
+import ParkingBoardListPage from '../views/board/ParkingBoardListPage'  
+
+
 import LoginPage from '../views/member/LoginPage'
+
 
 Vue.use(VueRouter)
 
@@ -79,8 +85,8 @@ const routes = [
     path: '/boardModifyPage:boardNo',
     name: 'BoardModifyPage',
     components: {
-      default: BoardModifyPage
-    },
+      default: BoardModifyPage  
+    },   
     props: {
       default: true
     },
@@ -89,6 +95,21 @@ const routes = [
     path: '/loginPage',
     name: 'LoginPage',
     component: LoginPage
+  },
+  {
+    path: '/freeBoardListPage',
+    name: 'FreeBoardListPage',   
+    component: FreeBoardListPage
+  },
+  {
+    path: '/parkingBoardListPage',
+    name: 'ParkingBoardListPage',   
+    component: ParkingBoardListPage
+  },
+  {
+    path: '/chargingBoardListPage',
+    name: 'ChargingBoardListPage',   
+    component: ChargingBoardListPage
   },
 ]
 

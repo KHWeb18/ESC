@@ -24,4 +24,8 @@ public interface BoardService {
 
     public  void boardModify (BoardRequest boardRequest, Long boardNo) throws  Exception;
 
+    public  void DeleteBoard (Long boardNo) throws  Exception ;
+
+    public List<Board> getTargetList (String target) throws  Exception ;
+
 }

@@ -11,7 +11,8 @@
         <v-btn @click="good(board.boardNo)">추천</v-btn><v-btn @click="bad(board.boardNo)">비추천</v-btn>
         <v-btn v-if="board.memberId == '한상우'" @click="modifying(board.boardNo)">수정</v-btn> <!--세션없어서 제이름넣었습니다-->
         <v-btn @click="report(board.boardNo)">신고하기</v-btn>
-        <v-btn route :to="{name: 'BoardListPage'}">글목록</v-btn>
+        <v-btn route :to="{name: 'FreeBoardListPage'}">글목록</v-btn>
+        <v-btn @click="DeleteBoard(board.boardNo)">글삭제</v-btn>
       </v-col>
     </v-row>
   
@@ -70,6 +71,14 @@ export default {
                   },
                   modifying(boardNo) {
                       this.$router.push({name: 'BoardModifyPage', params:{boardNo} })
+                  },
+                  DeleteBoard(boardNo){
+                      
+                      axios.post(`http://localhost:7777/board/DeleteBoard/${boardNo}`)
+                      .then( () =>{
+                          alert('글이 삭제되었습니다')
+                          this.$router.push({name: 'BoardListPage'})
+                      })
                   }
                   
     },

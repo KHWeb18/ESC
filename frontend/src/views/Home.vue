@@ -7,6 +7,12 @@
         active-class="active">
         메인홈
       </router-link>
+      <router-link
+        :to="{ name: 'FreeBoardListPage' }"
+        class="nav-link"
+        active-class="active">
+        게시판
+      </router-link>
     </div>
   </div>
 </template>
