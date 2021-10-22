@@ -8,7 +8,7 @@
         <v-card-text class="grey--text commentDate">{{ item.regDate }}</v-card-text>
 
         <!-- 수정 / 삭제 버튼 -->
-        <comment-edit-menu class="editBtn"></comment-edit-menu>
+        <comment-edit-menu class="editBtn" :commentInfo="item" :boardNo="boardNo"></comment-edit-menu>
 
         <v-card-text class="commentContent">{{ item.content }}</v-card-text>
 
@@ -28,7 +28,7 @@ export default {
   components: {CommentEditMenu},
   props: {
     boardNo: {
-      type: String,
+      type: Number,
       required: true
     },
   },
