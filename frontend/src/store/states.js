@@ -17,9 +17,17 @@ export default {
     session: [],
     isLogin: false,
     loginMemberNo: null,
+
     //게시판
     boardList: [],
     board: null,
     TargetList: [],
+
+    // 댓글
+    comments: [],
+    comment: null,
+    // 대댓글
+    replies: [],
+    reply: null,
 }
 

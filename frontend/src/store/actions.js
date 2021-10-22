@@ -4,7 +4,14 @@ import cookies from "vue-cookies";
 Vue.use(cookies)
 import {
     FETCH_MEMBER_LIST,
-    COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN,FETCH_BOARD_LIST,FETCH_BOARD,FETCH_TARGET_LIST
+    COOKIE_TO_SESSION,
+    REMOVE_IS_LOGIN,
+    REMOVE_SESSION,
+    SET_IS_LOGIN,
+    FETCH_BOARD_LIST,
+    FETCH_BOARD,
+    FETCH_TARGET_LIST,
+    FETCH_COMMENT_LIST, FETCH_COMMENT, FETCH_REPLY_LIST, FETCH_REPLY
 
 } from './mutation-types'
 
@@ -61,5 +68,30 @@ export default {
         .then( (res) =>{
             commit(FETCH_TARGET_LIST,res.data) 
         }) 
-    }
+    },
+    // 댓글
+    fetchCommentList ({ commit }, boardNo) {
+        return axios.get(`http://localhost:7777/comment/lists/${boardNo}`)
+            .then((res) => {
+                commit(FETCH_COMMENT_LIST, res.data)
+            })
+    },
+    fetchComment ({ commit }, commentNo) {
+        return axios.get(`http://localhost:7777/comment/${commentNo}`)
+            .then((res) => {
+                commit(FETCH_COMMENT, res.data)
+            })
+    },
+    fetchReplies({ commit }, commentNo) {
+        return axios.get(`http://localhost:7777/reply/lists/${commentNo}`)
+            .then((res) => {
+                commit(FETCH_REPLY_LIST, res.data)
+            })
+    },
+    fetchReply({ commit }, replyNo) {
+        return axios.get(`http://localhost:7777/reply/${replyNo}`)
+            .then((res) => {
+                commit(FETCH_REPLY, res.data)
+            })
+    },
 }

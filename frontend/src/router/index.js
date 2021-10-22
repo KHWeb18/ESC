@@ -72,7 +72,7 @@ const routes = [
     component: BoardListPage
   },
   {
-    path: '/boardReadPage:boardNo',
+    path: '/boardReadPage/:boardNo',
     name: 'BoardReadPage',
     components: {
       default: BoardReadPage
