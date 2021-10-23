@@ -60,11 +60,11 @@
 
     <div class="btn-cover">
       <v-btn @click="showAllBoard()" > 게시글전체보기</v-btn>
-      <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+      <button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn">
         이전
       </button>
-      <span class="page-count">{{ pageNum + 1 }} / {{ searchpageCount }} 페이지</span>
-      <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
+      <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }} 페이지</span>
+      <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn">
         다음
       </button>
       <span @click="searching(search)">검색</span> 
@@ -84,6 +84,7 @@ export default {
   data () {
     return {
       pageNum: 0,
+      searchpageNum: 0,
       search: '',
       ip: '',
       coin: 0,
@@ -99,15 +100,21 @@ export default {
     pageSize: {
       type: Number,
       required: false,
-      default: 10
+      default: 5
     }
   },
   methods: {
     nextPage () {
       this.pageNum += 1;
     },
+    searchNextPage(){
+      this.searchpageNum +=1;
+    },
     prevPage () {
       this.pageNum -= 1;
+    },
+    searchPrevPage() {
+      this.searchpageNum -=1;
     },
     goDetail(boardNo){
         this.$router.push({name: 'BoardReadPage', params:{boardNo}})
@@ -154,7 +161,7 @@ export default {
       return this.TargetList.slice(start, end);
     },
     searchpaginatedData () {
-      const start = this.pageNum * this.pageSize,
+      const start = this.searchpageNum * this.pageSize,
             end = start + this.pageSize;
       return this.searchList.slice(start, end);
     },
