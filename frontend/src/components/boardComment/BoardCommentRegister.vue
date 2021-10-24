@@ -27,7 +27,8 @@ export default {
   data() {
     return {
       content: '',
-      memberId: 'test',
+      memberId: 'testId',
+      isDeleted: false,
       writer: '',
     }
   },

@@ -11,4 +11,5 @@ public interface CommentService {
     public List<Comment> getCommentsOfBoard(Long boardNo) throws Exception;
     public List<Comment> findByCommentNo(Long commentNo) throws Exception;
     public void modify(Comment comment, CommentRequest commentRequest) throws Exception;
+    public void delete(Comment comment, CommentRequest commentRequest) throws Exception;
 }

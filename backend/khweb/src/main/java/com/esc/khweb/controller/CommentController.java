@@ -45,13 +45,23 @@ public class CommentController {
         return new ResponseEntity<Comment>(commentRead, HttpStatus.OK);
     }
 
-    @PutMapping("/{commentNo}")
+    @PutMapping("/edit/{commentNo}")
     public ResponseEntity<Void> modify(@PathVariable("commentNo") Long commentNo,
                                        @RequestBody CommentRequest commentRequest) throws Exception {
 
         List<Comment> commentList = commentService.findByCommentNo(commentNo);
         Comment commentRead = commentList.get(0);
         commentService.modify(commentRead, commentRequest);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PutMapping("/delete/{commentNo}")
+    public ResponseEntity<Void> delete(@PathVariable("commentNo") Long commentNo,
+                                       @RequestBody CommentRequest commentRequest) throws Exception {
+
+        List<Comment> commentList = commentService.findByCommentNo(commentNo);
+        Comment commentRead = commentList.get(0);
+        commentService.delete(commentRead, commentRequest);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }

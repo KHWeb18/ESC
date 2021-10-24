@@ -22,8 +22,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void register(CommentRequest commentRequest) throws Exception {
-        Comment commentEntity = new Comment(commentRequest.getCommentNo(), commentRequest.getBoardNo(),
-                commentRequest.getMemberId(), commentRequest.getContent(), commentRequest.getRegDate());
+        Comment commentEntity = new Comment(commentRequest.getBoardNo(), commentRequest.getMemberId(),
+                commentRequest.getContent());
 
         commentRepository.save(commentEntity);
     }
@@ -41,6 +41,12 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void modify(Comment comment, CommentRequest commentRequest) throws Exception {
         comment.updateComment(commentRequest);
+        commentRepository.save(comment);
+    }
+
+    @Override
+    public void delete(Comment comment, CommentRequest commentRequest) throws Exception {
+        comment.deleteComment(commentRequest);
         commentRepository.save(comment);
     }
 }

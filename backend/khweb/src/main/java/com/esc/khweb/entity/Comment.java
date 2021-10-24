@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.List;
 @Table(name = "Comment")
 @NoArgsConstructor
 @Data
+@DynamicInsert
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,20 +33,30 @@ public class Comment {
     @Column(nullable = false)
     private String content;
 
+    @Column(columnDefinition = "boolean default false")
+    private Boolean isDeleted;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
     @CreationTimestamp
     private Date regDate;
 
-    public Comment(Long commentNo, Long boardNo, String memberId, String content, Date regDate){
-        this.commentNo = commentNo;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
+    @UpdateTimestamp
+    private Date updDate;
+
+    public Comment(Long boardNo, String memberId, String content){
         this.boardNo = boardNo;
         this.memberId = memberId;
         this.content = content;
-        this.regDate = regDate;
     }
 
     public void updateComment(CommentRequest commentRequest){
         this.memberId = commentRequest.getMemberId();
         this.content = commentRequest.getContent();
+    }
+
+    public void deleteComment(CommentRequest commentRequest){
+        this.memberId = commentRequest.getMemberId();
+        this.isDeleted = commentRequest.getIsDeleted();
     }
 }
