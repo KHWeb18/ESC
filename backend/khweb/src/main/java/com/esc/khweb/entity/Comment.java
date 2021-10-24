@@ -54,4 +54,9 @@ public class Comment {
         this.memberId = commentRequest.getMemberId();
         this.content = commentRequest.getContent();
     }
+
+    public void deleteComment(CommentRequest commentRequest){
+        this.memberId = commentRequest.getMemberId();
+        this.isDeleted = commentRequest.getIsDeleted();
+    }
 }

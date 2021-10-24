@@ -14,9 +14,9 @@
           </v-list-item-title>
         </v-list-item>
 
-        <v-list-item>
+        <v-list-item @click="deleteComment(commentInfo)">
           <v-icon class="iconBox">delete</v-icon>
-          <v-list-item-title class="iconBox" @click="deleteComment(commentInfo)">삭제
+          <v-list-item-title class="iconBox">삭제
           </v-list-item-title>
         </v-list-item>
 
@@ -43,16 +43,16 @@ export default {
   },
   data() {
     return {
-      deleted: '삭제된 댓글입니다.',
+      isDeleted: true,
       content: '',
     }
   },
   methods: {
     ...mapActions(['fetchCommentList']),
     deleteComment(commentInfo) {
-      const { deleted } = this
-      axios.put(`http://localhost:7777/comment/${commentInfo.commentNo}`,
-          { memberId : commentInfo.memberId, content : deleted })
+      const { isDeleted } = this
+      axios.put(`http://localhost:7777/comment/delete/${commentInfo.commentNo}`,
+          { memberId : commentInfo.memberId, isDeleted })
           .then(() => {
             alert('삭제 성공!')
             this.fetchCommentList(this.boardNo)

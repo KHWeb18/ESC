@@ -13,4 +13,5 @@ public class CommentRequest {
     private Long boardNo;
     private String memberId;
     private String content;
+    private Boolean isDeleted;
 }

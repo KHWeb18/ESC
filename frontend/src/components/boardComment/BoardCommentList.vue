@@ -10,7 +10,8 @@
         <!-- 수정 / 삭제 버튼 -->
         <comment-edit-menu class="editBtn" :commentInfo="item" :boardNo="boardNo"></comment-edit-menu>
 
-        <v-card-text class="commentContent">{{ item.content }}</v-card-text>
+        <v-card-text class="commentContent" v-if="!item.isDeleted">{{ item.content }}</v-card-text>
+        <v-card-text class="commentContent" v-if="item.isDeleted">삭제된 댓글입니다.</v-card-text>
 
         <v-divider></v-divider>
       </div>

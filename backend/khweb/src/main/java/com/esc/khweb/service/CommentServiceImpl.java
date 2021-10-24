@@ -43,4 +43,10 @@ public class CommentServiceImpl implements CommentService {
         comment.updateComment(commentRequest);
         commentRepository.save(comment);
     }
+
+    @Override
+    public void delete(Comment comment, CommentRequest commentRequest) throws Exception {
+        comment.deleteComment(commentRequest);
+        commentRepository.save(comment);
+    }
 }
