@@ -8,7 +8,7 @@
       </template>
       <v-list>
 
-        <v-list-item>
+        <v-list-item @click="showEdit">
           <v-icon class="iconBox">edit</v-icon>
           <v-list-item-title class="iconBox" >수정
           </v-list-item-title>
@@ -45,6 +45,7 @@ export default {
     return {
       isDeleted: true,
       content: '',
+      editBox: false,
     }
   },
   methods: {
@@ -60,6 +61,21 @@ export default {
           .catch(err => {
             alert(err.response.data.message)
           })
+    },
+    editComment(commentInfo) {
+      const { content } = this
+      axios.put(`http://localhost:7777/comment/edit/${commentInfo.commentNo}`,
+          { memberId : commentInfo.memberId, content })
+          .then(() => {
+            alert('수정 성공!')
+            this.fetchCommentList(this.boardNo)
+          })
+          .catch(err => {
+            alert(err.response.data.message)
+          })
+    },
+    showEdit(){
+      this.$emit('showEdit')
     }
   }
 }

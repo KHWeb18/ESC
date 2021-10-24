@@ -45,7 +45,7 @@ public class CommentController {
         return new ResponseEntity<Comment>(commentRead, HttpStatus.OK);
     }
 
-    @PutMapping("/{commentNo}")
+    @PutMapping("/edit/{commentNo}")
     public ResponseEntity<Void> modify(@PathVariable("commentNo") Long commentNo,
                                        @RequestBody CommentRequest commentRequest) throws Exception {
 
