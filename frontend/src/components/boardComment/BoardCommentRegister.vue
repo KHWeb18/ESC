@@ -27,8 +27,8 @@ export default {
   data() {
     return {
       content: '',
-      memberId: 'test',
-      writer: '',
+      memberId: 'testId',
+      isDeleted: false,
     }
   },
   methods: {
@@ -53,10 +53,10 @@ export default {
         alert('내용을 입력해 주세요')
       }
     },
-    setWriter() {
-      let temp = this.$store.state.session.member_id
-      this.writer = temp
-    }
+    // setWriter() {
+    //   let temp = this.$store.state.session.member_id
+    //   this.writer = temp
+    // }
   }
 }
 </script>

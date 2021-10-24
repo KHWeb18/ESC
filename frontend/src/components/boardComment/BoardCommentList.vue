@@ -54,13 +54,13 @@ export default {
 }
 
 .commentAuthor{
-  font-size: 1.2em;
+  font-size: 0.95em;
   margin-left: 5px;
 }
 
 .commentDate{
-  font-size: 0.8em;
-  margin: -42px 0 0 47px;
+  font-size: 0.7em;
+  margin: -22px 0 0 5px;
 }
 
 .editBtn{
@@ -69,8 +69,9 @@ export default {
 }
 
 .commentContent{
-  font-size: 0.95em;
-  margin: -20px 0 40px 0;
+  font-size: 1.1em;
+  margin: -20px 0 20px 0;
   min-height: 50px;
+  font-weight: normal;
 }
 </style>

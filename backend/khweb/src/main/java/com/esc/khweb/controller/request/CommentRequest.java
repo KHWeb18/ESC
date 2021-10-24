@@ -10,9 +10,7 @@ import java.util.Date;
 @Slf4j
 @NoArgsConstructor
 public class CommentRequest {
-    private Long commentNo;
     private Long boardNo;
     private String memberId;
     private String content;
-    private Date regDate;
 }

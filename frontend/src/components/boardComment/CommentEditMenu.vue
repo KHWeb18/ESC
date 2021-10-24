@@ -43,11 +43,8 @@ export default {
   },
   data() {
     return {
-      items: [
-        { title: '수정', icon: 'edit', method: 'editComment(commentInfo)' },
-        { title: '삭제', icon: 'delete', method: 'deleteComment(commentInfo)' },
-      ],
-      deleted: '삭제된 댓글입니다.'
+      deleted: '삭제된 댓글입니다.',
+      content: '',
     }
   },
   methods: {
