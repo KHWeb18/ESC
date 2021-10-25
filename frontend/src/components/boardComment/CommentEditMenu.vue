@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="commentInfo.memberId === session">
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn large icon color="indigo" v-bind="attrs" v-on="on">
@@ -27,7 +27,7 @@
 
 <script>
 import axios from "axios";
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "CommentEditMenu",
@@ -40,6 +40,9 @@ export default {
       type: Number,
       required: true
     },
+  },
+  computed:{
+    ...mapState(['session'])
   },
   data() {
     return {

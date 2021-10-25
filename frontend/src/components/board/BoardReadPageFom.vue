@@ -9,10 +9,10 @@
   <img v-if="board.img != ''" width="1000px" :src="require(`@/assets/게시판/${board.img}`)"/>
         <pre>{{board.content}}</pre>
         <v-btn @click="good(board.boardNo)">추천</v-btn><v-btn @click="bad(board.boardNo)">비추천</v-btn>
-        <v-btn v-if="board.memberId == '한상우'" @click="modifying(board.boardNo)">수정</v-btn> <!--세션없어서 제이름넣었습니다-->
+        <v-btn v-if="board.memberId == session" @click="modifying(board.boardNo)">수정</v-btn>
         <v-btn @click="report(board.boardNo)">신고하기</v-btn>
         <v-btn route :to="{name: 'FreeBoardListPage'}">글목록</v-btn>
-        <v-btn @click="DeleteBoard(board.boardNo)">글삭제</v-btn>
+        <v-btn @click="DeleteBoard(board.boardNo)" v-if="board.memberId == session">글삭제</v-btn>
       </v-col>
     </v-row>
   
@@ -25,6 +25,7 @@ import axios from 'axios'
 //import { mapState } from 'vuex'
 import Vue from 'vue'
 import VueMoment from 'vue-moment'
+import {mapState} from "vuex";
 Vue.use(VueMoment);
 export default {
     name: 'BoardReadPageForm',
@@ -33,6 +34,9 @@ export default {
             type: Object
         }
     },
+  computed:{
+    ...mapState(['session'])
+  },
 
     methods: {
         OnSubmit() {

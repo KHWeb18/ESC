@@ -1,5 +1,5 @@
 <template>
-  <div class="commentListBox">
+  <div class="commentListBox" v-if="boardNo">
     <v-card max-width="90%" elevation="0">
 
       <div v-for="(item,idx) in comments" :key="idx">

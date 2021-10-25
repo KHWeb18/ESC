@@ -11,6 +11,7 @@
 <script>
 import footerComponent from './components/footer/footerComponent.vue'
 import HeaderComponent from "./components/HeaderComponent";
+import {mapActions} from "vuex";
 export default {
   name: 'App',
   components: {
@@ -20,5 +21,12 @@ export default {
   data: () => ({
     //
   }),
+  mounted() {
+    this.setIsLogin()
+    this.cookieToSession()
+  },
+  methods:{
+    ...mapActions(['cookieToSession', 'setIsLogin'])
+  }
 };
 </script>

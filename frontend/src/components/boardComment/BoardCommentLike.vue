@@ -1,6 +1,7 @@
 <template>
   <v-card-text class="likeBtn"><v-btn @click="likeComment">Like</v-btn>
     {{ comment.commentLikes.length }}
+    <v-btn @click="removeLike">hate</v-btn>
   </v-card-text>
 </template>
 
@@ -25,7 +26,7 @@ export default {
   },
   data() {
     return{
-      memberId: "testId"
+      memberId: "testIdddd"
     }
   },
   methods: {
@@ -41,6 +42,17 @@ export default {
             alert(res.response.data.message)
           })
     },
+    removeLike(){
+      const { memberId } = this
+      const { commentNo } = this.comment
+      axios.delete(`http://localhost:7777/comment/like/delete/${commentNo}/${memberId}`)
+          .then(() => {
+            this.fetchCommentList(this.boardNo)
+          })
+          .catch(res => {
+            alert(res.response.data.message)
+          })
+    }
   }
 }
 </script>

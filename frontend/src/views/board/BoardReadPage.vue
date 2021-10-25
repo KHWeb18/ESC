@@ -7,7 +7,7 @@
       <board-comment-register v-if="board" :board="board"></board-comment-register>
 
       <!-- 댓글 리스트 -->
-      <board-comment-list v-if="board" :board-no="boardNo"></board-comment-list>
+      <board-comment-list v-if="boardNo" :board-no="boardNo"></board-comment-list>
     </v-container>
   </div>
 <!--  <v-container>-->
@@ -36,7 +36,7 @@ export default {
         },
         },
         computed:{
-            ...mapState(['board'])
+            ...mapState(['board' ])
         },
         methods: {
             ...mapActions(['fetchBoard'])

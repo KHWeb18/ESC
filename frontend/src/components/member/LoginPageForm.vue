@@ -63,7 +63,7 @@ import { mapActions, mapState } from 'vuex'
       }
     },
     computed: {
-      ...mapState(['passwordRules','memberList'])
+      ...mapState(['passwordRules', 'memberList'])
     },
     methods: {
       ...mapActions(['fetchMemberList']),
@@ -102,4 +102,3 @@ import { mapActions, mapState } from 'vuex'
   
 
 </script>
-

@@ -76,7 +76,12 @@ public class BoardServiceimpl implements  BoardService{
             }
 
     @Override
-    public List<Board> getSearchList(String search) throws Exception {
-        return boardRepository.getSearchList(search);
+    public List<Board> titleSearchList(String search) throws Exception {
+        return boardRepository.titleSearchList(search);
+    }
+
+    @Override
+    public List<Board> memberIdSearchList(String search) throws Exception {
+        return boardRepository.memberIdSearchList(search);
     }
 }
