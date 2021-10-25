@@ -9,7 +9,7 @@
   <img v-if="board.img != ''" width="1000px" :src="require(`@/assets/게시판/${board.img}`)"/>
         <pre>{{board.content}}</pre>
         <v-btn @click="good(board.boardNo)">추천</v-btn><v-btn @click="bad(board.boardNo)">비추천</v-btn>
-        <v-btn v-if="board.memberId == session.memberId" @click="modifying(board.boardNo)">수정</v-btn>
+        <v-btn v-if="board.memberId == session" @click="modifying(board.boardNo)">수정</v-btn>
         <v-btn @click="report(board.boardNo)">신고하기</v-btn>
         <v-btn route :to="{name: 'FreeBoardListPage'}">글목록</v-btn>
         <v-btn @click="DeleteBoard(board.boardNo)" v-if="board.memberId == session">글삭제</v-btn>
