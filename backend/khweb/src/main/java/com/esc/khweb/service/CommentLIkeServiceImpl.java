@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class CommentLIkeServiceImpl implements CommentLikeService {
@@ -25,4 +27,8 @@ public class CommentLIkeServiceImpl implements CommentLikeService {
         commentLikeRepository.save(commentLikes);
     }
 
+    @Override
+    public List<CommentLikes> getLikesOfComment(Long commentNo) throws Exception {
+        return commentLikeRepository.getLikesOfComment(commentNo);
+    }
 }

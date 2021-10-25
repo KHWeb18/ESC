@@ -1,6 +1,5 @@
 <template>
   <v-card-text class="likeBtn"><v-btn @click="likeComment">Like</v-btn>
-    {{ comment }}
     <v-btn>reply</v-btn>
   </v-card-text>
 </template>
