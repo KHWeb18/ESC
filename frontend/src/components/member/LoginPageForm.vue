@@ -1,16 +1,45 @@
 <template>
+    
   <v-container style="max-width: 330px">
+    <v-form v-model="valid">
+   
+    <h1 align="center">EVS</h1> 
+    <br/> 
+  
     <form @submit.prevent="OnSubmit">
-      <v-text-field label="아이디" type="text" v-model="memberId" >
+      <v-text-field 
+      
+      single-line
+       label="아이디" type="text" v-model="memberId" >
       </v-text-field>
+      <v-text-field single-line 
+       v-model="memberPw"
+      :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"  
+      :rules="passwordRules"
+      :type="show ? 'text' : 'password'" 
+      name="input-10-1"
+      label="비밀번호" 
+      counter
+      @click:append="show = !show">
+      </v-text-field>
+      <br/>
+      
+      <v-btn 
+      width="310"
+      color="gray"
+      dark
+      
+      @click="OnSubmit">로그인</v-btn>
+    <br/><br/>
 
-      <v-text-field label="비밀번호" type="password" v-model="memberPw"  :rules="passwordRules">
-      </v-text-field>
-      <v-btn @click="OnSubmit">로그인</v-btn>
-      <v-btn route :to="{name: 'SignupPage'}">회원가입</v-btn>
-    <v-btn route :to="{name: 'FindByPwPage'}">비밀번호찾기</v-btn>
+    <v-btn text route :to="{name: 'FindByPwPage'}">아이디/비밀번호 찾기</v-btn>
+
+      <v-btn text route :to="{name: 'SignupPage'}">회원가입</v-btn>
+      <br/>
     </form>
+      </v-form>
   </v-container>
+ 
 </template>
 
 
@@ -24,7 +53,13 @@ import { mapActions, mapState } from 'vuex'
       return {
         memberId: '',
         memberPw: '',
+        show: false,
 
+        password: 'Password',
+        rules: {
+          required: value => !!value || 'Required.',
+          min: v => v.length >= 8 || 'Min 8 characters',
+        },
       }
     },
     computed: {
@@ -67,3 +102,4 @@ import { mapActions, mapState } from 'vuex'
   
 
 </script>
+
