@@ -34,9 +34,16 @@ public class CommentLikeReportController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-        @GetMapping("/like/lists/{commentNo}")
+    @GetMapping("/like/lists/{commentNo}")
     public ResponseEntity<List<CommentLikes>> getLists(@PathVariable("commentNo") Long commentNo) throws Exception {
 
         return new ResponseEntity<List<CommentLikes>>(commentLikeService.getLikesOfComment(commentNo),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/like/delete/{commentNo}/{memberId}")
+    public ResponseEntity<Void> deleteLike(@PathVariable("commentNo") Long commentNo, @PathVariable("memberId")
+                                       String memberId) throws Exception{
+        commentLikeService.deleteByCommentNoAndMemberId(commentNo, memberId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

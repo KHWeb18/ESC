@@ -21,6 +21,13 @@
 
   export default {
     name: 'Home',
+    methods:{
+      check(){
+        console.log(this.$cookies.get('user'))
+        console.log(this.$store.state.session)
+        console.log(this.$store.state.isLogin)
+      }
+    },
 
     components: {}
   }
