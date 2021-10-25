@@ -1,6 +1,5 @@
 <template>
   <div v-if="coin == 0">
-
       <v-container>
     <table>
       <tr>
@@ -10,7 +9,6 @@
         <th>조회수</th>
         <th>추천</th>
         <th>비추천</th>
-       
       </tr>
       <tr  v-for="p in paginatedData" :key="p.no">
         <td>{{p.boardNo}}</td>
@@ -22,20 +20,18 @@
       </tr>
     </table>
 
-    <div class="btn-cover">
-      <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
-        이전
-      </button>
-      <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
-      <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
-        다음
-      </button>
-      <span @click="searching(search)">검색</span> 
-      <input type="text"  v-model="search"/>
-    </div>
-    <v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
-      </v-container>
+    <div class="btn-cover"><button :disabled="pageNum === 0" @click="prevPage" class="page-btn">이전</button>
+    <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+    <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">다음</button>
+    <v-row>
+    <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
+    <v-text-field style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
+    <v-btn @click="searching(searchMenus,search)">검색하기</v-btn>
+    </v-row>
+    </div> <v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
+    </v-container>
   </div>
+
   <div v-else>
     <v-container>
     <table>
@@ -46,7 +42,6 @@
         <th>조회수</th>
         <th>추천</th>
         <th>비추천</th>
-       
       </tr>
       <tr  v-for="p in searchpaginatedData" :key="p.no">
         <td>{{p.boardNo}}</td>
@@ -57,22 +52,18 @@
         <td style="width:70px">{{p.bad}}</td>
       </tr>
     </table>
-
     <div class="btn-cover">
-      <v-btn @click="showAllBoard()" > 게시글전체보기</v-btn>
-      <button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn">
-        이전
-      </button>
+      <button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn">이전</button>
       <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }} 페이지</span>
-      <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn">
-        다음
-      </button>
-      <span @click="searching(search)">검색</span> 
-      <input type="text"  v-model="search"/>
-    </div>
-    <v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
-      </v-container>
-    
+      <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn">다음</button>
+    <v-row>
+      <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
+      <v-text-field style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
+      <v-btn @click="searching(searchMenus,search)">검색하기</v-btn>
+      <v-btn @click="showAllBoard()"> 게시글전체보기</v-btn>
+      </v-row>
+    </div><v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
+    </v-container>
   </div>
 
 </template>
@@ -83,12 +74,17 @@ export default {
   name: 'FreeBoardListForm',
   data () {
     return {
+      searchMenus: '',
       pageNum: 0,
       searchpageNum: 0,
       search: '',
       ip: '',
       coin: 0,
       searchList: [],
+      searchMenu: [
+        {text: '글제목', value:'글제목'},
+        {text: '작성자' , value:'작성자'}
+      ]
      
     }
   },
@@ -124,16 +120,27 @@ export default {
 
         })
     },
-    searching(search){
-      axios.post(`http://localhost:7777/board/getSearchList/${search}`)
+    searching(searchMenus,search){
+      console.log("동작")
+      if(searchMenus =="글제목"){axios.post(`http://localhost:7777/board/titleSearchList/${search}`)
       .then( (res)=>
         this.searchList = res.data,
         this.coin= 1,
         
-      )
+      )}
+      if(searchMenus =="작성자"){axios.post(`http://localhost:7777/board/memberIdSearchList/${search}`)
+      .then( (res)=>
+        this.searchList = res.data,
+        this.coin= 1,
+        
+      )}
+      
     },
     showAllBoard(){
       this.coin = 0;
+    },
+    check(){
+      console.log("확인")
     }
 
   },
@@ -210,4 +217,5 @@ table tr td {
 .btn-cover .page-count {
   padding: 0 1rem;
 }
+
 </style>
