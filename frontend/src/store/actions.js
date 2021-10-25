@@ -27,8 +27,8 @@ export default {
     // 쿠키값을 state.session에 저장함
     cookieToSession ({ commit }) {
         let data
-        if(this.$cookies.get("user") !== null){
-            data = this.$cookies.get("user")
+        if(Vue.$cookies.get("user") !== null){
+            data = Vue.$cookies.get("user")
         }else {
             data = null
         }
@@ -37,7 +37,7 @@ export default {
     // isLogin(로그인 확인용) 세팅
     setIsLogin ({ commit }) {
         let temp
-        if(this.$cookies.get("user") !== null) {
+        if(Vue.$cookies.get("user") !== null) {
             temp = true
         }else{
             temp = false
@@ -45,7 +45,7 @@ export default {
         commit(SET_IS_LOGIN, temp)
     },
     logout ({ commit }) {
-        this.$cookies.remove('user')
+        Vue.$cookies.remove('user')
         commit(REMOVE_SESSION, null)
         commit(REMOVE_IS_LOGIN, false)
     },

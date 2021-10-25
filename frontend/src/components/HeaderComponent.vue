@@ -28,8 +28,8 @@
             </router-link>
           </div>
 
-          <div v-if="LoginCheck">
-            {{ session.member_id }}
+          <div v-if="LoginCheck" @click="this.logout">
+            {{ session.memberId }} 님 로그아웃
           </div>
 
         </v-toolbar-items>
@@ -71,7 +71,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setIsLogin']),
+    ...mapActions(['setIsLogin', 'logout']),
     changeColor() {
       if (
           document.body.scrollTop > 50 ||
