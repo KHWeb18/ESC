@@ -34,7 +34,7 @@ public class CommentLikeReportController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/like/lists/{commentNo}")
+        @GetMapping("/like/lists/{commentNo}")
     public ResponseEntity<List<CommentLikes>> getLists(@PathVariable("commentNo") Long commentNo) throws Exception {
 
         return new ResponseEntity<List<CommentLikes>>(commentLikeService.getLikesOfComment(commentNo),HttpStatus.OK);

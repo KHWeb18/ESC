@@ -1,11 +1,12 @@
 <template>
   <v-card-text class="likeBtn"><v-btn @click="likeComment">Like</v-btn>
-    <v-btn>reply</v-btn>
+    {{ comment.commentLikes.length }}
   </v-card-text>
 </template>
 
 <script>
 import axios from "axios";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "BoardCommentLike",
@@ -14,6 +15,13 @@ export default {
       type: Object,
       required: true
     },
+    boardNo: {
+      type: Number,
+      required: true
+    },
+  },
+  computed: {
+    ...mapState(['commentLikes'])
   },
   data() {
     return{
@@ -21,12 +29,13 @@ export default {
     }
   },
   methods: {
+    ...mapActions(["fetchCommentList"]),
     likeComment(){
       const { memberId } = this
       const { commentNo } = this.comment
       axios.post(`http://localhost:7777/comment/like/${commentNo}`, { memberId })
           .then(() => {
-            alert('좋아요')
+            this.fetchCommentList(this.boardNo)
           })
           .catch(res => {
             alert(res.response.data.message)

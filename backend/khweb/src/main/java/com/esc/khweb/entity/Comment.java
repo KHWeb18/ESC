@@ -45,7 +45,7 @@ public class Comment {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "commentNo")
-    private List<CommentLikes> replyList = new ArrayList<CommentLikes>();
+    private List<CommentLikes> commentLikes = new ArrayList<CommentLikes>();
 
     public Comment(Long boardNo, String memberId, String content){
         this.boardNo = boardNo;
