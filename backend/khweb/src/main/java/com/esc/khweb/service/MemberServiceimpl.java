@@ -3,6 +3,7 @@ package com.esc.khweb.service;
 import com.esc.khweb.controller.request.MemberRequest;
 import com.esc.khweb.entity.Member;
 import com.esc.khweb.repository.MemberRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class MemberServiceimpl implements MemberService{
 
     @Autowired
@@ -76,6 +78,23 @@ public class MemberServiceimpl implements MemberService{
         memberRepository.deleteById(memberNo);
     }
 
+    @Override
+    public Boolean login(MemberRequest memberRequest) throws Exception {
 
+        Optional<Member> maybeMember = memberRepository.FindBymemberImp(memberRequest.getMemberId());
+        if (maybeMember == null) {
+            log.info("login(): 그런 사람 없다.");
+            return false;
+        }
+
+        Member loginMember = maybeMember.get();
+
+        if (!passwordEncoder.matches(memberRequest.getMemberPw(), loginMember.getMemberPw())) {
+            log.info("login(): 비밀번호 잘못 입력하였습니다.");
+            return false;
+        }
+
+        return true;
+    }
 }
 
