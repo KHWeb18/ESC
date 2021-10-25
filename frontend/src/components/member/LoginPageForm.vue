@@ -1,46 +1,66 @@
 <template>
-  <v-form v-model="valid">
-    <v-container style="max-width: 550px">
+  <v-container style="max-width: 330px">
+    <form @submit.prevent="OnSubmit">
+      <v-text-field label="아이디" type="text" v-model="memberId" >
+      </v-text-field>
 
-
-        <h3>로그인</h3>
-
-          <v-text-field
-            v-model="memberId"
-            prepend-icon="mdi-account" 
-            label="아이디"
-            required
-          ></v-text-field>
-
-        <v-text-field
-            v-model="password"
-            :rules="passwordRules"
-            prepend-icon="mdi-lock"
-            label="비밀번호"
-            required
-          ></v-text-field>
-          <v-btn  type="submit">로그인</v-btn>
-
-    </v-container>
-  </v-form>
+      <v-text-field label="비밀번호" type="password" v-model="memberPw"  :rules="passwordRules">
+      </v-text-field>
+      <v-btn @click="OnSubmit">로그인</v-btn>
+      <v-btn route :to="{name: 'SignupPage'}">회원가입</v-btn>
+    <v-btn route :to="{name: 'FindByPwPage'}">비밀번호찾기</v-btn>
+    </form>
+  </v-container>
 </template>
 
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 
   export default {
-    data: () => ({
-      valid: false,
-      memberId: '',
-     
-      password:'',
-      passwordRules: [
-        v => !! v || '비밀번호를 작성해주세요.',
-        v =>  /^[a-zA-Z0-9]*$/.test(v) || '영문+숫자로만 입력해주세요'
-    ],
+    name: 'LoginPageForm',
+    data() {
+      return {
+        memberId: '',
+        memberPw: '',
 
-    
-    }),
+      }
+    },
+    computed: {
+      ...mapState(['passwordRules','memberList'])
+    },
+    methods: {
+      ...mapActions(['fetchMemberList']),
+
+      OnSubmit(){
+        
+       for(var i = 0; i < this.memberList.length; i++){
+             if(this.memberList[i].memberId == this.memberId){
+                 
+                 const {memberId ,memberPw } = this
+                 this.$emit('submit' ,{ memberId ,memberPw})
+
+                 return {
+                     SelectedUser: 1
+                 }
+             }
+            
+             }
+             let SelectedUser = null
+        this.memberList.forEach(user =>{
+            if(user.memberId === this.memberId) SelectedUser = user})
+        if(SelectedUser ===null)alert('등록된 회원정보가없습니다.')
+             
+           }
+        
+
+        
+      
+    },
+    created(){
+      this.fetchMemberList()
+    }
       
    
   }

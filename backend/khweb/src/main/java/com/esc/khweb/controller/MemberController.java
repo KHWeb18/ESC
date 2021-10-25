@@ -1,5 +1,6 @@
 package com.esc.khweb.controller;
 
+import com.esc.khweb.controller.vueCookie.UserInfo;
 import com.esc.khweb.service.MemberService;
 import com.esc.khweb.controller.request.MemberRequest;
 import com.esc.khweb.entity.Member;
@@ -20,8 +21,11 @@ import java.util.Optional;
 @Slf4j
 public class MemberController {
 
+        private UserInfo info;
+
         @Autowired
         MemberService service;
+
 
 
         @PostMapping("/register")
@@ -86,6 +90,22 @@ public class MemberController {
                 service.deleteMember(memberNo);
 
                 return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+
+        @PostMapping("/login")
+        public ResponseEntity<UserInfo> login (@Validated @RequestBody MemberRequest memberRequest) throws  Exception {
+                 info = new UserInfo();
+              Boolean isTrue = service.login(memberRequest);
+
+                if (isTrue){
+
+                        info.setMemberId(memberRequest.getMemberId());
+                }
+                else {
+                        info.setMemberId(null);
+                }
+
+                return  new ResponseEntity<UserInfo>(info,HttpStatus.OK);
         }
 
 

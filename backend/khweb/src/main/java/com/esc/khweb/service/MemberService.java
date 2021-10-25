@@ -20,4 +20,5 @@ public interface MemberService {
 
     public void deleteMember (Long memberNo)throws  Exception;
 
+    public Boolean login(MemberRequest memberRequest) throws  Exception ;
 }
