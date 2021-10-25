@@ -135,10 +135,19 @@ public class BoardController {
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
-    @PostMapping("/getSearchList/{search}")
-    public ResponseEntity<List<Board>> getSearchList (@PathVariable("search") String search) throws  Exception {
+    @PostMapping("/titleSearchList/{search}")
+    public ResponseEntity<List<Board>> titleSearchList (@PathVariable("search") String search) throws  Exception {
+        System.out.println("search:" + search);
+        List<Board> list  = service.titleSearchList(search);
+        Collections.reverse(list);
 
-        List<Board> list  = service.getSearchList(search);
+        return  new ResponseEntity<>(list,HttpStatus.OK);
+
+    }
+    @PostMapping("/memberIdSearchList/{search}")
+    public ResponseEntity<List<Board>> memberIdSearchList (@PathVariable("search") String search) throws  Exception {
+        System.out.println("search:" + search);
+        List<Board> list  = service.memberIdSearchList(search);
         Collections.reverse(list);
 
         return  new ResponseEntity<>(list,HttpStatus.OK);

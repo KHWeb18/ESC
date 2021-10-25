@@ -28,7 +28,9 @@ public interface BoardService {
 
     public List<Board> getTargetList (String target) throws  Exception ;
 
-    public List<Board> getSearchList (String search) throws  Exception ;
+    public List<Board> titleSearchList (String search) throws  Exception ;
+    public List<Board> memberIdSearchList (String search) throws  Exception ;
+
 
 
 }

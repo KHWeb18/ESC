@@ -40,7 +40,7 @@ export default {
             return {
                 randomNumToString: '',
                // memberId: this.$store.state.User, <- 쿠키넣으면 이거쓸것
-                memberId: '한상우', //로그인정보가없어서 이걸로 대체
+                memberId: '김상우', //로그인정보가없어서 이걸로 대체
                 title: '',
                 content: '',
                 img: '',

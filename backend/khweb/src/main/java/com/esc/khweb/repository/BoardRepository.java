@@ -51,6 +51,9 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
     List<Board> getTargetList(String target);
 
     @Query("select t from Board t where t.title = :search")
-    List<Board> getSearchList(String search);
+    List<Board> titleSearchList(String search);
+
+    @Query("select t from Board t where t.memberId = :search")
+    List<Board> memberIdSearchList(String search);
 
 }
