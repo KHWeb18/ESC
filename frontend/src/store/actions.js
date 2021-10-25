@@ -27,12 +27,14 @@ export default {
     // 쿠키값을 state.session에 저장함
     cookieToSession ({ commit }) {
         let data
+        let member
         if(Vue.$cookies.get("user") !== null){
             data = Vue.$cookies.get("user")
+            member = data.memberId
         }else {
             data = null
         }
-        commit(COOKIE_TO_SESSION, data)
+        commit(COOKIE_TO_SESSION, member)
     },
     // isLogin(로그인 확인용) 세팅
     setIsLogin ({ commit }) {

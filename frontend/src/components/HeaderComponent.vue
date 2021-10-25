@@ -29,7 +29,7 @@
           </div>
 
           <div v-if="LoginCheck" @click="this.logout">
-            {{ session.memberId }} 님 로그아웃
+            {{ session }} 님 로그아웃
           </div>
 
         </v-toolbar-items>

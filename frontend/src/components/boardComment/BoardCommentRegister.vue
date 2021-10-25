@@ -1,7 +1,7 @@
 <template>
-  <v-card-actions v-if="!this.$store.state.isLogin">
+  <v-card-actions v-if="this.$store.state.isLogin && this.board">
 
-    <v-textarea @focus="setWriter" solo auto-grow class="commentBox"
+    <v-textarea @focus="setMemberId" solo auto-grow class="commentBox"
                 rows="3" row-height="20" placeholder="댓글 작성" v-model="content">
     </v-textarea>
     <v-btn @click="onClick" depressed color="primary" class="commentBtn">댓글 등록</v-btn>
@@ -54,9 +54,9 @@ export default {
         alert('내용을 입력해 주세요')
       }
     },
-    setWriter() {
-      let temp = this.$store.state.session.member_id
-      this.writer = temp
+    setMemberId() {
+      let temp = this.$store.state.session
+      this.memberId = temp
     }
   }
 }

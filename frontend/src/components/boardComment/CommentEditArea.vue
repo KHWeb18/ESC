@@ -10,7 +10,7 @@
 
 <script>
 import axios from "axios";
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "CommentEditArea",
@@ -23,6 +23,9 @@ export default {
       type: Number,
       required: true
     },
+  },
+  computed: {
+    ...mapState(['session'])
   },
   mounted() {
     this.setContent()
