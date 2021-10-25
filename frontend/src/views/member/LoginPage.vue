@@ -1,52 +1,41 @@
 <template>
-<div>
-  <login-page-form @submit="onSubmit" />
-
-</div>
+    <div>
+        <login-page-form @submit="OnSubmit"/>
+    </div>
 </template>
-
-<!--  <button v-on:click="login">로그인</button>
-  <a href="/signUp">가입하기</a> -->
 
 <script>
 import Vue from 'vue'
 import cookies from 'vue-cookies'
 import axios from 'axios'
 import LoginPageForm from '../../components/member/LoginPageForm.vue'
-import {mapActions} from "vuex";
 
 Vue.use(cookies)
-  export default {
-   name: 'LoginPage',
-    components: {
-        LoginPageForm
-    },
-      methods: {
-     ...mapActions(['cookieToSession', 'setIsLogin']),
-    onSubmit (payload) {
-        if (this.$store.state.session === null) {
-            const { id, pw } = payload
-            axios.post('http://localhost:7777/login', { memberId: id, password: pw, auth: null })
-                .then(res => {
-                    if (res.data != "") {
-                      alert('로그인 성공! - ' + res.data.auth)
+export default {
+  components: { LoginPageForm },
+    name: 'LoginPage',
+
+    methods:{
+        OnSubmit(payload){
+            console.log(payload)
+            const {memberId , memberPw} = payload
+            axios.post('http://localhost:7777/member/login', {memberId , memberPw})
+            .then( (res) =>{
+                console.log(res.data)
+                if(res.data.memberId!= null){
+                    alert('로그인되었습니다.')
                       this.$cookies.set("user", res.data, '1h')
-                      this.cookieToSession()
-                      this.setIsLogin()
-                      this.$router.push('/')
+                }else{
+                    alert('비밀번호가 틀렸습니다.')
+                }
 
-                    } else {
-                      alert('로그인 실패! - ' + res.data)
-                      this.$router.push('/')
-                    }
-                            
-    })
-  
-  
-     }
+            }
+            
+                 
+                 
+
+            )
+        }
     }
-   }
-  }
-  
-
+}
 </script>
