@@ -15,7 +15,7 @@
         <v-card-text class="commentContent" v-if="item.isDeleted && commentIdx !== idx">삭제된 댓글입니다.</v-card-text>
 
         <!-- 좋아요 -->
-        <BoardCommentLike></BoardCommentLike>
+        <BoardCommentLike :comment="item"></BoardCommentLike>
 
 
         <!-- 수정 text area -->
