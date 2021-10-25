@@ -2,7 +2,7 @@ import {
 
     COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN, FETCH_MEMBER_LIST,
     FETCH_BOARD_LIST, FETCH_BOARD, FETCH_TARGET_LIST,
-    FETCH_COMMENT_LIST, FETCH_COMMENT, FETCH_REPLY_LIST, FETCH_REPLY,
+    FETCH_COMMENT_LIST, FETCH_COMMENT, FETCH_REPLY_LIST, FETCH_COMMENT_LIKES,
 
 } from './mutation-types'
 
@@ -43,8 +43,8 @@ export default {
     [FETCH_REPLY_LIST] (state,replies) {
         state.replies = replies;
     },
-    [FETCH_REPLY] (state,reply) {
-        state.reply = reply
+    [FETCH_COMMENT_LIKES] (state,commentLikes) {
+        state.commentLikes = commentLikes
     },
 }
 

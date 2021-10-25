@@ -28,6 +28,7 @@ export default {
     comment: null,
     // 대댓글
     replies: [],
-    reply: null,
+    // 댓글 좋아요
+    commentLikes: [],
 }
 

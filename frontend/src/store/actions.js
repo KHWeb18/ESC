@@ -11,7 +11,7 @@ import {
     FETCH_BOARD_LIST,
     FETCH_BOARD,
     FETCH_TARGET_LIST,
-    FETCH_COMMENT_LIST, FETCH_COMMENT, FETCH_REPLY_LIST, FETCH_REPLY
+    FETCH_COMMENT_LIST, FETCH_COMMENT, FETCH_REPLY_LIST, FETCH_COMMENT_LIKES
 
 } from './mutation-types'
 
@@ -88,10 +88,10 @@ export default {
                 commit(FETCH_REPLY_LIST, res.data)
             })
     },
-    fetchReply({ commit }, replyNo) {
-        return axios.get(`http://localhost:7777/reply/${replyNo}`)
+    fetchCommentLikes({ commit }, commentNo) {
+        return axios.get(`http://localhost:7777/comment/like/lists/${commentNo}`)
             .then((res) => {
-                commit(FETCH_REPLY, res.data)
+                commit(FETCH_COMMENT_LIKES, res.data)
             })
     },
 }

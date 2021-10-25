@@ -17,7 +17,6 @@ import java.util.List;
 @Table(name = "Comment")
 @NoArgsConstructor
 @Data
-@DynamicInsert
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +42,10 @@ public class Comment {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
     @UpdateTimestamp
     private Date updDate;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "commentNo")
+    private List<CommentLikes> commentLikes = new ArrayList<CommentLikes>();
 
     public Comment(Long boardNo, String memberId, String content){
         this.boardNo = boardNo;
