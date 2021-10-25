@@ -31,4 +31,10 @@ public class CommentLIkeServiceImpl implements CommentLikeService {
     public List<CommentLikes> getLikesOfComment(Long commentNo) throws Exception {
         return commentLikeRepository.getLikesOfComment(commentNo);
     }
+
+    @Override
+    public void deleteByCommentNoAndMemberId(Long commentNo, String memberId) throws Exception {
+
+        commentLikeRepository.deleteByCommentNoAndMemberId(commentNo, memberId);
+    }
 }
