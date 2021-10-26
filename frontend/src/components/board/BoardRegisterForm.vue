@@ -8,7 +8,7 @@
         <section>
         <form @submit.prevent="OnSubmit">
                 <v-container >
-            <p>작성자:{{memberId}}</p> <!--작성자 부분은 추후 쿠키들어오면 뺼것임  -->
+            <p>작성자:{{session}}</p> <!--작성자 부분은 추후 쿠키들어오면 뺼것임  -->
             <p>제목</p> 
             <v-select style="max-width:300px" :items="boardCategory"  v-model="category" label="카테고리"> </v-select>  
 
@@ -30,17 +30,21 @@
 
 <script>
 import axios from 'axios'
+import { mapActions, mapState } from 'vuex'
 //import {mapState } from 'vuex'
 export default {
         name: 'BoardRegisterForm',
         props: {
             
         },
+        computed:{
+            ...mapState(["session"])
+        },
         data () {
             return {
                 randomNumToString: '',
                // memberId: this.$store.state.User, <- 쿠키넣으면 이거쓸것
-                memberId: '김상우', //로그인정보가없어서 이걸로 대체
+                 //로그인정보가없어서 이걸로 대체
                 title: '',
                 content: '',
                 img: '',
@@ -53,6 +57,7 @@ export default {
             }
         },
         methods: {
+            ...mapActions(["cookieToSession"]),
             handleFileUpload () {
             this.files = this.$refs.files.files
             const info = this.files
@@ -64,13 +69,13 @@ export default {
             if(this.category == ''){
                 alert("게시판 카테고리를 선택하세요")
             }else {
-                 const { memberId, title, content, img,category} = this
-                this.$emit('submit', { memberId, title, content, img,category})
+                 const {  title, content, img, category} = this
+                this.$emit('submit', { memberId:this.session, title, content, img, category})
             }
                
             },
             submitFiles () {
-                console.log(this.files)
+                
                 
             if (this.files == undefined){
                 console.log('사진노첨부')
@@ -92,13 +97,14 @@ export default {
             
             
         },
-            //...mapState[('loginUser')], 쿠키없어서 비활성화
+            
            
         },
         created() {
             this.randomNumToString = String(Math.floor(Math.random() * 99999) +1 )
             console.log(this.randomNumToString)
-        }
+          
+        },
         
         
     

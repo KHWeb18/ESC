@@ -6,6 +6,7 @@
         <th>번호</th>
         <th>제목</th>
         <th>작성자</th>
+        <th>작성일자</th>
         <th>조회수</th>
         <th>추천</th>
         <th>비추천</th>
@@ -14,21 +15,23 @@
         <td>{{p.boardNo}}</td>
         <td  @click="goDetail(p.boardNo)">{{p.title}}</td>
         <td>{{p.memberId}}</td>
+        <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh:mm')}}</td>
         <td>{{p.viewcount}}</td>
         <td style="width:70px">{{p.good}}</td>
         <td style="width:70px">{{p.bad}}</td>
       </tr>
     </table>
 
-    <div class="btn-cover"><button :disabled="pageNum === 0" @click="prevPage" class="page-btn">이전</button>
-    <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
-    <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">다음</button>
+    <div class="btn-cover"><button :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
+    <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} Page</span>
+    <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
     <v-row>
     <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
     <v-text-field style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
-    <v-btn @click="searching(searchMenus,search)">검색하기</v-btn>
     </v-row>
-    </div> <v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
+    <v-btn @click="searching(searchMenus,search)">검색하기</v-btn>
+      <v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
+    </div> 
     </v-container>
   </div>
 
@@ -39,6 +42,7 @@
         <th>번호</th>
         <th>제목</th>
         <th>작성자</th>
+        <th>작성일자</th>
         <th>조회수</th>
         <th>추천</th>
         <th>비추천</th>
@@ -47,21 +51,22 @@
         <td>{{p.boardNo}}</td>
         <td  @click="goDetail(p.boardNo)">{{p.title}}</td>
         <td>{{p.memberId}}</td>
+        <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh:mm')}}</td>
         <td>{{p.viewcount}}</td>
         <td style="width:70px">{{p.good}}</td>
         <td style="width:70px">{{p.bad}}</td>
       </tr>
     </table>
     <div class="btn-cover">
-      <button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn">이전</button>
-      <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }} 페이지</span>
-      <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn">다음</button>
+      <button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
+      <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }} Page</span>
+      <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
     <v-row>
       <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
       <v-text-field style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
+      </v-row>
       <v-btn @click="searching(searchMenus,search)">검색하기</v-btn>
       <v-btn @click="showAllBoard()"> 게시글전체보기</v-btn>
-      </v-row>
     </div><v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
     </v-container>
   </div>
@@ -121,19 +126,38 @@ export default {
         })
     },
     searching(searchMenus,search){
-      console.log("동작")
-      if(searchMenus =="글제목"){axios.post(`http://localhost:7777/board/titleSearchList/${search}`)
-      .then( (res)=>
-        this.searchList = res.data,
-        this.coin= 1,
+      if(searchMenus ==''){
+        alert("찾는 카테고리를 선택해주세요")
+      }
+      if(searchMenus =="글제목"){
+      axios.post(`http://localhost:7777/board/titleSearchList/${search}`)
+      .then( (res)=> {
+        if(res.data == ''){
+          alert("해당검색어로 검색되는 글이 존재하지않습니다.")
+        }
+        else{
+          this.searchList = res.data,
+          this.coin= 1}
+       
+      }
         
-      )}
+        
+        )
+      }
+
       if(searchMenus =="작성자"){axios.post(`http://localhost:7777/board/memberIdSearchList/${search}`)
-      .then( (res)=>
-        this.searchList = res.data,
-        this.coin= 1,
-        
-      )}
+      .then( (res)=>{
+        if(res.data == ''){
+           alert("해당검색어로 검색되는 글이 존재하지않습니다.")
+        }
+        else{
+          this.searchList = res.data,
+          this.coin= 1
+        }
+      }
+    
+        )
+      }
       
     },
     showAllBoard(){
@@ -174,7 +198,7 @@ export default {
     },
   },
   created(){
-
+      
     axios.post('https://ipapi.co/json/')
     .then( (res) =>{
       this.ip = res.data.ip
