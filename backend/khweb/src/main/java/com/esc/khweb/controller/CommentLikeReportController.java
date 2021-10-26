@@ -28,6 +28,7 @@ public class CommentLikeReportController {
                                          @Validated @RequestBody CommentLikeRequest commentLikeRequest)
             throws Exception{
 
+
         commentLikeRequest.setCommentNo(commentNo);
         commentLikeService.registerLike(commentLikeRequest);
 
@@ -45,5 +46,13 @@ public class CommentLikeReportController {
                                        String memberId) throws Exception{
         commentLikeService.deleteByCommentNoAndMemberId(commentNo, memberId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/like/check/{commentNo}/{memberId}")
+    public ResponseEntity<Boolean> checkMemberDuplicate(@PathVariable("commentNo") Long commentNo,
+                                                     @PathVariable("memberId") String memberId) throws Exception{
+        Boolean containsMember = commentLikeService.checkMemberDuplicate(commentNo, memberId);
+
+        return new ResponseEntity<Boolean>(containsMember, HttpStatus.OK);
     }
 }

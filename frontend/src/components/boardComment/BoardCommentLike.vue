@@ -2,6 +2,8 @@
   <v-card-text class="likeBtn"><v-btn @click="likeComment">Like</v-btn>
     {{ comment.commentLikes.length }}
     <v-btn @click="removeLike">hate</v-btn>
+    {{ comment.commentNo }}
+    <v-btn @click="checkDuplicate">check</v-btn>
   </v-card-text>
 </template>
 
@@ -22,11 +24,11 @@ export default {
     },
   },
   computed: {
-    ...mapState(['commentLikes'])
+    ...mapState(['commentLikes', 'session']),
   },
   data() {
     return{
-      memberId: "testIdddd"
+      memberId: this.$store.state.session
     }
   },
   methods: {
@@ -52,7 +54,20 @@ export default {
           .catch(res => {
             alert(res.response.data.message)
           })
-    }
+    },
+    checkDuplicate(){
+      const { memberId } = this
+      const { commentNo } = this.comment
+      console.log(commentNo)
+      let temp;
+      axios.get(`http://localhost:7777/comment/like/check/${commentNo}/${memberId}`)
+          .then(res => {
+            //console.log(res.data)
+            temp = res.data
+            console.log(temp)
+          })
+      return temp
+    },
   }
 }
 </script>
