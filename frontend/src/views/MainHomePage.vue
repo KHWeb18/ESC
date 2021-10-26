@@ -22,264 +22,402 @@
       </div>
     </header>
 
-    <div id="mouse-here"></div>
-    <br /><br />
+    <div id="mouse-here" style="margin-bottom: 90px;"></div>
 
     <!-- welcome section 시작-->
-    <section id="welcome">
-      <v-container>
-        <h3>Welcome To EVS</h3>
-        <div class="subText">
-          <p>
-            전기차 그 이상의 정보를 제공합니다. <br />EVS는 우리가 알아야 할
-            전기차 시대의 정보, 새로운 인프라를 모두 전달하고자 합니다.
-          </p>
-        </div>
-      </v-container>
-    </section>
-    <!-- welcome section 끝 -->
-    <!-- 전기차 원리 버튼 (시작) -->
-    <section id="what-ev">
-      <v-container>
-        <div style="display: inline-block;">
-          <div style="float: left">
-            <h1>전기자동차</h1>
-            <p
-              style="font-size: 20px;
+    <v-main style="margin: auto">
+      <section id="welcome" style="padding-bottom: 10%;">
+        <v-container>
+          <h3>Welcome To EVS</h3>
+          <div class="subText">
+            <p>
+              전기차 그 이상의 정보를 제공합니다. <br />EVS는 우리가 알아야 할
+              전기차 시대의 정보, 새로운 인프라를 모두 전달하고자 합니다.
+            </p>
+          </div>
+        </v-container>
+      </section>
+      <!-- welcome section 끝 -->
+      <!-- 전기차 원리 버튼 (시작) -->
+      <section id="what-ev">
+        <v-container>
+          <div style="display: inline-block;">
+            <div style="float: left">
+              <h1>전기자동차</h1>
+              <p
+                style="font-size: 20px;
 						color: #616161;
 						font-size: 20px;
 						margin-top: 10px;
 						line-height: 1.7;"
-            >
-              전기자동차의 작동원리 및 구조에 대한 내용과 충전시 주의사항에 관한
-              내용,<br />
-              전기자동차의 관리 방법 및 운행 요령에 대한 자세한 내용을 확인 하실
-              수 있습니다.
-            </p>
-            <v-card-actions>
-              <v-btn color="blue" outlined rounded href="#">
-                전기자동차 원리 및 구조 >
-              </v-btn>
-            </v-card-actions>
-          </div>
-          <div style="float: right">
-            <img src="@/assets/img/EV-Car.png" />
-          </div>
-        </div>
-      </v-container>
-    </section>
-    <!-- 전기차 원리 버튼 (끝) -->
-    <!--  
-    <section>
-      <v-card class="mx-auto" max-width="400">
-        <v-img
-          class="white--text align-end"
-          height="200px"
-          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-        >
-          <v-card-title>Top 10 Australian beaches</v-card-title>
-        </v-img>
-
-        <v-card-subtitle class="pb-0">
-          Number 10
-        </v-card-subtitle>
-
-        <v-card-text class="text--primary">
-          <div>Whitehaven Beach</div>
-
-          <div>Whitsunday Island, Whitsunday Islands</div>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-btn color="orange" text>
-            Share
-          </v-btn>
-
-          <v-btn color="orange" text>
-            Explore
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-      <v-card class="mx-auto" max-width="400">
-        <v-img
-          class="white--text align-end"
-          height="200px"
-          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-        >
-          <v-card-title>Top 10 Australian beaches</v-card-title>
-        </v-img>
-
-        <v-card-subtitle class="pb-0">
-          Number 10
-        </v-card-subtitle>
-
-        <v-card-text class="text--primary">
-          <div>Whitehaven Beach</div>
-
-          <div>Whitsunday Island, Whitsunday Islands</div>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-btn color="orange" text>
-            Share
-          </v-btn>
-
-          <v-btn color="orange" text>
-            Explore
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </section>
-    -->
-    <br /><br />
-    
-    <!-- 차량정보  -->
-    <section>
-      <v-card class="mx-auto" height="500" width="70%">
-        <div class="info_car">
-          <div class="info_car_body">
-            <v-card-title class="info_car_title"
-              >전기차 지원 및 구매 정보</v-card-title
-            >
-            <p class="info_car_text">
-              <br />제품, 서비스, 기술 및 혁신으로 구성되는 <br />
-              e-모빌리티의 모든 정보를 한눈에 알아볼수 있습니다.
-            </p>
-            <v-card-actions>
-              <v-btn
-                class="mx-auto"
-                style="display: center"
-                color="white"
-                outlined
-                rounded
-                href="evinfo"
               >
-                전기차 정보 바로가기
-              </v-btn>
-            </v-card-actions>
+                전기자동차의 작동원리 및 구조에 대한 내용과 충전시 주의사항에
+                관한 내용,<br />
+                전기자동차의 관리 방법 및 운행 요령에 대한 자세한 내용을 확인
+                하실 수 있습니다.
+              </p>
+              <v-card-actions>
+                <v-btn color="blue" outlined rounded href="#">
+                  전기자동차 원리 및 구조 >
+                </v-btn>
+              </v-card-actions>
+            </div>
+            <div style="float: right">
+              <img src="@/assets/img/EV-Car.png" />
+            </div>
+          </div>
+        </v-container>
+      </section>
+      <!-- 전기차 원리 버튼 (끝) -->
+
+      <!-- 차량정보  -->
+      <section id="info" style="padding-bottom: 10%;">
+        <v-card class="mx-auto" height="500" width="100%">
+          <div class="info_car">
+            <div class="info_car_body">
+              <v-card-title class="info_car_title"
+                >전기차 지원 및 구매 정보</v-card-title
+              >
+              <p class="info_car_text">
+                <br />제품, 서비스, 기술 및 혁신으로 구성되는 <br />
+                e-모빌리티의 모든 정보를 한눈에 알아볼수 있습니다.
+              </p>
+              <v-card-actions>
+                <v-btn class="mx-auto" color="white" outlined href="evinfo">
+                  전기차 정보 바로가기
+                </v-btn>
+              </v-card-actions>
+            </div>
+          </div>
+        </v-card>
+      </section>
+      <!-- 차량정보 -->
+
+      <section style="padding-bottom: 5%;">
+        <v-container fluid :grid-list-md="!$vuetify.breakpoint.xs">
+          <v-layout>
+            <v-flex>
+              <v-row>
+                <v-col
+                  v-for="card in cards"
+                  :key="card.title"
+                  cols="12"
+                  xs="12"
+                  sm="12"
+                  md="4"
+                >
+                  <v-card
+                    router
+                    :to="card.url"
+                    style="max-width: 100%;
+                    width: 500px;"
+                    class="mx-auto"
+                    outlined
+                    hover
+                  >
+                    <v-container pa-1>
+                      <v-layout>
+                        <v-flex>
+                          <v-card-title primary-title>
+                            <div>
+                              <v-card-title>
+                                <v-icon large left color="grey">
+                                  mdi-map-marker-outline</v-icon
+                                >
+                                <h4>{{ card.title }}</h4>
+                              </v-card-title>
+                              <v-card-subtitle class="green--text">
+                                {{ card.subtitle }}
+                              </v-card-subtitle>
+                              <v-card-text class="text--primary">
+                                {{ card.content }}
+                              </v-card-text>
+                            </div>
+                          </v-card-title>
+                        </v-flex>
+                        <v-flex xs5>
+                          <v-card-title primary-title>
+                            <img :src="card.image" />
+                          </v-card-title>
+                        </v-flex>
+                      </v-layout>
+                      <v-divider light></v-divider>
+                      <v-card-actions class="pa-2">
+                        <v-btn color="blue" :href="card.url" outlined rounded>
+                          서비스 바로가기
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                      </v-card-actions>
+                    </v-container>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </section>
+
+      <section style="padding-bottom: 10%;">
+        <div style="display: inline-block">
+          <div class="section1" style="float: left">
+            <v-container>
+              <v-layout>
+                <v-flex>
+                  <div>
+                    <v-row>
+                      <v-col cols="12" xs="12" sm="12" md="12">
+                        <v-card class="mx-auto" href="#" outlined hover>
+                          <v-container pa-1>
+                            <v-layout row>
+                              <v-flex>
+                                <v-card-title primary-title>
+                                  <div>
+                                    <v-card-title>
+                                      <img
+                                        src="@/assets/img/news_icon.png"
+                                        style="width: 50px; height: 50px;"
+                                      />
+                                      <h4>EV-NEWS</h4>
+                                    </v-card-title>
+                                    <v-card-subtitle class="green--text">
+                                      <h4>지금 화제가 되고있는 뉴스</h4>
+                                    </v-card-subtitle>
+                                    <v-card-title primary-title>
+                                      전기차의 모든 뉴스를 제공 합니다.
+                                    </v-card-title>
+                                  </div>
+                                </v-card-title>
+                              </v-flex>
+                              <v-flex xs5> </v-flex>
+                            </v-layout>
+                            <v-divider
+                              light
+                              style="padding-bottom: 10px;"
+                            ></v-divider>
+                            <v-img
+                              class="responsive-img"
+                              src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202103/18/b34d8d2c-190f-4cd7-92fb-d818bbd139a6.jpg"
+                            >
+                            </v-img>
+                            <v-spacer></v-spacer>
+                          </v-container>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </div>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </div>
+          <div class="section2" style="float: right" transition-duration=".5s">
+            <v-container fluid :grid-list-md="!$vuetify.breakpoint.xs">
+              <v-layout wrap row>
+                <v-flex>
+                  <v-row>
+                    <v-col
+                      v-for="card2 in cards2"
+                      :key="card2.title"
+                      cols="12"
+                      xs="12"
+                      sm="12"
+                      md="6"
+                    >
+                      <v-card :href="card2.url" class="mx-auto" outlined hover>
+                        <v-container pa-1>
+                          <v-layout row>
+                            <v-flex>
+                              <v-card-title primary-title>
+                                <div>
+                                  <v-card-title>
+                                    <img
+                                      :src="card2.image"
+                                      style="width: 30px; height: 30px;"
+                                    />
+                                    <h4>{{ card2.title }}</h4>
+                                  </v-card-title>
+                                  <v-card-text
+                                    class="green--text"
+                                    style="word-break: keep-all;"
+                                  >
+                                    <h4>{{ card2.content }}</h4>
+                                  </v-card-text>
+                                  <div class="btn">
+                                    <div class="isBoard" v-if="card2.isBoard">
+                                      <v-btn
+                                        href="/freeBoardListPage"
+                                        rounded
+                                        outlined
+                                        >자유</v-btn
+                                      >
+                                      <v-btn
+                                        href="/chargingBoardListPage"
+                                        rounded
+                                        outlined
+                                        >충전소</v-btn
+                                      >
+                                      <v-btn
+                                        href="/parkingBoardListPage"
+                                        rounded
+                                        outlined
+                                        >주차장</v-btn
+                                      >
+                                    </div>
+                                    <div
+                                      class="isPrivacy"
+                                      v-if="card2.isPrivacy"
+                                    >
+                                      <v-btn href="/loginPage" rounded outlined
+                                        >로그인</v-btn
+                                      >
+                                      <v-btn href="/signUpPage" rounded outlined
+                                        >회원가입</v-btn
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                              </v-card-title>
+                            </v-flex>
+                            <v-flex xs5> </v-flex>
+                          </v-layout>
+                        </v-container>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                  <br />
+                  <v-card
+                    class="mx-auto"
+                    href="https://www.youtube.com/results?search_query=%EC%A0%84%EA%B8%B0%EC%B0%A8"
+                    outlined
+                    hover
+                  >
+                    <v-container pa-1>
+                      <v-layout row>
+                        <v-flex>
+                          <v-card-title primary-title>
+                            <div>
+                              <v-card-title>
+                                <img
+                                  src="@/assets/img/youtube_icon.png"
+                                  style="width: 40px; height: 40px;"
+                                />
+                                <h4>YouTube</h4>
+                              </v-card-title>
+                              <v-card-text
+                                class="green--text"
+                                style="word-break: keep-all;"
+                              >
+                                <h4>
+                                  새로운 미래를 여는 전기차, YouTube에서
+                                  확인하세요.
+                                </h4>
+                              </v-card-text>
+                            </div>
+                          </v-card-title>
+                        </v-flex>
+                        <v-flex xs5> </v-flex>
+                      </v-layout>
+                      <v-spacer></v-spacer>
+                    </v-container>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-container>
           </div>
         </div>
-      </v-card>
-    </section>
-    <!-- 차량정보 -->
-
-    <!--주차장, 충전소, 고객센터 카드 시작 -->
-    <section id="par-char-center">
-      <div class="container">
-        <div>
-          <v-row>
-            <v-col class="white-space">
-              <!-- 주차장 찾기 카드 시작 -->
-              <v-card class="mx-auto" width="400" href="#">
-                <div class="card-logo">
-                  <v-img
-                    max-height="250"
-                    max-width="100"
-                    height="100px"
-                    src="@/assets/img/Parking.png"
-                  >
-                  </v-img>
-                </div>
-
-                <v-card-title>
-                  <v-icon large left color="grey">
-                    mdi-map-marker-outline</v-icon
-                  >
-                  주차장 찾기
-                </v-card-title>
-                <v-card-subtitle>
-                  Parking
-                </v-card-subtitle>
-                <v-card-text class="text--primary">
-                  <div>더이상 헤매지 말자!</div>
-                  <div>주변 주차장을 찾아보자</div>
-                </v-card-text>
-                <v-card-actions>
-                  <v-btn color="blue" outlined rounded>
-                    서비스 바로가기
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-            <!-- 주차장 찾기 카드 끝 -->
-
-            <!-- 충전소 찾기 카드 시작 -->
-            <v-col class="white-space">
-              <v-card class="mx-auto" width="400" href="#">
-                <div class="card-logo">
-                  <v-img
-                    max-height="150"
-                    max-width="100"
-                    height="100px"
-                    src="@/assets/img/EV-Station.png"
-                  >
-                  </v-img>
-                </div>
-                <v-card-title>
-                  <v-icon large left color="grey">
-                    mdi-map-marker-outline</v-icon
-                  >
-                  충전소 찾기
-                </v-card-title>
-                <v-card-subtitle>
-                  EV-Charging St
-                </v-card-subtitle>
-                <v-card-text class="text--primary">
-                  <div>주변 충전소 정보</div>
-                  <div>바로 확인하세요.</div>
-                </v-card-text>
-                <v-card-actions>
-                  <v-btn color="blue" outlined rounded>
-                    서비스 바로가기
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-            <!-- 충전소 찾기 카드 끝 -->
-            <!-- 고객센터 카드 시작 -->
-            <v-col class="white-space">
-              <v-card class="mx-auto" width="400" href="#">
-                <div class="card-logo">
-                  <v-img
-                    max-height="250"
-                    max-width="100"
-                    height="100px"
-                    src="@/assets/img/Service_Center.png"
-                  >
-                  </v-img>
-                </div>
-                <v-card-title>
-                  <v-icon large left color="grey"> mdi-help</v-icon>
-                  고객센터
-                </v-card-title>
-                <v-card-subtitle>
-                  Service Center
-                </v-card-subtitle>
-                <v-card-text class="text--primary">
-                  <div>어떤 서비스를</div>
-                  <div>도와드릴까요?</div>
-                </v-card-text>
-                <v-card-actions>
-                  <v-btn color="blue" outlined rounded>
-                    서비스 바로가기
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-              <!-- 고객센터 카드 끝 -->
-            </v-col>
-          </v-row>
-        </div>
-      </div>
-    </section>
-    <!--주차장, 충전소, 고객센터 카드 끝 -->
+      </section>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      cards: [
+        {
+          url: "/",
+          title: "주차장 찾기",
+          subtitle: "Parking",
+          content: "주변 주차장을 찾아보자",
+          image: require("@/assets/img/Parking.png"),
+        },
+        {
+          url: "/",
+          title: "충전소 찾기",
+          subtitle: "EV-Charging St",
+          content: "주변 충전소 정보 바로 확인하세요.",
+          image: require("@/assets/img/EV-Station.png"),
+        },
+        {
+          url: "/",
+          title: "고객센터",
+          subtitle: "Service Center",
+          content: "어떤 서비스를 도와드릴까요?",
+          image: require("@/assets/img/Service_Center.png"),
+        },
+      ],
+      cards2: [
+        {
+          image: require("@/assets/img/board_icon.png"),
+          url: "/freeBoardListPage",
+          title: "게시판",
+          content: "게시판 보러가기",
+          isBoard: " ",
+        },
+        {
+          image: require("@/assets/img/privacy_icon.png"),
+          url: "/",
+          title: "개인정보",
+          content: "개인정보 보러가기",
+          isPrivacy: " ",
+        },
+        {
+          image: require("@/assets/img/notice_icon.png"),
+          url: "/",
+          title: "공지사항",
+          content: "공지사항 보러가기",
+        },
+        {
+          image: require("@/assets/img/market_insight.png"),
+          url:
+            "http://www.keei.re.kr/web_energy_new/insight.nsf/0/0AD6AECC08DF7BDA4925870D00298CAF/$File/%5B21-14-%ED%98%84%EC%95%88%5D%20IEA%EC%9D%98%20%EC%84%B8%EA%B3%84%20%EC%A0%84%EA%B8%B0%EC%B0%A8%20%EC%8B%9C%EC%9E%A5%20%ED%98%84%ED%99%A9%20%EB%B3%B4%EA%B3%A0%20%EB%B0%8F%20%EC%A0%84%EB%A7%9D.pdf",
+          title: "전기차 시장 현황",
+          subtitle: "",
+          content: "IEA의 세계 전기차 현황 보고 및 전망",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style scoped>
+.btn .v-btn {
+  margin-right: 7px;
+  font-family: "Do Hyeon", sans-serif;
+}
+
+.v-card {
+  border-radius: 14px;
+  box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
+}
+.section1 {
+  margin-left: 10%;
+  max-width: 100%;
+  width: 40%;
+  max-height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  flex: 1;
+}
+.section2 {
+  margin-right: 10%;
+  max-width: 100%;
+  width: 40%;
+  max-height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
 h2 {
   color: black;
   font-weight: 700;
@@ -294,13 +432,14 @@ h2 {
   height: 100%;
   text-align: center;
   color: white;
-  background: url("https://user-images.githubusercontent.com/83811729/138458042-aa6068d7-9d54-402d-802d-3e277e4d46f0.jpg") no-repeat
-    center scroll;
+  background: url("https://user-images.githubusercontent.com/83811729/138458042-aa6068d7-9d54-402d-802d-3e277e4d46f0.jpg")
+    no-repeat center scroll;
   background-size: cover;
 }
 .info_car_title {
   padding-top: 5%;
   padding-bottom: 5%;
+  line-height: 1.3;
   color: white;
   font-size: 70px;
   font-family: "Do Hyeon", sans-serif;
@@ -319,10 +458,10 @@ h2 {
 }
 
 #what-ev {
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding-bottom: 10%;
   display: grid;
   place-content: center;
+  position: relative;
 }
 
 .white-space {
@@ -334,6 +473,7 @@ h2 {
   padding-bottom: 50px;
   display: grid;
   place-content: center;
+  position: relative;
 }
 h1 {
   font-family: "Montserrat", sans-serif;
@@ -368,11 +508,6 @@ h3:hover:after {
   font-size: 20px;
   margin-top: 10px;
   line-height: 1.7;
-}
-
-.card-logo {
-  float: right;
-  padding: 50px 50px;
 }
 
 .intro {
