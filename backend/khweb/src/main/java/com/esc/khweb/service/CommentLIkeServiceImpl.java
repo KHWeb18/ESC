@@ -9,13 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
 public class CommentLIkeServiceImpl implements CommentLikeService {
 
-    @Autowired
-    private CommentRepository commentRepository;
     @Autowired
     private CommentLikeRepository commentLikeRepository;
 
@@ -36,5 +35,12 @@ public class CommentLIkeServiceImpl implements CommentLikeService {
     public void deleteByCommentNoAndMemberId(Long commentNo, String memberId) throws Exception {
 
         commentLikeRepository.deleteByCommentNoAndMemberId(commentNo, memberId);
+    }
+
+    @Override
+    public Boolean checkMemberDuplicate(Long commentNo, String memberId) throws Exception {
+        Optional<CommentLikes> maybeMember = commentLikeRepository.findByCommentNoAndMemberId(commentNo, memberId);
+
+        return maybeMember.isPresent();
     }
 }
