@@ -1,9 +1,11 @@
 <template>
-  <v-card-text class="likeBtn"><v-btn @click="likeComment">Like</v-btn>
-    {{ comment.commentLikes.length }}
-    <v-btn @click="removeLike">hate</v-btn>
-    {{ comment.commentNo }}
-    <v-btn @click="checkDuplicate">check</v-btn>
+  <v-card-text class="likeBtn">
+    <v-btn v-if="!checkDuplicate()" @click="likeComment">추천</v-btn>
+
+    <v-btn v-if="checkDuplicate()" @click="removeLike">비추천</v-btn>
+    추천수 : {{ comment.commentLikes.length }}
+    중복인가? : {{ checkDuplicate() }}
+
   </v-card-text>
 </template>
 
@@ -27,16 +29,17 @@ export default {
     ...mapState(['commentLikes', 'session']),
   },
   data() {
-    return{
-      memberId: this.$store.state.session
+    return {
+      memberId: this.$store.state.session,
+      dup: '',
     }
   },
   methods: {
     ...mapActions(["fetchCommentList"]),
-    likeComment(){
-      const { memberId } = this
-      const { commentNo } = this.comment
-      axios.post(`http://localhost:7777/comment/like/${commentNo}`, { memberId })
+    likeComment() {
+      const {memberId} = this
+      const {commentNo} = this.comment
+      axios.post(`http://localhost:7777/comment/like/${commentNo}`, {memberId})
           .then(() => {
             this.fetchCommentList(this.boardNo)
           })
@@ -44,9 +47,9 @@ export default {
             alert(res.response.data.message)
           })
     },
-    removeLike(){
-      const { memberId } = this
-      const { commentNo } = this.comment
+    removeLike() {
+      const {memberId} = this
+      const {commentNo} = this.comment
       axios.delete(`http://localhost:7777/comment/like/delete/${commentNo}/${memberId}`)
           .then(() => {
             this.fetchCommentList(this.boardNo)
@@ -55,18 +58,16 @@ export default {
             alert(res.response.data.message)
           })
     },
-    checkDuplicate(){
-      const { memberId } = this
-      const { commentNo } = this.comment
-      console.log(commentNo)
+    checkDuplicate() {
+      const {commentNo} = this.comment
+      const {memberId} = this
       let temp;
       axios.get(`http://localhost:7777/comment/like/check/${commentNo}/${memberId}`)
           .then(res => {
-            //console.log(res.data)
             temp = res.data
-            console.log(temp)
+            this.dup = temp
           })
-      return temp
+      return this.dup
     },
   }
 }
