@@ -8,14 +8,14 @@
           <p align="left">[{{$moment(board.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{board.viewcount}}추천:{{board.good}},비추천:{{board.bad}}]</p>
   <img v-if="board.img != ''" width="300px" :src="require(`@/assets/게시판/${board.img}`)"/>
         <pre>{{board.content}}</pre>
-        <v-btn @click="good(board.boardNo)"><v-icon>mdi-thumb-up</v-icon></v-btn><v-btn @click="bad(board.boardNo)"><v-icon>mdi-thumb-down</v-icon></v-btn>
+        <v-btn  @click="good(board.boardNo)"><v-icon>mdi-thumb-up</v-icon></v-btn> 
+        <v-btn @click="bad(board.boardNo)"><v-icon>mdi-thumb-down</v-icon></v-btn>
         <v-btn v-if="board.memberId == session" @click="modifying(board.boardNo)">수정</v-btn>
         <v-btn @click="report(board.boardNo)"><v-icon>mdi-alarm-light</v-icon></v-btn>
         <v-btn route :to="{name: 'FreeBoardListPage'}">글목록</v-btn>
         <v-btn @click="DeleteBoard(board.boardNo)" v-if="board.memberId == session">글삭제</v-btn>
       </v-col>
     </v-row>
-  
         </v-container>
     </div>
 </template>
@@ -25,7 +25,7 @@ import axios from 'axios'
 //import { mapState } from 'vuex'
 import Vue from 'vue'
 import VueMoment from 'vue-moment'
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 Vue.use(VueMoment);
 export default {
     name: 'BoardReadPageForm',
@@ -35,10 +35,18 @@ export default {
         }
     },
   computed:{
-    ...mapState(['session'])
+    ...mapState(['session','loginMeberNo','memberInfo'])
+    
   },
-
+  created(){
+    if(this.$store.state.loginMemberNo != null){
+      this.findMemberInfo(this.$store.state.loginMemberNo)
+    }
+    
+   
+  },
     methods: {
+        ...mapActions(['findMemberInfo']),
         OnSubmit() {
 
                 const {ui , comments } = this
@@ -52,19 +60,34 @@ export default {
 
                   },
                   good(boardNo){
-                    axios.post(`http://localhost:7777/board/goodCount/${boardNo}`)
-                    .then( () =>{
-                        alert('추천하였습니다.')
-                        this.$router.go()
+                    
+                    axios.post(`http://localhost:7777/member/addLikeBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    .then( (res) =>{
+                      alert(res.data)
+                      if(res.data =="추천되었습니다."){
+                          axios.post(`http://localhost:7777/board/goodCount/${boardNo}`)
+                          .then( () =>{
+                           
+                            this.$router.go()
                     })
+                      }
+
+                    }) 
                   },
+                  
                   bad(boardNo){
-                      axios.post(`http://localhost:7777/board/badCount/${boardNo}`)
-                    .then( () =>{
-                        alert('비추천하였습니다.')
-                        this.$router.go()
+                    axios.post(`http://localhost:7777/member/addHateBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    .then( (res) =>{
+                      alert(res.data)
+                      if(res.data =="비추되었습니다."){
+                        axios.post(`http://localhost:7777/board/badCount/${boardNo}`)
+                        .then( () =>{
+                          this.$router.go()
+                        })
+                      }
                     })
                   },
+                  
                   report(boardNo){
                       const {reportWord} =  this
                       axios.post(`http://localhost:7777/board/report/${boardNo}`,{reportWord})
@@ -89,9 +112,11 @@ export default {
     data() {
 
         return {
-                reportWord: '신고됨'
+                reportWord: '신고됨',
+                coin: 0,
                }
            },
+           
 
     
   
