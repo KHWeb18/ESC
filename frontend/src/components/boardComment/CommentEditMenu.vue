@@ -19,8 +19,7 @@
           <v-list-item-title class="iconBox">삭제
           </v-list-item-title>
         </v-list-item>
-
-        <v-list-item @click="reportComment(commentInfo)">
+        <v-list-item @click="reportComment(commentInfo)" v-if="!checkDuplicate(commentInfo)">
           <v-icon class="iconBox">warning</v-icon>
           <v-list-item-title class="iconBox">신고
           </v-list-item-title>
@@ -54,6 +53,7 @@ export default {
       isDeleted: true,
       content: '',
       editBox: false,
+      dup: '',
     }
   },
   methods: {
@@ -86,13 +86,24 @@ export default {
       const memberId = commentInfo.memberId
       axios.post(`http://localhost:7777/comment/report/${commentInfo.commentNo}`, {memberId})
           .then(() => {
-            this.fetchCommentList(this.boardNo)
             alert("신고 완료!")
+            this.fetchCommentList(this.boardNo)
           })
           .catch( res=> {
             console.log(res)
             alert("로그인 바랍니다.")
           })
+    },
+    checkDuplicate(commentInfo) {
+      const memberId = commentInfo.memberId
+      const commentNo = commentInfo.commentNo
+      let temp;
+      axios.get(`http://localhost:7777/comment/report/check/${commentNo}/${memberId}`)
+          .then(res => {
+            temp = res.data
+            this.dup = temp
+          })
+      return this.dup
     },
     showEdit(){
       this.$emit('showEdit')
