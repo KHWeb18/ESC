@@ -21,4 +21,12 @@ public interface MemberService {
     public void deleteMember (Long memberNo)throws  Exception;
 
     public Boolean login(MemberRequest memberRequest) throws  Exception ;
+
+    public Long  findByMemberNo(MemberRequest memberRequest) throws  Exception;
+
+    public  String addLikeBoard(Long boardNo,  MemberRequest memberRequest) throws  Exception;
+
+    public  String  addHateBoard (Long boardNo, MemberRequest memberRequest) throws  Exception;
+
+    public  Optional<Member> findByMemberInfo(Long memberNo) throws  Exception ;
 }

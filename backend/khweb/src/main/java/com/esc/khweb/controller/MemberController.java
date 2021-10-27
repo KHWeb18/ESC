@@ -96,10 +96,13 @@ public class MemberController {
         public ResponseEntity<UserInfo> login (@Validated @RequestBody MemberRequest memberRequest) throws  Exception {
                  info = new UserInfo();
               Boolean isTrue = service.login(memberRequest);
+              Long memberNo = service.findByMemberNo(memberRequest);
+
 
                 if (isTrue){
 
                         info.setMemberId(memberRequest.getMemberId());
+                        info.setMemberNo(memberNo);
                 }
                 else {
                         info.setMemberId(null);
@@ -108,7 +111,32 @@ public class MemberController {
                 return  new ResponseEntity<UserInfo>(info,HttpStatus.OK);
         }
 
+        @PostMapping("/addLikeBoard/{boardNo}")
+        public ResponseEntity<String> addLikeBoard (@PathVariable("boardNo") Long boardNo ,@Validated @RequestBody MemberRequest memberRequest) throws  Exception {
+                System.out.println("memberNo:" + memberRequest.getMemberNo());
 
+                String result = service.addLikeBoard(boardNo,memberRequest);
+
+                return  new ResponseEntity<>(result,HttpStatus.OK);
+        }
+
+        @PostMapping("/addHateBoard/{boardNo}")
+        public ResponseEntity<String> addHateBoard (@PathVariable("boardNo") Long boardNo ,@Validated @RequestBody MemberRequest memberRequest) throws  Exception {
+                System.out.println("memberNo:" + memberRequest.getMemberNo());
+
+                String result = service.addHateBoard(boardNo,memberRequest);
+
+                return  new ResponseEntity<>(result,HttpStatus.OK);
+        }
+
+        @PostMapping("/findByMemberInfo/{memberNo}")
+        public ResponseEntity<Member> findByMemberInfo (@PathVariable("memberNo")Long memberNo) throws  Exception {
+
+                Optional<Member>  member = service.findByMemberInfo(memberNo);
+                Member member1 = member.get();
+
+                return  new ResponseEntity<>(member1,HttpStatus.OK);
+        }
 
 
 }

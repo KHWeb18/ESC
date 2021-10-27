@@ -40,7 +40,6 @@ export default {
   components: {BoardCommentLike, CommentEditArea, CommentEditMenu},
   props: {
     boardNo: {
-      type: Number,
       required: true
     },
   },
