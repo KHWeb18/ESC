@@ -18,7 +18,7 @@ export default {
             axios.post('http://localhost:7777/board/boardRegister',{memberId, title, content, img,category})
             .then( () =>{
                 alert('글이등록되었습니다.')
-                this.$router.go()
+                this.$router.push({name:"FreeBoardListPage"})
             })
         }
     }
