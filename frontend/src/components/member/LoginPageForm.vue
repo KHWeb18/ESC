@@ -6,13 +6,14 @@
     <h1 align="center">EVS</h1> 
     <br/> 
   
-    <form @submit.prevent="OnSubmit">
+    <form @keyup.enter="OnSubmit">
       <v-text-field 
       
       single-line
        label="아이디" type="text" v-model="memberId" >
       </v-text-field>
       <v-text-field single-line 
+      
        v-model="memberPw"
       :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"  
       :rules="passwordRules"
@@ -24,12 +25,15 @@
       </v-text-field>
       <br/>
       
+     
       <v-btn 
       width="310"
       color="gray"
       dark
       
-      @click="OnSubmit">로그인</v-btn>
+     @click="OnSubmit">로그인</v-btn>
+    
+   
     <br/><br/>
 
     <v-btn text route :to="{name: 'FindByPwPage'}">아이디/비밀번호 찾기</v-btn>
