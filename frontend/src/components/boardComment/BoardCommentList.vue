@@ -22,7 +22,13 @@
         <!-- 좋아요 -->
         <BoardCommentLike :comment="item" :boardNo="boardNo"></BoardCommentLike>
 
+        <!-- 답글 보이기 -->
+        <v-btn text @click="onReply(item.commentNo), showIt = !showIt">답글</v-btn>
+
         <v-divider></v-divider>
+
+        <comment-reply :comment="item" :replies="replies" v-if="showIt && comment"
+                       v-show="showReply(item.commentNo)"></comment-reply>
       </div>
 
     </v-card>
@@ -34,10 +40,11 @@ import {mapActions, mapState} from "vuex";
 import CommentEditMenu from "./CommentEditMenu";
 import CommentEditArea from "./CommentEditArea";
 import BoardCommentLike from "./BoardCommentLike";
+import CommentReply from "./CommentReply";
 
 export default {
   name: "BoardCommentList",
-  components: {BoardCommentLike, CommentEditArea, CommentEditMenu},
+  components: {CommentReply, BoardCommentLike, CommentEditArea, CommentEditMenu},
   props: {
     boardNo: {
       required: true
@@ -50,13 +57,14 @@ export default {
     return {
       editBox: true,
       commentIdx: '',
+      showIt: false,
     }
   },
   computed: {
-    ...mapState(['comments', 'comment', 'session'])
+    ...mapState(['comments', 'comment', 'session', 'replies'])
   },
   methods: {
-    ...mapActions(['fetchCommentList', 'fetchComment']),
+    ...mapActions(['fetchCommentList', 'fetchComment', 'fetchReplies']),
     setCommentIdx(idx){
       this.commentIdx = idx
       console.log(this.commentIdx)
@@ -65,6 +73,17 @@ export default {
       this.editBox = value
       this.commentIdx = ''
       console.log(this.editBox)
+    },
+    onReply(value) {
+      this.fetchComment(value)
+      this.fetchReplies(value)
+    },
+    showReply(value){
+      if(this.comment.commentNo === value) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 

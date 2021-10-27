@@ -36,10 +36,10 @@ public class CommentReply {
     @CreationTimestamp
     private Date regDate;
 
-    public CommentReply(ReplyRequest replyRequest){
-        this.commentNo = replyRequest.getCommentNo();
-        this.memberId = replyRequest.getMemberId();
-        this.content = replyRequest.getContent();
+    public CommentReply(Long commentNo, String memberId, String content){
+        this.commentNo = commentNo;
+        this.memberId = memberId;
+        this.content = content;
     }
 
     public void updateReply(ReplyRequest replyRequest){

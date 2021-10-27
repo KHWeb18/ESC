@@ -27,8 +27,75 @@
 </template>
 
 <script>
+import axios from "axios";
+import {mapActions, mapState} from "vuex";
+
+
 export default {
-  name: "CommentReply"
+  name: "CommentReply",
+  props: {
+    comment: {
+      type: Object,
+      required: true,
+    },
+    replies: {
+      type: Array,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      content: '',
+      memberId: '',
+      deleted : "삭제된 댓글입니다.",
+      admin: 'admin',
+    }
+  },
+  computed: {
+    ...mapState(['session']),
+    checkUser() {
+      let temp
+      if(this.session !== null) {
+        temp = this.session.member_id
+      } else {
+        temp = null
+      }
+      return temp
+    }
+  },
+  methods: {
+    ...mapActions(["fetchReplies"]),
+    registerReply() {
+      const { memberId, content } = this
+      const { commentNo } = this.comment
+      axios.post(`http://localhost:7777/reply/register/${commentNo}`, { memberId, content })
+          .then(() => {
+            alert('reply complete')
+            this.fetchReplies(this.comment.commentNo)
+            this.content = ""
+          })
+          .catch(res => {
+            alert(res.response.data.message)
+          })
+    },
+    setWriter() {
+      const temp = this.$store.state.session
+      this.memberId = temp
+    },
+    deleteReply(item) {
+      //const { content } = this
+      axios.put(`http://localhost:7777/reply/${item.replyNo}`,
+          { writer : item.writer, content : "삭제된 댓글입니다."})
+          .then(() => {
+            alert('삭제 성공!')
+            //window.location.reload();
+            this.fetchReplies(this.comment.commentNo)
+          })
+          .catch(err => {
+            alert(err.response.data.message)
+          })
+    },
+  }
 }
 </script>
 
