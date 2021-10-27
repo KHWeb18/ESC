@@ -14,13 +14,13 @@
         <v-card-text class="commentContent" v-if="!item.isDeleted && commentIdx !== idx">{{ item.content }}</v-card-text>
         <v-card-text class="commentContent" v-if="item.isDeleted && commentIdx !== idx">삭제된 댓글입니다.</v-card-text>
 
-        <!-- 좋아요 -->
-        <BoardCommentLike :comment="item" :boardNo="boardNo"></BoardCommentLike>
-
 
         <!-- 수정 text area -->
         <comment-edit-area :comment="item" :boardNo="boardNo" @hideEditbox="hideEditbox"
                            v-if="commentIdx === idx" v-show="editBox"></comment-edit-area>
+
+        <!-- 좋아요 -->
+        <BoardCommentLike :comment="item" :boardNo="boardNo"></BoardCommentLike>
 
         <v-divider></v-divider>
       </div>
