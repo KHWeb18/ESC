@@ -66,6 +66,7 @@ public class BoardServiceimpl implements  BoardService{
 
     @Override
     public void DeleteBoard(Long boardNo) throws Exception {
+        System.out.println(boardNo);
             boardRepository.deleteById(boardNo);
             }
 
