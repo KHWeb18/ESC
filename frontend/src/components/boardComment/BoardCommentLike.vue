@@ -1,9 +1,11 @@
 <template>
   <v-card-text class="likeBtn">
-    <v-btn v-if="!checkDuplicate()" @click="likeComment">추천</v-btn>
+    <v-btn text v-if="!checkDuplicate()" @click="likeComment">
+      <v-icon left>mdi-thumb-up</v-icon>{{ comment.commentLikes.length }}</v-btn>
 
-    <v-btn v-if="checkDuplicate()" @click="removeLike">비추천</v-btn>
-    추천수 : {{ comment.commentLikes.length }}
+    <v-btn text v-if="checkDuplicate()" @click="removeLike">
+      <v-icon color="primary" left>mdi-thumb-up</v-icon>{{ comment.commentLikes.length }}</v-btn>
+
     중복인가? : {{ checkDuplicate() }}
 
   </v-card-text>
@@ -42,8 +44,9 @@ export default {
           .then(() => {
             this.fetchCommentList(this.boardNo)
           })
-          .catch(res => {
-            alert(res.response.data.message)
+          .catch( res=> {
+            console.log(res)
+            alert("로그인 바랍니다.")
           })
     },
     removeLike() {

@@ -14,7 +14,7 @@ export default {
         v =>  /^[a-zA-Z0-9]*$/.test(v) || '영문+숫자로만 입력해주세요'
     ],
     memberList: [],
-    session: [],
+    session: null,
     isLogin: false,
     loginMemberNo: [],
 

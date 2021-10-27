@@ -5,7 +5,7 @@
         <v-container>
           <v-row>
             <div class="col-lx-8 col-lx-offset-2">
-              <p class="intro-text">
+              <p class="intro-text noSelect">
                 전기차 시대! <br />전기차를 준비하는 당신에게 <br />필요한 모든
                 정보와 꿀팁!<span class="name">EVS</span>
               </p>
@@ -27,7 +27,7 @@
     <!-- welcome section 시작-->
     <v-main style="margin: auto">
       <section id="welcome" style="padding-bottom: 10%;">
-        <v-container>
+        <v-container class="noSelect">
           <h3>Welcome To EVS</h3>
           <div class="subText">
             <p>
@@ -424,6 +424,9 @@ h2 {
   font-size: 70px;
   font-family: "Montserrat", sans-serif;
   text-align: center;
+}
+.noSelect{
+  user-select: none;
 }
 
 .info_car {
