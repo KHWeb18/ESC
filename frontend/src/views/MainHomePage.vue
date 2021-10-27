@@ -235,10 +235,7 @@
                                     />
                                     <h4>{{ card2.title }}</h4>
                                   </v-card-title>
-                                  <v-card-text
-                                    class="green--text"
-                                    style="word-break: keep-all;"
-                                  >
+                                  <v-card-text class="green--text">
                                     <h4>{{ card2.content }}</h4>
                                   </v-card-text>
                                   <div class="btn">
@@ -266,12 +263,35 @@
                                       class="isPrivacy"
                                       v-if="card2.isPrivacy"
                                     >
-                                      <v-btn href="/loginPage" rounded outlined
-                                        >로그인</v-btn
-                                      >
-                                      <v-btn href="/signUpPage" rounded outlined
-                                        >회원가입</v-btn
-                                      >
+                                      <div v-if="!LoginCheck">
+                                        <v-card-text class="green--text">
+                                          <h4>로그인을 해주세요.</h4>
+                                        </v-card-text>
+                                        <v-btn
+                                          href="/loginPage"
+                                          rounded
+                                          outlined
+                                          >로그인</v-btn
+                                        >
+                                        <v-btn
+                                          href="/signUpPage"
+                                          rounded
+                                          outlined
+                                          >회원가입</v-btn
+                                        >
+                                      </div>
+                                      <div v-if="LoginCheck">
+                                        <v-card-text class="green--text">
+                                          <h4>{{ session }}님 환영합니다.</h4>
+                                        </v-card-text>
+                                        <v-spacer></v-spacer>
+                                        <v-btn href="/#" rounded outlined>
+                                          마이페이지</v-btn
+                                        >
+                                        <v-btn @click="logout" rounded outlined
+                                          >로그아웃</v-btn
+                                        >
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -330,7 +350,18 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
+  computed: {
+    ...mapState(["isLogin", "session"]),
+    LoginCheck() {
+      return this.isLogin;
+    },
+  },
+  methods: {
+    ...mapActions(["setIsLogin", "logout"]),
+  },
   data() {
     return {
       cards: [
@@ -366,9 +397,9 @@ export default {
         },
         {
           image: require("@/assets/img/privacy_icon.png"),
-          url: "/",
+          url: " ",
           title: "개인정보",
-          content: "개인정보 보러가기",
+          content: " ",
           isPrivacy: " ",
         },
         {
@@ -425,7 +456,7 @@ h2 {
   font-family: "Montserrat", sans-serif;
   text-align: center;
 }
-.noSelect{
+.noSelect {
   user-select: none;
 }
 
