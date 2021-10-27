@@ -28,7 +28,7 @@
             </router-link>
           </div>
 
-          <div v-if="LoginCheck" @click="this.logout">
+          <div v-if="LoginCheck" @click="logout">
             {{ session }} 님 로그아웃
           </div>
 

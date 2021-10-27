@@ -45,8 +45,9 @@ export default {
           .then(() => {
             this.fetchCommentList(this.boardNo)
           })
-          .catch(res => {
-            alert(res.response.data.message)
+          .catch( res=> {
+            console.log(res)
+            alert("로그인 바랍니다.")
           })
     },
     removeLike() {
