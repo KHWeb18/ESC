@@ -44,7 +44,7 @@ public class CommentReply {
 
     public void updateReply(ReplyRequest replyRequest){
         this.memberId = replyRequest.getMemberId();
-        this.content = replyRequest.getContent();
+        this.isDeleted = replyRequest.getIsDeleted();
     }
 
     public void deleteReply(ReplyRequest replyRequest){

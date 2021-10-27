@@ -2,14 +2,16 @@
   <v-card color="grey lighten-5" max-width="95%" class="mx-auto" elevation="0" v-if="replies">
     <div v-for="(item,idx) in replies" :key="idx">
 
+      <v-card-title class="writer">{{ item.memberId }}</v-card-title>
+      <v-card-text class="grey--text date">{{ item.regDate }}</v-card-text>
+
       <!-- delete btn -->
-      <v-btn @click="deleteReply(item)" v-if="item.memberId === session"
+      <v-btn @click="deleteReply(item)" v-if="item.memberId === session && !item.isDeleted"
              v-show="item.content !== deleted" text class="deleteBtn">
         <v-icon>close</v-icon>삭제</v-btn>
 
-      <v-card-title class="writer">{{ item.memberId }}</v-card-title>
-      <v-card-text class="grey--text date">{{ item.regDate }}</v-card-text>
-      <v-card-text class="content">{{ item.content }}</v-card-text>
+      <v-card-text v-if="!item.isDeleted" class="content">{{ item.content }}</v-card-text>
+      <v-card-text v-if="item.isDeleted" class="contentDeleted">삭제된 댓글입니다.</v-card-text>
 
       <v-divider></v-divider>
 
@@ -62,7 +64,7 @@ export default {
       const isDeleted = false
       axios.post(`http://localhost:7777/reply/register/${commentNo}`, { memberId, content, isDeleted })
           .then(() => {
-            alert('reply complete')
+            alert('답글 등록 완료!')
             this.fetchReplies(this.comment.commentNo)
             this.content = ""
           })
@@ -77,10 +79,9 @@ export default {
     deleteReply(item) {
       //const { content } = this
       axios.put(`http://localhost:7777/reply/${item.replyNo}`,
-          { writer : item.writer, content : "삭제된 댓글입니다."})
+          { memberId : item.memberId, isDeleted : true })
           .then(() => {
             alert('삭제 성공!')
-            //window.location.reload();
             this.fetchReplies(this.comment.commentNo)
           })
           .catch(err => {
@@ -95,7 +96,6 @@ export default {
 
 .writer{
   font-size: 0.9em;
-  margin: -45px 0 0 0;
 }
 
 .date{
@@ -104,11 +104,22 @@ export default {
 }
 
 .deleteBtn{
+  position: relative;
   left: 88%;
+  margin: -130px 0 0 0;
 }
+
 .content{
   font-size: 1.1em;
-  margin: -15px 0 0 0;
+  margin: -35px 0 20px 0;
+  min-height: 50px;
+  font-weight: normal;
+}
+.contentDeleted{
+  font-size: 1.1em;
+  margin: -10px 0 20px 0;
+  min-height: 50px;
+  font-weight: normal;
 }
 
 .registerBtn{
