@@ -11,7 +11,8 @@ import {
     FETCH_BOARD_LIST,
     FETCH_BOARD,
     FETCH_TARGET_LIST,
-    FETCH_COMMENT_LIST, FETCH_COMMENT, FETCH_REPLY_LIST, FETCH_COMMENT_LIKES
+    FETCH_COMMENT_LIST, FETCH_COMMENT,
+    FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO
 
 } from './mutation-types'
 
@@ -28,6 +29,7 @@ export default {
     cookieToSession ({ commit }) {
         let data
         let member
+        
         if(Vue.$cookies.get("user") !== null){
             data = Vue.$cookies.get("user")
             member = data.memberId
@@ -35,7 +37,17 @@ export default {
             data = null
         }
         commit(COOKIE_TO_SESSION, member)
-    },
+
+        let numData
+        let memberNo
+        if(Vue.$cookies.get("userNo") !== null){
+            numData = Vue.$cookies.get("userNo")
+            memberNo = numData.memberNo
+        }else {
+            data = null
+        }
+        commit(SET_MEMBER_NO, memberNo)
+    },  
     // isLogin(로그인 확인용) 세팅
     setIsLogin ({ commit }) {
         let temp
@@ -47,6 +59,7 @@ export default {
         commit(SET_IS_LOGIN, temp)
     },
     logout ({ commit }) {
+        Vue.$cookies.remove('userNo')
         Vue.$cookies.remove('user')
         commit(REMOVE_SESSION, null)
         commit(REMOVE_IS_LOGIN, false)
@@ -70,6 +83,12 @@ export default {
         .then( (res) =>{
             commit(FETCH_TARGET_LIST,res.data) 
         }) 
+    },
+    findMemberInfo({commit},memberNo){
+        return axios.post(`http://localhost:7777/member/findByMemberInfo/${memberNo}`)
+        .then( (res) =>{
+            commit(FIND_MEMBER_INFO,res.data)
+        })
     },
     // 댓글
     fetchCommentList ({ commit }, boardNo) {

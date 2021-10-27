@@ -10,15 +10,24 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @ToString
-public class MyBoard {
+public class LikeBoard {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "my_board")
-    private  Long myBoard;
+    @Column(name = "row_no")
+    private  Long rowNo;
 
     @Column(name = "member_no")
     private Long memberNo;
 
-    @Column(length = 3000, nullable = false)
-    private  Integer boardNo;
+    @Column(length = 64, nullable = false)
+    private  Long boardNo;
+
+    public  LikeBoard (Long memberNo, Long boardNo) {
+
+        this.memberNo = memberNo;
+        this.boardNo = boardNo;
+
+    }
+
 }

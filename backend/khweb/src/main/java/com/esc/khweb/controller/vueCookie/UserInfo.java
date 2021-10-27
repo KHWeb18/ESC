@@ -8,4 +8,5 @@ import lombok.NoArgsConstructor;
 public class UserInfo {
 
     private String memberId;
+    private Long memberNo;
 }

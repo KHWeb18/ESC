@@ -16,12 +16,13 @@ export default {
     memberList: [],
     session: null,
     isLogin: false,
-    loginMemberNo: null,
+    loginMemberNo: [],
 
     //게시판
     boardList: [],
     board: null,
     TargetList: [],
+    memberInfo: null,
 
     // 댓글
     comments: [],

@@ -23,7 +23,6 @@ export default {
       required: true
     },
     boardNo: {
-      type: Number,
       required: true
     },
   },

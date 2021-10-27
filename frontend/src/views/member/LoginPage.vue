@@ -1,6 +1,8 @@
 <template>
     <div>
-        <login-page-form @submit="OnSubmit"/>
+        <login-page-form v-if="session ==null" @submit="OnSubmit"/>
+        <p v-else-if="session !=null"> 환영합니다 여기는 EVS입니다</p>
+        
     </div>
 </template>
 
@@ -25,17 +27,25 @@ export default {
       const {memberId , memberPw} = payload
       axios.post('http://localhost:7777/member/login', {memberId , memberPw})
           .then( (res) =>{
-            console.log(res.data)
+              console.log(res.data)
             if(res.data.memberId!= null){
               alert('로그인되었습니다.')
+              this.res = res.data
               this.$cookies.set("user", res.data, '1h')
+              this.$cookies.set("userNo", res.data, '1h')
               this.cookieToSession()
               this.setIsLogin()
+              this.$router.push("/")
             }else{
               alert('비밀번호가 틀렸습니다.')
             }
           })
     },
   },
+  data() {
+    return{
+      res: '',
+    }
+  }
 }
 </script>

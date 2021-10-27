@@ -41,7 +41,13 @@ public class Member {
 
     @OneToMany(cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "member_no")
-    private Set<MyBoard> myBoardList = new HashSet<MyBoard>();
+    private Set<LikeBoard> likeBoardList  = new HashSet<LikeBoard>();
+
+    @OneToMany(cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "member_no")
+    private Set<HateBoard> hateBoardList  = new HashSet<HateBoard>();
+
+
 
 
 

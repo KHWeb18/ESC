@@ -1,7 +1,7 @@
 <template>
   <div class="comment-container">
     <v-container class="pa-0">
-      <board-read-page-fom v-if="board" :board="board"/>
+      <board-read-page-form v-if="board" :board="board"/>
 
       <!-- 댓글 등록 -->
       <board-comment-register v-if="board" :board="board"></board-comment-register>
@@ -23,15 +23,14 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import BoardReadPageFom from '../../components/board/BoardReadPageFom.vue'
+import BoardReadPageForm from '../../components/board/BoardReadPageForm.vue'
 import BoardCommentRegister from "../../components/boardComment/BoardCommentRegister";
 import BoardCommentList from "../../components/boardComment/BoardCommentList";
 export default {
-  components: {BoardCommentList, BoardCommentRegister, BoardReadPageFom },
+  components: {BoardCommentList, BoardCommentRegister, BoardReadPageForm },
     name: 'BoardReadPage',
     props: {
         boardNo: {
-            type: Number,
             required: true
         },
         },

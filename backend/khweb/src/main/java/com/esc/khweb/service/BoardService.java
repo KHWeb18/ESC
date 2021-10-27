@@ -1,6 +1,7 @@
 package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.BoardRequest;
+import com.esc.khweb.controller.request.MemberRequest;
 import com.esc.khweb.entity.Board;
 
 import java.util.List;
@@ -29,7 +30,10 @@ public interface BoardService {
     public List<Board> getTargetList (String target) throws  Exception ;
 
     public List<Board> titleSearchList (String search) throws  Exception ;
+
     public List<Board> memberIdSearchList (String search) throws  Exception ;
+
+
 
 
 
