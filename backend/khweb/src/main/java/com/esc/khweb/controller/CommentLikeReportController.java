@@ -1,9 +1,11 @@
 package com.esc.khweb.controller;
 
 import com.esc.khweb.controller.request.CommentLikeRequest;
+import com.esc.khweb.controller.request.CommentReportRequest;
 import com.esc.khweb.controller.request.CommentRequest;
 import com.esc.khweb.entity.CommentLikes;
 import com.esc.khweb.service.CommentLikeService;
+import com.esc.khweb.service.CommentReportService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,14 +25,27 @@ public class CommentLikeReportController {
     @Autowired
     private CommentLikeService commentLikeService;
 
+    @Autowired
+    private CommentReportService commentReportService;
+
     @PostMapping("/like/{commentNo}")
     public ResponseEntity<Void> RegisterLike(@PathVariable Long commentNo,
                                          @Validated @RequestBody CommentLikeRequest commentLikeRequest)
             throws Exception{
 
-
         commentLikeRequest.setCommentNo(commentNo);
         commentLikeService.registerLike(commentLikeRequest);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/report/{commentNo}")
+    public ResponseEntity<Void> RegisterReport(@PathVariable Long commentNo,
+                                             @Validated @RequestBody CommentReportRequest commentReportRequest)
+            throws Exception{
+
+        commentReportRequest.setCommentNo(commentNo);
+        commentReportService.registerReport(commentReportRequest);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -52,6 +67,14 @@ public class CommentLikeReportController {
     public ResponseEntity<Boolean> checkMemberDuplicate(@PathVariable("commentNo") Long commentNo,
                                                      @PathVariable("memberId") String memberId) throws Exception{
         Boolean containsMember = commentLikeService.checkMemberDuplicate(commentNo, memberId);
+
+        return new ResponseEntity<Boolean>(containsMember, HttpStatus.OK);
+    }
+
+    @GetMapping("/report/check/{commentNo}/{memberId}")
+    public ResponseEntity<Boolean> checkReportDuplicate(@PathVariable("commentNo") Long commentNo,
+                                                        @PathVariable("memberId") String memberId) throws Exception{
+        Boolean containsMember = commentReportService.checkMemberDuplicate(commentNo, memberId);
 
         return new ResponseEntity<Boolean>(containsMember, HttpStatus.OK);
     }
