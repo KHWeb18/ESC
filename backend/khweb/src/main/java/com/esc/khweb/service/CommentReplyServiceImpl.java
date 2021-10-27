@@ -28,16 +28,17 @@ public class CommentReplyServiceImpl implements CommentReplyService{
 
     @Override
     public List<CommentReply> getRepliesOfComment(Long commentNo) throws Exception {
-        return null;
+        return commentReplyRepository.getRepliesOfComment(commentNo);
     }
 
     @Override
     public List<CommentReply> findByReplyNo(Long replyNo) throws Exception {
-        return null;
+        return commentReplyRepository.findByReplyNo(replyNo);
     }
 
     @Override
     public void modify(CommentReply commentReply, ReplyRequest replyRequest) throws Exception {
-
+        commentReply.updateReply(replyRequest);
+        commentReplyRepository.save(commentReply);
     }
 }
