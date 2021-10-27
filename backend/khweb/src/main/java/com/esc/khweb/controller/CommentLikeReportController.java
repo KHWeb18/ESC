@@ -35,6 +35,18 @@ public class CommentLikeReportController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("/report/{commentNo}")
+    public ResponseEntity<Void> RegisterReport(@PathVariable Long commentNo,
+                                             @Validated @RequestBody CommentLikeRequest commentLikeRequest)
+            throws Exception{
+
+
+        commentLikeRequest.setCommentNo(commentNo);
+        commentLikeService.registerLike(commentLikeRequest);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/like/lists/{commentNo}")
     public ResponseEntity<List<CommentLikes>> getLists(@PathVariable("commentNo") Long commentNo) throws Exception {
 
