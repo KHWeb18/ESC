@@ -1,76 +1,92 @@
 <template>
-  <div v-if="coin == 0">
-      <v-container>
-    <table>
-      <tr>
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일자</th>
-        <th>조회수</th>
-        <th>추천</th>
-        <th>비추천</th>
-      </tr>
-      <tr  v-for="p in paginatedData" :key="p.no">
-        <td>{{p.boardNo}}</td>
-        <td  @click="goDetail(p.boardNo)">{{p.title}}</td>
+
+<div v-if="coin ==0">
+  <v-container>
+  <v-simple-table >
+    <template v-slot:default>
+      <thead>
+        <tr style="text-align: center;">
+          <td>번호</td>
+         <td>제목</td>
+         <td>글쓴이</td>
+          <td><v-icon>mdi-clock-outline</v-icon></td>
+          <td><v-icon>mdi-eye</v-icon></td>
+          <td><v-icon color="blue">mdi-thumb-up</v-icon></td>
+          <td><v-icon color="red">mdi-thumb-down</v-icon></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="text-align: center;"  v-for="p in paginatedData" :key="p.boardNo">
+        <td style="margin-right:50px">{{p.boardNo}}</td>
+        <td @click="goDetail(p.boardNo)">{{p.title}}</td>
         <td>{{p.memberId}}</td>
-        <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh:mm')}}</td>
+        <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh')}}</td>
         <td>{{p.viewcount}}</td>
         <td style="width:70px">{{p.good}}</td>
         <td style="width:70px">{{p.bad}}</td>
-      </tr>
-    </table>
-
-    <div class="btn-cover"><button :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
-    <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} Page</span>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
+  <div class="btn-cover"><button :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
+    <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
     <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
-    <v-row>
+    <form @keyup.enter="searching(searchMenus,search)">
+    <v-btn style="margin-right: 100%" route :to="{name: 'BoardRegister'}"><v-icon>mdi-pen-plus</v-icon></v-btn>
+    <v-row style="margin-left: 80%">
     <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
-    <v-text-field style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
+    <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
     </v-row>
-    <v-btn @click="searching(searchMenus,search)">검색하기</v-btn>
-      <v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
-    </div> 
-    </v-container>
-  </div>
+    </form>
+  
+    </div>
+  </v-container>
+</div>
 
-  <div v-else>
-    <v-container>
-    <table>
-      <tr>
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일자</th>
-        <th>조회수</th>
-        <th>추천</th>
-        <th>비추천</th>
-      </tr>
-      <tr  v-for="p in searchpaginatedData" :key="p.no">
-        <td>{{p.boardNo}}</td>
-        <td  @click="goDetail(p.boardNo)">{{p.title}}</td>
+<div v-else>
+  <v-container>
+  <v-simple-table >
+    <template v-slot:default>
+      <thead>
+        <tr style="text-align: center;">
+          <td>번호</td>
+         <td>제목</td>
+         <td>글쓴이</td>
+          <td><v-icon>mdi-clock-outline</v-icon></td>
+          <td><v-icon>mdi-eye</v-icon></td>
+          <td><v-icon color="blue">mdi-thumb-up</v-icon></td>
+          <td><v-icon color="red">mdi-thumb-down</v-icon></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="text-align: center;"  v-for="p in searchpaginatedData" :key="p.boardNo">
+        <td style="margin-right:50px">{{p.boardNo}}</td>
+        <td @click="goDetail(p.boardNo)">{{p.title}}</td>
         <td>{{p.memberId}}</td>
-        <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh:mm')}}</td>
+        <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh')}}</td>
         <td>{{p.viewcount}}</td>
         <td style="width:70px">{{p.good}}</td>
         <td style="width:70px">{{p.bad}}</td>
-      </tr>
-    </table>
-    <div class="btn-cover">
-      <button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
-      <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }} Page</span>
-      <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
-    <v-row>
-      <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
-      <v-text-field style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
-      </v-row>
-      <v-btn @click="searching(searchMenus,search)">검색하기</v-btn>
-      <v-btn @click="showAllBoard()"> 게시글전체보기</v-btn>
-    </div><v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
-    </v-container>
-  </div>
-
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
+ 
+  <div class="btn-cover"><button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
+    <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }}</span>
+    <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
+    <form @keyup.enter="searching(searchMenus,search)">
+    <v-btn style="margin-right: 100%" route :to="{name: 'BoardRegister'}"><v-icon>mdi-pen-plus</v-icon></v-btn>
+    <v-row style="margin-left: 80%">
+    <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
+    <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
+    </v-row>
+    <v-btn style="margin-left: 90%" @click="showAllBoard()">검색해제</v-btn>
+    </form>
+    </div>
+  </v-container>
+</div>
+  
 </template>
 
 <script>
@@ -89,7 +105,13 @@ export default {
       searchMenu: [
         {text: '글제목', value:'글제목'},
         {text: '작성자' , value:'작성자'}
-      ]
+      ],
+      selectedItem: 1,
+      items: [
+        { text: 'Real-Time', icon: 'mdi-clock' },
+        { text: 'Audience', icon: 'mdi-account' },
+        { text: 'Conversions', icon: 'mdi-flag' },
+      ],
      
     }
   },
@@ -101,7 +123,7 @@ export default {
     pageSize: {
       type: Number,
       required: false,
-      default: 5
+      default: 10
     }
   },
   methods: {
@@ -130,6 +152,7 @@ export default {
         alert("찾는 카테고리를 선택해주세요")
       }
       if(searchMenus =="글제목"){
+        console.log('동작')
       axios.post(`http://localhost:7777/board/titleSearchList/${search}`)
       .then( (res)=> {
         if(res.data == ''){
@@ -209,37 +232,9 @@ export default {
 }
 </script>
 
-<style>
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-table th {
-  font-size: 1.2rem;
-}
-table tr {
-  height: 2rem;
-  text-align: center;
-  border-bottom: 1px solid #505050;
-}
-table tr:first-of-type {
-  border-top: 2px solid #404040;
-}
-table tr td {
-  padding: 1rem 0;
-  font-size: 1.1rem;
-}
-.btn-cover {
-  margin-top: 1.5rem;
-  text-align: center;
-}
-.btn-cover .page-btn {
-  width: 5rem;
-  height: 2rem;
-  letter-spacing: 0.5px;
-}
-.btn-cover .page-count {
-  padding: 0 1rem;
+<style scoped>
+td{
+  font-family: 'Do Hyeon', sans-serif;
 }
 
 </style>

@@ -12,7 +12,6 @@ export default {
     name: "BoardModifyPage",
     props:{
         boardNo: {
-            type: String,
             required:true
         }
     },
@@ -24,6 +23,11 @@ export default {
     },
     created(){
         this.fetchBoard(this.boardNo)
-    }
+    },
+    mounted(){
+        this.fetchBoard(this.boardNo)
+        }
+        
+    
 }
 </script>

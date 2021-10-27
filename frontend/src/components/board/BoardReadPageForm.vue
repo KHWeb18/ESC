@@ -1,7 +1,30 @@
 <template>
     <div>
-         
-        <v-container style="margin-left: 9%" >
+         <v-container style="max-width: 1080px">
+          <table>
+            <tr>
+              <td style="text-align: left;"><p>{{board.title}}</p><v-row><v-btn class="red" style="margin-left: 92%; margin-top: 0%" @click="DeleteBoard(board.boardNo)" v-if="board.memberId == session">삭제</v-btn><v-btn class="green" style="margin-left: 92%; margin-top: 1%" v-if="board.memberId == session" @click="modifying(board.boardNo)">수정</v-btn><v-btn class="blue white--text" style="margin-left: 92%; margin-top: 1%"  route :to="({name: 'FreeBoardListPage'})">목록</v-btn></v-row><br>
+              <p id="boardinfo" align="left">[{{$moment(board.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{board.viewcount}}좋아요:{{board.good}},싫어요:{{board.bad}}]</p>
+              </td>
+              </tr>
+              <tr>
+                <td style="text-align: left"><img v-if="board.img != ''" width="300px" :src="require(`@/assets/게시판/${board.img}`)"/><br>
+                <pre><p id="contentArea">{{board.content}}</p></pre><br>
+                <v-row>
+                <v-btn style="margin-left: 87%" @click="good(board.boardNo)"><v-icon>mdi-thumb-up</v-icon></v-btn> 
+                <v-btn @click="bad(board.boardNo)"><v-icon>mdi-thumb-down</v-icon></v-btn>
+                </v-row>
+                </td>
+              </tr>
+
+          </table>
+          
+
+
+
+
+
+          <!--
     <v-row id="input-usage">
       <v-col cols="12">
           <h4>{{board.title}}</h4><br>
@@ -16,7 +39,9 @@
         <v-btn @click="DeleteBoard(board.boardNo)" v-if="board.memberId == session">글삭제</v-btn>
       </v-col>
     </v-row>
-        </v-container>
+    -->
+          
+         </v-container>
     </div>
 </template>
 
@@ -147,6 +172,11 @@ font-family: 'Noto Sans SC', sans-serif;
   #input-usage .v-messages {
     border: 1px dashed rgba(0,0,0, .4);
   }
-
+#boardinfo{
+  font-size: 0.6em;
+}
+#contentArea{
+  height: 300px;
+}
 
 </style>
