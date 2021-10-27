@@ -104,7 +104,7 @@ export default {
 }
 
 .commentDate{
-  font-size: 0.7em;
+  font-size: 0.8em;
   margin: -22px 0 0 5px;
 }
 
