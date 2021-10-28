@@ -1,7 +1,7 @@
 <template>
 
 <div v-if="coin ==0&&tableMode ==1">
-  <v-btn @click="ModeChange()">게시글Form전환</v-btn>
+  <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
   <v-container>
   <v-simple-table >
     <template v-slot:default>
@@ -33,7 +33,7 @@
     <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
     <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
     <form @keyup.enter="searching(searchMenus,search)">
-    <v-btn style="margin-right: 100%" route :to="{name: 'BoardRegister'}"><v-icon>mdi-pen-plus</v-icon></v-btn>
+    <v-btn style="margin-right: 100%" @click="Write()"><v-icon>mdi-pen-plus</v-icon></v-btn>
     <v-row style="margin-left: 80%">
     <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
     <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
@@ -45,7 +45,7 @@
 </div>
 
 <div v-else-if="coin ==1&&tableMode ==1">
-  <v-btn @click="ModeChange()">table형태</v-btn><v-btn @click="ModeChange()">card형태</v-btn>
+  <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
   <v-container>
   <v-simple-table >
     <template v-slot:default>
@@ -78,7 +78,7 @@
     <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }}</span>
     <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
     <form @keyup.enter="searching(searchMenus,search)">
-    <v-btn style="margin-right: 100%" route :to="{name: 'BoardRegister'}"><v-icon>mdi-pen-plus</v-icon></v-btn>
+    <v-btn style="margin-right: 100%" @click="Write()"><v-icon>mdi-pen-plus</v-icon></v-btn>
     <v-row style="margin-left: 80%">
     <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
     <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
@@ -89,21 +89,27 @@
   </v-container>
 </div>
 <div v-else-if="coin ==0&&cardMode ==1">
-  <v-btn @click="ModeChange()">게시글Form전환</v-btn>
+   <v-btn @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
    <v-row>
   <v-card
     class="mx-auto my-12"
     width="400"
     v-for="i in paginatedData" :key="i.boardNo"
+    @click="goDetail(i.boardNo)"
+    
+    outlined hover
+    
   >
     <v-card-title>{{i.memberId}}</v-card-title>
+    <v-divider class="mx-4"></v-divider>
     <v-card-title>{{i.title}}</v-card-title>
-    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}<v-icon small>mdi-thumb-up</v-icon>:{{i.good}},<v-icon small>mdi-thumb-down</v-icon>:{{i.bad}}</v-card-subtitle>
+    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]</v-card-subtitle>
     <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
     <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
     
 
     <v-card-text>
+      <v-icon color="blue" style="margin-left: 77%" >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
@@ -115,6 +121,7 @@
         @click="goDetail(i.boardNo)"
       >
         보기
+        
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -123,7 +130,7 @@
     <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
     <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
     <form @keyup.enter="searching(searchMenus,search)">
-    <v-btn style="margin-right: 100%" route :to="{name: 'BoardRegister'}"><v-icon>mdi-pen-plus</v-icon></v-btn>
+    <v-btn style="margin-right: 100%" @click="Write()"><v-icon>mdi-pen-plus</v-icon></v-btn>
     <v-row style="margin-left: 80%">
     <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
     <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
@@ -134,16 +141,19 @@
 </div>
 
 <div v-else-if="coin ==1&&cardMode ==1">
-  <v-btn @click="ModeChange()">게시글Form전환</v-btn>
+  <v-btn @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
    <v-row>
   <v-card
     class="mx-auto my-12"
     width="400"
     v-for="i in searchpaginatedData" :key="i.boardNo"
+    route :to="{name: 'BoardReadPage', params:{boardNo: i.boardNo}}"
+    @click="viewcount(i.boardNo)"
+    outlined hover
   >
     <v-card-title>{{i.memberId}}</v-card-title>
     <v-card-title>{{i.title}}</v-card-title>
-    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}<v-icon small>mdi-thumb-up</v-icon>:{{i.good}},<v-icon small>mdi-thumb-down</v-icon>:{{i.bad}}</v-card-subtitle>
+    <pre><v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]<v-icon small>mdi-thumb-up</v-icon>:{{i.good}}  <v-icon small>mdi-thumb-down</v-icon>:{{i.bad}}</v-card-subtitle></pre>
     <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
     <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
     
@@ -168,7 +178,7 @@
     <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }}</span>
     <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
     <form @keyup.enter="searching(searchMenus,search)">
-    <v-btn style="margin-right: 100%" route :to="{name: 'BoardRegister'}"><v-icon>mdi-pen-plus</v-icon></v-btn>
+    <v-btn style="margin-right: 100%" @click="Write()"><v-icon>mdi-pen-plus</v-icon></v-btn>
     <v-row style="margin-left: 80%">
     <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
     <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
@@ -217,7 +227,7 @@ export default {
     pageSize: {
       type: Number,
       required: false,
-      default: 10
+      default: 8
     }
   },
   methods: {
@@ -237,6 +247,13 @@ export default {
         this.$router.push({name: 'BoardReadPage', params:{boardNo}})
 
         axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
+        .then( () =>{
+
+        })
+    },
+    viewcount(boardNo){
+      console.log("동작")
+      axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
         .then( () =>{
 
         })
@@ -295,6 +312,15 @@ export default {
        this.tableMode = 1
      }
      
+    },
+    Write(){
+      if(this.$store.state.session == null){
+        alert("로그인이 필요합니다.")
+        this.$router.push({name: 'LoginPage'})
+      }
+      else{
+        this.$router.push({name: "BoardRegister"})
+      }
     }
 
   },

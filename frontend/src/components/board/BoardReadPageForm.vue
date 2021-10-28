@@ -3,44 +3,60 @@
          <v-container style="max-width: 1080px">
           <table>
             <tr>
-              <td style="text-align: left;"><p>{{board.title}}</p><v-row><v-btn class="red" style="margin-left: 92%; margin-top: 0%" @click="DeleteBoard(board.boardNo)" v-if="board.memberId == session">삭제</v-btn><v-btn class="green" style="margin-left: 92%; margin-top: 1%" v-if="board.memberId == session" @click="modifying(board.boardNo)">수정</v-btn><v-btn class="blue white--text" style="margin-left: 92%; margin-top: 1%"  route :to="({name: 'FreeBoardListPage'})">목록</v-btn></v-row><br>
+              <td style="text-align: left;"><p>{{board.title}}</p><v-row><v-dialog  v-model="dialog2" persistent max-width="400">
+               <template v-slot:activator="{ on }">
+               <v-btn  color="red"  style="margin-left: 92%; margin-top: 0%"  v-on="on">삭제</v-btn>
+               </template>
+               <v-card>
+               <v-card-title class="headline">
+                   정말 삭제하시겟습니까?
+               </v-card-title>
+               
+               <v-card-actions>
+                   <v-spacer></v-spacer>
+                   <v-btn @click="DeleteBoard(board.boardNo)">확인</v-btn>
+               <v-btn @click.native="cancle2">취소</v-btn>
+               </v-card-actions>
+               </v-card>
+           </v-dialog>
+              <v-btn class="green" style="margin-left: 92%; margin-top: 1%" v-if="board.memberId == session" @click="modifying(board.boardNo)">수정</v-btn><v-btn class="blue white--text" style="margin-left: 92%; margin-top: 1%"  route :to="({name: 'FreeBoardListPage'})">목록</v-btn></v-row><br>
               <p id="boardinfo" align="left">[{{$moment(board.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{board.viewcount}}좋아요:{{board.good}},싫어요:{{board.bad}}]</p>
               </td>
               </tr>
               <tr>
                 <td style="text-align: left"><img v-if="board.img != ''" width="300px" :src="require(`@/assets/게시판/${board.img}`)"/><br>
                 <pre><p id="contentArea">{{board.content}}</p></pre><br>
+            
+
+
+
+
+                
                 <v-row>
-                <v-btn style="margin-left: 87%" @click="good(board.boardNo)"><v-icon>mdi-thumb-up</v-icon></v-btn> 
+                  <v-dialog  v-model="dialog" persistent max-width="400">
+               <template v-slot:activator="{ on }">
+               <v-btn    dark v-on="on">신고</v-btn>
+               </template>
+               <v-card>
+               <v-card-title class="headline">
+                   정말 신고하시겟습니까?
+               </v-card-title>
+               
+               <v-card-actions>
+                   <v-spacer></v-spacer>
+                   <v-btn @click="report(board.boardNo)">확인</v-btn>
+               <v-btn @click.native="cancle">취소</v-btn>
+               </v-card-actions>
+               </v-card>
+           </v-dialog>
+                <v-btn style="margin-left: 81%" @click="good(board.boardNo)"><v-icon>mdi-thumb-up</v-icon></v-btn> 
                 <v-btn @click="bad(board.boardNo)"><v-icon>mdi-thumb-down</v-icon></v-btn>
                 </v-row>
                 </td>
               </tr>
 
           </table>
-          
 
-
-
-
-
-          <!--
-    <v-row id="input-usage">
-      <v-col cols="12">
-          <h4>{{board.title}}</h4><br>
-          <p align="left">[{{$moment(board.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{board.viewcount}}추천:{{board.good}},비추천:{{board.bad}}]</p>
-  <img v-if="board.img != ''" width="300px" :src="require(`@/assets/게시판/${board.img}`)"/>
-        <pre>{{board.content}}</pre>
-        <v-btn  @click="good(board.boardNo)"><v-icon>mdi-thumb-up</v-icon></v-btn> 
-        <v-btn @click="bad(board.boardNo)"><v-icon>mdi-thumb-down</v-icon></v-btn>
-        <v-btn v-if="board.memberId == session" @click="modifying(board.boardNo)">수정</v-btn>
-        <v-btn @click="report(board.boardNo)"><v-icon>mdi-alarm-light</v-icon></v-btn>
-        <v-btn route :to="{name: 'FreeBoardListPage'}">글목록</v-btn>
-        <v-btn @click="DeleteBoard(board.boardNo)" v-if="board.memberId == session">글삭제</v-btn>
-      </v-col>
-    </v-row>
-    -->
-          
          </v-container>
     </div>
 </template>
@@ -118,7 +134,9 @@ export default {
                       axios.post(`http://localhost:7777/board/report/${boardNo}`,{reportWord})
                       .then( () =>{
                           alert('게시글이 신고되었습니다.')
+                          this.dialog =false
                           this.$router.go()
+
                       })
                   },
                   modifying(boardNo) {
@@ -129,16 +147,23 @@ export default {
                       axios.post(`http://localhost:7777/board/DeleteBoard/${boardNo}`)
                       .then( () =>{
                           alert('글이 삭제되었습니다')
-                          this.$router.push({name: 'BoardListPage'})
+                          this.$router.push({name: 'FreeBoardListPage'})
                       })
+                  },
+                  cancle(){
+                    this.dialog= false
+                  },
+                  cancle2(){
+                    this.dialog2 = false
                   }
-                  
     },
     data() {
 
         return {
                 reportWord: '신고됨',
                 coin: 0,
+                dialog: false,
+                dialog2: false,
                }
            },
            

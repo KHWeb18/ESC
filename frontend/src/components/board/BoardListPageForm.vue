@@ -8,7 +8,7 @@
   >
     <v-card-title>{{i.memberId}}</v-card-title>
     <v-card-title>{{i.title}}</v-card-title>
-    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}<v-icon small>mdi-thumb-up</v-icon>:{{i.good}},<v-icon small>mdi-thumb-down</v-icon>:{{i.bad}}</v-card-subtitle>
+    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]<v-icon small>mdi-thumb-up</v-icon>:{{i.good}},<v-icon small>mdi-thumb-down</v-icon>:{{i.bad}}</v-card-subtitle>
     <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
     <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
     
