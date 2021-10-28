@@ -1,4 +1,45 @@
 <template>
+<div>
+  <v-row>
+  <v-card
+    class="mx-auto my-12"
+    width="400"
+    v-for="i in paginatedData" :key="i.boardNo"
+  >
+    <v-card-title>{{i.memberId}}</v-card-title>
+    <v-card-title>{{i.title}}</v-card-title>
+    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}<v-icon small>mdi-thumb-up</v-icon>:{{i.good}},<v-icon small>mdi-thumb-down</v-icon>:{{i.bad}}</v-card-subtitle>
+    <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
+    <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
+    
+
+    <v-card-text>
+    </v-card-text>
+
+    <v-divider class="mx-4"></v-divider>
+
+    <v-card-actions>
+      <v-btn
+        color="deep-purple lighten-2"
+        text
+        @click="goDetail(i.boardNo)"
+      >
+        보기
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+  </v-row>
+  <div class="btn-cover">
+      <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+        이전
+      </button>
+      <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+      <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
+        다음
+      </button>
+    </div>
+</div>
+<!--
   <div>
       <v-container>
     <table>
@@ -32,15 +73,21 @@
     <v-btn route :to="{name: 'BoardRegister'}">글쓰기</v-btn>
       </v-container>
   </div>
+  -->
 </template>
 
 <script>
+import Vue from 'vue'
+import VueMoment from 'vue-moment'
 import axios from 'axios';
+Vue.use(VueMoment)
 export default {
   name: 'paginated-list',
   data () {
     return {
-      pageNum: 0
+      pageNum: 0,
+      loading: false,
+      selection: 1,
     }
   },
   props: {
@@ -68,7 +115,11 @@ export default {
         .then( () =>{
 
         })
-    }
+    },
+    reserve () {
+        this.loading = true
+        setTimeout(() => (this.loading = false), 2000)
+      },
   },
   computed: {
     pageCount () {
