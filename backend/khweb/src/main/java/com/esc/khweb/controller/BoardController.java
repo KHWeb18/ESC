@@ -1,5 +1,6 @@
 package com.esc.khweb.controller;
 
+import com.esc.khweb.controller.request.BoardReportRequest;
 import com.esc.khweb.service.BoardService;
 import com.esc.khweb.controller.request.BoardRequest;
 import com.esc.khweb.entity.Board;
@@ -102,10 +103,14 @@ public class BoardController {
         service.badCount(boardNo);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @PostMapping("/report/{boardNo}")
-    public ResponseEntity<Void> report (@PathVariable ("boardNo")Long boardNo, @Validated @RequestBody BoardRequest boardRequest) throws  Exception {
-        String reportWord = boardRequest.getReportWord();
+    @PostMapping("/report/{reportWord}")
+    public ResponseEntity<Void> report (@PathVariable ("reportWord")String reportWord, @Validated @RequestBody BoardReportRequest boardReportRequest) throws  Exception {
+
+        Long boardNo = boardReportRequest.getBoardNo();
         service.report(boardNo,reportWord);
+        // 신고 버튼누를시 카톡 날라감 구현했지만, 파이썬작업진행중으로 막아놓겟습니다 2021/10/29
+    //   String check =  service.KakaotalkAlarm(boardReportRequest);
+      // log.info("check"+check);
 
         return  new ResponseEntity<>(HttpStatus.OK);
     }

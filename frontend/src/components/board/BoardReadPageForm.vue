@@ -44,7 +44,7 @@
                
                <v-card-actions>
                    <v-spacer></v-spacer>
-                   <v-btn @click="report(board.boardNo)">확인</v-btn>
+                   <v-btn @click="report(board)">확인</v-btn>
                <v-btn @click.native="cancle">취소</v-btn>
                </v-card-actions>
                </v-card>
@@ -129,13 +129,14 @@ export default {
                     })
                   },
                   
-                  report(boardNo){
+                  report(board){
+                      
                       const {reportWord} =  this
-                      axios.post(`http://localhost:7777/board/report/${boardNo}`,{reportWord})
+                      axios.post(`http://localhost:7777/board/report/${reportWord}`,{boardNo: board.boardNo, memberId: board.memberId,})
                       .then( () =>{
                           alert('게시글이 신고되었습니다.')
                           this.dialog =false
-                          this.$router.go()
+                         
 
                       })
                   },
