@@ -8,11 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @NoArgsConstructor
 public class BoardRequest {
-
+    private Long   boardNo;
     private String memberId;
     private String title;
     private String content;
     private String img;
     private String category;
     private String reportWord;
+
 }

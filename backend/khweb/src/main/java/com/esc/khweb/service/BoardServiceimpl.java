@@ -1,11 +1,14 @@
 package com.esc.khweb.service;
 
+import com.esc.khweb.controller.request.BoardReportRequest;
 import com.esc.khweb.controller.request.BoardRequest;
+import com.esc.khweb.controller.request.MemberRequest;
 import com.esc.khweb.entity.Board;
 import com.esc.khweb.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import utility.python.BoardReportKakaoAlarmWithPython;
 
 import java.util.List;
 import java.util.Optional;
@@ -84,5 +87,15 @@ public class BoardServiceimpl implements  BoardService{
     @Override
     public List<Board> memberIdSearchList(String search) throws Exception {
         return boardRepository.memberIdSearchList(search);
+    }
+
+    @Override
+    public String KakaotalkAlarm(BoardReportRequest boardReportRequest) throws Exception {
+
+        BoardReportKakaoAlarmWithPython BRKWP  = new BoardReportKakaoAlarmWithPython();
+
+
+
+        return BRKWP.KakaotalkAlarm(boardReportRequest);
     }
 }
