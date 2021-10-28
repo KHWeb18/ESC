@@ -6,8 +6,6 @@
     <v-btn text v-if="checkDuplicate()" @click="removeLike">
       <v-icon color="primary" left>mdi-thumb-up</v-icon>{{ comment.commentLikes.length }}</v-btn>
 
-    중복인가? : {{ checkDuplicate() }}
-
   </v-card-text>
 </template>
 
@@ -76,5 +74,7 @@ export default {
 </script>
 
 <style scoped>
-
+.likeBtn{
+  margin: -20px 0 -31px 50px;
+}
 </style>

@@ -9,9 +9,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "Comment")
@@ -45,7 +43,11 @@ public class Comment {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "commentNo")
-    private List<CommentLikes> commentLikes = new ArrayList<CommentLikes>();
+    private Set<CommentLikes> commentLikes = new HashSet<CommentLikes>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "commentNo")
+    private Set<CommentReply> commentReply = new HashSet<CommentReply>();
 
     public Comment(Long boardNo, String memberId, String content){
         this.boardNo = boardNo;
