@@ -1,6 +1,7 @@
 <template>
 
-<div v-if="coin ==0">
+<div v-if="coin ==0&&tableMode ==1">
+  <v-btn @click="ModeChange()">게시글Form전환</v-btn>
   <v-container>
   <v-simple-table >
     <template v-slot:default>
@@ -43,7 +44,8 @@
   </v-container>
 </div>
 
-<div v-else>
+<div v-else-if="coin ==1&&tableMode ==1">
+  <v-btn @click="ModeChange()">table형태</v-btn><v-btn @click="ModeChange()">card형태</v-btn>
   <v-container>
   <v-simple-table >
     <template v-slot:default>
@@ -86,6 +88,96 @@
     </div>
   </v-container>
 </div>
+<div v-else-if="coin ==0&&cardMode ==1">
+  <v-btn @click="ModeChange()">게시글Form전환</v-btn>
+   <v-row>
+  <v-card
+    class="mx-auto my-12"
+    width="400"
+    v-for="i in paginatedData" :key="i.boardNo"
+  >
+    <v-card-title>{{i.memberId}}</v-card-title>
+    <v-card-title>{{i.title}}</v-card-title>
+    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}<v-icon small>mdi-thumb-up</v-icon>:{{i.good}},<v-icon small>mdi-thumb-down</v-icon>:{{i.bad}}</v-card-subtitle>
+    <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
+    <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
+    
+
+    <v-card-text>
+    </v-card-text>
+
+    <v-divider class="mx-4"></v-divider>
+
+    <v-card-actions>
+      <v-btn
+        color="deep-purple lighten-2"
+        text
+        @click="goDetail(i.boardNo)"
+      >
+        보기
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+  </v-row>
+  <div class="btn-cover"><button :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
+    <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
+    <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
+    <form @keyup.enter="searching(searchMenus,search)">
+    <v-btn style="margin-right: 100%" route :to="{name: 'BoardRegister'}"><v-icon>mdi-pen-plus</v-icon></v-btn>
+    <v-row style="margin-left: 80%">
+    <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
+    <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
+    </v-row>
+    </form>
+  
+    </div>
+</div>
+
+<div v-else-if="coin ==1&&cardMode ==1">
+  <v-btn @click="ModeChange()">게시글Form전환</v-btn>
+   <v-row>
+  <v-card
+    class="mx-auto my-12"
+    width="400"
+    v-for="i in searchpaginatedData" :key="i.boardNo"
+  >
+    <v-card-title>{{i.memberId}}</v-card-title>
+    <v-card-title>{{i.title}}</v-card-title>
+    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}<v-icon small>mdi-thumb-up</v-icon>:{{i.good}},<v-icon small>mdi-thumb-down</v-icon>:{{i.bad}}</v-card-subtitle>
+    <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
+    <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
+    
+
+    <v-card-text>
+    </v-card-text>
+
+    <v-divider class="mx-4"></v-divider>
+
+    <v-card-actions>
+      <v-btn
+        color="deep-purple lighten-2"
+        text
+        @click="goDetail(i.boardNo)"
+      >
+        보기
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+  </v-row>
+  <div class="btn-cover"><button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
+    <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }}</span>
+    <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
+    <form @keyup.enter="searching(searchMenus,search)">
+    <v-btn style="margin-right: 100%" route :to="{name: 'BoardRegister'}"><v-icon>mdi-pen-plus</v-icon></v-btn>
+    <v-row style="margin-left: 80%">
+    <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
+    <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
+    </v-row>
+    <v-btn style="margin-left: 90%" @click="showAllBoard()">검색해제</v-btn>
+    </form>
+  
+    </div>
+</div>
   
 </template>
 
@@ -95,6 +187,8 @@ export default {
   name: 'FreeBoardListForm',
   data () {
     return {
+      tableMode: 1,
+      cardMode: 0,
       searchMenus: '',
       pageNum: 0,
       searchpageNum: 0,
@@ -188,6 +282,19 @@ export default {
     },
     check(){
       console.log("확인")
+    },
+    ModeChange(){
+     if(this.cardMode == 0){
+       this.cardMode =1;
+     }else{
+       this.cardMode = 0
+     }
+     if(this.tableMode == 1){
+       this.tableMode =0;
+     }else{
+       this.tableMode = 1
+     }
+     
     }
 
   },
@@ -235,7 +342,6 @@ export default {
 <style scoped>
 td{
   font-family: 'Do Hyeon', sans-serif;
-  font-size: 2.5em
 }
 
 </style>

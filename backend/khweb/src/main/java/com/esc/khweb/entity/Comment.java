@@ -23,7 +23,7 @@ public class Comment {
     @Column(nullable = false)
     private Long commentNo;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long boardNo;
 
     @Column(nullable = false)
