@@ -23,7 +23,8 @@
         <BoardCommentLike :comment="item" :boardNo="boardNo"></BoardCommentLike>
 
         <!-- 답글 보이기 -->
-        <v-btn text @click="onReply(item.commentNo), showIt = !showIt">답글</v-btn>
+        <v-btn class="replyBtn" text @click="onReply(item.commentNo), showIt = !showIt">
+          답글{{item.commentReply.length}}</v-btn>
 
         <v-divider></v-divider>
 
@@ -120,4 +121,7 @@ export default {
   font-weight: normal;
 }
 
+.replyBtn{
+  margin: -30px 0 0 0;
+}
 </style>

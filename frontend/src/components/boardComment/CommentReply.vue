@@ -1,7 +1,6 @@
 <template>
   <v-card color="grey lighten-5" max-width="95%" class="mx-auto" elevation="0" v-if="replies">
     <div v-for="(item,idx) in replies" :key="idx">
-
       <v-card-title class="writer">{{ item.memberId }}</v-card-title>
       <v-card-text class="grey--text date">{{ item.regDate }}</v-card-text>
 
