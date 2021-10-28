@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <login-page-form v-if="session ==null" @submit="OnSubmit"/>
-        <p v-else-if="session !=null"> 환영합니다 여기는 EVS입니다</p>
-        
-    </div>
+  <div>
+    <login-page-form v-if="session ==null" @submit="OnSubmit"/>
+    <p v-else-if="session !=null"> 환영합니다 여기는 EVS입니다</p>
+
+  </div>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ import {mapActions, mapState} from "vuex";
 Vue.use(cookies)
 export default {
   components: { LoginPageForm },
-    name: 'LoginPage',
+  name: 'LoginPage',
   computed: {
     ...mapState(["isLogin", "session"])
   },
@@ -27,7 +27,7 @@ export default {
       const {memberId , memberPw} = payload
       axios.post('http://localhost:7777/member/login', {memberId , memberPw})
           .then( (res) =>{
-              console.log(res.data)
+            console.log(res.data)
             if(res.data.memberId!= null){
               alert('로그인되었습니다.')
               this.res = res.data
