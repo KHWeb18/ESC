@@ -13,6 +13,18 @@
         active-class="active">
         게시판
       </router-link>
+        <router-link
+        :to="{ name: 'IsMyPage' }"
+        class="nav-link"
+        active-class="active">
+        마이페이지
+      </router-link>
+        <router-link
+        :to="{ name: 'test' }"
+        class="nav-link"
+        active-class="active">
+        테스트
+      </router-link>
     </div>
   </div>
 </template>

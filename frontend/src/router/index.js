@@ -21,6 +21,14 @@ import LoginPage from '../views/member/LoginPage'
 
 import EvInfoPage from '../views/EvInfo/EvInfoPage'
 
+// 마이페이지
+
+import IsMyPage from '../views/myPage/IsMyPage.vue'
+import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
+import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
+
+// 테스트
+import test from '../views/test.vue'
 
 Vue.use(VueRouter)
 
@@ -117,6 +125,28 @@ const routes = [
     path: '/evinfo',
     name: 'EvInfoPage',   
     component: EvInfoPage
+  }, 
+  //---------- 마이페이지 ---------------
+  {
+    path: '/isMyPage',
+    name: 'IsMyPage',   
+    component: IsMyPage
+  },
+  {
+    path: '/isEditMemberPage',
+    name: 'IsEditMemberPage',   
+    component: IsEditMemberPage
+  },
+  {
+    path: '/isMyBoardPage',
+    name: 'IsMyBoardPage',   
+    component: IsMyBoardPage
+  },
+  // ---------------------------------------
+  {
+    path: '/test',
+    name: 'test',   
+    component: test
   },
 ]
 
