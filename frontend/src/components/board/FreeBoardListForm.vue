@@ -108,22 +108,13 @@
     <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
     
 
-    <v-card-text>
-      <v-icon color="blue" style="margin-left: 77%" >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
-    </v-card-text>
+    
 
     <v-divider class="mx-4"></v-divider>
-
-    <v-card-actions>
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-        @click="goDetail(i.boardNo)"
-      >
-        보기
-        
-      </v-btn>
-    </v-card-actions>
+<v-card-text>
+      <v-icon color="blue" style="margin-left: 77%" >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
+    </v-card-text>
+   
   </v-card>
   </v-row>
   <div class="btn-cover"><button :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
@@ -147,31 +138,23 @@
     class="mx-auto my-12"
     width="400"
     v-for="i in searchpaginatedData" :key="i.boardNo"
-    route :to="{name: 'BoardReadPage', params:{boardNo: i.boardNo}}"
-    @click="viewcount(i.boardNo)"
+    @click="goDetail(i.boardNo)"
     outlined hover
   >
     <v-card-title>{{i.memberId}}</v-card-title>
     <v-card-title>{{i.title}}</v-card-title>
-    <pre><v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]<v-icon small>mdi-thumb-up</v-icon>:{{i.good}}  <v-icon small>mdi-thumb-down</v-icon>:{{i.bad}}</v-card-subtitle></pre>
+    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]</v-card-subtitle>
     <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
     <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
     
 
-    <v-card-text>
-    </v-card-text>
+   
 
     <v-divider class="mx-4"></v-divider>
-
-    <v-card-actions>
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-        @click="goDetail(i.boardNo)"
-      >
-        보기
-      </v-btn>
-    </v-card-actions>
+   <v-card-text>
+     <v-icon color="blue" style="margin-left: 77%" >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
+    </v-card-text>
+ 
   </v-card>
   </v-row>
   <div class="btn-cover"><button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
