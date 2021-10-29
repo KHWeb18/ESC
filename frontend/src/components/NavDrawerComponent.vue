@@ -64,6 +64,7 @@ export default {
         { title: '마이페이지', icon: 'account_box', method: this.goMyPage},
         { title: '게시판', icon: 'mdi-view-dashboard', method: this.goBoard},
         { title: '자동차 정보', icon: 'directions_car', method: this.evInfo},
+        { title: '로그아웃', icon: 'reply', method: this.logout},
       ],
     }
   },

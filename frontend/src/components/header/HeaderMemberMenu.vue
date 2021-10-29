@@ -1,5 +1,5 @@
 <template>
-  <div v-if="session">
+  <div v-if="session" class="hidden-sm-and-down">
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn text v-bind="attrs" v-on="on">
