@@ -27,9 +27,6 @@ import IsMyPage from '../views/myPage/IsMyPage.vue'
 import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
 
-// 테스트
-import test from '../views/test.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -141,12 +138,6 @@ const routes = [
     path: '/isMyBoardPage',
     name: 'IsMyBoardPage',   
     component: IsMyBoardPage
-  },
-  // ---------------------------------------
-  {
-    path: '/test',
-    name: 'test',   
-    component: test
   },
 ]
 

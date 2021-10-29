@@ -49,6 +49,8 @@ public class Comment {
     @JoinColumn(name = "commentNo")
     private Set<CommentReply> commentReply = new HashSet<CommentReply>();
 
+
+
     public Comment(Long boardNo, String memberId, String content){
         this.boardNo = boardNo;
         this.memberId = memberId;
