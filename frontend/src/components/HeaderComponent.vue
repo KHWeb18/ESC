@@ -11,9 +11,9 @@
         </v-toolbar-title>
 
         <v-toolbar-items :class="menus" class="hidden-sm-and-down">
-          <span>전기차 소개</span>
-          <span>구매 가이드</span>
-          <span>참여마당</span>
+          <span @click="$router.push('/evinfo')">전기차 정보</span>
+          <span @click="$router.push('/boardListPage')">게시판</span>
+          <span>원하는거 추가</span>
         </v-toolbar-items>
 
         <v-spacer></v-spacer>
