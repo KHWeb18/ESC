@@ -28,9 +28,7 @@
             </router-link>
           </div>
 
-          <div v-if="LoginCheck" @click="logout" class="hidden-sm-and-down">
-            {{ session }} 님 로그아웃
-          </div>
+          <header-member-menu></header-member-menu>
 
         </v-toolbar-items>
 
@@ -51,10 +49,11 @@
 <script>
 import {mapActions, mapState} from "vuex";
 import NavDrawerComponent from "./NavDrawerComponent";
+import HeaderMemberMenu from "./header/HeaderMemberMenu";
 
 export default {
   name: "HeaderComponent",
-  components: {NavDrawerComponent},
+  components: {HeaderMemberMenu, NavDrawerComponent},
   mounted() {
     window.onscroll = () => {
       this.changeColor();
@@ -178,5 +177,8 @@ a{
   font-size: 1em;
   margin-left: 25px;
   color: white;
+}
+.myPage{
+  margin: 0 0 0 20px;
 }
 </style>

@@ -15,7 +15,7 @@
         </v-list-item-content>
 
         <v-list-item-icon v-if="!session">
-          <v-icon>account_circle</v-icon>
+          <v-icon>exit_to_app</v-icon>
         </v-list-item-icon>
         <v-list-item-content v-if="!session" @click="$router.push('/loginPage')" class="pointer">
           <v-list-item-title>로그인 하러가기</v-list-item-title>
