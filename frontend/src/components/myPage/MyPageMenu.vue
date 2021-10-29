@@ -54,7 +54,7 @@ export default {
   font: 62.5%/1 "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial,
     Helvetica, sans-serif;
   background-color: #cfd6da;
-  background: #cfd6da url("D:/proj/ESC/frontend/src/assets/mypage/배경.jpg")
+  background: #cfd6da url("https://user-images.githubusercontent.com/83811729/139388782-7b1e724c-a9f6-49d5-8c75-b29ddc790d5a.jpg")
     no-repeat fixed center top;
 }
 
@@ -86,7 +86,7 @@ p {
   width: 100%;
   height: 250px;
   display: block;
-  background: url("D:/proj/ESC/frontend/src/assets/mypage/타이칸.png") no-repeat
+  background: url("https://user-images.githubusercontent.com/83811729/139388804-5197e7b3-4dbf-4ba6-a828-84cf99c8b037.png") no-repeat
     center center;
 }
 
@@ -107,7 +107,7 @@ p {
       rgba(255, 255, 255, 0) 50%,
       rgba(255, 255, 255, 0.3) 100%
     ),
-    url("D:/proj/ESC/frontend/src/assets/mypage/타이칸.png") no-repeat center
+    url("https://user-images.githubusercontent.com/83811729/139388804-5197e7b3-4dbf-4ba6-a828-84cf99c8b037.png") no-repeat center
       center;
   -webkit-background-clip: text;
 }
