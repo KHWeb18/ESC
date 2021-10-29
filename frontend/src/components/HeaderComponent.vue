@@ -28,15 +28,19 @@
             </router-link>
           </div>
 
-          <div v-if="LoginCheck" @click="logout">
+          <div v-if="LoginCheck" @click="logout" class="hidden-sm-and-down">
             {{ session }} 님 로그아웃
           </div>
 
         </v-toolbar-items>
 
         <!-- hamburger icon -->
-        <v-app-bar-nav-icon @click="nav_drawer = !nav_drawer" :class="hamburger">
-        </v-app-bar-nav-icon>
+<!--        <v-app-bar-nav-icon @click="nav_drawer = !nav_drawer" :class="hamburger">-->
+<!--        </v-app-bar-nav-icon>-->
+
+        <!-- nav-drawer if mobile -->
+        <nav-drawer-component></nav-drawer-component>
+
       </v-container>
 
 
@@ -46,9 +50,11 @@
 
 <script>
 import {mapActions, mapState} from "vuex";
+import NavDrawerComponent from "./NavDrawerComponent";
 
 export default {
   name: "HeaderComponent",
+  components: {NavDrawerComponent},
   mounted() {
     window.onscroll = () => {
       this.changeColor();
@@ -67,7 +73,7 @@ export default {
       text: 'text',
       menus: 'menus',
       hamburger: 'hamburger hidden-md-and-up black--text',
-      nav_drawer: false,
+
     }
   },
   methods: {
@@ -90,6 +96,9 @@ export default {
         this.hamburger = 'hamburger hidden-md-and-up black--text'
       }
     },
+    closeNav(value){
+      this.nav_drawer = value
+    }
   },
 }
 </script>
@@ -169,9 +178,5 @@ a{
   font-size: 1em;
   margin-left: 25px;
   color: white;
-}
-
-.hamburger{
-  margin-top: -15px;
 }
 </style>
