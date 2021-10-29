@@ -2,7 +2,9 @@ import {
 
     COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN, FETCH_MEMBER_LIST,
     FETCH_BOARD_LIST, FETCH_BOARD, FETCH_TARGET_LIST,
-    FETCH_COMMENT_LIST, FETCH_COMMENT, FETCH_REPLY_LIST, FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO
+    FETCH_COMMENT_LIST, FETCH_COMMENT, FETCH_REPLY_LIST, FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,
+    GET_NOTICE_LIST,GET_NOTICE,
+
 
 } from './mutation-types'
 
@@ -37,6 +39,13 @@ export default {
     },
     [FIND_MEMBER_INFO] (state, payload) {
         state.memberInfo = payload
+    },
+    //공지
+    [GET_NOTICE_LIST] (state,payload) {
+        state.noticeList = payload
+    },
+    [GET_NOTICE] (state,payload) {
+        state.notice = payload
     },
 
     //comment

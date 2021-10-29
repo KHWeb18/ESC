@@ -23,6 +23,9 @@ export default {
     board: null,
     TargetList: [],
     memberInfo: null,
+    //공지
+    noticeList: [],
+    notice: null,
 
     // 댓글
     comments: [],

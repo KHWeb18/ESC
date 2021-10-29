@@ -12,7 +12,7 @@ import {
     FETCH_BOARD,
     FETCH_TARGET_LIST,
     FETCH_COMMENT_LIST, FETCH_COMMENT,
-    FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO
+    FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,GET_NOTICE_LIST,GET_NOTICE
 
 } from './mutation-types'
 
@@ -115,4 +115,19 @@ export default {
                 commit(FETCH_COMMENT_LIKES, res.data)
             })
     },
+    GetNoitceList( {commit}) {
+
+        return axios.post('http://localhost:7777/notice/getNoitceList')
+        .then( (res)=>{
+            commit(GET_NOTICE_LIST,res.data)
+        })
+    },
+    GetNotice({commit},boardNo) {
+
+        return axios.post(`http://localhost:7777/notice/getNotice/${boardNo}`)
+        .then( (res) =>{
+            commit(GET_NOTICE,res.data)
+        })
+    }
+    
 }
