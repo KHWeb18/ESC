@@ -8,23 +8,22 @@
       <thead>
         <tr style="text-align: center;">
           <td>번호</td>
+          <td>분류</td>
          <td>제목</td>
-         <td>글쓴이</td>
+         <td>글쓴이</td> 
           <td><v-icon>mdi-clock-outline</v-icon></td>
           <td><v-icon>mdi-eye</v-icon></td>
-          <td><v-icon color="blue">mdi-thumb-up</v-icon></td>
-          <td><v-icon color="red">mdi-thumb-down</v-icon></td>
+
         </tr>
       </thead>
       <tbody>
         <tr style="text-align: center;"  v-for="p in paginatedData" :key="p.boardNo">
         <td style="margin-right:50px">{{p.boardNo}}</td>
+        <td>{{p.category}}</td>
         <td @click="goDetail(p.boardNo)">{{p.title}}</td>
         <td>{{p.memberId}}</td>
         <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh')}}</td>
         <td>{{p.viewcount}}</td>
-        <td style="width:70px">{{p.good}}</td>
-        <td style="width:70px">{{p.bad}}</td>
         </tr>
       </tbody>
     </template>
@@ -52,23 +51,21 @@
       <thead>
         <tr style="text-align: center;">
           <td>번호</td>
+          <td>공지</td>
          <td>제목</td>
          <td>글쓴이</td>
           <td><v-icon>mdi-clock-outline</v-icon></td>
           <td><v-icon>mdi-eye</v-icon></td>
-          <td><v-icon color="blue">mdi-thumb-up</v-icon></td>
-          <td><v-icon color="red">mdi-thumb-down</v-icon></td>
         </tr>
       </thead>
       <tbody>
         <tr style="text-align: center;"  v-for="p in searchpaginatedData" :key="p.boardNo">
         <td style="margin-right:50px">{{p.boardNo}}</td>
+        <td>{{p.category}}</td>
         <td @click="goDetail(p.boardNo)">{{p.title}}</td>
         <td>{{p.memberId}}</td>
         <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh')}}</td>
         <td>{{p.viewcount}}</td>
-        <td style="width:70px">{{p.good}}</td>
-        <td style="width:70px">{{p.bad}}</td>
         </tr>
       </tbody>
     </template>
@@ -103,7 +100,7 @@
     <v-card-title>{{i.memberId}}</v-card-title>
     <v-divider class="mx-4"></v-divider>
     <v-card-title>{{i.title}}</v-card-title>
-    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]</v-card-subtitle>
+    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]분류:{{i.category}}</v-card-subtitle>
     <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
     <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
     
@@ -112,7 +109,6 @@
 
     <v-divider class="mx-4"></v-divider>
 <v-card-text>
-      <v-icon color="blue" style="margin-left: 77%" >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
     </v-card-text>
    
   </v-card>
@@ -138,13 +134,12 @@
     class="mx-auto my-12"
     width="400"
     v-for="i in searchpaginatedData" :key="i.boardNo"
-    route :to="{name: 'BoardReadPage', params:{boardNo: i.boardNo}}"
-    @click="viewcount(i.boardNo)"
+    @click="goDetail(i.boardNo)"
     outlined hover
   >
     <v-card-title>{{i.memberId}}</v-card-title>
     <v-card-title>{{i.title}}</v-card-title>
-    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]</v-card-subtitle>
+    <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}분류:{{i.category}}]</v-card-subtitle>
     <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
     <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
     
@@ -153,7 +148,6 @@
 
     <v-divider class="mx-4"></v-divider>
    <v-card-text>
-     <v-icon color="blue" style="margin-left: 77%" >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
     </v-card-text>
  
   </v-card>
@@ -204,7 +198,7 @@ export default {
     }
   },
   props: {
-    TargetList: {
+    noticeList: {
       type: Array,
       required: true
     },
@@ -228,16 +222,16 @@ export default {
       this.searchpageNum -=1;
     },
     goDetail(boardNo){
-        this.$router.push({name: 'BoardReadPage', params:{boardNo}})
+        this.$router.push({name: 'NoticeReadPage', params:{boardNo}})
 
-        axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
+        axios.post(`http://localhost:7777/notice/viewcount/${boardNo}`)
         .then( () =>{
 
         })
     },
     viewcount(boardNo){
       console.log("동작")
-      axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
+      axios.post(`http://localhost:7777/notice/viewcount/${boardNo}`)
         .then( () =>{
 
         })
@@ -248,7 +242,7 @@ export default {
       }
       if(searchMenus =="글제목"){
         console.log('동작')
-      axios.post(`http://localhost:7777/board/titleSearchList/${search}`)
+      axios.post(`http://localhost:7777/notice/titleSearchList/${search}`)
       .then( (res)=> {
         if(res.data == ''){
           alert("해당검색어로 검색되는 글이 존재하지않습니다.")
@@ -263,7 +257,7 @@ export default {
         )
       }
 
-      if(searchMenus =="작성자"){axios.post(`http://localhost:7777/board/memberIdSearchList/${search}`)
+      if(searchMenus =="작성자"){axios.post(`http://localhost:7777/notice/memberIdSearchList/${search}`)
       .then( (res)=>{
         if(res.data == ''){
            alert("해당검색어로 검색되는 글이 존재하지않습니다.")
@@ -303,7 +297,7 @@ export default {
         this.$router.push({name: 'LoginPage'})
       }
       else{
-        this.$router.push({name: "BoardRegister"})
+        this.$router.push({name: "NoticeRegisterPage"})
       }
     }
 
@@ -311,7 +305,7 @@ export default {
   computed: {
       
     pageCount () {
-      let listLeng = this.TargetList.length,
+      let listLeng = this.noticeList.length,
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
       if (listLeng % listSize > 0) page += 1;
@@ -329,7 +323,7 @@ export default {
     paginatedData () {
       const start = this.pageNum * this.pageSize,
             end = start + this.pageSize;
-      return this.TargetList.slice(start, end);
+      return this.noticeList.slice(start, end);
     },
     searchpaginatedData () {
       const start = this.searchpageNum * this.pageSize,

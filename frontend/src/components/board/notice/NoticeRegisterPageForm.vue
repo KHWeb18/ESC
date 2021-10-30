@@ -2,7 +2,7 @@
 <div style="margin-left: 500px">
         
         <form @submit.prevent="OnSubmit">
-            <v-row><v-select  outlined style="max-width:300px" :items="boardCategory"  v-model="category" label="카테고리"> </v-select>
+            <v-row><v-select  outlined style="max-width:300px" :items="noticeCategory"  v-model="category" label="분류"> </v-select>
            <v-text-field style="max-width:700px" outlined label="제목을입력하세요"  v-model="title"></v-text-field></v-row>
            <v-row>
               <textarea  name="contentText" id="contentText" cols="30" rows="10" v-model="content"></textarea>
@@ -40,10 +40,9 @@ export default {
                 content: '',
                 img: '',
                 category: '',
-                boardCategory: [
-                    {text: '자유게시판', value : '자유게시판' },
-                    {text: '충전소게시판', value : '충전소게시판' },
-                    {text: '주차장게시판', value : '주차장게시판' }
+                noticeCategory: [
+                    {text: '공지', value : '공지' },
+                    {text: '이벤트', value : '이벤트' },
                 ]
             }
         },
@@ -58,7 +57,7 @@ export default {
             
             OnSubmit() {
             if(this.category == ''){
-                alert("게시판 카테고리를 선택하세요")
+                alert("공지 분류를 선택하세요")
             }else {
                  const {  title, content, img, category} = this
                 this.$emit('submit', { memberId:this.session, title, content, img, category})
@@ -77,7 +76,7 @@ export default {
                 this.files.name = this.img
                 formData.append('fileList', this.files[idx])
             }
-            axios.post(`http://localhost:7777/board/uploadImg/${this.session}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
+            axios.post(`http://localhost:7777/notice/uploadImg/${this.session}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
             .then (res => {
                 this.response = res.data
             })

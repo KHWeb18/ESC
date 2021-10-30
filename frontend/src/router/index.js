@@ -15,7 +15,11 @@ import BoardModifyPage from '../views/board/BoardModifyPage'
 import FreeBoardListPage from '../views/board/FreeBoardListPage'
 import ChargingBoardListPage from '../views/board/ChargingBoardListPage'
 import ParkingBoardListPage from '../views/board/ParkingBoardListPage'  
-
+//공지 게시판
+import NoticeRegisterPage from '../views/board/notice/NoticeRegisterPage'
+import NoticeListPage from '../views/board/notice/NoticeListPage'
+import NoticeReadPage from '../views/board/notice/NoticeReadPage'
+import NoticeModifyPage from '../views/board/notice/NoticeModifyPage'
 
 import LoginPage from '../views/member/LoginPage'
 
@@ -82,7 +86,7 @@ const routes = [
     path: '/boardReadPage/:boardNo',
     name: 'BoardReadPage',
     components: {
-      default: BoardReadPage
+      default: BoardReadPage 
     },
     props: {
       default: true
@@ -116,8 +120,41 @@ const routes = [
   {
     path: '/chargingBoardListPage',
     name: 'ChargingBoardListPage',   
-    component: ChargingBoardListPage
+    component: ChargingBoardListPage 
   },
+
+  {
+    path: '/noticeRegisterPage',
+    name: 'NoticeRegisterPage',   
+    component: NoticeRegisterPage  
+  },
+  {
+    path: '/noticeListPage',
+    name: 'NoticeListPage',   
+    component: NoticeListPage  
+  },
+  {
+    path: '/noticeReadPage/:boardNo',
+    name: 'NoticeReadPage',
+    components: {
+      default: NoticeReadPage  
+    },
+    props: {
+      default: true
+    },
+  },
+  {
+    path: '/noticeModifyPage/:boardNo',
+    name: 'NoticeModifyPage',
+    components: {
+      default: NoticeModifyPage  
+    },
+    props: {
+      default: true
+    },
+  },
+
+
   {
     path: '/evinfo',
     name: 'EvInfoPage',   
