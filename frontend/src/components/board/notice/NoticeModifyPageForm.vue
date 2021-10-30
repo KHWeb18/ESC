@@ -77,7 +77,7 @@ export default {
                 axios.post(`http://localhost:7777/notice/noticeModify/${this.notice.boardNo}`,{title, content ,img: img2})
                 .then( () =>{
                     alert("수정이 완료되었습니다.")
-                    this.$router.go(-1)
+                    this.$router.push({name: 'NoticeReadPage', params:{boardNo: this.notice.boardNo}})
                 } )
             }
             else{
@@ -86,7 +86,7 @@ export default {
                 axios.post(`http://localhost:7777/notice/noticeModify/${this.notice.boardNo}`,{title, content,img: this.notice.img})
                 .then( () =>{
                     alert("수정이 완료되었습니다.")
-                    this.$router.go(-1)
+                    this.$router.push({name: 'NoticeReadPage', params:{boardNo: this.notice.boardNo}})
                 })
             }
         },

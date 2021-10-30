@@ -24,6 +24,8 @@ export default {
     board: null,
     TargetList: [],
     memberInfo: null,
+    tableMode: null,
+    cardMode: null,
     //공지
     noticeList: [],
     notice: null,
