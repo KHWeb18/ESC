@@ -12,7 +12,7 @@ import {
     FETCH_BOARD,
     FETCH_TARGET_LIST,
     FETCH_COMMENT_LIST, FETCH_COMMENT,
-    FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,GET_NOTICE_LIST,GET_NOTICE
+    FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,GET_NOTICE_LIST,GET_NOTICE,SET_AUTH
 
 } from './mutation-types'
 
@@ -58,9 +58,20 @@ export default {
         }
         commit(SET_IS_LOGIN, temp)
     },
+    setAuth({commit}){
+        let data
+        
+        if(Vue.$cookies.get("userAuth") !== null){
+            data  = Vue.$cookies.get("userAuth")
+            
+        }
+        commit(SET_AUTH,data)
+    },
     logout ({ commit }) {
+        Vue.$cookies.remove("userAuth")
         Vue.$cookies.remove('userNo')
         Vue.$cookies.remove('user')
+        commit(SET_AUTH,null)
         commit(REMOVE_SESSION, null)
         commit(REMOVE_IS_LOGIN, false)
     },

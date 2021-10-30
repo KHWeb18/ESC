@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -137,6 +138,25 @@ public class MemberController {
 
                 return  new ResponseEntity<>(member1,HttpStatus.OK);
         }
+        @PostMapping("/getManageAuth/{memberNo}")
+        public ResponseEntity<Void> GETMemberAuth (@PathVariable("memberNo")Long memberNo) throws  Exception {
 
+                service.GETMemberAuth(memberNo);
+
+                return new ResponseEntity<>(HttpStatus.OK);
+        }
+        @PostMapping("/getAuth/{memberNo}")
+        public ResponseEntity<String> getAuth (@PathVariable("memberNo")Long memberNo) throws  Exception {
+                try {
+                        String auth = service.getAuth(memberNo);
+
+                        return new ResponseEntity<>(auth, HttpStatus.OK);
+                }
+                catch (Exception e) {
+                        String Empty = "일반유저";
+                        return new ResponseEntity<>(Empty, HttpStatus.OK);
+                }
+
+        }
 
 }

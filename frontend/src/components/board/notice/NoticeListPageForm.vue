@@ -175,6 +175,7 @@ export default {
   name: 'FreeBoardListForm',
   data () {
     return {
+      
       tableMode: 1,
       cardMode: 0,
       searchMenus: '',
@@ -185,8 +186,8 @@ export default {
       coin: 0,
       searchList: [],
       searchMenu: [
-        {text: '글제목', value:'글제목'},
-        {text: '작성자' , value:'작성자'}
+        {text: '분류', value:'분류'},
+        {text: '공지제목' , value:'공지제목'}
       ],
       selectedItem: 1,
       items: [
@@ -206,7 +207,7 @@ export default {
       type: Number,
       required: false,
       default: 8
-    }
+    },
   },
   methods: {
     nextPage () {
@@ -240,8 +241,8 @@ export default {
       if(searchMenus ==''){
         alert("찾는 카테고리를 선택해주세요")
       }
-      if(searchMenus =="글제목"){
-        console.log('동작')
+      if(searchMenus =="공지제목"){
+
       axios.post(`http://localhost:7777/notice/titleSearchList/${search}`)
       .then( (res)=> {
         if(res.data == ''){
@@ -257,7 +258,7 @@ export default {
         )
       }
 
-      if(searchMenus =="작성자"){axios.post(`http://localhost:7777/notice/memberIdSearchList/${search}`)
+      if(searchMenus =="분류"){axios.post(`http://localhost:7777/notice/categorySearchList/${search}`)
       .then( (res)=>{
         if(res.data == ''){
            alert("해당검색어로 검색되는 글이 존재하지않습니다.")
@@ -274,9 +275,6 @@ export default {
     },
     showAllBoard(){
       this.coin = 0;
-    },
-    check(){
-      console.log("확인")
     },
     ModeChange(){
      if(this.cardMode == 0){
@@ -296,6 +294,9 @@ export default {
         alert("로그인이 필요합니다.")
         this.$router.push({name: 'LoginPage'})
       }
+      else if(this.$store.state.auth !="관리자"){
+        alert("관리자등급만 이용가능합니다")
+      }
       else{
         this.$router.push({name: "NoticeRegisterPage"})
       }
@@ -303,7 +304,7 @@ export default {
 
   },
   computed: {
-      
+
     pageCount () {
       let listLeng = this.noticeList.length,
           listSize = this.pageSize,
@@ -330,16 +331,8 @@ export default {
             end = start + this.pageSize;
       return this.searchList.slice(start, end);
     },
-  },
-  created(){
-      
-    axios.post('https://ipapi.co/json/')
-    .then( (res) =>{
-      this.ip = res.data.ip
-      console.log(this.ip)
-    })
-  }
 
+  },
 }
 </script>
 

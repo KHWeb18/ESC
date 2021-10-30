@@ -19,8 +19,8 @@ public interface NoticeRepository extends JpaRepository<Notice,Long> {
     @Query("select t from Notice t where t.title = :search")
     List<Notice> titleSearchList(String search);
 
-    @Query("select t from Notice t where t.memberId = :search")
-    List<Notice> memberIdSearchList(String search);
+    @Query("select t from Notice t where t.category = :search")
+    List<Notice> categorySearchList(String search);
 
 
     @Transactional

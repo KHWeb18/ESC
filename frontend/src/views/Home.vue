@@ -25,6 +25,13 @@
         active-class="active">
         테스트
       </router-link>
+      <router-link
+        :to="{ name: 'NoticeListPage' }"
+        class="nav-link"
+        active-class="active">
+        공지판
+      </router-link>
+      
     </div>
   </div>
 </template>

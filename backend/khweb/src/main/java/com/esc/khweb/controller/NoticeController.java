@@ -92,10 +92,10 @@ public class NoticeController {
 
 
 
-    @PostMapping("/memberIdSearchList/{search}")
-    public ResponseEntity<List<Notice>>memberIdSearchList (@PathVariable("search") String search) throws  Exception {
+    @PostMapping("/categorySearchList/{search}")
+    public ResponseEntity<List<Notice>>categorySearchList (@PathVariable("search") String search) throws  Exception {
 
-        List<Notice> list = service.memberIdSearchList(search);
+        List<Notice> list = service.categorySearchList(search);
         Collections.reverse(list);
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
@@ -117,4 +117,6 @@ public class NoticeController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 }
