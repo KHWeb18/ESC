@@ -16,7 +16,7 @@ public interface NoticeService {
 
     public List<Notice> titleSearchList(String search) throws  Exception;
 
-    public  List<Notice> memberIdSearchList (String Search) throws  Exception ;
+    public  List<Notice> categorySearchList (String Search) throws  Exception ;
 
     public Optional<Notice> getNotice(Long boardNo) throws  Exception ;
 

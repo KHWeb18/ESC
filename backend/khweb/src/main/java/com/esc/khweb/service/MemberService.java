@@ -29,4 +29,8 @@ public interface MemberService {
     public  String  addHateBoard (Long boardNo, MemberRequest memberRequest) throws  Exception;
 
     public  Optional<Member> findByMemberInfo(Long memberNo) throws  Exception ;
+
+    public  void GETMemberAuth (Long memberNo) throws  Exception ;
+
+    public  String getAuth(Long memberNo) throws  Exception;
 }

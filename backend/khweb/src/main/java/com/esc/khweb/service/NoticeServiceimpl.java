@@ -39,8 +39,8 @@ public class NoticeServiceimpl  implements  NoticeService{
     }
 
     @Override
-    public List<Notice> memberIdSearchList(String Search) throws Exception {
-        return noticeRepository.memberIdSearchList(Search);
+    public List<Notice> categorySearchList(String Search) throws Exception {
+        return noticeRepository.categorySearchList(Search);
     }
 
     @Override

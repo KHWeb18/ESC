@@ -47,6 +47,10 @@ public class Member {
     @JoinColumn(name = "member_no")
     private Set<HateBoard> hateBoardList  = new HashSet<HateBoard>();
 
+    @OneToMany(cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "member_no")
+    private Set<Administrator> MemberAuthList  = new HashSet<Administrator>();
+
 
 
 

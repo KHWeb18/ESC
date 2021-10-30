@@ -24,9 +24,10 @@ export default {
   mounted() {
     this.setIsLogin()
     this.cookieToSession()
+    this.setAuth()
   },
   methods:{
-    ...mapActions(['cookieToSession', 'setIsLogin'])
+    ...mapActions(['cookieToSession', 'setIsLogin',"setAuth"])
   }
 };
 </script>
