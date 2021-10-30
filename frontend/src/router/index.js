@@ -30,6 +30,7 @@ import EvInfoPage from '../views/EvInfo/EvInfoPage'
 import IsMyPage from '../views/myPage/IsMyPage.vue'
 import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
+import ApiTestPage from "../views/ApiTestPage";
 
 Vue.use(VueRouter)
 
@@ -176,6 +177,12 @@ const routes = [
     name: 'IsMyBoardPage',   
     component: IsMyBoardPage
   },
+    //api test
+  {
+    path: '/apiTest',
+    name: ApiTestPage,
+    component: ApiTestPage
+  }
 ]
 
 const router = new VueRouter({
