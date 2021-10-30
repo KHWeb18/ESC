@@ -3,7 +3,7 @@ import {
     COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN, FETCH_MEMBER_LIST,
     FETCH_BOARD_LIST, FETCH_BOARD, FETCH_TARGET_LIST,
     FETCH_COMMENT_LIST, FETCH_COMMENT, FETCH_REPLY_LIST, FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,
-    GET_NOTICE_LIST,GET_NOTICE,SET_AUTH
+    GET_NOTICE_LIST,GET_NOTICE,SET_AUTH,SET_CARD_MODE,SET_TABLE_MODE
 
 
 } from './mutation-types'
@@ -42,6 +42,12 @@ export default {
     },
     [FIND_MEMBER_INFO] (state, payload) {
         state.memberInfo = payload
+    },
+    [SET_CARD_MODE] (state,payload) {
+        state.cardMode = payload
+    },
+    [SET_TABLE_MODE] (state, payload) {
+        state.tableMode = payload
     },
     //공지
     [GET_NOTICE_LIST] (state,payload) {

@@ -5,7 +5,7 @@
             <tr>
               <td style="text-align: left;"><p>{{notice.title}}</p><v-row><v-dialog  v-model="dialog2" persistent max-width="400">
                <template v-slot:activator="{ on }">
-               <v-btn  color="red"  style="margin-left: 92%; margin-top: 0%"  v-on="on">삭제</v-btn>
+               <v-btn  v-if="notice.memberId ==session" color="red"  style="margin-left: 92%; margin-top: 0%"  v-on="on">삭제</v-btn>
                </template>
                <v-card>
                <v-card-title class="headline">
@@ -76,10 +76,10 @@ export default {
                   },
                   DeleteBoard(boardNo){
                       
-                      axios.post(`http://localhost:7777/board/DeleteBoard/${boardNo}`)
+                      axios.post(`http://localhost:7777/notice/DeleteBoard/${boardNo}`)
                       .then( () =>{
                           alert('글이 삭제되었습니다')
-                          this.$router.push({name: 'FreeBoardListPage'})
+                          this.$router.push({name: 'NoticeListPage'})
                       })
                   },
                   cancle(){

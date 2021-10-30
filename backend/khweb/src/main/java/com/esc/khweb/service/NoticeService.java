@@ -21,4 +21,6 @@ public interface NoticeService {
     public Optional<Notice> getNotice(Long boardNo) throws  Exception ;
 
     public  void noticeModify (Long boardNo, NoticeRequest noticeRequest) throws  Exception ;
+
+    public  void DeleteBoard(Long boardNo) throws  Exception;
 }

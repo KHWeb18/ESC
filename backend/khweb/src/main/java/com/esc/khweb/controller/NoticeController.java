@@ -117,6 +117,13 @@ public class NoticeController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @PostMapping("/DeleteBoard/{boardNo}")
+    public ResponseEntity<Void> DeleteBoard (@PathVariable("boardNo" )Long boardNo) throws  Exception {
 
+
+        service.DeleteBoard(boardNo);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

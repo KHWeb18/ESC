@@ -12,7 +12,7 @@ import {
     FETCH_BOARD,
     FETCH_TARGET_LIST,
     FETCH_COMMENT_LIST, FETCH_COMMENT,
-    FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,GET_NOTICE_LIST,GET_NOTICE,SET_AUTH
+    FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,GET_NOTICE_LIST,GET_NOTICE,SET_AUTH,SET_TABLE_MODE,SET_CARD_MODE
 
 } from './mutation-types'
 
@@ -139,6 +139,22 @@ export default {
         .then( (res) =>{
             commit(GET_NOTICE,res.data)
         })
+    },
+    SetTableMode({commit},payload){
+        if(payload ==undefined){commit(SET_TABLE_MODE, 1)}
+        else if(payload){
+            console.log("여기는 액션의SetTableMode:" +payload)
+            commit(SET_TABLE_MODE, payload)
+        }
+        
+    },
+    SetCardMode({commit},payload){
+        if(payload ==undefined){commit(SET_CARD_MODE,2)}
+        else if(payload){
+            commit(SET_CARD_MODE, payload)
+        }
+
+        
     }
     
 }

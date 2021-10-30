@@ -57,4 +57,11 @@ public class NoticeServiceimpl  implements  NoticeService{
         noticeRepository.boardModifyAtcontent(content,boardNo);
         noticeRepository.boardModifyAtimg(img,boardNo);
     }
+
+    @Override
+    public void DeleteBoard(Long boardNo) throws Exception {
+
+        noticeRepository.deleteById(boardNo);
+
+    }
 }
