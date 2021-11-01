@@ -14,12 +14,15 @@ import BoardReadPage from '../views/board/BoardReadPage'
 import BoardModifyPage from '../views/board/BoardModifyPage'
 import FreeBoardListPage from '../views/board/FreeBoardListPage'
 import ChargingBoardListPage from '../views/board/ChargingBoardListPage'
-import ParkingBoardListPage from '../views/board/ParkingBoardListPage'  
+import ParkingBoardListPage from '../views/board/ParkingBoardListPage'
+import SuggestionBoardListPage from '../views/board/SuggestionBoardListPage'
 //공지 게시판
 import NoticeRegisterPage from '../views/board/notice/NoticeRegisterPage'
 import NoticeListPage from '../views/board/notice/NoticeListPage'
 import NoticeReadPage from '../views/board/notice/NoticeReadPage'
 import NoticeModifyPage from '../views/board/notice/NoticeModifyPage'
+//건의 게시판
+
 
 import LoginPage from '../views/member/LoginPage'
 
@@ -123,7 +126,11 @@ const routes = [
     name: 'ChargingBoardListPage',   
     component: ChargingBoardListPage 
   },
-
+  {
+    path: '/suggestionBoardListPage',
+    name: 'SuggestionBoardListPage',   
+    component: SuggestionBoardListPage 
+  },
   {
     path: '/noticeRegisterPage',
     name: 'NoticeRegisterPage',   
@@ -132,7 +139,7 @@ const routes = [
   {
     path: '/noticeListPage',
     name: 'NoticeListPage',   
-    component: NoticeListPage  
+    component: NoticeListPage   
   },
   {
     path: '/noticeReadPage/:boardNo',

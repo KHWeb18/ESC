@@ -1,5 +1,6 @@
 <template>
     <div>
+        <customer-service-board-menu/>
         <notice-list-page-form :noticeList="noticeList" />
         <v-btn @click="getManageAuth" >관리자등급받기</v-btn>
     </div>
@@ -9,8 +10,9 @@
 import axios from 'axios'
 import { mapActions, mapState } from 'vuex'
 import NoticeListPageForm from '../../../components/board/notice/NoticeListPageForm.vue'
+import CustomerServiceBoardMenu from '../../../components/board/CustomerServiceBoardMenu.vue'
 export default {
-  components: { NoticeListPageForm },
+  components: { NoticeListPageForm, CustomerServiceBoardMenu },
     name: 'NoticeListPage',
     computed:{
         ...mapState(['noticeList'])
