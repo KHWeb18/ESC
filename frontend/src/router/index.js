@@ -21,8 +21,11 @@ import NoticeRegisterPage from '../views/board/notice/NoticeRegisterPage'
 import NoticeListPage from '../views/board/notice/NoticeListPage'
 import NoticeReadPage from '../views/board/notice/NoticeReadPage'
 import NoticeModifyPage from '../views/board/notice/NoticeModifyPage'
-//건의 게시판
-
+//관리자페이지
+import AdministratorPage from '../views/administrator/AdministratorPage'
+import MemberManagement from '../views/administrator/MemberManagement'
+import ReportedBoard from '../views/administrator/ReportedBoard'
+import ReportedComment from '../views/administrator/ReportedComment'
 
 import LoginPage from '../views/member/LoginPage'
 
@@ -155,11 +158,31 @@ const routes = [
     path: '/noticeModifyPage/:boardNo',
     name: 'NoticeModifyPage',
     components: {
-      default: NoticeModifyPage  
+      default: NoticeModifyPage    
     },
     props: {
       default: true
     },
+  },
+  {
+    path: '/administratorPage',
+    name: 'AdministratorPage',   
+    component: AdministratorPage   
+  },
+  {
+    path: '/memberManagement',
+    name: 'MemberManagement',   
+    component: MemberManagement   
+  },
+  {
+    path: '/reportedBoard',
+    name: 'ReportedBoard',   
+    component: ReportedBoard    
+  },
+  {
+    path: '/reportedComment',
+    name: 'ReportedComment',   
+    component: ReportedComment    
   },
 
 

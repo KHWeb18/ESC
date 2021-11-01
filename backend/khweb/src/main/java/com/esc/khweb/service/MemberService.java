@@ -33,4 +33,10 @@ public interface MemberService {
     public  void GETMemberAuth (Long memberNo) throws  Exception ;
 
     public  String getAuth(Long memberNo) throws  Exception;
+
+    public  void IDban (Long memberNo) throws  Exception;
+
+    public  void jailbreak (Long memberNo) throws  Exception ;
+
+    public  String findByMemberStatus(MemberRequest memberRequest) throws  Exception;
 }

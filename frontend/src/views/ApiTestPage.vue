@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       requestLink: 'http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?',
-      apiKey: '',
+      apiKey: '7Yn%2BwtpnhhN0JX1sYiW%2Bf0lHHNeWUIlA7FwpwyGl2UOGTNu%2FAZ2IUTCQFFwOM0IvRPMJOXiAiaHmlv54y6EwHA%3D%3D',
       item: [],
       hero: 'https://cors-anywhere.herokuapp.com/',
 
