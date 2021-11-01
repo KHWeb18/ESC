@@ -12,8 +12,9 @@
 
         <v-toolbar-items :class="menus" class="hidden-sm-and-down">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
-          <span @click="$router.push('/boardListPage')">게시판</span>
+          <span @click="$router.push('/freeboardListPage')">게시판</span>
           <span @click="$router.push('/apiTest')">api실험</span>
+          <span @click="$router.push('/noticeListPage')">공지사항/건의</span>
           <span>원하는거 추가</span>
         </v-toolbar-items>
 
