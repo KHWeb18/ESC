@@ -180,5 +180,23 @@ public class MemberServiceimpl implements MemberService {
 
         return memberAuthRepository.getAuth(memberNo);
     }
+
+    @Override
+    public void IDban(Long memberNo) throws Exception {
+        String status = "정지";
+         memberRepository.IDban(memberNo,status);
+    }
+
+    @Override
+    public void jailbreak(Long memberNo) throws Exception {
+        String status = "활동가능";
+        memberRepository.jailbreak(memberNo,status);
+    }
+
+    @Override
+    public String findByMemberStatus(MemberRequest memberRequest) throws Exception {
+        String memberId = memberRequest.getMemberId();
+        return memberRepository.findByMemberStatus(memberId);
+    }
 }
 

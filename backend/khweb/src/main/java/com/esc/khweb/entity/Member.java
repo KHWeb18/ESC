@@ -33,6 +33,8 @@ public class Member {
     private String memberCar;
     @Column(length = 64, nullable = false)
     private Date memberBirthDay;
+    @Column(length = 64, nullable = false)
+    private String status ="활동가능";
 
 
     @OneToMany(cascade =  CascadeType.ALL, fetch = FetchType.EAGER)

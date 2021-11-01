@@ -28,7 +28,10 @@ export default {
       axios.post('http://localhost:7777/member/login', {memberId , memberPw})
           .then( (res) =>{
             console.log(res.data)
-            if(res.data.memberId!= null){
+            if(res.data.status =="정지"){
+              alert("정지된회원입니다.")
+            }else{
+              if(res.data.memberId!= null){
               alert('로그인되었습니다.')
               this.res = res.data
               this.$cookies.set("user", res.data, '1h')
@@ -52,6 +55,8 @@ export default {
               }
               
             })
+            }
+            
           })
     },
     chk(){
