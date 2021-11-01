@@ -43,7 +43,8 @@ export default {
                 boardCategory: [
                     {text: '자유게시판', value : '자유게시판' },
                     {text: '충전소게시판', value : '충전소게시판' },
-                    {text: '주차장게시판', value : '주차장게시판' }
+                    {text: '주차장게시판', value : '주차장게시판' },
+                    {text: '건의게시판', value : '건의게시판' }
                 ]
             }
         },
