@@ -5,8 +5,7 @@
 
         <!-- logo -->
         <v-toolbar-title class="logoContainer">
-          <router-link to="/">
-            <span :class="logo"/>
+          <router-link class="logo" to="/" tag="div">
           </router-link>
         </v-toolbar-title>
 
@@ -120,13 +119,17 @@ a{
 }
 
 .logoContainer{
-  margin-top: -10px;
+
 }
 
 .logo{
-  /*font-size: 2.5em;*/
-  /*color: black;*/
-  background-image: url("");
+  position: absolute;
+  top: -28px;
+  left: 0;
+  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/EVSWhite.png");
+  background-size: contain;
+  width: 130px;
+  height: 130px;
 }
 .logoScroll{
   font-size: 2.5em;
@@ -135,7 +138,6 @@ a{
 
 .menus{
   margin-top: 10px;
-  margin-left: 10%;
   font-size: 1.8em;
   cursor: pointer;
 }
@@ -145,7 +147,6 @@ a{
 
 .menusScroll{
   margin-top: 10px;
-  margin-left: 10%;
   font-size: 1.8em;
   color: white;
   cursor: pointer;
