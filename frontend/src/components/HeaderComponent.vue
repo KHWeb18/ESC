@@ -6,7 +6,7 @@
         <!-- logo -->
         <v-toolbar-title class="logoContainer">
           <router-link to="/">
-            <span :class="logo">EVS</span>
+            <span :class="logo"/>
           </router-link>
         </v-toolbar-title>
 
@@ -124,8 +124,9 @@ a{
 }
 
 .logo{
-  font-size: 2.5em;
-  color: black;
+  /*font-size: 2.5em;*/
+  /*color: black;*/
+  background-image: url("");
 }
 .logoScroll{
   font-size: 2.5em;
