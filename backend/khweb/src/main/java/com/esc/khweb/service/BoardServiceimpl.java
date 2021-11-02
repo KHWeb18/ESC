@@ -10,11 +10,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import utility.python.BoardReportKakaoAlarmWithPython;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BoardServiceimpl implements  BoardService{
+public class BoardServiceimpl implements  BoardService {
 
     @Autowired
     BoardRepository boardRepository;
@@ -29,7 +30,7 @@ public class BoardServiceimpl implements  BoardService{
 
     @Override
     public List<Board> getBoardList() throws Exception {
-        return boardRepository.findAll(Sort.by(Sort.Direction.DESC,"boardNo"));
+        return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "boardNo"));
     }
 
     @Override
@@ -53,8 +54,8 @@ public class BoardServiceimpl implements  BoardService{
     }
 
     @Override
-    public void report(Long boardNo,String reportWord) throws Exception {
-        boardRepository.report(boardNo,reportWord);
+    public void report(Long boardNo, String reportWord) throws Exception {
+        boardRepository.report(boardNo, reportWord);
     }
 
     @Override
@@ -62,22 +63,22 @@ public class BoardServiceimpl implements  BoardService{
         String title = boardRequest.getTitle();
         String content = boardRequest.getContent();
         String img = boardRequest.getImg();
-        boardRepository.boardModifyAtTitle(title,boardNo);
-        boardRepository.boardModifyAtcontent(content,boardNo);
-           boardRepository.boardModifyAtimg(img,boardNo);
-           }
+        boardRepository.boardModifyAtTitle(title, boardNo);
+        boardRepository.boardModifyAtcontent(content, boardNo);
+        boardRepository.boardModifyAtimg(img, boardNo);
+    }
 
     @Override
     public void DeleteBoard(Long boardNo) throws Exception {
         System.out.println(boardNo);
-            boardRepository.deleteById(boardNo);
-            }
+        boardRepository.deleteById(boardNo);
+    }
 
     @Override
     public List<Board> getTargetList(String target) throws Exception {
 
-            return boardRepository.getTargetList(target);
-            }
+        return boardRepository.getTargetList(target);
+    }
 
     @Override
     public List<Board> titleSearchList(String search) throws Exception {
@@ -92,10 +93,44 @@ public class BoardServiceimpl implements  BoardService{
     @Override
     public String KakaotalkAlarm(BoardReportRequest boardReportRequest) throws Exception {
 
-        BoardReportKakaoAlarmWithPython BRKWP  = new BoardReportKakaoAlarmWithPython();
-
+        BoardReportKakaoAlarmWithPython BRKWP = new BoardReportKakaoAlarmWithPython();
 
 
         return BRKWP.KakaotalkAlarm(boardReportRequest);
+    }
+
+    @Override
+    public List<Board> getReportedBoardList() throws Exception {
+        String report = "신고됨";
+        return boardRepository.getReportedBoardList(report);
+    }
+
+    @Override
+    public List<Board> reportedTitleSearchList(String search) throws Exception {
+        String report = "신고됨";
+
+       List<Board> list = boardRepository.titleSearchList(search);
+
+       /*
+       List<Board> list2 =null;
+       for(int i = 0 ; i< list.toArray().length;  i++){
+           if(list.get(9).equals(report)) {
+
+           }
+       }
+
+        */
+
+
+        return list;
+
+    }
+
+    @Override
+    public List<Board> reportedMemberIdSearchList(String search) throws Exception {
+
+        String report = "신고됨";
+        List<Board> list =  boardRepository.memberIdSearchList(search);
+        return list;
     }
 }

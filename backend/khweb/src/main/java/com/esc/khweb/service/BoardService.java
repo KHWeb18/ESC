@@ -36,6 +36,11 @@ public interface BoardService {
 
     public String KakaotalkAlarm(BoardReportRequest boardReportRequest)throws Exception;
 
+    public  List<Board> getReportedBoardList () throws  Exception;
+
+    public  List<Board> reportedTitleSearchList(String search) throws  Exception;
+
+    public  List<Board> reportedMemberIdSearchList (String search) throws  Exception;
 
 
 }

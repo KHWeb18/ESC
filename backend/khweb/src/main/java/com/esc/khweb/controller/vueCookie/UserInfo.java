@@ -9,4 +9,5 @@ public class UserInfo {
 
     private String memberId;
     private Long memberNo;
+    private String status;
 }

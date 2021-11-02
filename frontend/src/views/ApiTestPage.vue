@@ -24,15 +24,15 @@ export default {
   data() {
     return {
       requestLink: 'http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?',
-      apiKey: 'Ebi%2F3xCbFqM1LKPStocoHFDH6V9AARUyv5bqn8SfjSsVdpElZa51S2QeaP%2BmyqWlGzEWrEjJhxEdd6QqY%2B%2B9Qw%3D%3D',
+      apiKey: '7Yn%2BwtpnhhN0JX1sYiW%2Bf0lHHNeWUIlA7FwpwyGl2UOGTNu%2FAZ2IUTCQFFwOM0IvRPMJOXiAiaHmlv54y6EwHA%3D%3D',
       item: [],
-      hero: 'https://esc-proxy.herokuapp.com/',
+      hero: 'https://cors-anywhere.herokuapp.com/',
 
     }
   },
   methods:{
     fetchData(){
-      axios.get(`${this.hero}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=10&pageNo=1&zcode=41`)
+      axios.get(`https://cors-anywhere.herokuapp.com/${this.requestLink}serviceKey=${this.apiKey}&numOfRows=10&pageNo=1&zcode=41`)
           .then((res)=>{
             let xml = res.data.items[0].item
             console.log(res.data.items[0].item)
@@ -40,8 +40,7 @@ export default {
             return xml
             // let json = convert.xml2json(xml, { compact: true })
             // this.item = JSON.parse(json)
-      }).then(this.setResults)
-          .catch((err)=>{
+      }).then(this.setResults).catch((err)=>{
         console.log(err)
       })
     },

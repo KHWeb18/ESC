@@ -1,6 +1,7 @@
 package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.MemberRequest;
+import com.esc.khweb.entity.Board;
 import com.esc.khweb.entity.Member;
 
 import java.util.List;
@@ -33,4 +34,20 @@ public interface MemberService {
     public  void GETMemberAuth (Long memberNo) throws  Exception ;
 
     public  String getAuth(Long memberNo) throws  Exception;
+
+    public  void IDban (Long memberNo) throws  Exception;
+
+    public  void jailbreak (Long memberNo) throws  Exception ;
+
+    public  String findByMemberStatus(MemberRequest memberRequest) throws  Exception;
+
+    public List<Member> findALLByNo(Long memberNo) throws  Exception;
+
+    public List<Member> findALLByName(String name) throws  Exception;
+
+    public List<Member> findALLById(String memberId) throws  Exception;
+
+
+
+
 }

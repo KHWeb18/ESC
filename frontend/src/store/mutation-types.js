@@ -19,3 +19,4 @@ export const GET_NOTICE = 'GET_NOTICE'
 export const SET_AUTH = 'SET_AUTH'
 export const SET_CARD_MODE = 'SET_CARD_MODE'
 export const SET_TABLE_MODE = 'SET_TABLE_MODE'
+export const GET_REPORTED_BOARD_LIST = "GET_REPORTED_BOARD_LIST"

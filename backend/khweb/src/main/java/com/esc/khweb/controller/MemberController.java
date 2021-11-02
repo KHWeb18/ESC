@@ -98,12 +98,13 @@ public class MemberController {
                  info = new UserInfo();
               Boolean isTrue = service.login(memberRequest);
               Long memberNo = service.findByMemberNo(memberRequest);
-
+              String status = service.findByMemberStatus(memberRequest);
 
                 if (isTrue){
 
                         info.setMemberId(memberRequest.getMemberId());
                         info.setMemberNo(memberNo);
+                        info.setStatus(status);
                 }
                 else {
                         info.setMemberId(null);
@@ -157,6 +158,42 @@ public class MemberController {
                         return new ResponseEntity<>(Empty, HttpStatus.OK);
                 }
 
+        }
+
+        @PostMapping("/IDban/{memberNo}")
+        public ResponseEntity<Void> IDban (@PathVariable("memberNo") Long memberNo) throws  Exception {
+
+                service.IDban(memberNo);
+
+                return new ResponseEntity<>(HttpStatus.OK);
+        }
+        @PostMapping("/jailbreak/{memberNo}")
+        public ResponseEntity<Void> jailbreak(@PathVariable("memberNo") Long memberNo) throws  Exception {
+
+                service.jailbreak(memberNo);
+
+                return new ResponseEntity<>(HttpStatus.OK);
+        }
+        @PostMapping("/findALLByNo/{memberNo}")
+        public  ResponseEntity<List<Member>> findALLByNo (@PathVariable("memberNo") Long memberNo) throws  Exception {
+                try {
+                        List<Member> list = service.findALLByNo(memberNo);
+                        return new ResponseEntity<>(list, HttpStatus.OK);
+                }catch (Exception e){
+                        return new ResponseEntity<>(null, HttpStatus.OK);
+                }
+        }
+        @PostMapping("/findALLByName/{name}")
+        public  ResponseEntity<List<Member>> findALLByName (@PathVariable("name") String name) throws  Exception {
+                List<Member> list = service.findALLByName(name);
+
+                return new ResponseEntity<>(list,HttpStatus.OK);
+        }
+        @PostMapping("/findALLById/{memberId}")
+        public  ResponseEntity<List<Member>> findALLById (@PathVariable("memberId") String memberId) throws  Exception {
+                List<Member> list = service.findALLById(memberId);
+
+                return new ResponseEntity<>(list,HttpStatus.OK);
         }
 
 }
