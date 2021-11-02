@@ -5,7 +5,7 @@
 
         <!-- logo -->
         <v-toolbar-title class="logoContainer">
-          <router-link class="logo" to="/" tag="div">
+          <router-link :class="logo" to="/" tag="div">
           </router-link>
         </v-toolbar-title>
 
@@ -118,22 +118,26 @@ a{
   text-decoration: none;
 }
 
-.logoContainer{
-
-}
-
 .logo{
   position: absolute;
-  top: -28px;
-  left: 0;
-  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/EVSWhite.png");
+  top: 3px;
+  left: 12px;
+  cursor: pointer;
+  background-image: url("../assets/logo/로고배경x2.png");
   background-size: contain;
-  width: 130px;
-  height: 130px;
+  width: 90%;
+  height: 90%;
 }
+
 .logoScroll{
-  font-size: 2.5em;
-  color: white;
+  position: absolute;
+  top: 3px;
+  left: 12px;
+  cursor: pointer;
+  background-image: url("../assets/logo/로고배경x.png");
+  background-size: contain;
+  width: 90%;
+  height: 90%;
 }
 
 .menus{
