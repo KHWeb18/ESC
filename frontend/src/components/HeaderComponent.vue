@@ -5,11 +5,11 @@
 
         <!-- logo -->
         <v-toolbar-title class="logoContainer">
-          <router-link :class="logo" to="/" tag="div">
+          <router-link :class="logo" to="/" tag="span">
           </router-link>
         </v-toolbar-title>
 
-        <v-toolbar-items :class="menus" class="hidden-sm-and-down">
+        <v-toolbar-items :class="menus" class="hidden-md-and-down">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">게시판</span>
           <span @click="$router.push('/apiTest')">api실험</span>
@@ -23,10 +23,10 @@
 
           <div v-if="!LoginCheck">
             <router-link to="/loginPage">
-              <span :class="text" class="hidden-sm-and-down">로그인</span>
+              <span :class="text" class="hidden-md-and-down">로그인</span>
             </router-link>
             <router-link to="signUpPage">
-              <span :class="text" class="hidden-sm-and-down">회원가입</span>
+              <span :class="text" class="hidden-md-and-down">회원가입</span>
             </router-link>
           </div>
 
@@ -73,8 +73,6 @@ export default {
       logo: 'logo',
       text: 'text',
       menus: 'menus',
-      hamburger: 'hamburger hidden-md-and-up black--text',
-
     }
   },
   methods: {
@@ -88,13 +86,11 @@ export default {
         this.logo = 'logoScroll'
         this.text = 'textScroll'
         this.menus = 'menusScroll'
-        this.hamburger = 'hamburger hidden-md-and-up white--text'
       } else {
         this.bg = 'transparent';
         this.logo = 'logo'
         this.text = 'text'
         this.menus = 'menus'
-        this.hamburger = 'hamburger hidden-md-and-up black--text'
       }
     },
     closeNav(value){
@@ -118,6 +114,10 @@ a{
   text-decoration: none;
 }
 
+.logoContainer{
+  width: 100px;
+}
+
 .logo{
   position: absolute;
   top: 3px;
@@ -125,7 +125,7 @@ a{
   cursor: pointer;
   background-image: url("../assets/logo/로고배경x2.png");
   background-size: contain;
-  width: 90%;
+  width: 160px;
   height: 90%;
 }
 
@@ -136,7 +136,7 @@ a{
   cursor: pointer;
   background-image: url("../assets/logo/로고배경x.png");
   background-size: contain;
-  width: 90%;
+  width: 160px;
   height: 90%;
 }
 
