@@ -32,9 +32,9 @@ import LoginPage from '../views/member/LoginPage'
 import EvInfoPage from '../views/EvInfo/EvInfoPage'
 
 // 마이페이지
-
 import IsMyPage from '../views/myPage/IsMyPage.vue'
 import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
+import IsLikePage from '../views/myPage/IsLikePage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
 import ApiTestPage from "../views/ApiTestPage";
 
@@ -198,14 +198,19 @@ const routes = [
     component: IsMyPage
   },
   {
-    path: '/isEditMemberPage',
-    name: 'IsEditMemberPage',   
-    component: IsEditMemberPage
+    path: '/isLikePage',
+    name: 'IsLikePage',   
+    component: IsLikePage
   },
   {
     path: '/isMyBoardPage',
     name: 'IsMyBoardPage',   
     component: IsMyBoardPage
+  },
+  {
+    path: '/isEditMemberPage',
+    name: 'IsEditMemberPage',   
+    component: IsEditMemberPage
   },
     //api test
   {

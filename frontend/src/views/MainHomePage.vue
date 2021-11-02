@@ -264,9 +264,7 @@
                                       v-if="card2.isPrivacy"
                                     >
                                       <div v-if="!LoginCheck">
-                                        <v-card-text class="green--text">
-                                          <h4>로그인을 해주세요.</h4>
-                                        </v-card-text>
+
                                         <v-btn
                                           href="/loginPage"
                                           rounded
@@ -282,10 +280,10 @@
                                       </div>
                                       <div v-if="LoginCheck">
                                         <v-card-text class="green--text">
-                                          <h4>{{ session }}님 환영합니다.</h4>
+                                          <h4>{{ session.memberId }}님 환영합니다.</h4>
                                         </v-card-text>
                                         <v-spacer></v-spacer>
-                                        <v-btn href="/#" rounded outlined>
+                                        <v-btn href="/IsMyPage" rounded outlined>
                                           마이페이지</v-btn
                                         >
                                         <v-btn @click="logout" rounded outlined
@@ -297,7 +295,6 @@
                                 </div>
                               </v-card-title>
                             </v-flex>
-                            <v-flex xs5> </v-flex>
                           </v-layout>
                         </v-container>
                       </v-card>

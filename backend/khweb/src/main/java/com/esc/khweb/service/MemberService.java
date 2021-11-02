@@ -47,7 +47,9 @@ public interface MemberService {
 
     public List<Member> findALLById(String memberId) throws  Exception;
 
+    public void delete(Long memberNo) throws Exception;
 
+    public void modify(Long memberNo, MemberRequest memberRequest) throws Exception;
 
 
 }

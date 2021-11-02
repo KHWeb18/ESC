@@ -11,7 +11,7 @@
         </v-list-item-avatar>
 
         <v-list-item-content v-if="session" @click="$router.push('/isMyPage')" class="pointer">
-          <v-list-item-title>{{ session }}</v-list-item-title>
+          <v-list-item-title>{{ session.memberId }}</v-list-item-title>
         </v-list-item-content>
 
         <v-list-item-icon v-if="!session">

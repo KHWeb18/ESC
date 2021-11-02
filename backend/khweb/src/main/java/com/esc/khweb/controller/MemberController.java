@@ -99,12 +99,17 @@ public class MemberController {
               Boolean isTrue = service.login(memberRequest);
               Long memberNo = service.findByMemberNo(memberRequest);
               String status = service.findByMemberStatus(memberRequest);
-
+              // memberNo로 회원 정보를 조회하는 코드 추가
+              Optional<Member> memberInfo = service.findByMemberInfo(memberNo);
                 if (isTrue){
 
                         info.setMemberId(memberRequest.getMemberId());
                         info.setMemberNo(memberNo);
                         info.setStatus(status);
+                        info.setMemberCar(memberInfo.get().getMemberCar());
+                        info.setName(memberInfo.get().getName());
+                        info.setEmail(memberInfo.get().getEmail());
+                        info.setMemberBirthDay(memberInfo.get().getMemberBirthDay());
                 }
                 else {
                         info.setMemberId(null);
@@ -196,4 +201,22 @@ public class MemberController {
                 return new ResponseEntity<>(list,HttpStatus.OK);
         }
 
+        @DeleteMapping("/delete/{memberNo}")
+        public ResponseEntity<Void> delete(@PathVariable("memberNo") Long memberNo) throws Exception {
+
+                service.delete(memberNo);
+                return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+
+        @PutMapping("/modify/{memberNo}")
+        public ResponseEntity<Member> modify(@PathVariable("memberNo") Long memberNo,
+                                             @RequestBody MemberRequest memberRequest ) throws Exception {
+
+                service.modify(memberNo, memberRequest);
+
+
+                Optional<Member>  member = service.findByMemberInfo(memberNo);
+                Member member1 = member.get();
+                return new ResponseEntity<>(member1, HttpStatus.OK);
+        }
 }

@@ -38,9 +38,9 @@ export default {
         },
         {
           icon: "manage_accounts",
-          text: "회원정보 수정",
-          name: "editMember",
-          route: "/IsEditMemberPage",
+          text: "관심목록",
+          name: "likeContents",
+          route: "/IsLikePage",
         },
       ],
     };

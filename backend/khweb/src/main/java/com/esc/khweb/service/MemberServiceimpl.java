@@ -210,5 +210,24 @@ public class MemberServiceimpl implements MemberService {
     public List<Member> findALLById(String memberId) throws Exception {
         return memberRepository.findALLById(memberId);
     }
+
+    @Override
+    public void delete(Long memberNo) throws Exception {
+        memberRepository.deleteById(memberNo);
+    }
+
+    @Override
+    public void modify(Long memberNo, MemberRequest memberRequest) throws Exception {
+
+        String encodedPassword = passwordEncoder.encode(memberRequest.getMemberPw());
+        memberRequest.setMemberPw(encodedPassword);
+
+        String name = memberRequest.getName();
+        String memberCar = memberRequest.getMemberCar();
+        String memberPw = memberRequest.getMemberPw();
+        String email = memberRequest.getEmail();
+
+        memberRepository.modify(memberNo, name, memberCar, memberPw, email);
+    }
 }
 

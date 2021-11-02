@@ -28,7 +28,7 @@ export default {
         state.isLogin = payload;
     },
     [FETCH_MEMBER_LIST] (state,memberList) {
-       state.memberList = memberList
+      state.memberList = memberList
     },
     //게시판
     [FETCH_BOARD_LIST] (state, boardList) {
@@ -77,6 +77,6 @@ export default {
     [FETCH_COMMENT_LIKES] (state,commentLikes) {
         state.commentLikes = commentLikes
     },
-    
+
 }
 

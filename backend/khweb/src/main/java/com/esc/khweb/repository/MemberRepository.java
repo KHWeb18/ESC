@@ -42,4 +42,13 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     @Query("select i from Member i where i.memberId = :memberId")
     List<Member> findALLById(String memberId);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Member m set m.name = :name, m.memberCar = :memberCar, m.email = :email, m.memberPw = :memberPw where m.memberNo = :memberNo")
+    void modify(Long memberNo, String name, String memberCar, String memberPw, String email);
+
+    @Query("select i from Member i where i.memberId = :memberId")
+    Optional<Member> findByUserId(String memberId);
+
 }

@@ -1,5 +1,6 @@
 package com.esc.khweb.entity;
 
+import com.esc.khweb.controller.request.MemberRequest;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -54,8 +55,24 @@ public class Member {
     private Set<Administrator> MemberAuthList  = new HashSet<Administrator>();
 
 
-
-
+    public Member (String memberId, String memberPw, String name,
+                   String email , String memberCar, Date memberBirthDay ) {
+        this.memberId = memberId;
+        this.memberPw = memberPw;
+        this.name = name;
+        this.email = email;
+        this.memberCar = memberCar;
+        this.memberBirthDay = memberBirthDay;
+    }
+    /*
+    public void updateMember(Long memberNo, MemberRequest memberRequest){
+        this.memberId = memberRequest.getMemberId();
+        this.memberPw = memberRequest.getMemberPw();
+        this.name = memberRequest.getName();
+        this.email = memberRequest.getEmail();
+        this.memberCar = memberRequest.getMemberCar();
+    }
+     */
 
     @CreationTimestamp
     private Date regDate;

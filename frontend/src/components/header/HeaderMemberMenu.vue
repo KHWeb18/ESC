@@ -3,7 +3,7 @@
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn text v-bind="attrs" v-on="on">
-          <span class="profileBtn">{{ session }}</span>
+          <span class="profileBtn">{{ session.memberId }}</span>
           <v-icon>arrow_drop_down</v-icon>
         </v-btn>
       </template>
