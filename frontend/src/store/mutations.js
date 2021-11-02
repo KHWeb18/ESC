@@ -3,7 +3,7 @@ import {
     COOKIE_TO_SESSION, REMOVE_IS_LOGIN, REMOVE_SESSION, SET_IS_LOGIN, FETCH_MEMBER_LIST,
     FETCH_BOARD_LIST, FETCH_BOARD, FETCH_TARGET_LIST,
     FETCH_COMMENT_LIST, FETCH_COMMENT, FETCH_REPLY_LIST, FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,
-    GET_NOTICE_LIST,GET_NOTICE,SET_AUTH,SET_CARD_MODE,SET_TABLE_MODE,GET_REPORTED_BOARD_LIST
+    GET_NOTICE_LIST,GET_NOTICE,SET_AUTH,SET_CARD_MODE,SET_TABLE_MODE,GET_REPORTED_BOARD_LIST,GET_REPORTED_COMMENT_LIST
 
 
 } from './mutation-types'
@@ -53,6 +53,9 @@ export default {
     [GET_REPORTED_BOARD_LIST] (state,payload) {
         state.ReportedBoardList = payload
     },
+    [GET_REPORTED_COMMENT_LIST] (state, payload) {
+        state.reportedCommentList =payload
+    },
     //공지
     [GET_NOTICE_LIST] (state,payload) {
         state.noticeList = payload
@@ -74,5 +77,6 @@ export default {
     [FETCH_COMMENT_LIKES] (state,commentLikes) {
         state.commentLikes = commentLikes
     },
+    
 }
 

@@ -237,7 +237,12 @@ export default {
           alert("해당검색어로 검색되는 글이 존재하지않습니다.")
         }
         else{
-          this.searchList = res.data,
+          for(var i = 0 ; i< res.data.length; i ++) {
+            if(res.data[i].category =="건의게시판"){
+              this.searchList.push(res.data[i]) 
+            }
+          }
+          
           this.coin= 1}
        
       }
@@ -252,9 +257,13 @@ export default {
            alert("해당검색어로 검색되는 글이 존재하지않습니다.")
         }
         else{
-          this.searchList = res.data,
-          this.coin= 1
-        }
+          for(var i = 0 ; i< res.data.length; i ++) {
+            if(res.data[i].category =="건의게시판"){
+              this.searchList.push(res.data[i]) 
+            }
+          }
+          
+          this.coin= 1}
       }
     
         )
