@@ -40,5 +40,6 @@ export default {
     replies: [],
     // 댓글 좋아요
     commentLikes: [],
+
 }
 

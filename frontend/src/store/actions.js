@@ -13,7 +13,7 @@ import {
     FETCH_TARGET_LIST,
     FETCH_COMMENT_LIST, FETCH_COMMENT,
     FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,GET_NOTICE_LIST,GET_NOTICE,SET_AUTH,SET_TABLE_MODE,SET_CARD_MODE,GET_REPORTED_BOARD_LIST
-
+,FETCH_MEMBER
 } from './mutation-types'
 
 export default {
@@ -47,6 +47,16 @@ export default {
             data = null
         }
         commit(SET_MEMBER_NO, memberNo)
+        
+        // 마이페이지 내 정보 
+        let memberInfo
+        if(Vue.$cookies.get("user") !== null){
+          memberInfo =  Vue.$cookies.get("user")
+        }else{
+          memberInfo = null
+        }
+        commit(COOKIE_TO_SESSION, memberInfo)
+        
     },  
     // isLogin(로그인 확인용) 세팅
     setIsLogin ({ commit }) {
@@ -162,6 +172,12 @@ export default {
         .then( (res) => {
             commit(GET_REPORTED_BOARD_LIST,res.data)
         }) 
-    }
-    
+    },
+/////////////////////////////////=================/////////////
+    fetchMember ({ commit }, memberId) {
+      return axios.get(`http://localhost:7777/member/read/${memberId}`)
+          .then((res) => {
+              commit(FETCH_MEMBER, res.data)
+          })
+  },
 }
