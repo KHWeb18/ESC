@@ -174,6 +174,7 @@ export default {
             commit(GET_REPORTED_BOARD_LIST,res.data)
         }) 
     },
+
     getReportedCommentNoList({commit}){
 
         return axios.post('http://localhost:7777/comment/getReportedCommentNoList')

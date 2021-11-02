@@ -77,5 +77,6 @@ export default {
     [FETCH_COMMENT_LIKES] (state,commentLikes) {
         state.commentLikes = commentLikes
     },
+
 }
 
