@@ -26,13 +26,13 @@ export default {
       requestLink: 'http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?',
       apiKey: '7Yn%2BwtpnhhN0JX1sYiW%2Bf0lHHNeWUIlA7FwpwyGl2UOGTNu%2FAZ2IUTCQFFwOM0IvRPMJOXiAiaHmlv54y6EwHA%3D%3D',
       item: [],
-      hero: 'https://cors-anywhere.herokuapp.com/',
+      heroku: 'https://esc-proxy.herokuapp.com/',
 
     }
   },
   methods:{
     fetchData(){
-      axios.get(`https://cors-anywhere.herokuapp.com/${this.requestLink}serviceKey=${this.apiKey}&numOfRows=10&pageNo=1&zcode=41`)
+      axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=10&pageNo=1&zcode=41`)
           .then((res)=>{
             let xml = res.data.items[0].item
             console.log(res.data.items[0].item)
