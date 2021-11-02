@@ -43,7 +43,8 @@ export default {
                 boardCategory: [
                     {text: '자유게시판', value : '자유게시판' },
                     {text: '충전소게시판', value : '충전소게시판' },
-                    {text: '주차장게시판', value : '주차장게시판' }
+                    {text: '주차장게시판', value : '주차장게시판' },
+                    {text: '건의게시판', value : '건의게시판' }
                 ]
             }
         },
@@ -53,7 +54,7 @@ export default {
             this.files = this.$refs.files.files
             const info = this.files
             
-            this.img = this.randomNumToString+this.memberId+"의"+ info[0].name
+            this.img = this.randomNumToString+this.session+"의"+ info[0].name
         }, 
             
             OnSubmit() {
@@ -77,7 +78,7 @@ export default {
                 this.files.name = this.img
                 formData.append('fileList', this.files[idx])
             }
-            axios.post(`http://localhost:7777/board/uploadImg/${this.memberId}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
+            axios.post(`http://localhost:7777/board/uploadImg/${this.session}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
             .then (res => {
                 this.response = res.data
             })

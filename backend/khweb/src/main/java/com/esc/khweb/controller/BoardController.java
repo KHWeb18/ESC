@@ -158,4 +158,29 @@ public class BoardController {
         return  new ResponseEntity<>(list,HttpStatus.OK);
 
     }
+    @PostMapping("/getReportedBoardList")
+    public  ResponseEntity<List<Board>> getReportedBoardList () throws  Exception {
+
+        List<Board> list =  service.getReportedBoardList();
+        Collections.reverse(list);
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+    @PostMapping("/reportedTitleSearchList/{search}")
+    public ResponseEntity<List<Board>> reportedTitleSearchList (@PathVariable("search") String search) throws  Exception {
+        System.out.println("search:" + search);
+        List<Board> list  = service.reportedTitleSearchList(search);
+        Collections.reverse(list);
+
+        return  new ResponseEntity<>(list,HttpStatus.OK);
+
+    }
+    @PostMapping("/reportedMemberIdSearchList/{search}")
+    public ResponseEntity<List<Board>> reportedMemberIdSearchList (@PathVariable("search") String search) throws  Exception {
+        System.out.println("search:" + search);
+        List<Board> list  = service.reportedMemberIdSearchList(search);
+        Collections.reverse(list);
+
+        return  new ResponseEntity<>(list,HttpStatus.OK);
+
+    }
  }

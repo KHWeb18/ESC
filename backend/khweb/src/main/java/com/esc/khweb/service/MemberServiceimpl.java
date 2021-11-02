@@ -1,11 +1,10 @@
 package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.MemberRequest;
-import com.esc.khweb.entity.HateBoard;
-import com.esc.khweb.entity.LikeBoard;
-import com.esc.khweb.entity.Member;
+import com.esc.khweb.entity.*;
 import com.esc.khweb.repository.HateBoardRepository;
 import com.esc.khweb.repository.LikeBoardRepository;
+import com.esc.khweb.repository.MemberAuthRepository;
 import com.esc.khweb.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,9 @@ public class MemberServiceimpl implements MemberService {
     HateBoardRepository hateBoardRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    MemberAuthRepository memberAuthRepository;
 
     @Override
     public void memberRegister(Member member) throws Exception {
@@ -158,6 +160,55 @@ public class MemberServiceimpl implements MemberService {
     @Override
     public Optional<Member> findByMemberInfo(Long memberNo) throws Exception {
         return memberRepository.findById(memberNo);
+    }
+
+    @Override
+    public void GETMemberAuth(Long memberNo) throws Exception {
+        String auth = "관리자";
+
+        Administrator administrator = new Administrator(memberNo, auth);
+
+        memberAuthRepository.save(administrator);
+    }
+
+    @Override
+    public String getAuth(Long memberNo) throws Exception {
+
+
+        return memberAuthRepository.getAuth(memberNo);
+    }
+
+    @Override
+    public void IDban(Long memberNo) throws Exception {
+        String status = "정지";
+         memberRepository.IDban(memberNo,status);
+    }
+
+    @Override
+    public void jailbreak(Long memberNo) throws Exception {
+        String status = "활동가능";
+        memberRepository.jailbreak(memberNo,status);
+    }
+
+    @Override
+    public String findByMemberStatus(MemberRequest memberRequest) throws Exception {
+        String memberId = memberRequest.getMemberId();
+        return memberRepository.findByMemberStatus(memberId);
+    }
+
+    @Override
+    public List<Member> findALLByNo(Long memberNo) throws Exception {
+        return memberRepository.findALLByNo(memberNo);
+    }
+
+    @Override
+    public List<Member> findALLByName(String name) throws Exception {
+        return memberRepository.findALLByName(name);
+    }
+
+    @Override
+    public List<Member> findALLById(String memberId) throws Exception {
+        return memberRepository.findALLById(memberId);
     }
 }
 

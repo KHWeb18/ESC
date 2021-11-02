@@ -14,8 +14,18 @@ import BoardReadPage from '../views/board/BoardReadPage'
 import BoardModifyPage from '../views/board/BoardModifyPage'
 import FreeBoardListPage from '../views/board/FreeBoardListPage'
 import ChargingBoardListPage from '../views/board/ChargingBoardListPage'
-import ParkingBoardListPage from '../views/board/ParkingBoardListPage'  
-
+import ParkingBoardListPage from '../views/board/ParkingBoardListPage'
+import SuggestionBoardListPage from '../views/board/SuggestionBoardListPage'
+//공지 게시판
+import NoticeRegisterPage from '../views/board/notice/NoticeRegisterPage'
+import NoticeListPage from '../views/board/notice/NoticeListPage'
+import NoticeReadPage from '../views/board/notice/NoticeReadPage'
+import NoticeModifyPage from '../views/board/notice/NoticeModifyPage'
+//관리자페이지
+import AdministratorPage from '../views/administrator/AdministratorPage'
+import MemberManagement from '../views/administrator/MemberManagement'
+import ReportedBoard from '../views/administrator/ReportedBoard'
+import ReportedComment from '../views/administrator/ReportedComment'
 
 import LoginPage from '../views/member/LoginPage'
 
@@ -26,6 +36,7 @@ import EvInfoPage from '../views/EvInfo/EvInfoPage'
 import IsMyPage from '../views/myPage/IsMyPage.vue'
 import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
+import ApiTestPage from "../views/ApiTestPage";
 
 Vue.use(VueRouter)
 
@@ -82,7 +93,7 @@ const routes = [
     path: '/boardReadPage/:boardNo',
     name: 'BoardReadPage',
     components: {
-      default: BoardReadPage
+      default: BoardReadPage 
     },
     props: {
       default: true
@@ -116,8 +127,65 @@ const routes = [
   {
     path: '/chargingBoardListPage',
     name: 'ChargingBoardListPage',   
-    component: ChargingBoardListPage
+    component: ChargingBoardListPage 
   },
+  {
+    path: '/suggestionBoardListPage',
+    name: 'SuggestionBoardListPage',   
+    component: SuggestionBoardListPage 
+  },
+  {
+    path: '/noticeRegisterPage',
+    name: 'NoticeRegisterPage',   
+    component: NoticeRegisterPage  
+  },
+  {
+    path: '/noticeListPage',
+    name: 'NoticeListPage',   
+    component: NoticeListPage   
+  },
+  {
+    path: '/noticeReadPage/:boardNo',
+    name: 'NoticeReadPage',
+    components: {
+      default: NoticeReadPage  
+    },
+    props: {
+      default: true
+    },
+  },
+  {
+    path: '/noticeModifyPage/:boardNo',
+    name: 'NoticeModifyPage',
+    components: {
+      default: NoticeModifyPage    
+    },
+    props: {
+      default: true
+    },
+  },
+  {
+    path: '/administratorPage',
+    name: 'AdministratorPage',   
+    component: AdministratorPage   
+  },
+  {
+    path: '/memberManagement',
+    name: 'MemberManagement',   
+    component: MemberManagement   
+  },
+  {
+    path: '/reportedBoard',
+    name: 'ReportedBoard',   
+    component: ReportedBoard    
+  },
+  {
+    path: '/reportedComment',
+    name: 'ReportedComment',   
+    component: ReportedComment    
+  },
+
+
   {
     path: '/evinfo',
     name: 'EvInfoPage',   
@@ -139,6 +207,12 @@ const routes = [
     name: 'IsMyBoardPage',   
     component: IsMyBoardPage
   },
+    //api test
+  {
+    path: '/apiTest',
+    name: ApiTestPage,
+    component: ApiTestPage
+  }
 ]
 
 const router = new VueRouter({

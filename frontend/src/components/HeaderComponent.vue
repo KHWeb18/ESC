@@ -11,9 +11,12 @@
         </v-toolbar-title>
 
         <v-toolbar-items :class="menus" class="hidden-sm-and-down">
-          <span>전기차 소개</span>
-          <span>구매 가이드</span>
-          <span>참여마당</span>
+          <span @click="$router.push('/evinfo')">전기차 정보</span>
+          <span @click="$router.push('/freeboardListPage')">게시판</span>
+          <span @click="$router.push('/apiTest')">api실험</span>
+          <span @click="$router.push('/noticeListPage')">공지사항/건의</span>
+          <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/administratorPage')">관리자페이지</span>
+          <span>원하는거 추가</span>
         </v-toolbar-items>
 
         <v-spacer></v-spacer>
@@ -28,15 +31,17 @@
             </router-link>
           </div>
 
-          <div v-if="LoginCheck" @click="logout">
-            {{ session }} 님 로그아웃
-          </div>
+          <header-member-menu></header-member-menu>
 
         </v-toolbar-items>
 
         <!-- hamburger icon -->
-        <v-app-bar-nav-icon @click="nav_drawer = !nav_drawer" :class="hamburger">
-        </v-app-bar-nav-icon>
+<!--        <v-app-bar-nav-icon @click="nav_drawer = !nav_drawer" :class="hamburger">-->
+<!--        </v-app-bar-nav-icon>-->
+
+        <!-- nav-drawer if mobile -->
+        <nav-drawer-component></nav-drawer-component>
+
       </v-container>
 
 
@@ -46,9 +51,12 @@
 
 <script>
 import {mapActions, mapState} from "vuex";
+import NavDrawerComponent from "./NavDrawerComponent";
+import HeaderMemberMenu from "./header/HeaderMemberMenu";
 
 export default {
   name: "HeaderComponent",
+  components: {HeaderMemberMenu, NavDrawerComponent},
   mounted() {
     window.onscroll = () => {
       this.changeColor();
@@ -67,7 +75,7 @@ export default {
       text: 'text',
       menus: 'menus',
       hamburger: 'hamburger hidden-md-and-up black--text',
-      nav_drawer: false,
+
     }
   },
   methods: {
@@ -90,6 +98,9 @@ export default {
         this.hamburger = 'hamburger hidden-md-and-up black--text'
       }
     },
+    closeNav(value){
+      this.nav_drawer = value
+    }
   },
 }
 </script>
@@ -170,8 +181,7 @@ a{
   margin-left: 25px;
   color: white;
 }
-
-.hamburger{
-  margin-top: -15px;
+.myPage{
+  margin: 0 0 0 20px;
 }
 </style>

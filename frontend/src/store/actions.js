@@ -12,7 +12,7 @@ import {
     FETCH_BOARD,
     FETCH_TARGET_LIST,
     FETCH_COMMENT_LIST, FETCH_COMMENT,
-    FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO
+    FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,GET_NOTICE_LIST,GET_NOTICE,SET_AUTH,SET_TABLE_MODE,SET_CARD_MODE,GET_REPORTED_BOARD_LIST
 
 } from './mutation-types'
 
@@ -58,9 +58,20 @@ export default {
         }
         commit(SET_IS_LOGIN, temp)
     },
+    setAuth({commit}){
+        let data
+        
+        if(Vue.$cookies.get("userAuth") !== null){
+            data  = Vue.$cookies.get("userAuth")
+            
+        }
+        commit(SET_AUTH,data)
+    },
     logout ({ commit }) {
+        Vue.$cookies.remove("userAuth")
         Vue.$cookies.remove('userNo')
         Vue.$cookies.remove('user')
+        commit(SET_AUTH,null)
         commit(REMOVE_SESSION, null)
         commit(REMOVE_IS_LOGIN, false)
     },
@@ -115,4 +126,42 @@ export default {
                 commit(FETCH_COMMENT_LIKES, res.data)
             })
     },
+    GetNoitceList( {commit}) {
+
+        return axios.post('http://localhost:7777/notice/getNoitceList')
+        .then( (res)=>{
+            commit(GET_NOTICE_LIST,res.data)
+        })
+    },
+    GetNotice({commit},boardNo) {
+
+        return axios.post(`http://localhost:7777/notice/getNotice/${boardNo}`)
+        .then( (res) =>{
+            commit(GET_NOTICE,res.data)
+        })
+    },
+    SetTableMode({commit},payload){
+        if(payload ==undefined){commit(SET_TABLE_MODE, 1)}
+        else if(payload){
+            console.log("여기는 액션의SetTableMode:" +payload)
+            commit(SET_TABLE_MODE, payload)
+        }
+        
+    },
+    SetCardMode({commit},payload){
+        if(payload ==undefined){commit(SET_CARD_MODE,2)}
+        else if(payload){
+            commit(SET_CARD_MODE, payload)
+        }
+
+        
+    },
+    getReportedBoardList({commit}) {
+
+        return axios.post('http://localhost:7777/board/getReportedBoardList')
+        .then( (res) => {
+            commit(GET_REPORTED_BOARD_LIST,res.data)
+        }) 
+    }
+    
 }

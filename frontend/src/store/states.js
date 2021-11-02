@@ -17,12 +17,21 @@ export default {
     session: null,
     isLogin: false,
     loginMemberNo: [],
+    auth: null,
 
     //게시판
     boardList: [],
     board: null,
     TargetList: [],
     memberInfo: null,
+    tableMode: null,
+    cardMode: null,
+    //공지
+    noticeList: [],
+    notice: null,
+
+    //관리자페이지
+    ReportedBoardList: [],
 
     // 댓글
     comments: [],
