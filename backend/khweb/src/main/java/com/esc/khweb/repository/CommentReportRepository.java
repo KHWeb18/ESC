@@ -21,4 +21,7 @@ public interface CommentReportRepository extends JpaRepository<CommentReport, Lo
     @Modifying
     @Query(value = "delete from CommentReport where commentNo =:commentNo and memberId =:memberId")
     void deleteByCommentNoAndMemberId(@Param("commentNo")Long commentNo, @Param("memberId")String memberId);
+
+    @Query("select c from CommentReport c where c.commentNo = :commentNo")
+    Optional<CommentReport> findByEntity(Long commentNo) ;
 }

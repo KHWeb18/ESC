@@ -7,11 +7,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -64,4 +66,16 @@ public class CommentController {
         commentService.delete(commentRead, commentRequest);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+
+    @PostMapping("/getRePortedComment/{commentNo}")
+    public ResponseEntity<Comment> getRePortedComment(@PathVariable("commentNo")Long commentNo) throws  Exception {
+
+        Optional<Comment> comment  = commentService.getRePortedComment(commentNo);
+        Comment comment1 = comment.get();
+
+        return new ResponseEntity<>(comment1,HttpStatus.OK);
+    }
+
+
+
 }

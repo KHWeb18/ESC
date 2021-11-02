@@ -32,6 +32,7 @@ export default {
 
     //관리자페이지
     ReportedBoardList: [],
+    reportedCommentList: [],
 
     // 댓글
     comments: [],
