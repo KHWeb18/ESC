@@ -12,4 +12,4 @@ export default {
   components: { AdministratorPageForm, AdministratorMemu },
     
 }
-</script>
+</script>12121212

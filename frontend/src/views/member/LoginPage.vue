@@ -2,7 +2,7 @@
   <div>
     <login-page-form v-if="session ==null" @submit="OnSubmit"/>
     <p v-else-if="session !=null"> 환영합니다 여기는 EVS입니다</p>
-    <v-btn @click="chk">확인</v-btn>
+    <v-btn @click="chk()">확인</v-btn>
   </div>
 </template>
 
@@ -30,6 +30,7 @@ export default {
             console.log(res.data)
             if(res.data.status =="정지"){
               alert("정지된회원입니다.")
+              
             }else{
               if(res.data.memberId!= null){
               alert('로그인되었습니다.')
@@ -67,6 +68,7 @@ export default {
   data() {
     return{
       res: '',
+      haha: 'sdddddd',
     }
   },
 

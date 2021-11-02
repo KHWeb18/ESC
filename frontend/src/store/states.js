@@ -30,6 +30,9 @@ export default {
     noticeList: [],
     notice: null,
 
+    //관리자페이지
+    ReportedBoardList: [],
+
     // 댓글
     comments: [],
     comment: null,
