@@ -34,4 +34,12 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("UPDATE Member b set b.status = :status where b.memberNo = :memberNo")
     void jailbreak(Long memberNo, String status);
 
+    @Query("select i from Member i where i.memberNo = :memberNo")
+    List<Member> findALLByNo(Long memberNo);
+
+    @Query("select i from Member i where i.name = :name")
+    List<Member> findALLByName(String name);
+
+    @Query("select i from Member i where i.memberId = :memberId")
+    List<Member> findALLById(String memberId);
 }

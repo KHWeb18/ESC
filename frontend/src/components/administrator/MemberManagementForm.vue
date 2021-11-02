@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="coin ==0">
       <v-container>
         <v-btn @click="chk">확인</v-btn>
             <table>
@@ -19,36 +19,7 @@
                 <td>{{p.status}}</td>
                 <td><v-btn @click="ban(p.memberNo)">정지</v-btn>
                 <v-btn @click="jailbreak(p.memberNo)">해제</v-btn>
-                    <!--
-                    <v-dialog eager v-model="dialog" persistent max-width="400">
-                    <template v-slot:activator="{ on }">
-                        <v-btn v-on="on">정지</v-btn>
-                        </template>
-                        <v-card>
-                            <v-card-title>
-                                해당유저를 정지시키겟습니까?
-                            </v-card-title>
-                            <v-card-actions>
-                                <v-btn @click="ban(p)">예</v-btn>
-                                <v-btn @click="cancle">아니오</v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-dialog>
-                    <v-dialog eager v-model="dialog2" persistent max-width="400">
-                    <template v-slot:activator="{ on }">
-                    <v-btn  v-on="on">해제</v-btn>
-                    </template>
-                    <v-card>
-                    <v-card-title class="headline">
-                        해당유저를 복귀시키겟습니까?
-                    </v-card-title>
-                    <v-card-actions>
-                        <v-btn @click="jailbreak(p.memberNo)">예</v-btn>
-                    <v-btn @click="cancle">아니오</v-btn>
-                    </v-card-actions>
-                    </v-card>
-                    </v-dialog>
-                    -->
+
                     </td>    
 
                 
@@ -61,16 +32,60 @@
             <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
             <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
             <form @keyup.enter="searching(searchMenus,search)">
-                    <!--
+
                 <v-row style="margin-left: 80%">
                 <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
                 <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
                 </v-row>
-                -->
+
             </form>
             </div>
         </v-container>
   </div>
+   <div v-else-if="coin ==1">
+      <v-container>
+        <v-btn @click="chk">확인</v-btn>
+            <table>
+            <tr>
+                <td>회원번호</td>
+                <td>회원이름</td>
+                <td>회원아이디</td>
+                <td>회원상태</td>
+                <td>비고</td>
+
+            
+            </tr>
+            <tr v-for="p in searchpaginatedData" :key="p.memberNo">
+                <td>{{p.memberNo}}</td>
+                <td>{{p.name}}</td>
+                <td>{{p.memberId}}</td>
+                <td>{{p.status}}</td>
+                <td><v-btn @click="ban(p.memberNo)">정지</v-btn>
+                <v-btn @click="jailbreak(p.memberNo)">해제</v-btn>
+
+                    </td>    
+
+                
+                
+            
+            </tr>
+            </table>
+            <!--검색후-->
+            <div class="btn-cover">
+            <button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
+            <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }}</span>
+            <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
+            <form @keyup.enter="searching(searchMenus,search)">
+
+                <v-row style="margin-left: 80%">
+                <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
+                <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
+                </v-row>
+                <v-btn @click="showAll()">검색해제</v-btn>
+            </form> 
+            </div>
+        </v-container>
+  </div> 
 </template>
 
 <script>
@@ -79,10 +94,19 @@ export default {
   name: 'paginated-list',
   data () {
     return {
+      search:'',
       pageNum: 0,
+      searchpageNum: 0,
       dialog: false,
       dialog2: false,
-      ONE: 1,
+      coin: 0,
+      searchMenus: '',
+      searchMenu: [
+        {text: '회원번호', value: '회원번호'},
+        {text: '회원이름', value: '회원이름'},
+        {text: '아이디', value: '아이디'},
+      ],
+      searchList: [],
 
     }
   },
@@ -102,6 +126,9 @@ export default {
           console.log(this.memberList[0].memberAuthList[0].auth)
 
       },
+      showAll(){
+        this.coin =0
+      },
       ban(memberNo){
           console.log(memberNo)
           axios.post(`http://localhost:7777/member/IDban/${memberNo}`)
@@ -114,19 +141,64 @@ export default {
           console.log(memberNo)
           axios.post(`http://localhost:7777/member/jailbreak/${memberNo}`)
           .then( () =>{
-              alert("해당아이디는 해방되었습니다.")
+              alert("정지 해제 되었습니다.")
               this.$router.go()
           })
+      },
+      searching(searchMenus,search){
+        if(searchMenus ==''){
+        alert("찾는 카테고리를 선택해주세요")
+        }
+        if(searchMenus == '회원번호'){
+          
+          axios.post(`http://localhost:7777/member/findALLByNo/${search}`)
+          .then( (res) =>{
+              if(res.data ==""){
+                alert("해당 회원번호는 존재하지않습니다.")
+              }
+              else{this.searchList = res.data 
+              this.coin = 1;}
+              
+          }).catch((err) =>{
+            console.log(err.response.data.message)
+            alert("숫자를입력해주세요")
+          })
+        }
+        else if(searchMenus =='회원이름'){
+          axios.post(`http://localhost:7777/member/findALLByName/${search}`)
+          .then( (res) =>{
+              if(res.data ==""){
+                alert("해당 회원이름는 존재하지않습니다.")
+              }
+              else{this.searchList = res.data 
+              this.coin = 1;}
+          } )
+        }
+        else if (searchMenus == '아이디')
+        axios.post(`http://localhost:7777/member/findALLById/${search}`)
+          .then( (res) =>{
+              if(res.data ==""){
+                alert("해당 아이디는 존재하지않습니다.")
+              }
+              else{this.searchList = res.data 
+              this.coin = 1;}
+          } )
       },
       cancle(){
           this.dialog = false
           this.dialog2 =false
       },
-    nextPage () {
+     nextPage () {
       this.pageNum += 1;
+    },
+    searchNextPage(){
+      this.searchpageNum +=1;
     },
     prevPage () {
       this.pageNum -= 1;
+    },
+    searchPrevPage() {
+      this.searchpageNum -=1;
     },
   },
   computed: {
@@ -135,18 +207,28 @@ export default {
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
       if (listLeng % listSize > 0) page += 1;
-      
-      /*
-      아니면 page = Math.floor((listLeng - 1) / listSize) + 1;
-      이런식으로 if 문 없이 고칠 수도 있다!
-      */
+
+      return page;
+    },
+    searchpageCount () {
+      let listLeng = this.searchList.length,
+          listSize = this.pageSize,
+          page = Math.floor(listLeng / listSize);
+      if (listLeng % listSize > 0) page += 1;
+
       return page;
     },
     paginatedData () {
       const start = this.pageNum * this.pageSize,
             end = start + this.pageSize;
       return this.memberList.slice(start, end);
-    }
+    },
+    searchpaginatedData () {
+      const start = this.searchpageNum * this.pageSize,
+            end = start + this.pageSize;
+      return this.searchList.slice(start, end);
+    },
+    
   }
 }
 </script>
