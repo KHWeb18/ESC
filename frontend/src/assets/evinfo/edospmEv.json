@@ -1,0 +1,11 @@
+[
+	{
+		"brand":"EDISON EV",
+		"cartype":"SMART EV Z",
+		"personnel":"2인승",
+		"speed":"106.6km/h",
+        "charge":"(상온)150km(저온)133.7km",
+        "battery":"리튬이온(26.1kWh)",
+        "subsidy":"639만원"
+	}
+]

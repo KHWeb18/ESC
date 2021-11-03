@@ -1,0 +1,20 @@
+[
+	{
+		"brand":"Chevrolet",
+		"cartype":"BOLT EV",
+		"personnel":"5인승",
+		"speed":"148.6km/h",
+        "charge":"(상온)414km(저온)273km",
+        "battery":"리튬이온(65.94kWh)",
+        "subsidy":"760만원"
+	},
+    {
+		"brand":"Chevrolet",
+		"cartype":"BOLT EUV",
+		"personnel":"5인승",
+		"speed":"148km/h",
+        "charge":"(상온)403km(저온)279km",
+        "battery":"리튬이온(65.94kWh)",
+        "subsidy":"760만원"
+	}
+]

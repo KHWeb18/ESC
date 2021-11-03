@@ -1,0 +1,39 @@
+[
+	{
+		"brand":"RenaultSamsungMotors",
+		"cartype":"ZOE INTENS",
+		"personnel":"5인승",
+		"speed":"140km/h",
+        "charge":"(상온)309km(저온)236km",
+        "battery":"리튬이온(54.5kWh)",
+        "subsidy":"702만원"
+	},
+    {
+		"brand":"RenaultSamsungMotors",
+		"cartype":"ZOE INTENS ECO",
+		"personnel":"5인승",
+		"speed":"140km/h",
+        "charge":"(상온)309km(저온)236km",
+        "battery":"리튬이온(54.5kWh)",
+        "subsidy":"702만원"
+	},
+	{
+		"brand":"RenaultSamsungMotors",
+		"cartype":"ZOE ZEN",
+		"personnel":"5인승",
+		"speed":"140km/h",
+        "charge":"(상온)309km(저온)236km",
+        "battery":"리튬이온(54.5kWh)",
+        "subsidy":"702만원"
+	},
+	{
+		"brand":"RenaultSamsungMotors",
+		"cartype":"TWIZY(K1J05)",
+		"personnel":"2인승",
+		"speed":"80km/h",
+        "charge":"(상온)84.1km(저온)83.8km",
+        "battery":"리튬이온(6.77kWh)",
+        "subsidy":"400만원"
+	}
+
+]

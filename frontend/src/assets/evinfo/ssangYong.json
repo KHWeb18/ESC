@@ -1,0 +1,20 @@
+[
+	{
+		"brand":"SsangYongMotor",
+		"cartype":"코란도 e-motion 2Wd",
+		"personnel":"5인승",
+		"speed":"163km/h",
+        "charge":"(상온)306km(저온)254km",
+        "battery":"리튬이온(61.488kWh)",
+        "subsidy":"760만원"
+	},
+    {
+		"brand":"SsangYongMotor",
+		"cartype":"코란도 e-motion 2Wd Heat Pump",
+		"personnel":"5인승",
+		"speed":"163km/h",
+        "charge":"(상온)307km(저온)252km",
+        "battery":"리튬이온(61.488kWh)",
+        "subsidy":"768만원"
+	}
+]

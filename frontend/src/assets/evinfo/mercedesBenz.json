@@ -1,0 +1,66 @@
+[
+	{
+		"brand":"Mercedes-Benz",
+		"cartype":"EQA250",
+		"personnel":"5인승",
+		"speed":"160km/h",
+        "charge":"(상온)302.760km(저온)204.205km",
+        "battery":"리튬이온(69.73kWh)",
+        "subsidy":"618만원"
+	},
+    {
+		"brand":"Mercedes-Benz",
+		"cartype":"EQA250(MY22)",
+		"personnel":"5인승",
+		"speed":"160km/h",
+        "charge":"(상온)302.644km(저온)244.662km",
+        "battery":"리튬이온(69.73kWh)",
+        "subsidy":"677만원"
+	},
+	{
+		"brand":"Mercedes-Benz",
+		"cartype":"EQC 400 4M",
+		"personnel":"5인승",
+		"speed":"180km/h",
+        "charge":"(상온)308.7km(저온)270.7km",
+        "battery":"리튬이온(80.3kWh)",
+        "subsidy":"- 만원"
+	},
+	{
+		"brand":"Mercedes-Benz",
+		"cartype":"EQC 400 4MATIC",
+		"personnel":"5인승",
+		"speed":"180km/h",
+        "charge":"(상온)308.7km(저온)270.7km",
+        "battery":"리튬이온(80.3kWh)",
+        "subsidy":"- 만원"
+	},
+    {
+		"brand":"Mercedes-Benz",
+		"cartype":"EQC 400 4MATIC AMG Line",
+		"personnel":"5인승",
+		"speed":"180km/h",
+        "charge":"(상온)308.7km(저온)270.7km",
+        "battery":"리튬이온(80.3kWh)",
+        "subsidy":"- 만원"
+	},
+    {
+		"brand":"Mercedes-Benz",
+		"cartype":"EQC 400 4MATIC Premium",
+		"personnel":"5인승",
+		"speed":"180km/h",
+        "charge":"(상온)308.7km(저온)270.7km",
+        "battery":"리튬이온(80.3kWh)",
+        "subsidy":"- 만원"
+	},
+    {
+		"brand":"Mercedes-Benz",
+		"cartype":"EQC 400 4MATIC(1886)",
+		"personnel":"5인승",
+		"speed":"180km/h",
+        "charge":"(상온)308.7km(저온)270.7km",
+        "battery":"리튬이온(80.3kWh)",
+        "subsidy":"- 만원"
+	}
+
+]
