@@ -11,6 +11,4 @@ public interface CommentReportService {
     public List<CommentReport> getReportsOfComment(Long commentNo) throws Exception;
     public void deleteByCommentNoAndMemberId(Long commentNo, String memberId)throws Exception;
     public Boolean checkMemberDuplicate(Long commentNo, String memberId)throws Exception;
-    public List<CommentReport> getReportedCommentNoList () throws  Exception;
-    public  void reportedCommentDelete(Long commentNo)throws  Exception;
 }

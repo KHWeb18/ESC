@@ -4,15 +4,12 @@ import com.esc.khweb.controller.request.CommentLikeRequest;
 import com.esc.khweb.controller.request.CommentReportRequest;
 import com.esc.khweb.controller.request.CommentRequest;
 import com.esc.khweb.entity.CommentLikes;
-import com.esc.khweb.entity.CommentReply;
-import com.esc.khweb.entity.CommentReport;
 import com.esc.khweb.service.CommentLikeService;
 import com.esc.khweb.service.CommentReportService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -81,22 +78,4 @@ public class CommentLikeReportController {
 
         return new ResponseEntity<Boolean>(containsMember, HttpStatus.OK);
     }
-
-    @PostMapping("/getReportedCommentNoList")
-    public  ResponseEntity<List<CommentReport>> getReportedCommentNoList () throws  Exception {
-
-        List<CommentReport> list = commentReportService.getReportedCommentNoList();
-
-        return new ResponseEntity<>(list,HttpStatus.OK);
-    }
-
-    @PostMapping("/reportedCommentDelete/{commentNo}")
-    public ResponseEntity<Void> reportedCommentDelete (@PathVariable("commentNo") Long commentNo) throws  Exception {
-
-        commentReportService.reportedCommentDelete(commentNo);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-
 }

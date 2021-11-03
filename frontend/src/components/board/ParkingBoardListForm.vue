@@ -237,12 +237,7 @@ export default {
           alert("해당검색어로 검색되는 글이 존재하지않습니다.")
         }
         else{
-          for(var i = 0 ; i< res.data.length; i ++) {
-            if(res.data[i].category =="주차장게시판"){
-              this.searchList.push(res.data[i]) 
-            }
-          }
-          
+          this.searchList = res.data,
           this.coin= 1}
        
       }
@@ -257,13 +252,9 @@ export default {
            alert("해당검색어로 검색되는 글이 존재하지않습니다.")
         }
         else{
-          for(var i = 0 ; i< res.data.length; i ++) {
-            if(res.data[i].category =="주차장게시판"){
-              this.searchList.push(res.data[i]) 
-            }
-          }
-          
-          this.coin= 1}
+          this.searchList = res.data,
+          this.coin= 1
+        }
       }
     
         )

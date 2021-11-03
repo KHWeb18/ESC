@@ -1,6 +1,7 @@
 <template>
   <div v-if="coin ==0">
       <v-container>
+        <v-btn @click="chk">확인</v-btn>
             <table>
             <tr>
                 <td>회원번호</td>

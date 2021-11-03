@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar-nav-icon @click.stop="nav_drawer = !nav_drawer" :class="hamburger">
+    <v-app-bar-nav-icon @click.stop="nav_drawer = !nav_drawer" :class="hamburger" class="hamburger">
     </v-app-bar-nav-icon>
 
     <v-navigation-drawer app v-model="nav_drawer" absolute temporary right>
@@ -58,8 +58,7 @@ export default {
   data() {
     return {
       nav_drawer: false,
-      hamburger: 'hamburger hidden-lg-only black--text',
-      color: '',
+      hamburger: 'hamburger hidden-md-and-up black--text',
       items: [
         { title: '홈으로', icon: 'home', method: this.goHome},
         { title: '마이페이지', icon: 'account_box', method: this.goMyPage},
@@ -76,9 +75,9 @@ export default {
           document.body.scrollTop > 50 ||
           document.documentElement.scrollTop > 50
       ) {
-        this.hamburger = 'hamburger hidden-lg-only white--text'
+        this.hamburger = 'hamburger hidden-md-and-up white--text'
       } else {
-        this.hamburger = 'hamburger hidden-lg-only black--text'
+        this.hamburger = 'hamburger hidden-md-and-up black--text'
       }
     },
     goMyPage() {
@@ -98,6 +97,9 @@ export default {
 </script>
 
 <style scoped>
+.hamburger{
+  margin-top: -15px;
+}
 
 .pointer{
   cursor: pointer;

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -49,10 +48,5 @@ public class CommentServiceImpl implements CommentService {
     public void delete(Comment comment, CommentRequest commentRequest) throws Exception {
         comment.deleteComment(commentRequest);
         commentRepository.save(comment);
-    }
-
-    @Override
-    public Optional<Comment> getRePortedComment(Long commentNo) throws Exception {
-        return commentRepository.getRePortedComment(commentNo);
     }
 }

@@ -175,4 +175,13 @@ export default {
         }) 
     },
 
+    getReportedCommentNoList({commit}){
+
+        return axios.post('http://localhost:7777/comment/getReportedCommentNoList')
+        .then( (res) => {
+            commit(GET_REPORTED_COMMENT_LIST,res.data)
+        })
+
+    }
+    
 }

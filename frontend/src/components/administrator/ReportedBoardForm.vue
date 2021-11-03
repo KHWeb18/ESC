@@ -12,7 +12,6 @@
               <td>글쓴이</td>
               <td><v-icon>mdi-clock-outline</v-icon></td>
               <td>상태</td>
-              <td>비고</td>
               <td><v-icon>mdi-eye</v-icon></td>
               <td><v-icon color="blue">mdi-thumb-up</v-icon></td>
               <td><v-icon color="red">mdi-thumb-down</v-icon></td>
@@ -25,7 +24,6 @@
             <td>{{p.memberId}}</td>
             <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh')}}</td>
             <td>{{p.report}}</td>
-            <td><v-btn @click="DeleteBoard(p.boardNo)">삭제</v-btn></td>
             <td>{{p.viewcount}}</td>
             <td style="width:70px">{{p.good}}</td>
             <td style="width:70px">{{p.bad}}</td>
@@ -229,13 +227,6 @@ export default {
         .then( () =>{
 
         })
-    },
-    DeleteBoard(boardNo){
-      axios.post(`http://localhost:7777/board/DeleteBoard/${boardNo}`)
-      .then( () => {
-          alert(boardNo+"번의 게시글을 삭제하였습니다.")
-          this.$router.go()
-      })
     },
     searching(searchMenus,search){
       if(searchMenus ==''){
