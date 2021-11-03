@@ -1,0 +1,119 @@
+[
+	{
+		"brand":"Tesla",
+		"cartype":"Model 3(Long Range HPC)",
+		"personnel":"5인승",
+		"speed":"233km/h",
+        "charge":"(상온)495.7km(저온)438km",
+        "battery":"리튬이온(72kWh)",
+        "subsidy":"750만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model 3(Long Range HPL)",
+		"personnel":"5인승",
+		"speed":"233km/h",
+        "charge":"(상온)527.9km(저온)440.1km",
+        "battery":"리튬이온(84.96kWh)",
+        "subsidy":"750만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model 3(Long Range)",
+		"personnel":"5인승",
+		"speed":"233km/h",
+        "charge":"(상온)446.1km(저온)273.1km",
+        "battery":"리튬이온(72kWh)",
+        "subsidy":"682만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model 3(Performance HPL)",
+		"personnel":"5인승",
+		"speed":"261km/h",
+        "charge":"(상온)480.1km(저온)415.8km",
+        "battery":"리튬이온(84.96kWh)",
+        "subsidy":"375만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model 3(Performance)",
+		"personnel":"5인승",
+		"speed":"261km/h",
+        "charge":"(상온)414.8km(저온)250.8km",
+        "battery":"리튬이온(72kWh)",
+        "subsidy":"329만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model 3(Performance)",
+		"personnel":"5인승",
+		"speed":"261km/h",
+        "charge":"(상온)414.8km(저온)250.8km",
+        "battery":"리튬이온(72kWh)",
+        "subsidy":"329만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model 3(SRP RWD HPL)",
+		"personnel":"5인승",
+		"speed":"225km/h",
+        "charge":"(상온)383.6km(저온)304.8km",
+        "battery":"리튬이온(56.88kWh)",
+        "subsidy":"730만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model 3(SRP RWD)",
+		"personnel":"5인승",
+		"speed":"225km/h",
+        "charge":"(상온)352.1km(저온)212.9km",
+        "battery":"리튬이온(48kWh)",
+        "subsidy":"684만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model S(Long Range)",
+		"personnel":"5인승",
+		"speed":"250km/h",
+        "charge":"(상온)487km(저온)401.8km",
+        "battery":"리튬이온(101.5kWh)",
+        "subsidy":"- 만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model S(Performance)",
+		"personnel":"5인승",
+		"speed":"250km/h",
+        "charge":"(상온)479.9km(저온)427.7km",
+        "battery":"리튬이온(101.5kWh)",
+        "subsidy":"- 만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model Y(Long Range)",
+		"personnel":"5인승",
+		"speed":"217km/h",
+        "charge":"(상온)511.4km(저온)432.5km",
+        "battery":"리튬이온(84.96kWh)",
+        "subsidy":"375만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model Y(Performance)",
+		"personnel":"5인승",
+		"speed":"250km/h",
+        "charge":"(상온)447.9km(저온)393.9km",
+        "battery":"리튬이온(84.96kWh)",
+        "subsidy":"372만원"
+	},
+    {
+		"brand":"Tesla",
+		"cartype":"Model Y(Standard Range)",
+		"personnel":"5인승",
+		"speed":"217km/h",
+        "charge":"(상온)348.6km(저온)279.3km",
+        "battery":"리튬이온(56.88kWh)",
+        "subsidy":"742만원"
+	}
+]
