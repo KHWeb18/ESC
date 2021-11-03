@@ -5,12 +5,11 @@
 
         <!-- logo -->
         <v-toolbar-title class="logoContainer">
-          <router-link to="/">
-            <span :class="logo">EVS</span>
+          <router-link :class="logo" to="/" tag="span">
           </router-link>
         </v-toolbar-title>
 
-        <v-toolbar-items :class="menus" class="hidden-sm-and-down">
+        <v-toolbar-items :class="menus" class="hidden-md-and-down">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">게시판</span>
           <span @click="$router.push('/apiTest')">api실험</span>
@@ -24,10 +23,10 @@
 
           <div v-if="!LoginCheck">
             <router-link to="/loginPage">
-              <span :class="text" class="hidden-sm-and-down">로그인</span>
+              <span :class="text" class="hidden-md-and-down">로그인</span>
             </router-link>
             <router-link to="signUpPage">
-              <span :class="text" class="hidden-sm-and-down">회원가입</span>
+              <span :class="text" class="hidden-md-and-down">회원가입</span>
             </router-link>
           </div>
 
@@ -36,8 +35,8 @@
         </v-toolbar-items>
 
         <!-- hamburger icon -->
-<!--        <v-app-bar-nav-icon @click="nav_drawer = !nav_drawer" :class="hamburger">-->
-<!--        </v-app-bar-nav-icon>-->
+        <!--        <v-app-bar-nav-icon @click="nav_drawer = !nav_drawer" :class="hamburger">-->
+        <!--        </v-app-bar-nav-icon>-->
 
         <!-- nav-drawer if mobile -->
         <nav-drawer-component></nav-drawer-component>
@@ -74,8 +73,6 @@ export default {
       logo: 'logo',
       text: 'text',
       menus: 'menus',
-      hamburger: 'hamburger hidden-md-and-up black--text',
-
     }
   },
   methods: {
@@ -89,13 +86,11 @@ export default {
         this.logo = 'logoScroll'
         this.text = 'textScroll'
         this.menus = 'menusScroll'
-        this.hamburger = 'hamburger hidden-md-and-up white--text'
       } else {
         this.bg = 'transparent';
         this.logo = 'logo'
         this.text = 'text'
         this.menus = 'menus'
-        this.hamburger = 'hamburger hidden-md-and-up black--text'
       }
     },
     closeNav(value){
@@ -120,21 +115,33 @@ a{
 }
 
 .logoContainer{
-  margin-top: -10px;
+  width: 100px;
 }
 
 .logo{
-  font-size: 2.5em;
-  color: black;
+  position: absolute;
+  top: 3px;
+  left: 12px;
+  cursor: pointer;
+  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/0aac50f0d9fefb44d7166a096ee8e69a742ae72c/frontend/src/assets/logo/%EB%A1%9C%EA%B3%A0%EB%B0%B0%EA%B2%BDx2.png");
+  background-size: contain;
+  width: 160px;
+  height: 90%;
 }
+
 .logoScroll{
-  font-size: 2.5em;
-  color: white;
+  position: absolute;
+  top: 3px;
+  left: 12px;
+  cursor: pointer;
+  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/0aac50f0d9fefb44d7166a096ee8e69a742ae72c/frontend/src/assets/logo/%EB%A1%9C%EA%B3%A0%EB%B0%B0%EA%B2%BDx.png");
+  background-size: contain;
+  width: 160px;
+  height: 90%;
 }
 
 .menus{
   margin-top: 10px;
-  margin-left: 10%;
   font-size: 1.8em;
   cursor: pointer;
 }
@@ -144,7 +151,6 @@ a{
 
 .menusScroll{
   margin-top: 10px;
-  margin-left: 10%;
   font-size: 1.8em;
   color: white;
   cursor: pointer;

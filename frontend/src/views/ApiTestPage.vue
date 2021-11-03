@@ -32,7 +32,7 @@ export default {
   },
   methods:{
     fetchData(){
-      axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=10&pageNo=1&zcode=41`)
+      axios.get(`${this.requestLink}serviceKey=${this.apiKey}&numOfRows=10&pageNo=1&zcode=41`)
           .then((res)=>{
             let xml = res.data.items[0].item
             console.log(res.data.items[0].item)
