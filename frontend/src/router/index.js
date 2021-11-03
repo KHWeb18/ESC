@@ -31,6 +31,9 @@ import LoginPage from '../views/member/LoginPage'
 
 import EvInfoPage from '../views/EvInfo/EvInfoPage'
 
+//test
+import DaumMaptest from '../views/test/DaumMaptest'
+import TestApiBoardList  from '../views/test/TestApiBoardList'
 // 마이페이지
 import IsMyPage from '../views/myPage/IsMyPage.vue'
 import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
@@ -216,7 +219,18 @@ const routes = [
   {
     path: '/apiTest',
     name: ApiTestPage,
-    component: ApiTestPage
+    component: ApiTestPage 
+  },
+  //test
+  {
+    path: '/daumMaptest',
+    name: DaumMaptest,
+    component: DaumMaptest
+  },
+  {
+    path: '/testApiBoardList',
+    name: TestApiBoardList,
+    component: TestApiBoardList
   }
 ]
 
