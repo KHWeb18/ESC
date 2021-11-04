@@ -31,9 +31,9 @@ import LoginPage from '../views/member/LoginPage'
 
 import EvInfoPage from '../views/EvInfo/EvInfoPage'
 
-//test
-import DaumMaptest from '../views/test/DaumMaptest'
-import TestApiBoardList  from '../views/test/TestApiBoardList'
+//충전소찾기페이지
+import DaumMaptest from '../views/charingSearchService/DaumMaptest'
+import TestApiBoardList  from '../views/charingSearchService/TestApiBoardList'
 // 마이페이지
 import IsMyPage from '../views/myPage/IsMyPage.vue'
 import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
