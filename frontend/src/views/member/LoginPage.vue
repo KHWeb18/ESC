@@ -3,6 +3,7 @@
     <login-page-form v-if="session ==null" @submit="OnSubmit"/>
     <p v-else-if="session !=null"> 환영합니다 여기는 EVS입니다</p>
     <v-btn @click="chk()">확인</v-btn>
+    {{session}}
   </div>
 </template>
 
