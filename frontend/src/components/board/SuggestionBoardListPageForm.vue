@@ -230,6 +230,7 @@ export default {
         alert("찾는 카테고리를 선택해주세요")
       }
       if(searchMenus =="글제목"){
+        this.searchList.length = 0
         console.log('동작')
       axios.post(`http://localhost:7777/board/titleSearchList/${search}`)
       .then( (res)=> {
@@ -246,7 +247,9 @@ export default {
         )
       }
 
-      if(searchMenus =="작성자"){axios.post(`http://localhost:7777/board/memberIdSearchList/${search}`)
+      if(searchMenus =="작성자"){
+        this.searchList.length = 0
+        axios.post(`http://localhost:7777/board/memberIdSearchList/${search}`)
       .then( (res)=>{
         if(res.data == ''){
            alert("해당검색어로 검색되는 글이 존재하지않습니다.")
