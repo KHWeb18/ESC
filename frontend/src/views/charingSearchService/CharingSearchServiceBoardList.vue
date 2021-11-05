@@ -7,15 +7,17 @@
         </div>
         <table>
             <tr>
+                <td>즐겨찾기</td>
                 <td>지점명</td>
                 <td>주소</td>
                 <td>충전타입</td>
                 <td>사용시간</td>
                 <td>CALL</td>
             </tr>
-            <tr v-for=" items in paginatedData " :key="items.statNm">
+            <tr v-for=" items in paginatedData " :key="items.lat+items.statNm+items.statUpdDt">
+                <td><button @click="addMyState(session,items)"><v-icon>mdi-star</v-icon></button></td>
                 <td>{{items.statNm}}</td>
-                <a @click="makeMarker(item.lat,item.lng)"><td>{{items.addr}}</td></a>
+                <a @click="makeMarker(items)"><td>{{items.addr}}</td></a>
                 <td>{{items.chgerType}}</td>
                 <td>{{items.useTime}}</td>
                 <td>{{items.busiCall}}</td>
@@ -30,7 +32,7 @@
         <v-select style="max-width: 100px;" :items="locationList" v-model="zcode">지역</v-select>
         <v-btn @click="fetchData">검색</v-btn>
         필터
-        <input v-model="search" placeholder="스테이지 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
+        <input v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
         
         
     </div>
@@ -38,7 +40,11 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import cookies from 'vue-cookies'
 import axios from 'axios'
+import { mapActions, mapState } from 'vuex';
+Vue.use(cookies)
 export default {
     data() {
     return {
@@ -82,6 +88,8 @@ export default {
     }
   },
   computed: {
+    
+    ...mapState(['session']),
     pageCount () {
       let listLeng = this.item.length,
           listSize = this.pageSize,
@@ -101,6 +109,19 @@ export default {
     }
   },
   methods:{
+    ...mapActions(['SetitemList']),
+    addMyState(session,items){
+      if(session !== null){
+        const {addr , busiCall, chgerType, lat , lng , statNm, useTime } = items
+        axios.post(`http://localhost:7777/member/addMyState/${session.memberNo}`,{addr , busiCall, chgerType, lat , lng , statNm, useTime})
+        .then( (res) => {
+          alert(res.data)
+        }) 
+      }
+      else if(session == null){
+        alert('로그인후 이용해주세요')
+      }
+    },
     fetchData(){
       axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1&zcode=${this.zcode}`)
           .then((res)=>{
@@ -145,9 +166,12 @@ export default {
       this.item = results
     },
     
-    makeMarker(lat,lng){
-        this.lat =lat
-        this.lng = lng
+    makeMarker(items){
+        this.SetitemList(items)
+        this.$cookies.set('itemsList', items, '1h')
+        this.$cookies.set('itemslat', items.lat, '1h')
+        this.$cookies.set('itemslng', items.lng, '1h')
+        this.$router.push({name: 'CharingSearchServiceReadPage',})
 
     },
     nextPage () {
@@ -237,6 +261,7 @@ export default {
         }
         
       })
+      
     },
     watch: {
       'MapOption.level'(cur, prev){
@@ -251,7 +276,7 @@ export default {
 }
 </script>
 
-<style  lang="scss">
+<style  lang="scss" >
 .kmap{
     width: 100%;
     height: 600px;

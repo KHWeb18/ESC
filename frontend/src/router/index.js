@@ -33,7 +33,8 @@ import EvInfoPage from '../views/EvInfo/EvInfoPage'
 
 //충전소찾기페이지
 import DaumMaptest from '../views/charingSearchService/DaumMaptest'
-import TestApiBoardList  from '../views/charingSearchService/TestApiBoardList'
+import CharingSearchServiceBoardList  from '../views/charingSearchService/CharingSearchServiceBoardList'
+import CharingSearchServiceReadPage from '../views/charingSearchService/CharingSearchServiceReadPage'
 // 마이페이지
 import IsMyPage from '../views/myPage/IsMyPage.vue'
 import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
@@ -161,7 +162,7 @@ const routes = [
     path: '/noticeModifyPage/:boardNo',
     name: 'NoticeModifyPage',
     components: {
-      default: NoticeModifyPage    
+      default: NoticeModifyPage     
     },
     props: {
       default: true
@@ -221,17 +222,28 @@ const routes = [
     name: ApiTestPage,
     component: ApiTestPage 
   },
-  //test
+  //충전소찾기 페이지
   {
     path: '/daumMaptest',
     name: DaumMaptest,
     component: DaumMaptest
   },
   {
-    path: '/testApiBoardList',
-    name: TestApiBoardList,
-    component: TestApiBoardList
-  }
+    path: '/charingSearchServiceBoardList',
+    name: CharingSearchServiceBoardList,
+    component: CharingSearchServiceBoardList
+  },
+  {
+    path: '/charingSearchServiceReadPage/',
+    name: 'CharingSearchServiceReadPage',
+    components: {
+      default: CharingSearchServiceReadPage     
+    },
+    props: {
+      default: true
+    },
+    
+  },
 ]
 
 const router = new VueRouter({
