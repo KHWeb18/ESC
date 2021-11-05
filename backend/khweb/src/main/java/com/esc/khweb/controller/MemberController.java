@@ -1,5 +1,6 @@
 package com.esc.khweb.controller;
 
+import com.esc.khweb.controller.request.MyChargingStateRequest;
 import com.esc.khweb.controller.vueCookie.UserInfo;
 import com.esc.khweb.service.MemberService;
 import com.esc.khweb.controller.request.MemberRequest;
@@ -219,4 +220,16 @@ public class MemberController {
                 Member member1 = member.get();
                 return new ResponseEntity<>(member1, HttpStatus.OK);
         }
+
+        @PostMapping("/addMyState/{memberNo}")
+        public ResponseEntity<String> addMyState (@PathVariable("memberNo")Long memberNo, @Validated @RequestBody MyChargingStateRequest myChargingStateRequest) throws  Exception {
+                String alert = "즐겨찾기에 등록되었습니다. 마이페이지에서 확인해주세요";
+                //log.info("memberNo" + memberNo);
+                //log.info("addr" + myChargingStateRequest.getAddr());
+                service.addMyState(memberNo, myChargingStateRequest);
+
+                return new ResponseEntity<>(alert,HttpStatus.OK);
+        }
+
+
 }

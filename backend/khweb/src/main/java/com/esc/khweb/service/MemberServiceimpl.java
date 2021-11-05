@@ -1,11 +1,9 @@
 package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.MemberRequest;
+import com.esc.khweb.controller.request.MyChargingStateRequest;
 import com.esc.khweb.entity.*;
-import com.esc.khweb.repository.HateBoardRepository;
-import com.esc.khweb.repository.LikeBoardRepository;
-import com.esc.khweb.repository.MemberAuthRepository;
-import com.esc.khweb.repository.MemberRepository;
+import com.esc.khweb.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,6 +33,9 @@ public class MemberServiceimpl implements MemberService {
 
     @Autowired
     MemberAuthRepository memberAuthRepository;
+
+    @Autowired
+    MyChargingStateRepository myChargingStateRepository;
 
     @Override
     public void memberRegister(Member member) throws Exception {
@@ -228,6 +229,14 @@ public class MemberServiceimpl implements MemberService {
         String email = memberRequest.getEmail();
 
         memberRepository.modify(memberNo, name, memberCar, memberPw, email);
+    }
+
+    @Override
+    public void addMyState(Long memberNo, MyChargingStateRequest myChargingStateRequest) {
+
+        MyChargingState myChargingState = new MyChargingState(memberNo,myChargingStateRequest.getStatNm(),myChargingStateRequest.getChgerType(), myChargingStateRequest.getAddr(), myChargingStateRequest.getLat(), myChargingStateRequest.getLng(), myChargingStateRequest.getUseTime(), myChargingStateRequest.getBusiCall());
+
+        myChargingStateRepository.save(myChargingState);
     }
 }
 

@@ -1,6 +1,7 @@
 package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.MemberRequest;
+import com.esc.khweb.controller.request.MyChargingStateRequest;
 import com.esc.khweb.entity.Board;
 import com.esc.khweb.entity.Member;
 
@@ -50,6 +51,8 @@ public interface MemberService {
     public void delete(Long memberNo) throws Exception;
 
     public void modify(Long memberNo, MemberRequest memberRequest) throws Exception;
+
+    public void addMyState(Long memberNo, MyChargingStateRequest myChargingStateRequest);
 
 
 }
