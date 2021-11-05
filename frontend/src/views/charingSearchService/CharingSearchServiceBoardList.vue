@@ -1,8 +1,8 @@
 <template>
 <v-container>
     <div>
-        <button class="levelControll" @click="levelControll(1)"><span class="material-icons">zoom_in</span></button>
-        <button class="levelControll" @click="levelControll(-1)"><span class="material-icons">zoom_out</span></button>
+        <button class="levelControll" @click="levelControll(-1)"><span class="material-icons">zoom_in</span></button>
+        <button class="levelControll" @click="levelControll(1)"><span class="material-icons">zoom_out</span></button>
         <div class="kmap" ref="map">
         </div>
         <table>
@@ -17,7 +17,7 @@
             <tr v-for=" items in paginatedData " :key="items.lat+items.statNm+items.statUpdDt">
                 <td><button @click="addMyState(session,items)"><v-icon>mdi-star</v-icon></button></td>
                 <td>{{items.statNm}}</td>
-                <a @click="makeMarker(items)"><td>{{items.addr}}</td></a>
+                <a @click="goDetial(items)"><td>{{items.addr}}</td></a>
                 <td>{{items.chgerType}}</td>
                 <td>{{items.useTime}}</td>
                 <td>{{items.busiCall}}</td>
@@ -158,21 +158,16 @@ export default {
             removable : iwRemoveable });
         } 
         //검색후 마커 및 인포 윈도우 그리기 끝
-            return xml
-      }).then(this.setResults).catch((err)=>{console.log(err)})
+            this.item = xml
+      })
 
     },
-    setResults(results){
-      this.item = results
-    },
-    
-    makeMarker(items){
+    goDetial(items){
         this.SetitemList(items)
         this.$cookies.set('itemsList', items, '1h')
         this.$cookies.set('itemslat', items.lat, '1h')
         this.$cookies.set('itemslng', items.lng, '1h')
         this.$router.push({name: 'CharingSearchServiceReadPage',})
-
     },
     nextPage () {
       this.pageNum += 1;
@@ -180,10 +175,9 @@ export default {
     prevPage () {
       this.pageNum -= 1;
     },
-    levelControll(delta){
-
-      const level = Math.max(3,this.MapOptions.level +delta)
-      this.MapOptions.level = level
+    levelControll(delta){    
+      const level = Math.max(3, this.MapOptions.level +delta) 
+      this.MapOptions.level =level
     },
     handleSearchInput(e) { 
       
@@ -191,25 +185,15 @@ export default {
       if(this.search.length !== 0){
         clearTimeout(this.debounce)
         this.debounce = setTimeout(() => { 
-          
-          
           const filteredList = this.item.filter(item => item.statNm.includes(this.search))
         this.item = filteredList; if(this.pageNum > 0){this.pageNum = 0} }, 500);}
-        
-      else if(this.search.length == 0){
+        else if(this.search.length == 0){
         clearTimeout(this.debounce); this.debounce = setTimeout(() => { 
           axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1&zcode=${this.zcode}`)
           .then( (res) =>{
-
-            this.item = res.data.items[0].item
-          })
-
-
-          
-          }, 500); 
-        } },
-
-    
+          this.item = res.data.items[0].item
+          })},500); 
+          }},
   },
   created(){
       this.fetchData()
@@ -218,12 +202,22 @@ export default {
         axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1&zcode=${this.zcode}`)
           .then((res)=>{
             let xml = res.data.items[0].item
-           // console.log(res.data.items[0].item)
-            console.log(typeof xml)
-            return xml
-            // let json = convert.xml2json(xml, { compact: true })
-            // this.item = JSON.parse(json)
-      }).then(this.setResults).catch((err)=>{console.log(err)})
+            for(var i = 0 ; i < xml.length ; i++){
+            var markerPosition  = new kakao.maps.LatLng(xml[i].lat, xml[i].lng);
+            var marker = new kakao.maps.Marker({ position: markerPosition});
+            marker.setMap(this.FirstmapInstance);
+            var iwContent = `<div style="padding:5px;">${xml[i].statNm}</div>`, 
+            iwPosition = new kakao.maps.LatLng(xml[i].lat, xml[i].lng), 
+            iwRemoveable = true; 
+
+            this.Firstinfowindow = new kakao.maps.InfoWindow({
+            map: this.FirstmapInstance, 
+            position : iwPosition, 
+            content : iwContent,
+            removable : iwRemoveable });
+            }
+            this.item = xml;
+          })
         //초기 지도 center 세팅
         let kakao = window.kakao
         console.log(this.$refs.map) // should be not null
@@ -232,40 +226,12 @@ export default {
         this.FirstmapInstance = new kakao.maps.Map(container, {
             center : new kakao.maps.LatLng(center.lat, center.lng),
             level,
-        }); //지도 생성 및 객체 리턴
-       // console.log(FirstmapInstance) 
-      //초기 마커 생성
-      axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1&zcode=${this.zcode}`)
-      .then( (res) =>{
-        let resultlist = res.data.items[0].item
-
-        for(var i = 0 ; i < resultlist.length ; i++){
-            var markerPosition  = new kakao.maps.LatLng(resultlist[i].lat, resultlist[i].lng);
-        var marker = new kakao.maps.Marker({ position: markerPosition});
-        marker.setMap(this.FirstmapInstance);
-
-        var iwContent = `<div style="padding:5px;">${resultlist[i].statNm}</div>`, 
-        iwPosition = new kakao.maps.LatLng(resultlist[i].lat, resultlist[i].lng), 
-        iwRemoveable = true; 
-
-           
-            this.Firstinfowindow = new kakao.maps.InfoWindow({
-            map: this.FirstmapInstance, 
-            position : iwPosition, 
-            content : iwContent,
-            removable : iwRemoveable
-});
-        //console.log(infowindow)
-
-        
-        }
-        
-      })
+        });
       
     },
     watch: {
-      'MapOption.level'(cur, prev){
-        console.log(`[LEVEL CHAGNE]: ${cur} =>${prev}}`)
+      'MapOptions.level'(cur, /*prev*/){
+       // console.log(`[LEVEL CHAGNE]: ${cur} =>${prev}}`)  for testing
         this.mapInstance.setLevel(cur)
       }
     }

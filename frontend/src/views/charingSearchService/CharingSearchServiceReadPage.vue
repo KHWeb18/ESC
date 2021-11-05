@@ -18,13 +18,19 @@
                 <td style="text-align:left;">충전소ID:{{itemsList.statId}}</td>
                 <td style="text-align:left;">METHOD:{{itemsList.method}}</td>
             </tr>
+            <tr>
+                <td style="text-align:left;"><button @click="addMyState(session,itemsList)">즐겨찾기<v-icon>mdi-star</v-icon></button></td>
+            </tr>
         </table>
     </div>
 </template>
 
 <script>
+
 import Vue from 'vue'
 import cookies from 'vue-cookies'
+import { mapState } from 'vuex'
+import axios from 'axios'
 //import { mapGetters } from 'vuex'
 Vue.use(cookies)
 export default {
@@ -55,6 +61,7 @@ export default {
         }
     },
     computed: {
+        ...mapState(['session'])
         /*
         ...mapGetters(['itemList']),
         items() {
@@ -89,14 +96,21 @@ export default {
             content : iwContent,
             removable : iwRemoveable
 });
-        //console.log(infowindow)
-
-        
-
-        
-
     },
-        
+    methods:{
+        addMyState(session,itemsList){
+        if(session !== null){
+        const {addr , busiCall, chgerType, lat , lng , statNm, useTime } = itemsList
+        axios.post(`http://localhost:7777/member/addMyState/${session.memberNo}`,{addr , busiCall, chgerType, lat , lng , statNm, useTime})
+        .then( (res) => {
+          alert(res.data)
+        }) 
+      }
+      else if(session == null){
+        alert('로그인후 이용해주세요')
+      }
+    },
+    },
 
     created(){
      this.itemsList = this.$cookies.get('itemsList')
