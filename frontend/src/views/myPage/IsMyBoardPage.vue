@@ -2,6 +2,7 @@
     <div>
       <my-page-menu/>
       <is-my-board-page-form :memberBoardList=memberBoardList />
+      {{ myBoardList }}
     </div>
 </template>
 
@@ -13,22 +14,27 @@ import MyPageMenu from '../../components/myPage/MyPageMenu.vue'
 export default {
     name: 'IsMyBoardPage',
     computed: {
-      ...mapState(["memberBoardList", "session"]),
+      ...mapState(["memberBoardList", "session", 'myBoardList']),
     },  
     components: { 
       IsMyBoardPageForm, MyPageMenu 
     },
     data(){
       return{
-        memberNo: this.$store.state.session
-      } 
+        //memberNo: this.$store.state.session
+        memberNo: this.$store.state.session.memberNo
+      }
     },
     methods: {
-        ...mapActions(['fetchMemberBoardList']),
+        ...mapActions(['fetchMemberBoardList', 'fetchMyBoardList']),
     },
     created(){
-      this.fetchMemberBoardList(this.session)
-    }
+      // this.fetchMemberBoardList(this.session)
+    },
+  // 예시
+  mounted() {
+      this.fetchMyBoardList(this.session.memberId)
+  }
 
 
 }

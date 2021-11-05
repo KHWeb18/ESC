@@ -194,5 +194,10 @@ public class BoardController {
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+    // 내 게시글 조회 예시
+    @GetMapping("/getMyBoardList/{memberId}")
+    public ResponseEntity<List<Board>> getMyBoardList(@PathVariable("memberId") String memberId) throws Exception{
 
+        return new ResponseEntity<List<Board>>(service.findByMemberId(memberId),HttpStatus.OK);
+    }
  }

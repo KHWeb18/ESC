@@ -138,5 +138,9 @@ public class BoardServiceimpl implements  BoardService {
     public List<Board> getMemberBoardList() throws Exception {
         return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "boardNo"));
     }
-
+    // 내 게시물 조회 예시
+    @Override
+    public List<Board> findByMemberId(String memberId) throws Exception {
+        return boardRepository.findByMemberId(memberId);
+    }
 }

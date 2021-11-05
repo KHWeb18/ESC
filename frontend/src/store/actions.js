@@ -26,7 +26,7 @@ import {
   GET_REPORTED_COMMENT_LIST,
   SET_ITEM_LIST,
   //마이페이지 내 게시글
-  FETCH_MEMBER_BOARD_LIST,
+  FETCH_MEMBER_BOARD_LIST, FETCH_MY_BOARD_LIST,
 } from "./mutation-types";
 
 export default {
@@ -219,5 +219,13 @@ export default {
       .then((res) => {
         console.log(res);
       });
+  },
+  // 내 게시글 조회 예시
+  fetchMyBoardList({ commit }, memberId) {
+    return axios
+        .get(`http://localhost:7777/board/getMyBoardList/${memberId}`)
+        .then((res) => {
+          commit(FETCH_MY_BOARD_LIST, res.data);
+        });
   },
 };
