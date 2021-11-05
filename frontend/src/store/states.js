@@ -48,5 +48,7 @@ export default {
     
     // 마이페이지 내 게시글
     memberBoardList: [],
+    // 내 게시글 예시
+    myBoardList: [],
 }
 

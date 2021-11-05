@@ -43,5 +43,6 @@ public interface BoardService {
     public  List<Board> reportedMemberIdSearchList (String search) throws  Exception;
 // 마이페이지 내 게시글
     public List<Board> getMemberBoardList () throws  Exception;
-
+    // 내 게시물 조회 예시
+    public List<Board> findByMemberId(String memberId) throws Exception;
 }

@@ -27,4 +27,6 @@ export const SET_ITEM_LIST = 'SET_ITEM_LIST'
 
 //마이페지이 내 게시글
 export const FETCH_MEMBER_BOARD_LIST = 'FETCH_MEMBER_BOARD_LIST'
+// 내 게시글 예시
+export const FETCH_MY_BOARD_LIST = 'FETCH_MY_BOARD_LIST'
 
