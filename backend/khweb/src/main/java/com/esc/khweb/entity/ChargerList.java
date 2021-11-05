@@ -24,19 +24,48 @@ public class ChargerList {
     @Column(nullable = true)
     private String statNm;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String statId;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String chgertypeList;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String addrList;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String latList;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String lngList;
 
+    @Column(nullable = true)
+    private String useTimeList;
+
+    @Column(nullable = true)
+    private String busiCallList;
+
+    @Column(nullable = true)
+    private String statList;
+
+    @Column(nullable = true)
+    private String statUpdDtList;
+
+    @Column(nullable = true)
+    private String lastTsdtList;
+
+    @Column(nullable = true)
+    private String lastTedtList;
+
+    @Column(nullable = true)
+    private String nowTsdtList;
+
+    @Column(nullable = true)
+    private String outputList;
+
+    @Column(nullable = true)
+    private String zcodeList;
+
+    @Column(nullable = true)
+    private String parkingFreeList;
 }
