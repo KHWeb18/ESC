@@ -13,7 +13,7 @@ import {
     FETCH_TARGET_LIST,
     FETCH_COMMENT_LIST, FETCH_COMMENT,
     FETCH_REPLY_LIST,FETCH_COMMENT_LIKES,SET_MEMBER_NO,FIND_MEMBER_INFO,GET_NOTICE_LIST,GET_NOTICE,SET_AUTH,SET_TABLE_MODE,SET_CARD_MODE,GET_REPORTED_BOARD_LIST,
-    GET_REPORTED_COMMENT_LIST,
+    GET_REPORTED_COMMENT_LIST,SET_ITEM_LIST
 
 } from './mutation-types'
 
@@ -182,6 +182,9 @@ export default {
             commit(GET_REPORTED_COMMENT_LIST,res.data)
         })
 
+    },
+    SetitemList({commit},item){
+        commit(SET_ITEM_LIST,item)
     }
     
 }
