@@ -42,4 +42,16 @@ public class CommentReportServiceImpl implements CommentReportService{
 
         return maybeMember.isPresent();
     }
+    @Override
+    public List<CommentReport> getReportedCommentNoList() throws Exception {
+        return commentReportRepository.findAll();
+    }
+
+    @Override
+    public void reportedCommentDelete(Long commentNo) throws Exception {
+
+        Optional<CommentReport> commentReport  =commentReportRepository.findByEntity(commentNo);
+        CommentReport commentReport1 = commentReport.get();
+        commentReportRepository.delete(commentReport1);
+    }
 }

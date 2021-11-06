@@ -5,7 +5,7 @@
             <tr>
               <td style="text-align: left;"><p>{{notice.title}}</p><v-row><v-dialog  v-model="dialog2" persistent max-width="400">
                <template v-slot:activator="{ on }">
-               <v-btn  v-if="notice.memberId ==session" color="red"  style="margin-left: 92%; margin-top: 0%"  v-on="on">삭제</v-btn>
+               <v-btn  v-if="notice.memberId ==session.memberId" color="red"  style="margin-left: 92%; margin-top: 0%"  v-on="on">삭제</v-btn>
                </template>
                <v-card>
                <v-card-title class="headline">
@@ -19,7 +19,7 @@
                </v-card-actions>
                </v-card>
            </v-dialog>
-              <v-btn class="green" style="margin-left: 92%; margin-top: 1%" v-if="notice.memberId == session" @click="modifying(notice.boardNo)">수정</v-btn><v-btn class="blue white--text" style="margin-left: 92%; margin-top: 1%"  route :to="({name: 'NoticeListPage'})">목록</v-btn></v-row><br>
+              <v-btn class="green" style="margin-left: 92%; margin-top: 1%" v-if="notice.memberId == session.memberId" @click="modifying(notice.boardNo)">수정</v-btn><v-btn class="blue white--text" style="margin-left: 92%; margin-top: 1%"  route :to="({name: 'NoticeListPage'})">목록</v-btn></v-row><br>
               <p id="boardinfo" align="left">[{{$moment(notice.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{notice.viewcount}}]</p>
               </td>
               </tr>

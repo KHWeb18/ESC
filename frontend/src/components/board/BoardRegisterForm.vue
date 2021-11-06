@@ -54,7 +54,7 @@ export default {
             this.files = this.$refs.files.files
             const info = this.files
             
-            this.img = this.randomNumToString+this.session+"의"+ info[0].name
+            this.img = this.randomNumToString+this.session.memberId+"의"+ info[0].name
         }, 
             
             OnSubmit() {
@@ -62,7 +62,7 @@ export default {
                 alert("게시판 카테고리를 선택하세요")
             }else {
                  const {  title, content, img, category} = this
-                this.$emit('submit', { memberId:this.session, title, content, img, category})
+                this.$emit('submit', { memberId:this.session.memberId, title, content, img, category})
             }
                
             },
@@ -78,7 +78,7 @@ export default {
                 this.files.name = this.img
                 formData.append('fileList', this.files[idx])
             }
-            axios.post(`http://localhost:7777/board/uploadImg/${this.session}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
+            axios.post(`http://localhost:7777/board/uploadImg/${this.session.memberId}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
             .then (res => {
                 this.response = res.data
             })
