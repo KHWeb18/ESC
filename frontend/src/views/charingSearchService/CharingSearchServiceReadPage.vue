@@ -20,6 +20,7 @@
             </tr>
             <tr>
                 <td style="text-align:left;"><button @click="addMyState(session,itemsList)">즐겨찾기<v-icon>mdi-star</v-icon></button></td>
+                <td style="text-align:left;"><button @click="addMyPositionMarker">내위치표시</button></td>
             </tr>
         </table>
     </div>
@@ -55,9 +56,10 @@ export default {
                     lat: this.$cookies.get('itemslat'),
                     lng: this.$cookies.get('itemslng'),
                 },
-                level: 3
+                level: 8
             },
-
+            myPositionLat: this.$cookies.get("myPositionLat"),
+            MyPositoinLng: this.$cookies.get("myPositionLng"),
         }
     },
     computed: {
@@ -79,11 +81,15 @@ export default {
             center : new kakao.maps.LatLng(center.lat, center.lng),
             level,
         }); //지도 생성 및 객체 리턴
-       // console.log(FirstmapInstance) 
+        //console.log(FirstmapInstance) 
       // 마커 생성
             var markerPosition  = new kakao.maps.LatLng(center.lat, center.lng);
             var marker = new kakao.maps.Marker({ position: markerPosition});
+            
+
             marker.setMap(this.FirstmapInstance);
+            
+            
 
             var iwContent = `<div style="padding:5px;">${this.itemsList.statNm}</div>`, 
             iwPosition = new kakao.maps.LatLng(center.lat, center.lng), 
@@ -94,9 +100,10 @@ export default {
             map: this.FirstmapInstance, 
             position : iwPosition, 
             content : iwContent,
-            removable : iwRemoveable
-});
+            removable : iwRemoveable});
+            
     },
+            
     methods:{
         addMyState(session,itemsList){
         if(session !== null){
@@ -110,10 +117,33 @@ export default {
         alert('로그인후 이용해주세요')
       }
     },
+    addMyPositionMarker(){
+        let kakao = window.kakao
+            var myPosition  = new kakao.maps.LatLng(this.myPositionLat, this.MyPositoinLng);
+            var myPositionMarker = new kakao.maps.Marker({ position: myPosition});
+            myPositionMarker.setMap(this.FirstmapInstance)
+            
+            var myPositonMarkerContent = '<div style="padding:5px;">현재내위치</div>', 
+            myPositon = new kakao.maps.LatLng(this.myPositionLat, this.MyPositoinLng), 
+            myPositonRemoveable = true; 
+
+            this.FirstmapInstance = new kakao.maps.InfoWindow({
+                map: this.FirstmapInstance,
+                position: myPositon,
+                content: myPositonMarkerContent,
+                removable: myPositonRemoveable
+            })
+    }
     },
 
     created(){
      this.itemsList = this.$cookies.get('itemsList')
+     axios.post('https://ipapi.co/json/')
+     .then( (res) =>{
+         console.log(res.data.latitude)
+         this.$cookies.set("myPositionLat",res.data.latitude ,'1h')
+         this.$cookies.set("myPositionLng",res.data.longitude ,'1h')
+     })
       
     }
 }

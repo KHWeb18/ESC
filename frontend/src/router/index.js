@@ -42,6 +42,7 @@ import IsLikePage from '../views/myPage/IsLikePage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
 import ApiTestPage from "../views/ApiTestPage";
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -244,6 +245,7 @@ const routes = [
     },
     
   },
+
 ]
 
 const router = new VueRouter({
