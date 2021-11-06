@@ -61,7 +61,14 @@ public class BoardController {
     }
     @PostMapping("/boardRegister")
     public ResponseEntity<Void> boardRegister (@Validated @RequestBody BoardRequest boardRequest) throws  Exception{
+        /*
+        System.out.println("memberId:" + boardRequest.getMemberId());
+        System.out.println("title:" +boardRequest.getTitle());
+        System.out.println("content" +boardRequest.getContent());
+        System.out.println("img" + boardRequest.getImg());
+        System.out.println("category" +boardRequest.getCategory());
 
+         */
         service.boardRegister(boardRequest);
 
             return new ResponseEntity<>(HttpStatus.OK);

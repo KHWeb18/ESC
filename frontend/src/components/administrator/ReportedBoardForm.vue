@@ -278,9 +278,7 @@ export default {
     showAllBoard(){
       this.coin = 0;
     },
-    check(){
-      console.log("확인")
-    },
+
     ModeChange(){
       
       /*

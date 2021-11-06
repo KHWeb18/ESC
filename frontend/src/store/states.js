@@ -34,6 +34,7 @@ export default {
 
     //관리자페이지
     ReportedBoardList: [],
+    reportedCommentList: [],
     //충전소찾게페이지
     items: null,
     reportedCommentList: [],

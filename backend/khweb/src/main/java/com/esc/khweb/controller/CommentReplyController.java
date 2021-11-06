@@ -4,6 +4,7 @@ import com.esc.khweb.controller.request.CommentRequest;
 import com.esc.khweb.controller.request.ReplyRequest;
 import com.esc.khweb.entity.Comment;
 import com.esc.khweb.entity.CommentReply;
+import com.esc.khweb.entity.CommentReport;
 import com.esc.khweb.service.CommentReplyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,4 +49,5 @@ public class CommentReplyController {
         service.modify(replyRead, replyRequest);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+
 }

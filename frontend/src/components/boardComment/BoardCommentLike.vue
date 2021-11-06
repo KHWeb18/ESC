@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      memberId: this.$store.state.session,
+      memberId: this.$store.state.session.memberId,
       dup: '',
     }
   },

@@ -4,6 +4,7 @@ import com.esc.khweb.controller.request.CommentLikeRequest;
 import com.esc.khweb.controller.request.CommentReportRequest;
 import com.esc.khweb.controller.request.CommentRequest;
 import com.esc.khweb.entity.CommentLikes;
+import com.esc.khweb.entity.CommentReport;
 import com.esc.khweb.service.CommentLikeService;
 import com.esc.khweb.service.CommentReportService;
 import lombok.extern.slf4j.Slf4j;
@@ -77,5 +78,20 @@ public class CommentLikeReportController {
         Boolean containsMember = commentReportService.checkMemberDuplicate(commentNo, memberId);
 
         return new ResponseEntity<Boolean>(containsMember, HttpStatus.OK);
+    }
+    @PostMapping("/getReportedCommentNoList")
+    public  ResponseEntity<List<CommentReport>> getReportedCommentNoList () throws  Exception {
+
+        List<CommentReport> list = commentReportService.getReportedCommentNoList();
+
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
+    @PostMapping("/reportedCommentDelete/{commentNo}")
+    public ResponseEntity<Void> reportedCommentDelete (@PathVariable("commentNo") Long commentNo) throws  Exception {
+
+        commentReportService.reportedCommentDelete(commentNo);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

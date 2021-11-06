@@ -1,5 +1,5 @@
 <template>
-  <div v-if="commentInfo.memberId === session">
+  <div v-if="commentInfo.memberId === session.memberId">
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn large icon color="indigo" v-bind="attrs" v-on="on">

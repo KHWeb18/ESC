@@ -59,7 +59,7 @@ export default {
     },
     data() {
         return{
-            memberId: this.$store.state.session,
+            memberId: this.$store.state.session.memberId,
             randomNumToString: '',
             coin : 0,
             //

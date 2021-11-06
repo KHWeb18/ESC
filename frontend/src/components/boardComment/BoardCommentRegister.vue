@@ -55,7 +55,7 @@ export default {
       }
     },
     setMemberId() {
-      let temp = this.$store.state.session
+      let temp = this.$store.state.session.memberId
       this.memberId = temp
     }
   }
