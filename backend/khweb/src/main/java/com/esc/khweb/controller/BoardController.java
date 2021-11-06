@@ -1,6 +1,7 @@
 package com.esc.khweb.controller;
 
 import com.esc.khweb.controller.request.BoardReportRequest;
+import com.esc.khweb.entity.Member;
 import com.esc.khweb.service.BoardService;
 import com.esc.khweb.controller.request.BoardRequest;
 import com.esc.khweb.entity.Board;
@@ -42,7 +43,7 @@ public class BoardController {
 
             for (MultipartFile multipartFile : fileList) {
                 log.info("requestUploadFile(): Make File");
-                FileOutputStream writer = new FileOutputStream("C:\\proj\\ESC\\frontend\\src\\assets\\게시판/"+randomNumToString+name+"의"+multipartFile.getOriginalFilename());
+                FileOutputStream writer = new FileOutputStream("D:\\proj\\ESC\\frontend\\src\\assets\\게시판/"+randomNumToString+name+"의"+multipartFile.getOriginalFilename());
                 writer.write(multipartFile.getBytes());
                 writer.close();
 
@@ -139,7 +140,9 @@ public class BoardController {
     }
     @PostMapping("/getTargetList/{target}")
     public  ResponseEntity<List<Board>> getTargetList (@PathVariable ("target") String target) throws  Exception {
-
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("target list");
         List<Board> list = service.getTargetList(target);
         //거꾸로
         Collections.reverse(list);
@@ -184,10 +187,24 @@ public class BoardController {
     @PostMapping("/reportedMemberIdSearchList/{search}")
     public ResponseEntity<List<Board>> reportedMemberIdSearchList (@PathVariable("search") String search) throws  Exception {
         System.out.println("search:" + search);
-        List<Board> list  = service.reportedMemberIdSearchList(search);
+        List<Board> list = service.reportedMemberIdSearchList(search);
         Collections.reverse(list);
 
-        return  new ResponseEntity<>(list,HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
 
+    }
+    // 마이페이지 내 게시글
+    @PostMapping("/getMemberBoardList/{memberNo)")
+    public ResponseEntity<List<Board>> getMemberBoardList (@PathVariable ("memberNo")Long memberNo) throws  Exception {
+
+        List<Board> list = service.getMemberBoardList();
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+    // 내 게시글 조회 예시
+    @GetMapping("/getMyBoardList/{memberId}")
+    public ResponseEntity<List<Board>> getMyBoardList(@PathVariable("memberId") String memberId) throws Exception{
+
+        return new ResponseEntity<List<Board>>(service.findByMemberId(memberId),HttpStatus.OK);
     }
  }

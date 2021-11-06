@@ -26,6 +26,8 @@ export default {
     memberInfo: null,
     tableMode: null,
     cardMode: null,
+
+
     //공지
     noticeList: [],
     notice: null,
@@ -35,6 +37,8 @@ export default {
     reportedCommentList: [],
     //충전소찾게페이지
     items: null,
+    reportedCommentList: [],
+
     // 댓글
     comments: [],
     comment: null,
@@ -42,6 +46,10 @@ export default {
     replies: [],
     // 댓글 좋아요
     commentLikes: [],
-
+    
+    // 마이페이지 내 게시글
+    memberBoardList: [],
+    // 내 게시글 예시
+    myBoardList: [],
 }
 
