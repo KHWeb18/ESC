@@ -1,12 +1,15 @@
 <template>
-<v-container>
+
     <div>
-        <button class="levelControll" @click="levelControll(-1)"><span class="material-icons">zoom_in</span></button>
-        <button class="levelControll" @click="levelControll(1)"><span class="material-icons">zoom_out</span></button>
-        <div class="kmap" ref="map">
+
+        
+        <div style="max-width:800px" class="kmap" ref="map">
+
         </div>
+        
+        <div class="InfoTable">
         <table>
-            <tr>
+            <tr id="headerTr">
                 <td>즐겨찾기</td>
                 <td>지점명</td>
                 <td>주소</td>
@@ -24,19 +27,35 @@
             </tr>
         </table>
         <div class="btn-cover">
-            <button :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
+        <button class="levelControll" @click="levelControll(-1)"><span class="material-icons">zoom_in</span></button>
+        <button class="levelControll" @click="levelControll(1)"><span class="material-icons">zoom_out</span></button>
+          <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text v-bind="attrs" v-on="on">
+          <span class="profileBtn">지역선택</span>
+          <v-icon>arrow_drop_down</v-icon>
+          </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="location in locationList" :key="location.value" class="pointer" @click="FetchData(location.value)">
+              <v-list-item-title>{{location.text}}</v-list-item-title></v-list-item>
+            </v-list>
+          </v-menu>
+            <button  style="margin-left: 20%;" :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
             <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
             <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
-            </div>
+            검색
+            <input style="border: 1px; margin-right: 20%" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
             
-        <v-select style="max-width: 100px;" :items="locationList" v-model="zcode">지역</v-select>
-        <v-btn @click="fetchData">검색</v-btn>
-        필터
-        <input v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
+            </div>
+
         
+        
+   
+        </div>
         
     </div>
-</v-container>
+
 </template>
 
 <script>
@@ -67,7 +86,7 @@ export default {
       ],
       lat: 0,
       lng: 0,
-      pageSize: 10,
+      pageSize: 7,
       pageNum: 0,
       MapOptions : {
                 center:  {
@@ -122,7 +141,7 @@ export default {
         alert('로그인후 이용해주세요')
       }
     },
-    fetchData(){
+    SettingData(){
       axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1&zcode=${this.zcode}`)
           .then((res)=>{
             
@@ -162,6 +181,45 @@ export default {
       })
 
     },
+    FetchData(searchzcode){
+      axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1&zcode=${searchzcode}`)
+          .then((res)=>{
+            
+            let xml = res.data.items[0].item
+        //검색후 마커 및 인포 윈도우 그리기 시작..
+            let kakao = window.kakao
+        console.log(this.$refs.map) // should be not null
+        var container = this.$refs.map
+        //MapOptions center세팅시작
+        this.MapOptions.center.lat = xml[0].lat
+        this.MapOptions.center.lng = xml[0].lng
+        //MapOptions center세팅시작완료
+        const {center, level}  = this.MapOptions
+        this.mapInstance = new kakao.maps.Map(container, {
+            center : new kakao.maps.LatLng(center.lat, center.lng),
+            level,
+        }); //지도 생성 및 객체 리턴
+
+        for (var i = 0 ; i < xml.length ; i ++){
+        var markerPosition  = new kakao.maps.LatLng(xml[i].lat, xml[i].lng);
+        var marker = new kakao.maps.Marker({ position: markerPosition});
+        marker.setMap(this.mapInstance);
+        
+        var iwContent = `<div  style="max-width:1000">${xml[i].statNm}</div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능
+        iwPosition = new kakao.maps.LatLng(xml[i].lat, xml[i].lng), //인포윈도우 표시 
+        iwRemoveable = true; 
+
+            // 인포윈도우를 생성하고 지도에 표시
+            this.infowindow = new kakao.maps.InfoWindow({
+            map: this.mapInstance, // 인포윈도우가 표시될 지도
+            position : iwPosition, 
+            content : iwContent,
+            removable : iwRemoveable });
+        } 
+        //검색후 마커 및 인포 윈도우 그리기 끝
+            this.item = xml
+      })
+    },
     goDetial(items){
         this.SetitemList(items)
         this.$cookies.set('itemsList', items, '1h')
@@ -196,38 +254,10 @@ export default {
           }},
   },
   created(){
-      this.fetchData()
+      this.SettingData()
   },
     mounted(){
-        axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1&zcode=${this.zcode}`)
-          .then((res)=>{
-            let xml = res.data.items[0].item
-            for(var i = 0 ; i < xml.length ; i++){
-            var markerPosition  = new kakao.maps.LatLng(xml[i].lat, xml[i].lng);
-            var marker = new kakao.maps.Marker({ position: markerPosition});
-            marker.setMap(this.FirstmapInstance);
-            var iwContent = `<div style="padding:5px;">${xml[i].statNm}</div>`, 
-            iwPosition = new kakao.maps.LatLng(xml[i].lat, xml[i].lng), 
-            iwRemoveable = true; 
-
-            this.Firstinfowindow = new kakao.maps.InfoWindow({
-            map: this.FirstmapInstance, 
-            position : iwPosition, 
-            content : iwContent,
-            removable : iwRemoveable });
-            }
-            this.item = xml;
-          })
-        //초기 지도 center 세팅
-        let kakao = window.kakao
-        console.log(this.$refs.map) // should be not null
-        var container = this.$refs.map
-        const {center, level}  = this.MapOptions
-        this.FirstmapInstance = new kakao.maps.Map(container, {
-            center : new kakao.maps.LatLng(center.lat, center.lng),
-            level,
-        });
-      
+  
     },
     watch: {
       'MapOptions.level'(cur, /*prev*/){
@@ -246,6 +276,7 @@ export default {
 .kmap{
     width: 100%;
     height: 600px;
+    float: left;
 }
 button {
     border: 1px solid transparent;
@@ -264,4 +295,14 @@ table tr td {
         border-color: #ddd;
     }
 }
+.InfoTable{
+
+  width: 1100px;
+  float: right;
+}
+input:focus {outline:2px solid #d50000;}
+#headerTr{
+  background: rgb(93, 128, 233);
+}
+
 </style>
