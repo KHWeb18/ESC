@@ -37,7 +37,7 @@ export default {
     reportedCommentList: [],
     //충전소찾게페이지
     items: null,
-    reportedCommentList: [],
+    
 
     // 댓글
     comments: [],
