@@ -8,7 +8,9 @@
 		"speed":"185km/h",
         "charge":"(상온)483km(저온)446km",
         "battery":"리튬이온폴리머(77.506kWh)",
-        "subsidy":"800만원"
+        "subsidy":"800만원",
+		"carImage":"https://img.khan.co.kr/news/2021/06/29/l_2021062901003535600298731.webp",
+		"brandImage":"https://cdn.eyesmag.com/content/uploads/posts/2021/01/06/kia-motors-Change-the-name-new-logo-brand-slogan-main-4df3bf1f-28d5-4aab-b364-a10657268ba5.jpg"
 	},
 	{
 		"brand":"KIA",
