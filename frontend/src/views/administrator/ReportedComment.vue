@@ -42,12 +42,11 @@ export default {
         },
     },
     mounted(){
-      
+        this.load()
     },
     created(){
         this.getReportedCommentNoList()
-        this.load()
-
+        
     }
     
 }
