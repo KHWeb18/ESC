@@ -45,7 +45,7 @@
             <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
             <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
             검색
-            <input style="border: 1px; margin-right: 20%" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
+            <input style="border: 1px; margin-right: 18%" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
             
             </div>
 
