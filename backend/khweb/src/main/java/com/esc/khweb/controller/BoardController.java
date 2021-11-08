@@ -117,8 +117,8 @@ public class BoardController {
         Long boardNo = boardReportRequest.getBoardNo();
         service.report(boardNo,reportWord);
         // 신고 버튼누를시 카톡 날라감 구현했지만, 파이썬작업진행중으로 막아놓겟습니다 2021/10/29
-    //   String check =  service.KakaotalkAlarm(boardReportRequest);
-      // log.info("check"+check);
+       String check =  service.KakaotalkAlarm(boardReportRequest);
+         log.info("check"+check);
 
         return  new ResponseEntity<>(HttpStatus.OK);
     }
