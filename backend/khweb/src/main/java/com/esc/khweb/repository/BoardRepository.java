@@ -64,7 +64,6 @@ public interface BoardRepository extends JpaRepository<Board,Long>  {
     @Query("select t from Board t where t.report = :report")
     List<Board> getReportedBoardList(String report);
 
-    // 내 게시물 조회 예시
     List<Board> findByMemberId(String memberId);
 
 

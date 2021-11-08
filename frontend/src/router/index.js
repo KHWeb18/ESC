@@ -41,7 +41,8 @@ import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
 import IsLikePage from '../views/myPage/IsLikePage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
 import ApiTestPage from "../views/ApiTestPage";
-
+/////////////
+import IsMyCommentListPage from '../views/myPage/IsMyCommentListPage.vue';
 
 Vue.use(VueRouter)
 
@@ -217,6 +218,12 @@ const routes = [
     name: 'IsEditMemberPage',   
     component: IsEditMemberPage
   },
+  {
+    path: '/isMyCommentListPage',
+    name: 'IsMyCommentListPage',   
+    component: IsMyCommentListPage
+  },
+  
 
     //api test
   {

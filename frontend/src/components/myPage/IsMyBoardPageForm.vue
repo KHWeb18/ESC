@@ -359,7 +359,7 @@ export default {
     };
   },
   props: {
-    memberBoardList: {
+    myBoardList: {
       type: Array,
       required: true,
     },
@@ -442,7 +442,7 @@ export default {
   computed: {
     ...mapState(["tableMode", "cardMode"]),
     pageCount() {
-      let listLeng = this.memberBoardList.length,
+      let listLeng = this.myBoardList.length,
         listSize = this.pageSize,
         page = Math.floor(listLeng / listSize);
       if (listLeng % listSize > 0) page += 1;
@@ -460,7 +460,7 @@ export default {
     paginatedData() {
       const start = this.pageNum * this.pageSize,
         end = start + this.pageSize;
-      return this.memberBoardList.slice(start, end);
+      return this.myBoardList.slice(start, end);
     },
     searchpaginatedData() {
       const start = this.searchpageNum * this.pageSize,

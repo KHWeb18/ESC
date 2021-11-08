@@ -194,15 +194,7 @@ public class BoardController {
         return new ResponseEntity<>(list, HttpStatus.OK);
 
     }
-    // 마이페이지 내 게시글
-    @PostMapping("/getMemberBoardList/{memberNo)")
-    public ResponseEntity<List<Board>> getMemberBoardList (@PathVariable ("memberNo")Long memberNo) throws  Exception {
 
-        List<Board> list = service.getMemberBoardList();
-
-        return new ResponseEntity<>(list, HttpStatus.OK);
-    }
-    // 내 게시글 조회 예시
     @GetMapping("/getMyBoardList/{memberId}")
     public ResponseEntity<List<Board>> getMyBoardList(@PathVariable("memberId") String memberId) throws Exception{
 

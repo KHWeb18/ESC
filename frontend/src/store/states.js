@@ -49,12 +49,10 @@ export default {
     // 댓글 좋아요
     commentLikes: [],
     
-    // 마이페이지 내 게시글
-    memberBoardList: [],
-    // 내 게시글 예시
+    // 마이페이지
     myBoardList: [],
+    myCommentList: [], 
 
     //자동차 정보 페이지용 JSON 데이터
     carInfo: data,
 }
-

@@ -1,6 +1,7 @@
 package com.esc.khweb.controller;
 
 import com.esc.khweb.controller.request.CommentRequest;
+import com.esc.khweb.entity.Board;
 import com.esc.khweb.entity.Comment;
 import com.esc.khweb.entity.CommentReport;
 import com.esc.khweb.service.CommentService;
@@ -73,5 +74,11 @@ public class CommentController {
         Comment comment1 = comment.get();
 
         return new ResponseEntity<>(comment1,HttpStatus.OK);
+    }
+
+    @GetMapping("/getMyCommentLists/{memberId}")
+    public ResponseEntity<List<Comment>> getMyCommentLists(@PathVariable("memberId") String memberId) throws Exception{
+
+        return new ResponseEntity<List<Comment>>(commentService.findByMemberId(memberId),HttpStatus.OK);
     }
 }

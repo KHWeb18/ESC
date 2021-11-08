@@ -1,6 +1,7 @@
 package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.CommentRequest;
+import com.esc.khweb.entity.Board;
 import com.esc.khweb.entity.Comment;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface CommentService {
     public void modify(Comment comment, CommentRequest commentRequest) throws Exception;
     public void delete(Comment comment, CommentRequest commentRequest) throws Exception;
     public Optional<Comment> getRePortedComment(Long commentNo) throws  Exception;
+    public List<Comment> findByMemberId(String memberId) throws Exception;
 }

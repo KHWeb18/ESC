@@ -25,8 +25,10 @@ import {
   GET_REPORTED_BOARD_LIST,
   GET_REPORTED_COMMENT_LIST,
   SET_ITEM_LIST,
-  //마이페이지 내 게시글
-  FETCH_MEMBER_BOARD_LIST, FETCH_MY_BOARD_LIST,
+  FETCH_MY_BOARD_LIST,
+  FETCH_MY_COMMENT_LIST,
+
+  
 } from "./mutation-types";
 
 export default {
@@ -206,21 +208,7 @@ export default {
     commit(SET_ITEM_LIST, item);
   },
 
-  //마이페이지 내 게시글
-  fetchMemberBoardList({ commit }, memberNo) {
-    return axios
-      .get(`http://localhost:7777/board/getMemberBoardList/${memberNo}`)
-      .then((res) => {
-        commit(FETCH_MEMBER_BOARD_LIST, res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .then((res) => {
-        console.log(res);
-      });
-  },
-  // 내 게시글 조회 예시
+  // 마이페이지 게시글
   fetchMyBoardList({ commit }, memberId) {
     return axios
         .get(`http://localhost:7777/board/getMyBoardList/${memberId}`)
@@ -228,4 +216,13 @@ export default {
           commit(FETCH_MY_BOARD_LIST, res.data);
         });
   },
+  fetchMyCommentList({ commit }, memberId) {
+    return axios
+        .get(`http://localhost:7777/comment/getMyCommentLists/${memberId}`)
+        .then((res) => {
+        
+          commit(FETCH_MY_COMMENT_LIST, res.data);
+        });
+  },
+
 };

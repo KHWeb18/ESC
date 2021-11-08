@@ -1,6 +1,7 @@
 package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.CommentRequest;
+import com.esc.khweb.entity.Board;
 import com.esc.khweb.entity.Comment;
 import com.esc.khweb.repository.BoardRepository;
 import com.esc.khweb.repository.CommentRepository;
@@ -53,5 +54,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Optional<Comment> getRePortedComment(Long commentNo) throws Exception {
         return commentRepository.getRePortedComment(commentNo);
+    }
+    
+    @Override
+    public List<Comment> findByMemberId(String memberId) throws Exception {
+        return commentRepository.findByMemberId(memberId);
     }
 }
