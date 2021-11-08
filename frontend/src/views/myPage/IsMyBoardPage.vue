@@ -1,37 +1,35 @@
 <template>
     <div>
       <my-page-menu/>
-      <is-my-board-page-form :memberBoardList=memberBoardList />
-      {{ myBoardList }}
+      <is-my-board-menu/> 
+      <is-my-board-page-form :myBoardList=myBoardList />
+
     </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import IsMyBoardMenu from '../../components/myPage/IsMyBoardMenu.vue'
 import IsMyBoardPageForm from '../../components/myPage/IsMyBoardPageForm.vue'
 import MyPageMenu from '../../components/myPage/MyPageMenu.vue'
-//import store from '../../store/states.js'
+
 export default {
     name: 'IsMyBoardPage',
     computed: {
-      ...mapState(["memberBoardList", "session", 'myBoardList']),
+      ...mapState([ "session", 'myBoardList']),
     },  
     components: { 
-      IsMyBoardPageForm, MyPageMenu 
+      IsMyBoardPageForm, MyPageMenu,
+        IsMyBoardMenu  
     },
     data(){
       return{
-        //memberNo: this.$store.state.session
         memberNo: this.$store.state.session.memberNo
       }
     },
     methods: {
-        ...mapActions(['fetchMemberBoardList', 'fetchMyBoardList']),
+        ...mapActions(['fetchMyBoardList']),
     },
-    created(){
-      // this.fetchMemberBoardList(this.session)
-    },
-  // 예시
   mounted() {
       this.fetchMyBoardList(this.session.memberId)
   }
