@@ -1,3 +1,5 @@
+import data from '../assets/evinfo/evcarinfo.json'
+
 export default {
   
     emailRules: [
@@ -51,5 +53,8 @@ export default {
     memberBoardList: [],
     // 내 게시글 예시
     myBoardList: [],
+
+    //자동차 정보 페이지용 JSON 데이터
+    carInfo: data,
 }
 
