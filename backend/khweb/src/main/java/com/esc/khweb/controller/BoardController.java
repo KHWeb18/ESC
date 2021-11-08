@@ -35,6 +35,7 @@ public class BoardController {
     {
 
         System.out.println("name = " +name );
+        System.out.println("randomNumToString =" +randomNumToString);
         log.info("requestUploadFile(): " + fileList);
 
         try {
@@ -43,7 +44,7 @@ public class BoardController {
 
             for (MultipartFile multipartFile : fileList) {
                 log.info("requestUploadFile(): Make File");
-                FileOutputStream writer = new FileOutputStream("D:\\proj\\ESC\\frontend\\src\\assets\\게시판/"+randomNumToString+name+"의"+multipartFile.getOriginalFilename());
+                FileOutputStream writer = new FileOutputStream("C:\\proj\\ESC\\frontend\\src\\assets\\게시판/"+randomNumToString+name+"의"+multipartFile.getOriginalFilename());
                 writer.write(multipartFile.getBytes());
                 writer.close();
 

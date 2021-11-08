@@ -2,6 +2,7 @@
 
 <div v-if="coin ==0&&this.tableMode ==1">
   <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
+  <input style="border: 1px; margin-left: 1%" v-model="search" placeholder="제목검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
     <v-container>
       <v-simple-table >
         <template v-slot:default>
@@ -36,16 +37,20 @@
     <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
       <form @keyup.enter="searching(searchMenus,search)">
         <v-btn style="margin-right: 100%" @click="Write()"><v-icon>mdi-pen-plus</v-icon></v-btn>
+        
+        <!--
         <v-row style="margin-left: 80%">
           <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
           <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
         </v-row>
+        -->
       </form>
     </div>
+    
   </v-container>
 </div>
 
-
+<!--
 <div v-else-if="coin ==1&&tableMode ==1">
   <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
     <v-container>
@@ -75,7 +80,7 @@
           </tbody>
         </template>
       </v-simple-table>
- <!-- 페이지네이션 버튼 -->
+
     <div class="btn-cover">
       <button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
       <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }}</span>
@@ -91,10 +96,11 @@
     </div>
   </v-container>
 </div>
-
+-->
 
 <div v-else-if="coin ==0&&cardMode ==1">
    <v-btn @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
+   <input style="border: 3px; margin-left: 1% " v-model="search" placeholder="제목검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
   <v-row>
     <v-card class="mx-auto my-12" width="400" v-for="i in paginatedData" :key="i.boardNo" @click="goDetail(i.boardNo)" outlined hover>
     <v-card-title>{{i.memberId}}</v-card-title>
@@ -116,15 +122,17 @@
       <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
       <form @keyup.enter="searching(searchMenus,search)">
         <v-btn style="margin-right: 100%" @click="Write()"><v-icon>mdi-pen-plus</v-icon></v-btn>
-        <v-row style="margin-left: 80%">
+          
+          <!--
           <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
           <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
-        </v-row>
+          -->
       </form>
     </div>
+    
 </div>
 
-
+<!--
 <div v-else-if="coin ==1&&cardMode ==1">
   <v-btn @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
   <v-row>
@@ -140,7 +148,6 @@
     </v-card-text>
     </v-card>
   </v-row>
-  <!--페이지 네이션 버튼 -->
     <div class="btn-cover"><button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
       <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }}</span>
       <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
@@ -154,7 +161,7 @@
       </form>
     </div>
 </div>
-  
+  -->
 </template>
 
 <script>
@@ -169,6 +176,7 @@ export default {
     return {
       //tableMode: 1,
       //cardMode: 0,
+      target: '주차장게시판',
       searchMenus: '',
       pageNum: 0,
       searchpageNum: 0,
@@ -197,7 +205,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['SetTableMode', 'SetCardMode']),
+    ...mapActions(['SetTableMode', 'SetCardMode','fetchTargetList']),
     nextPage () {
       this.pageNum += 1;
     },
@@ -239,7 +247,7 @@ export default {
         }
         else{
           for(var i = 0 ; i< res.data.length; i ++) {
-            if(res.data[i].category =="주차장게시판"){
+            if(res.data[i].category =="자유게시판"){
               this.searchList.push(res.data[i]) 
             }
           }
@@ -262,12 +270,12 @@ export default {
         }
         else{
           for(var i = 0 ; i< res.data.length; i ++) {
-            if(res.data[i].category =="주차장게시판"){
+            if(res.data[i].category =="자유게시판"){
               this.searchList.push(res.data[i]) 
             }
           }
           
-         
+          
           this.coin= 1}
       }
     
@@ -277,6 +285,9 @@ export default {
     },
     showAllBoard(){
       this.coin = 0;
+    },
+    check(){
+      console.log("확인")
     },
     ModeChange(){
       
@@ -321,7 +332,22 @@ export default {
       else{
         this.$router.push({name: "BoardRegister"})
       }
-    }
+    },
+    handleSearchInput(e) { 
+      
+      this.search = e.target.value
+      if(this.search.length !== 0){
+        clearTimeout(this.debounce)
+        this.debounce = setTimeout(() => { 
+          const filteredList = this.TargetList.filter(TargetList => TargetList.title.includes(this.search))
+        this.TargetList = filteredList; if(this.pageNum > 0){this.pageNum = 0} }, 500);}
+        else if(this.search.length == 0){
+        clearTimeout(this.debounce); this.debounce = setTimeout(() => { 
+            this.fetchTargetList(this.target).then( (res) =>{
+              this.TargetList = res.data
+            })
+          },500); 
+          }},
 
   },
   computed: {
