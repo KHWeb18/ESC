@@ -68,8 +68,11 @@
            </v-card-title>
            <v-card-subtitle>
              [{{$moment(board.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{board.viewcount}}좋아요:{{board.good}},싫어요:{{board.bad}}]
-             <v-btn style="margin-left: 81%"  route :to="({name: 'FreeBoardListPage'})">목록</v-btn>
-             <v-btn  v-if="board.memberId == session.memberId" @click="modifying(board.boardNo)">수정</v-btn>
+
+             <v-btn style="margin-left: 81%" @click="goBack">목록</v-btn>
+              <!--<v-btn style="margin-left: 81%" route :to="({name: 'FreeBoardListPage'})">목록</v-btn> -->
+             <v-btn  v-if="board.memberId == this.$store.state.session.memberId" @click="modifying(board.boardNo)">수정</v-btn>
+
              <v-dialog  v-model="dialog2" persistent max-width="400">
                <template v-slot:activator="{ on }">
                <v-btn   v-if="session.memberId ==board.memberId"  v-on="on">삭제</v-btn>
@@ -157,6 +160,9 @@ export default {
                     alert(err.response.data.message)
                 })
 
+                  },
+                  goBack() {
+                    this.$router.go(-1)
                   },
                   good(boardNo){
                     
