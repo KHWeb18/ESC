@@ -60,18 +60,19 @@
 
          </v-container>
          -->
+
          <v-container style="max-width: 1080px">
-         <v-card elevation="1">
+         <v-card  elevation="1">
            <v-card-title style="text-align: center;">
              {{board.title}}
            </v-card-title>
            <v-card-subtitle>
              [{{$moment(board.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{board.viewcount}}좋아요:{{board.good}},싫어요:{{board.bad}}]
              <v-btn style="margin-left: 81%"  route :to="({name: 'FreeBoardListPage'})">목록</v-btn>
-             <v-btn  v-if="board.memberId == this.$store.state.session.memberId" @click="modifying(board.boardNo)">수정</v-btn>
+             <v-btn  v-if="board.memberId == session.memberId" @click="modifying(board.boardNo)">수정</v-btn>
              <v-dialog  v-model="dialog2" persistent max-width="400">
                <template v-slot:activator="{ on }">
-               <v-btn   v-if="this.$store.state.session.memberId ==board.memberId"  v-on="on">삭제</v-btn>
+               <v-btn   v-if="session.memberId ==board.memberId"  v-on="on">삭제</v-btn>
                </template>
                <v-card>
                <v-card-title class="headline">
@@ -90,7 +91,7 @@
            <v-card-text>
              <img v-if="board.img != ''" width="300px" :src="require(`@/assets/게시판/${board.img}`)"/>
            </v-card-text>
-           <v-card-text>
+           <v-card-text style="height: 300px;">
              {{board.content}}
            </v-card-text>
            <v-divider></v-divider>
@@ -135,13 +136,11 @@ export default {
         }
     },
   computed:{
-    ...mapState(['session','loginMeberNo','memberInfo'])
+    ...mapState(['session','loginMeberNo',])
     
   },
   created(){
-    if(this.$store.state.loginMemberNo != null){
-      this.findMemberInfo(this.$store.state.loginMemberNo)
-    }
+
     
    
   },
@@ -161,7 +160,7 @@ export default {
                   },
                   good(boardNo){
                     
-                    axios.post(`http://localhost:7777/member/addLikeBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    axios.post(`http://localhost:7777/member/addLikeBoard/${boardNo}`,{memberNo:this.loginMeberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="추천되었습니다."){
@@ -176,7 +175,7 @@ export default {
                   },
                   
                   bad(boardNo){
-                    axios.post(`http://localhost:7777/member/addHateBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    axios.post(`http://localhost:7777/member/addHateBoard/${boardNo}`,{memberNo:this.loginMeberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="비추되었습니다."){
