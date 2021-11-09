@@ -27,6 +27,9 @@ import {
   SET_ITEM_LIST,
   FETCH_MY_BOARD_LIST,
   FETCH_MY_COMMENT_LIST,
+  ////마이페이지 관심목록
+  FETCH_MY_LIKE_LIST
+
 
   
 } from "./mutation-types";
@@ -224,5 +227,13 @@ export default {
           commit(FETCH_MY_COMMENT_LIST, res.data);
         });
   },
-
+  //마이페이지 관심목록 
+  fetchMyLikeList({ commit }, memberNo) {
+    return axios
+        .get(`http://localhost:7777/member/getMyState/${memberNo}`)
+        .then((res) => {
+        
+          commit(FETCH_MY_LIKE_LIST, res.data);
+        });
+  },
 };

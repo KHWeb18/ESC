@@ -2,6 +2,8 @@ package com.esc.khweb.controller;
 
 import com.esc.khweb.controller.request.MyChargingStateRequest;
 import com.esc.khweb.controller.vueCookie.UserInfo;
+import com.esc.khweb.entity.Board;
+import com.esc.khweb.entity.MyChargingState;
 import com.esc.khweb.service.MemberService;
 import com.esc.khweb.controller.request.MemberRequest;
 import com.esc.khweb.entity.Member;
@@ -230,6 +232,15 @@ public class MemberController {
 
                 return new ResponseEntity<>(alert,HttpStatus.OK);
         }
+
+
+        @GetMapping("/getMyState/{memberNo}")
+        public ResponseEntity<List<MyChargingState>> getMyState(@PathVariable("memberNo") Long memberNo) throws Exception{
+
+                return new ResponseEntity<List<MyChargingState>>(service.findByMemberNo(memberNo),HttpStatus.OK);
+        }
+
+
 
 
 }
