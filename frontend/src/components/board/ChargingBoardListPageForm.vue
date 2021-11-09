@@ -18,9 +18,9 @@
             </tr>
           </thead>
           <tbody>
-          <tr style="text-align: center;"  v-for="p in paginatedData" :key="p.boardNo">
+          <tr @click="goDetail(p.boardNo)" style="text-align: center;"  v-for="p in paginatedData" :key="p.boardNo">
             <td style="margin-right:50px">{{p.boardNo}}</td>
-            <td @click="goDetail(p.boardNo)">{{p.title}}</td>
+            <td>{{p.title}}</td>
             <td>{{p.memberId}}</td>
             <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh')}}</td>
             <td>{{p.viewcount}}</td>
