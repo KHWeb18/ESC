@@ -15,6 +15,9 @@ export default {
         v => !! v || '비밀번호를 작성해주세요.',
         v =>  /^[a-zA-Z0-9]*$/.test(v) || '영문+숫자로만 입력해주세요'
     ],
+    emailchkRules: [
+        v => !! v || '인증번호를 입력해주세요.',
+    ],
     memberList: [],
     session: null,
     isLogin: false,
