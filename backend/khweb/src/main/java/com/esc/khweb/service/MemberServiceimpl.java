@@ -237,6 +237,18 @@ public class MemberServiceimpl implements MemberService {
         MyChargingState myChargingState = new MyChargingState(memberNo,myChargingStateRequest.getStatNm(),myChargingStateRequest.getChgerType(), myChargingStateRequest.getAddr(), myChargingStateRequest.getLat(), myChargingStateRequest.getLng(), myChargingStateRequest.getUseTime(), myChargingStateRequest.getBusiCall());
 
         myChargingStateRepository.save(myChargingState);
+
     }
+
+    @Override
+    public List<MyChargingState> findByMemberNo(Long memberNo) throws Exception {
+        List<MyChargingState> myChargingStateList = myChargingStateRepository.findByMemberNo(memberNo);
+
+        // System.out.println(myChargingStateList);
+
+        return myChargingStateList;
+    }
+
+
 }
 

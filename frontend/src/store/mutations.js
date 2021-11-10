@@ -24,6 +24,8 @@ import {
   SET_ITEM_LIST,
   FETCH_MY_BOARD_LIST,
   FETCH_MY_COMMENT_LIST,
+  //마이페이지 관심목록 페이지
+  FETCH_MY_LIKE_LIST
 
 } from './mutation-types'
 
@@ -108,5 +110,9 @@ export default {
   },
   [FETCH_MY_COMMENT_LIST](state, myCommentList) {
     state.myCommentList = myCommentList;
+  },
+  //마이페이지 관심목록 
+  [FETCH_MY_LIKE_LIST](state, myLikeList) {
+    state.myLikeList = myLikeList;
   },
 };
