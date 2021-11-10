@@ -53,7 +53,7 @@ public interface MemberService {
 
     public void modify(Long memberNo, MemberRequest memberRequest) throws Exception;
 
-    public void addMyState(Long memberNo, MyChargingStateRequest myChargingStateRequest);
+    public String addMyState(Long memberNo, MyChargingStateRequest myChargingStateRequest);
 
     public List<MyChargingState> findByMemberNo(Long memberNo) throws Exception;
 

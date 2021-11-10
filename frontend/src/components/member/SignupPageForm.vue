@@ -17,7 +17,10 @@
               <v-text-field :rules="emailRules" required v-model="email"
             label="이메일" type="text" prepend-icon="mdi-email-multiple" flat solo>
             </v-text-field>
-            
+            <!-- <v-btn @click="showpost" height="20px">우편</v-btn>
+            <v-text-field :rules="emailRules" required v-model="address"
+            label="주소" type="text" prepend-icon="mdi-email-multiple" flat solo>
+            </v-text-field> -->
             <v-btn @click="emailChkCoin=1, emailsend(email)" v-if="emailChkCoin ==0" height="20px">이메일인증코드발송</v-btn>
             <v-btn @click="emailsend(email)" v-if="emailChkCoin ==1" height="20px">코드가오지않으셧나요?/재발송</v-btn>
             <v-text-field v-if="emailChkCoin ==1" :rules="emailchkRules" required v-model="AuthenticationNum"
@@ -101,27 +104,15 @@ export default {
             }).catch(e=>{alert(e.response.data.message)})
             
         },
-        showpost(){
-            new window.daum.Postcode({
-        oncomplete: function(data) {
-           document.getElementById("sample4_jibunAddress").value = data.address;
-        }
-    }).open();
-        },
-        handleSearchInput(e) { 
-      
-      let search = e.target.value
-      if(this.search.length !== 0){
-        clearTimeout(this.debounce)
-        this.debounce = setTimeout(() => { 
-            this.address =search
-          }, 500);}
-        else if(this.search.length == 0){
-        clearTimeout(this.debounce); this.debounce = setTimeout(() => { 
-           
-          },500); 
-          }},
+        // showpost(){ new window.daum.Postcode( {oncomplete:function(data){ 
+
+        // } }).open();
+        // },
+    setAddress(data){
+        this.address  = data.address
+    }
     },
+    
     computed: {
         ...mapState(['emailRules','nameRules','passwordRules','emailchkRules'])
     },

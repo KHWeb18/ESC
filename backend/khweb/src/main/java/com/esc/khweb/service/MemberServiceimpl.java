@@ -232,11 +232,38 @@ public class MemberServiceimpl implements MemberService {
     }
 
     @Override
-    public void addMyState(Long memberNo, MyChargingStateRequest myChargingStateRequest) {
+    public String addMyState(Long memberNo, MyChargingStateRequest myChargingStateRequest) {
 
-        MyChargingState myChargingState = new MyChargingState(memberNo,myChargingStateRequest.getStatNm(),myChargingStateRequest.getChgerType(), myChargingStateRequest.getAddr(), myChargingStateRequest.getLat(), myChargingStateRequest.getLng(), myChargingStateRequest.getUseTime(), myChargingStateRequest.getBusiCall());
+        ArrayList  addrList  = new ArrayList();
+        String result = "이미 즐겨찾기에 등록되어있습니다.";
+        String result2 ="즐겨찾기에 등록되었습니다.";
+        List<MyChargingState> myChargingState1 = myChargingStateRepository.findAll();
+            for(int i = 0 ; i<myChargingState1.toArray().length; i++){
+                addrList.add(myChargingState1.get(i).getAddr());
 
-        myChargingStateRepository.save(myChargingState);
+            }
+            if (addrList.indexOf(myChargingStateRequest.getAddr()) >= 0) {
+                return result;
+             } else if (addrList.indexOf(myChargingStateRequest.getAddr()) < 0) {
+                MyChargingState myChargingState = new MyChargingState(memberNo,myChargingStateRequest.getStatNm(),myChargingStateRequest.getChgerType(), myChargingStateRequest.getAddr(), myChargingStateRequest.getLat(), myChargingStateRequest.getLng(), myChargingStateRequest.getUseTime(), myChargingStateRequest.getBusiCall());
+                myChargingStateRepository.save(myChargingState);
+                return result2;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return "알수없는오류";
+
 
     }
 
