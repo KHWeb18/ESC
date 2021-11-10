@@ -122,23 +122,23 @@ a{
 .logo{
   position: absolute;
   top: 3px;
-  left: 12px;
+  left: 0;
   cursor: pointer;
-  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/0aac50f0d9fefb44d7166a096ee8e69a742ae72c/frontend/src/assets/logo/%EB%A1%9C%EA%B3%A0%EB%B0%B0%EA%B2%BDx2.png");
+  background-image: url("https://user-images.githubusercontent.com/83811729/141101367-6f78239a-c8f0-4530-a6d9-7648d6d961a9.png");
   background-size: contain;
-  width: 160px;
-  height: 90%;
+  width: 220px;
+  height: 100%;
 }
 
 .logoScroll{
   position: absolute;
   top: 3px;
-  left: 12px;
+  left: 0;
   cursor: pointer;
-  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/0aac50f0d9fefb44d7166a096ee8e69a742ae72c/frontend/src/assets/logo/%EB%A1%9C%EA%B3%A0%EB%B0%B0%EA%B2%BDx.png");
+  background-image: url("https://user-images.githubusercontent.com/83811729/141103400-55abcd4c-7080-4f4a-97d0-d4749fe971e4.png");
   background-size: contain;
-  width: 160px;
-  height: 90%;
+  width: 220px;
+  height: 100%;
 }
 
 .menus{
