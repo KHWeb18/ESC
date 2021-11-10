@@ -13,37 +13,34 @@
               >
 
                 <v-img
+                    class="white--text align-end"
                     height="250"
                     :src="item.carImage"
-                ></v-img>
+                >
+                <v-card-title >
+                  <div>
+                    {{ item.cartype }}
+                  </div>
+                </v-card-title>
+                </v-img>
 
-                <v-img max-height="100" max-width="70" class="ml-5 mb-n3" :src="item.brandImage"></v-img>
+                <v-img max-height="100" max-width="130" class="ml-5 mb-n3" :src="item.brandImage"></v-img>
 
-                <v-card-title class="text-subtitle-1">{{ item.cartype }}</v-card-title>
+                
 
                 <v-card-text>
-                  <v-row align="center" class="mx-0">
-                    <v-rating :value="4.5" color="amber" dense
-                        half-increments readonly size="14"></v-rating>
-
-                    <div class="grey--text ms-4">
-                      4.5
-                    </div>
+                  <v-row align="center" class="mx-0">    
                   </v-row>
-
                   <div class="my-4 text-subtitle-1">
-                    $ • I{{ item.subsidy }}
+                    국고보조금 : {{ item.subsidy }}
                   </div>
-
-
                 </v-card-text>
-
                 <v-divider class="mx-4"></v-divider>
 
 
                 <v-card-actions>
-                  <v-btn color="deep-purple lighten-2" text class="white">
-                    visit
+                  <v-btn color="deep-purple lighten-2" text class="white" :href="item.url">
+                    차량 홈페이지 이동
                   </v-btn>
                   <v-spacer></v-spacer>
                   <v-btn icon @click="show = idx" class="white">
@@ -55,10 +52,10 @@
                     <v-divider></v-divider>
 
                     <v-card-text>
-                      탑승인원 : {{item.personnel}}<br/>
-                      탑승인원 : {{item.personnel}}<br/>
-                      탑승인원 : {{item.personnel}}<br/>
-                      탑승인원 : {{item.personnel}}<br/>
+                      승차인원 : {{item.personnel}}<br/>
+                      최고속도출력 : {{item.speed}}<br/>
+                      1회충전주행거리 : {{item.charge}}<br/>
+                      배터리 : {{item.battery}}<br/>
                     </v-card-text>
                   </div>
                 </v-expand-transition>
