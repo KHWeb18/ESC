@@ -12,20 +12,20 @@ export default {
         let kakao = window.kakao
         console.log(this.$refs.map) // should be not null
         var container = this.$refs.map
-        const {center, level}  = this.options
+        // const {center, level}  = this.options
         const mapInstance = new kakao.maps.Map(container, {
-            center : new kakao.maps.LatLng(center.lat, center.lng),
-            level,
+            center : new kakao.maps.LatLng(37.54699, 127.09598),
+            level: 4,
         }); //지도 생성 및 객체 리턴
         console.log(mapInstance)
 
-      var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다
-          imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-          imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      var imageSrc = 'https://user-images.githubusercontent.com/83811729/141110524-2eb6207b-b3a0-453b-8440-8429673b2cba.png', // 마커이미지의 주소입니다
+          imageSize = new kakao.maps.Size(30, 45), // 마커이미지의 크기입니다
+          imageOption = {offset: new kakao.maps.Point(20, 42)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
       // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
       var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
-      var markerPosition  = new kakao.maps.LatLng(center.lat, center.lng);
+      var markerPosition  = new kakao.maps.LatLng(37.54699, 127.09598);
 
         var marker = new kakao.maps.Marker({
         position: markerPosition,
@@ -34,28 +34,28 @@ export default {
 });
         marker.setMap(mapInstance);
 
-      // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-      var content = `<div class="overlay_info">
-      <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>스울 충전소</strong></a>
-      <div class="desc">
-      <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">
-      <span class="address">스울 충전소 ~~~</span>
-      </div>
-      </div>`;
-
-// 커스텀 오버레이가 표시될 위치입니다
-      var position = new kakao.maps.LatLng(center.lat, center.lng);
-
-// 커스텀 오버레이를 생성합니다
-      var customOverlay = new kakao.maps.CustomOverlay({
-        map: mapInstance,
-        position: position,
-        content: content,
-        xAnchor: 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
-        yAnchor: 0.5 // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
-      });
-
-      customOverlay.setMap(mapInstance)
+//       // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+//       var content = `<div class="overlay_info">
+//       <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>스울 충전소</strong></a>
+//       <div class="desc">
+//       <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">
+//       <span class="address">스울 충전소 ~~~</span>
+//       </div>
+//       </div>`;
+//
+// // 커스텀 오버레이가 표시될 위치입니다
+//       var position = new kakao.maps.LatLng(center.lat, center.lng);
+//
+// // 커스텀 오버레이를 생성합니다
+//       var customOverlay = new kakao.maps.CustomOverlay({
+//         map: mapInstance,
+//         position: position,
+//         content: content,
+//         xAnchor: 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+//         yAnchor: 0.5 // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+//       });
+//
+//       customOverlay.setMap(mapInstance)
 
 
     },
