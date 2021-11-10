@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div v-if="session">
       <my-page-menu/>
       <is-my-board-menu/> 
       <is-my-board-page-form :myBoardList=myBoardList />
-
+      {{ session }}
     </div>
 </template>
 
@@ -12,6 +12,7 @@ import { mapActions, mapState } from 'vuex'
 import IsMyBoardMenu from '../../components/myPage/IsMyBoardMenu.vue'
 import IsMyBoardPageForm from '../../components/myPage/IsMyBoardPageForm.vue'
 import MyPageMenu from '../../components/myPage/MyPageMenu.vue'
+import Vue from "vue";
 
 export default {
     name: 'IsMyBoardPage',
@@ -24,14 +25,21 @@ export default {
     },
     data(){
       return{
-        memberNo: this.$store.state.session.memberNo
+        memberNo: ''
       }
     },
     methods: {
         ...mapActions(['fetchMyBoardList']),
     },
   mounted() {
-      this.fetchMyBoardList(this.session.memberId)
+      if(this.session){
+        this.fetchMyBoardList(this.session.memberId)
+      }else{
+        let data = Vue.$cookies.get("user");
+        let member = data.memberId;
+        this.fetchMyBoardList(member)
+      }
+
   }
 
 
