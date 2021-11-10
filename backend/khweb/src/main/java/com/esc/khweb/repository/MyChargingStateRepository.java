@@ -13,6 +13,6 @@ public interface MyChargingStateRepository extends JpaRepository<MyChargingState
 
     List<MyChargingState> findByMemberNo(Long memberNo);
 
-    @Query("select j.addr from MyChargingState j where j.memberNo =:memberNo")
-    List<MyChargingState> findByaddr(Long memberNo);
+    @Query("select i from MyChargingState i where i.memberNo = :memberNo")
+    List<MyChargingState> findByMemberall (Long memberNo);
 }

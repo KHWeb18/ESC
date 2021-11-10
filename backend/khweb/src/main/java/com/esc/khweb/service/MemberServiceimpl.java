@@ -237,7 +237,7 @@ public class MemberServiceimpl implements MemberService {
         ArrayList  addrList  = new ArrayList();
         String result = "이미 즐겨찾기에 등록되어있습니다.";
         String result2 ="즐겨찾기에 등록되었습니다.";
-        List<MyChargingState> myChargingState1 = myChargingStateRepository.findAll();
+        List<MyChargingState> myChargingState1 = myChargingStateRepository.findByMemberall(memberNo);
             for(int i = 0 ; i<myChargingState1.toArray().length; i++){
                 addrList.add(myChargingState1.get(i).getAddr());
 
