@@ -38,7 +38,8 @@ export default {
 
       // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
       var content = `<div class="overlay_info">
-      <div class="topTitle"><span>충전소 정보</span></div>
+      <div class="topTitle">
+      <span>충전소 정보</span></div>
       <div class="desc">
       <span class="name"><a class="nameLink">종묘 공영주차장</a></span>
       <hr class="solid">
@@ -66,10 +67,6 @@ export default {
       </div>
       </div>`;
 
-      kakao.maps.event.addListener(marker, 'click', function() {
-       console.log('hello');
-      });
-
       // customOverlay.setMap(mapInstance)
       kakao.maps.event.addListener(marker, 'click', function() {
         // 커스텀 오버레이가 표시될 위치입니다
@@ -87,6 +84,11 @@ export default {
         customOverlay.setMap(mapInstance);
       });
 
+      kakao.maps.event.addListener(marker, 'click', function() {
+        var customOverlay = new kakao.maps.CustomOverlay({
+        });
+        customOverlay.setMap(null);
+      });
 
 
     },
