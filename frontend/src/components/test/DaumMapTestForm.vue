@@ -56,6 +56,12 @@ export default {
       <i style="color: #3F51B5; font-size: 20px" class="fas fa-info-circle"></i>
       <span>사용 가능</span>
       </div>
+
+      <div class="type">
+      <i style="color: #3F51B5; font-size: 20px" class="fas fa-plug"></i>
+      <span>DC 차데모 + AC삼</span>
+      </div>
+
       </div>
       </div>`;
 
@@ -68,7 +74,7 @@ export default {
         position: position,
         content: content,
         xAnchor: 0.53, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
-        yAnchor: 1.3, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+        yAnchor: 1.2, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
         removable: true
       });
 
@@ -152,7 +158,7 @@ hr.solid {
   margin-top: 4px;
 }
 .overlay_info .address .fa-map-marker-alt{
-  margin: 6px 2px 0 0;
+  margin: 6px 5px 0 0;
   color: #3F51B5;
   font-size: 22px
 }
@@ -163,7 +169,7 @@ hr.solid {
   margin-top: 8px;
 }
 .overlay_info .tel .fa-phone{
-  margin: 6px 2px 0 0;
+  margin: 6px 5px 0 0;
   color: #3F51B5;
   font-size: 22px
 }
@@ -174,7 +180,18 @@ hr.solid {
   margin-top: 7px;
 }
 .overlay_info .status .fa-info-circle{
-  margin: 6px 2px 0 0;
+  margin: 6px 5px 0 0;
+  color: #3F51B5;
+  font-size: 22px
+}
+.overlay_info .type span{
+  font-weight: 500;
+  font-size: 1em;
+  color: #333;
+  margin-top: 7px;
+}
+.overlay_info .type .fa-plug{
+  margin: 6px 5px 0 3px;
   color: #3F51B5;
   font-size: 22px
 }
