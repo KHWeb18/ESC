@@ -34,28 +34,27 @@ export default {
 });
         marker.setMap(mapInstance);
 
-//       // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-//       var content = `<div class="overlay_info">
-//       <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>스울 충전소</strong></a>
-//       <div class="desc">
-//       <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">
-//       <span class="address">스울 충전소 ~~~</span>
-//       </div>
-//       </div>`;
-//
-// // 커스텀 오버레이가 표시될 위치입니다
-//       var position = new kakao.maps.LatLng(center.lat, center.lng);
-//
-// // 커스텀 오버레이를 생성합니다
-//       var customOverlay = new kakao.maps.CustomOverlay({
-//         map: mapInstance,
-//         position: position,
-//         content: content,
-//         xAnchor: 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
-//         yAnchor: 0.5 // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
-//       });
-//
-//       customOverlay.setMap(mapInstance)
+      // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+      var content = `<div class="overlay_info">
+      <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>충전소 정보</strong></a>
+      <div class="desc">
+      <span class="address">구의축구공원 ~~~</span>
+      </div>
+      </div>`;
+
+// 커스텀 오버레이가 표시될 위치입니다
+      var position  = new kakao.maps.LatLng(37.54699, 127.09598);
+
+// 커스텀 오버레이를 생성합니다
+      var customOverlay = new kakao.maps.CustomOverlay({
+        map: mapInstance,
+        position: position,
+        content: content,
+        xAnchor: 0.53, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+        yAnchor: 1.4 // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+      });
+
+      customOverlay.setMap(mapInstance)
 
 
     },
@@ -92,36 +91,35 @@ export default {
 .overlay_info a
 {
   display: block;
-  background: #d95050;
-  background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;
+  background: #d95050 url(https://user-images.githubusercontent.com/83811729/141263590-aba1330b-7993-4eb3-b2f3-f8f83f0eaea1.png) no-repeat right 14px center;
   text-decoration: none;
-  color: #fff; padding:12px 36px 12px 14px;
-  font-size: 14px;
+  color: #fff;
+  padding:12px 36px 6px 14px;
+  font-size: 10px;
   border-radius: 6px 6px 0 0
 }
 .overlay_info a strong
 {
-  background:url(https://user-images.githubusercontent.com/83811729/140928869-499c8c5e-751a-47b0-ba71-e4e0dd78e0f0.png) no-repeat;
-  padding-bottom: 10px;
-  padding-left: 27px;
+  margin-left: 10px;
+  color: #ffffff;
+  font-size: 2em;
 }
 .overlay_info .desc
 {
-  padding:14px;
+  padding:50px;
   position: relative;
   min-width: 190px;
   height: 56px
 }
-.overlay_info img
-{
-  vertical-align: top;
-}
 .overlay_info .address
-{font-size: 12px;
+{
+  font-size: 12px;
   color: #333;
   position: absolute;
-  left: 80px;
-  right: 14px; top: 24px; white-space: normal
+  left: 20px;
+  right: 14px;
+  top: 14px;
+  white-space: normal
 }
 .overlay_info:after
 {
