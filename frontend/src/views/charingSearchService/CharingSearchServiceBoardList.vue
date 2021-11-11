@@ -159,25 +159,70 @@ export default {
             center : new kakao.maps.LatLng(center.lat, center.lng),
             level,
         }); //지도 생성 및 객체 리턴
-
+  
         for (var i = 0 ; i < xml.length ; i ++){
         var markerPosition  = new kakao.maps.LatLng(xml[i].lat, xml[i].lng);
         var marker = new kakao.maps.Marker({ position: markerPosition});
         marker.setMap(this.mapInstance);
         
-        var iwContent = `<div  style="max-width:1000">${xml[i].statNm}</div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능
+        var iwContent = `<div class="overlay_info">
+      <div class="topTitle"><span>충전소 정보</span></div>
+      <div class="desc">
+      <span class="name"><a class="nameLink">종묘 공영주차장</a></span>
+      <hr class="solid">
+
+      <div class="address">
+      <i class="fas fa-map-marker-alt"></i>
+      <span>서울특별시 종로구 종로 157 가나다라마ㅏ사</span>
+      </div>
+
+      <div class="tel">
+      <i style="color: #3F51B5; font-size: 20px" class="fas fa-phone"></i>
+      <span>1661-9408</span>
+      </div>
+
+      <div class="status">
+      <i style="color: #3F51B5; font-size: 20px" class="fas fa-info-circle"></i>
+      <span>사용 가능</span>
+      </div>
+
+      <div class="type">
+      <i style="color: #3F51B5; font-size: 20px" class="fas fa-plug"></i>
+      <span>DC 차데모 + AC삼</span>
+      </div>
+
+      </div>
+      </div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능
         iwPosition = new kakao.maps.LatLng(xml[i].lat, xml[i].lng), //인포윈도우 표시 
         iwRemoveable = true; 
 
             // 인포윈도우를 생성하고 지도에 표시
             this.infowindow = new kakao.maps.InfoWindow({
-            map: this.mapInstance, // 인포윈도우가 표시될 지도
+            // 인포윈도우가 표시될 지도
             position : iwPosition, 
             content : iwContent,
             removable : iwRemoveable });
+
+       kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(this.mapInstance, marker, this.infowindow));
+        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(this.infowindow));
         } 
+      function makeOverListener(map, marker, infowindow) {
+    return function() {
+        infowindow.open(map, marker);
+    };
+}
+
+// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+function makeOutListener(infowindow) {
+    return function() {
+        infowindow.close();
+    };
+}
+        
+
         //검색후 마커 및 인포 윈도우 그리기 끝
             this.item = xml
+            
       })
 
     },
@@ -205,7 +250,7 @@ export default {
         var marker = new kakao.maps.Marker({ position: markerPosition});
         marker.setMap(this.mapInstance);
         
-        var iwContent = `<div  style="max-width:1000">${xml[i].statNm}</div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능
+        var iwContent = `<div  >${xml[i].statNm}</div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능
         iwPosition = new kakao.maps.LatLng(xml[i].lat, xml[i].lng), //인포윈도우 표시 
         iwRemoveable = true; 
 
@@ -216,9 +261,12 @@ export default {
             content : iwContent,
             removable : iwRemoveable });
         } 
+
+
         //검색후 마커 및 인포 윈도우 그리기 끝
             this.item = xml
       })
+      
     },
     goDetial(items){
         this.SetitemList(items)
@@ -305,4 +353,117 @@ input:focus {outline:2px solid #d50000;}
   background: rgb(93, 128, 233);
 }
 
+</style>
+<style >
+.overlay_info {
+  border-radius: 6px;
+  margin-bottom: 12px;
+  float:left;
+  position: relative;
+  border: 1px solid #ccc;
+  border-bottom: 2px solid #ddd;background-color:#fff;
+}
+
+.overlay_info:nth-of-type(n) {
+  border:0;
+  box-shadow: 0px 1px 2px #888;
+}
+.overlay_info .topTitle
+{
+  display: block;
+  background: #d95050 url(https://user-images.githubusercontent.com/83811729/141263590-aba1330b-7993-4eb3-b2f3-f8f83f0eaea1.png) no-repeat right 14px center;
+  text-decoration: none;
+  color: #fff;
+  padding:12px 36px 6px 14px;
+  font-size: 10px;
+  border-radius: 6px 6px 0 0
+}
+.overlay_info .topTitle span
+{
+  margin-left: 40px;
+  color: #ffffff;
+  font-size: 2.1em;
+  font-weight: bold;
+}
+.overlay_info .desc
+{
+  font-family: "Montserrat", sans-serif;
+  padding: 20px 0 10px 0;
+  text-align: left;
+  margin: -10px 20px 0 20px;
+  position: relative;
+  min-width: 190px;
+  white-space: normal;
+}
+.overlay_info .name
+{
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+.overlay_info .name a{
+  text-decoration: none;
+  color: #333;
+}
+hr.solid {
+  border-top: 2px solid #bbb;
+}
+
+.overlay_info .address span{
+  font-size: 13px;
+  color: #333;
+  margin-top: 4px;
+}
+.overlay_info .address .fa-map-marker-alt{
+  margin: 6px 5px 0 0;
+  color: #3F51B5;
+  font-size: 22px
+}
+.overlay_info .tel span{
+  font-weight: 600;
+  font-size: 1em;
+  color: #333;
+  margin-top: 8px;
+}
+.overlay_info .tel .fa-phone{
+  margin: 6px 5px 0 0;
+  color: #3F51B5;
+  font-size: 22px
+}
+.overlay_info .status span{
+  font-weight: 600;
+  font-size: 1em;
+  color: #333;
+  margin-top: 7px;
+}
+.overlay_info .status .fa-info-circle{
+  margin: 6px 5px 0 0;
+  color: #3F51B5;
+  font-size: 22px
+}
+.overlay_info .type span{
+  font-weight: 500;
+  font-size: 1em;
+  color: #333;
+  margin-top: 7px;
+}
+.overlay_info .type .fa-plug{
+  margin: 6px 5px 0 3px;
+  color: #3F51B5;
+  font-size: 22px
+}
+
+hr.soft {
+  border-top: 0.7px solid #aaa;
+}
+.overlay_info:after
+{
+  content:'';position: absolute;
+  margin-left: -11px;
+  left: 50%;
+  bottom: -12px;
+  width: 22px;
+  height: 12px;
+  background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png) no-repeat 0 bottom;
+}
 </style>
