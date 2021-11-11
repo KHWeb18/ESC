@@ -30,7 +30,8 @@ export default {
 
         var marker = new kakao.maps.Marker({
         position: markerPosition,
-        image: markerImage // 마커이미지 설정
+        image: markerImage, // 마커이미지 설정
+        clickable: true,
 
 });
         marker.setMap(mapInstance);
@@ -39,7 +40,7 @@ export default {
       var content = `<div class="overlay_info">
       <div class="topTitle"><span>충전소 정보</span></div>
       <div class="desc">
-      <span class="name">종묘 공영주차장</span>
+      <span class="name"><a class="nameLink">종묘 공영주차장</a></span>
       <hr class="solid">
 
       <div class="address">
@@ -65,23 +66,28 @@ export default {
       </div>
       </div>`;
 
-// 커스텀 오버레이가 표시될 위치입니다
-      var position  = new kakao.maps.LatLng(37.54699, 127.09598);
-
-// 커스텀 오버레이를 생성합니다
-      var customOverlay = new kakao.maps.CustomOverlay({
-        map: mapInstance,
-        position: position,
-        content: content,
-        xAnchor: 0.53, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
-        yAnchor: 1.2, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
-        removable: true
+      kakao.maps.event.addListener(marker, 'click', function() {
+       console.log('hello');
       });
 
       // customOverlay.setMap(mapInstance)
       kakao.maps.event.addListener(marker, 'click', function() {
+        // 커스텀 오버레이가 표시될 위치입니다
+        var position  = new kakao.maps.LatLng(37.54699, 127.09598);
+
+// 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+          map: mapInstance,
+          position: position,
+          content: content,
+          xAnchor: 0.53, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+          yAnchor: 1.2, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+          removable: true
+        });
         customOverlay.setMap(mapInstance);
       });
+
+
 
     },
   methods: {
@@ -91,8 +97,8 @@ export default {
       var myPositionMarker = new kakao.maps.Marker({ position: myPosition});
       myPositionMarker.setMap(this.FirstmapInstance)
     },
-    customOverlay(){
-
+    testBtn(){
+      console.log('hello')
     }
   }
 }
@@ -146,6 +152,10 @@ export default {
 {
   font-size: 1.2em;
   font-weight: bold;
+  color: #333;
+}
+.overlay_info .name a{
+  text-decoration: none;
   color: #333;
 }
 hr.solid {
