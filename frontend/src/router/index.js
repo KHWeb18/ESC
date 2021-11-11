@@ -235,7 +235,7 @@ const routes = [
     component: CharingSearchServiceBoardList
   },
   {
-    path: '/charingSearchServiceReadPage/',
+    path: '/charingSearchServiceReadPage/:statNm',
     name: 'CharingSearchServiceReadPage',
     components: {
       default: CharingSearchServiceReadPage     
