@@ -21,7 +21,7 @@
                 <td><button @click="addMyState(session,items)"><v-icon>mdi-star</v-icon></button></td>
                 <td>{{items.statNm}}</td>
                 <a @click="goDetial(items)"><td>{{items.addr}}</td></a>
-                <td>{{items.chgerType}}</td>
+                <td>{{formater(items.chgerType)}}</td>
                 <td>{{items.useTime}}</td>
                 <td>{{items.busiCall}}</td>
             </tr>
@@ -129,6 +129,16 @@ export default {
   },
   methods:{
     ...mapActions(['SetitemList']),
+    formater(value){
+      switch (value){
+        case '03':
+          return '삼번'
+        case '06':
+          return '육번'
+        default:
+          return '해당없음'
+      }
+    },
     addMyState(session,items){
       if(session !== null){
         const {addr , busiCall, chgerType, lat , lng , statNm, useTime } = items
