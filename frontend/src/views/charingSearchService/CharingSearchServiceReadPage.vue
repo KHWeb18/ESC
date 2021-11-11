@@ -186,6 +186,10 @@ export default {
         type:String,
         required: true
     }*/
+    statNm:{
+      type: String,
+      required:true
+    }
   },
   data(){
     return{
