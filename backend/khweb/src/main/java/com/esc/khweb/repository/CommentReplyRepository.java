@@ -17,6 +17,7 @@ public interface CommentReplyRepository extends JpaRepository<CommentReply, Long
     @Query("select r from CommentReply r where r.replyNo = :replyNo")
     public List<CommentReply> findByReplyNo(Long replyNo);
 
+
     @Transactional
     @Modifying
     @Query(value = "delete from CommentReply where commentNo =:comment_no")

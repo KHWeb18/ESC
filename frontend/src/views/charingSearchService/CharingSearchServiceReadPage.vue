@@ -28,92 +28,92 @@
     <v-card id="cardinfo">
       <v-card-title style="text-align:center">
         <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <button @click="addMyState(session,itemsList)" ><v-icon>mdi-star</v-icon></button><span v-bind="attrs" v-on="on">{{itemsList.statNm}}</span>
-        </template>
-        <span>지점명</span>
+          <template v-slot:activator="{ on, attrs }">
+            <button @click="addMyState(session,itemsList)" ><v-icon>mdi-star</v-icon></button><span v-bind="attrs" v-on="on">{{itemsList.statNm}}</span>
+          </template>
+          <span>지점명</span>
         </v-tooltip>
         <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span style="margin-left: 20px" v-bind="attrs" v-on="on">주소:{{itemsList.addr}},</span>
-        </template>
-        <span>주소입니다. </span>
+          <template v-slot:activator="{ on, attrs }">
+            <span style="margin-left: 20px" v-bind="attrs" v-on="on">주소:{{itemsList.addr}},</span>
+          </template>
+          <span>주소입니다. </span>
         </v-tooltip>
       </v-card-title>
       <v-divider></v-divider>
       <v-card-title>
         <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span v-bind="attrs" v-on="on">문의전화:{{itemsList.busiCall}},</span>
-        </template>
-        <span>운영기관연락처</span>
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on">문의전화:{{itemsList.busiCall}},</span>
+          </template>
+          <span>운영기관연락처</span>
         </v-tooltip>
         <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span style="margin-left: 20px" v-bind="attrs" v-on="on">주차비무료여부:{{itemsList.parkingFree}},</span>
-        </template>
-        <span>주차료 (Y: 무료, N: 유료, 값 없는 경우 현장 확인) </span>
+          <template v-slot:activator="{ on, attrs }">
+            <span style="margin-left: 20px" v-bind="attrs" v-on="on">주차비무료여부:{{itemsList.parkingFree}},</span>
+          </template>
+          <span>주차료 (Y: 무료, N: 유료, 값 없는 경우 현장 확인) </span>
         </v-tooltip>
-         <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span style="margin-left: 20px" v-bind="attrs" v-on="on">이용자제한:{{itemsList.limitYn}},</span>
-        </template>
-        <span>이용자 제한 (N:제한 없음) </span>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span style="margin-left: 20px" v-bind="attrs" v-on="on">이용자제한:{{itemsList.limitYn}},</span>
+          </template>
+          <span>이용자 제한 (N:제한 없음) </span>
         </v-tooltip>
-         <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span style="margin-left: 20px" v-bind="attrs" v-on="on">이용자제한사유:{{itemsList.limitDetail}},</span>
-        </template>
-        <span>이용제한 사유 </span>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span style="margin-left: 20px" v-bind="attrs" v-on="on">이용자제한사유:{{itemsList.limitDetail}},</span>
+          </template>
+          <span>이용제한 사유 </span>
         </v-tooltip>
-        
+
       </v-card-title>
       <v-divider></v-divider>
-     <v-card-title>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span v-bind="attrs" v-on="on">사용가능시간:{{itemsList.useTime}}</span>
-        </template>
-        <span>해당충전소의 운영시간입니다.</span>
+      <v-card-title>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on">사용가능시간:{{itemsList.useTime}}</span>
+          </template>
+          <span>해당충전소의 운영시간입니다.</span>
         </v-tooltip>
         <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span  style="margin-left: 20px" v-bind="attrs" v-on="on">상세위치:{{itemsList.location}},</span>
-        </template>
-        <span>이충전기의상태위치입니다.</span>
+          <template v-slot:activator="{ on, attrs }">
+            <span  style="margin-left: 20px" v-bind="attrs" v-on="on">상세위치:{{itemsList.location}},</span>
+          </template>
+          <span>이충전기의상태위치입니다.</span>
         </v-tooltip>
-     </v-card-title>
-     <v-divider></v-divider>
-     <v-card-title>
+      </v-card-title>
+      <v-divider></v-divider>
+      <v-card-title>
         <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span v-bind="attrs" v-on="on">충전소사용상태:{{itemsList.stat}}</span>
-        </template>
-        <pre>충전기상태
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on">충전소사용상태:{{itemsList.stat}}</span>
+          </template>
+          <pre>충전기상태
 (1: 통신이상, 2: 충전대기,
 3: 충전중, 4: 운영중지,
 5: 점검중, 9: 상태미확인)
 </pre>
         </v-tooltip>
-     </v-card-title>
-     <v-divider></v-divider>
-     <v-card-title>
-       
-       <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span v-bind="attrs" v-on="on">충전소ID:{{itemsList.statId}}</span>
-        </template>
-        <span>충전소아이디입니다.</span>
+      </v-card-title>
+      <v-divider></v-divider>
+      <v-card-title>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on">충전소ID:{{itemsList.statId}}</span>
+          </template>
+          <span>충전소아이디입니다.</span>
         </v-tooltip>
-     </v-card-title>
-     <v-divider></v-divider>
-     <v-card-title>
-      
-       <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span v-bind="attrs" v-on="on">충전기타입:{{itemsList.chgerType}}</span>
-        </template>
-        <pre><span>충전기타입
+      </v-card-title>
+      <v-divider></v-divider>
+      <v-card-title>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on">충전기타입:{{itemsList.chgerType}}</span>
+          </template>
+          <pre><span>충전기타입
 (01:DC차데모,
 02: AC완속,
 03: DC차데모+AC3상,
@@ -121,48 +121,48 @@
 05: DC차데모+DC콤보
 06: DC차데모+AC3상
 +DC콤보,
-07: AC3상) 
+07: AC3상)
 </span></pre>
         </v-tooltip>
         <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span  style="margin-left: 20px" v-bind="attrs" v-on="on">충전용량:{{itemsList.output}}</span>
-        </template>
-        <span>충전용량 kW (3, 7, 50, 100, 200)</span>
+          <template v-slot:activator="{ on, attrs }">
+            <span  style="margin-left: 20px" v-bind="attrs" v-on="on">충전용량:{{itemsList.output}}</span>
+          </template>
+          <span>충전용량 kW (3, 7, 50, 100, 200)</span>
         </v-tooltip>
-     </v-card-title>
-     <v-divider></v-divider>
-     <v-card-title>
-       
-       <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span v-bind="attrs" v-on="on">충전시작일시:{{itemsList.nowTsdt}}</span>
-        </template>
-        <span>현재충전중이라면,언제부터충전햇는지 표시합니다.</span>
-        </v-tooltip>
-     </v-card-title>
-     <v-divider></v-divider>
-     <v-card-title>
-       
-       <v-tooltip bottom>                                                  
-        <template v-slot:activator="{ on, attrs }">                         
-          <span v-bind="attrs" v-on="on">마지막충전일시:{{(itemsList.lastTedt)}}</span>
-        </template>
-        <span>이충전소의 마지막 충전일시입니다.</span>
-        </v-tooltip>
-     </v-card-title>
+      </v-card-title>
       <v-divider></v-divider>
-     <v-card-title>
-       
-       <v-tooltip bottom>                                                  
-        <template v-slot:activator="{ on, attrs }">                         
-          <span v-bind="attrs" v-on="on">충전방식:{{(itemsList.method)}}</span>
-        </template>
-        <span>단독/동시</span>
+      <v-card-title>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on">충전시작일시:{{itemsList.nowTsdt}}</span>
+          </template>
+          <span>현재충전중이라면,언제부터충전햇는지 표시합니다.</span>
         </v-tooltip>
-     </v-card-title>
+      </v-card-title>
+      <v-divider></v-divider>
+      <v-card-title>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on">마지막충전일시:{{(itemsList.lastTedt)}}</span>
+          </template>
+          <span>이충전소의 마지막 충전일시입니다.</span>
+        </v-tooltip>
+      </v-card-title>
+      <v-divider></v-divider>
+      <v-card-title>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on">충전방식:{{(itemsList.method)}}</span>
+          </template>
+          <span>단독/동시</span>
+        </v-tooltip>
+      </v-card-title>
     </v-card>
-    
+
   </div>
 </template>
 
@@ -293,9 +293,9 @@ export default {
 <style  lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 #cardinfo{
-    font-family: 'Do Hyeon', sans-serif;
-    font-size: 1.3em;
-    float: none;
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: 1.3em;
+  float: none;
 }
 .kmapDetail{
   width: 55%;

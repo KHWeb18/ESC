@@ -1,5 +1,6 @@
 <template>
     <div class="kmap" ref="map">
+
     </div>
 </template>
 
@@ -29,33 +30,63 @@ export default {
 
         var marker = new kakao.maps.Marker({
         position: markerPosition,
-        image: markerImage // 마커이미지 설정
+        image: markerImage, // 마커이미지 설정
+        clickable: true,
 
 });
         marker.setMap(mapInstance);
 
-//       // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-//       var content = `<div class="overlay_info">
-//       <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>스울 충전소</strong></a>
-//       <div class="desc">
-//       <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">
-//       <span class="address">스울 충전소 ~~~</span>
-//       </div>
-//       </div>`;
-//
-// // 커스텀 오버레이가 표시될 위치입니다
-//       var position = new kakao.maps.LatLng(center.lat, center.lng);
-//
-// // 커스텀 오버레이를 생성합니다
-//       var customOverlay = new kakao.maps.CustomOverlay({
-//         map: mapInstance,
-//         position: position,
-//         content: content,
-//         xAnchor: 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
-//         yAnchor: 0.5 // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
-//       });
-//
-//       customOverlay.setMap(mapInstance)
+      // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+      var content = `<div class="overlay_info">
+      <div class="topTitle"><span>충전소 정보</span></div>
+      <div class="desc">
+      <span class="name"><a class="nameLink">종묘 공영주차장</a></span>
+      <hr class="solid">
+
+      <div class="address">
+      <i class="fas fa-map-marker-alt"></i>
+      <span>서울특별시 종로구 종로 157 가나다라마ㅏ사</span>
+      </div>
+
+      <div class="tel">
+      <i style="color: #3F51B5; font-size: 20px" class="fas fa-phone"></i>
+      <span>1661-9408</span>
+      </div>
+
+      <div class="status">
+      <i style="color: #3F51B5; font-size: 20px" class="fas fa-info-circle"></i>
+      <span>사용 가능</span>
+      </div>
+
+      <div class="type">
+      <i style="color: #3F51B5; font-size: 20px" class="fas fa-plug"></i>
+      <span>DC 차데모 + AC삼</span>
+      </div>
+
+      </div>
+      </div>`;
+
+      kakao.maps.event.addListener(marker, 'click', function() {
+       console.log('hello');
+      });
+
+      // customOverlay.setMap(mapInstance)
+      kakao.maps.event.addListener(marker, 'click', function() {
+        // 커스텀 오버레이가 표시될 위치입니다
+        var position  = new kakao.maps.LatLng(37.54699, 127.09598);
+
+// 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+          map: mapInstance,
+          position: position,
+          content: content,
+          xAnchor: 0.53, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+          yAnchor: 1.2, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+          removable: true
+        });
+        customOverlay.setMap(mapInstance);
+      });
+
 
 
     },
@@ -66,8 +97,8 @@ export default {
       var myPositionMarker = new kakao.maps.Marker({ position: myPosition});
       myPositionMarker.setMap(this.FirstmapInstance)
     },
-    customOverlay(){
-
+    testBtn(){
+      console.log('hello')
     }
   }
 }
@@ -87,41 +118,96 @@ export default {
 }
 
 .overlay_info:nth-of-type(n) {
-  border:0; box-shadow: 0px 1px 2px #888;
+  border:0;
+  box-shadow: 0px 1px 2px #888;
 }
-.overlay_info a
+.overlay_info .topTitle
 {
   display: block;
-  background: #d95050;
-  background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;
+  background: #d95050 url(https://user-images.githubusercontent.com/83811729/141263590-aba1330b-7993-4eb3-b2f3-f8f83f0eaea1.png) no-repeat right 14px center;
   text-decoration: none;
-  color: #fff; padding:12px 36px 12px 14px;
-  font-size: 14px;
+  color: #fff;
+  padding:12px 36px 6px 14px;
+  font-size: 10px;
   border-radius: 6px 6px 0 0
 }
-.overlay_info a strong
+.overlay_info .topTitle span
 {
-  background:url(https://user-images.githubusercontent.com/83811729/140928869-499c8c5e-751a-47b0-ba71-e4e0dd78e0f0.png) no-repeat;
-  padding-bottom: 10px;
-  padding-left: 27px;
+  margin-left: 40px;
+  color: #ffffff;
+  font-size: 2.1em;
+  font-weight: bold;
 }
 .overlay_info .desc
 {
-  padding:14px;
+  font-family: "Montserrat", sans-serif;
+  padding: 20px 0 10px 0;
+  text-align: left;
+  margin: -10px 20px 0 20px;
   position: relative;
   min-width: 190px;
-  height: 56px
+  white-space: normal;
 }
-.overlay_info img
+.overlay_info .name
 {
-  vertical-align: top;
-}
-.overlay_info .address
-{font-size: 12px;
+  font-size: 1.2em;
+  font-weight: bold;
   color: #333;
-  position: absolute;
-  left: 80px;
-  right: 14px; top: 24px; white-space: normal
+}
+.overlay_info .name a{
+  text-decoration: none;
+  color: #333;
+}
+hr.solid {
+  border-top: 2px solid #bbb;
+}
+
+.overlay_info .address span{
+  font-size: 13px;
+  color: #333;
+  margin-top: 4px;
+}
+.overlay_info .address .fa-map-marker-alt{
+  margin: 6px 5px 0 0;
+  color: #3F51B5;
+  font-size: 22px
+}
+.overlay_info .tel span{
+  font-weight: 600;
+  font-size: 1em;
+  color: #333;
+  margin-top: 8px;
+}
+.overlay_info .tel .fa-phone{
+  margin: 6px 5px 0 0;
+  color: #3F51B5;
+  font-size: 22px
+}
+.overlay_info .status span{
+  font-weight: 600;
+  font-size: 1em;
+  color: #333;
+  margin-top: 7px;
+}
+.overlay_info .status .fa-info-circle{
+  margin: 6px 5px 0 0;
+  color: #3F51B5;
+  font-size: 22px
+}
+.overlay_info .type span{
+  font-weight: 500;
+  font-size: 1em;
+  color: #333;
+  margin-top: 7px;
+}
+.overlay_info .type .fa-plug{
+  margin: 6px 5px 0 3px;
+  color: #3F51B5;
+  font-size: 22px
+}
+
+hr.soft {
+  border-top: 0.7px solid #aaa;
 }
 .overlay_info:after
 {
