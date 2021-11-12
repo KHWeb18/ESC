@@ -37,58 +37,147 @@ export default {
         marker.setMap(mapInstance);
 
       // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-      var content = `<div class="overlay_info">
-      <div class="topTitle">
-      <span>충전소 정보</span></div>
-      <div class="desc">
-      <span class="name"><a class="nameLink">종묘 공영주차장</a></span>
-      <hr class="solid">
+      // var content = `<div class="overlay_info">
+      // <div class="topTitle">
+      // <span>충전소 정보</span></div>
+      // <div class="desc">
+      // <span class="name"><a class="nameLink">종묘 공영주차장</a></span>
+      // <hr class="solid">
+      //
+      // <div class="address">
+      // <i class="fas fa-map-marker-alt"></i>
+      // <span>서울특별시 종로구 종로 157 가나다라마ㅏ사</span>
+      // </div>
+      //
+      // <div class="tel">
+      // <i style="color: #3F51B5; font-size: 20px" class="fas fa-phone"></i>
+      // <span>1661-9408</span>
+      // </div>
+      //
+      // <div class="status">
+      // <i style="color: #3F51B5; font-size: 20px" class="fas fa-info-circle"></i>
+      // <span>사용 가능</span>
+      // </div>
+      //
+      // <div class="type">
+      // <i style="color: #3F51B5; font-size: 20px" class="fas fa-plug"></i>
+      // <span>DC 차데모 + AC삼</span>
+      // </div>
+      //
+      // </div>
+      // </div>`;
 
-      <div class="address">
-      <i class="fas fa-map-marker-alt"></i>
-      <span>서울특별시 종로구 종로 157 가나다라마ㅏ사</span>
-      </div>
-
-      <div class="tel">
-      <i style="color: #3F51B5; font-size: 20px" class="fas fa-phone"></i>
-      <span>1661-9408</span>
-      </div>
-
-      <div class="status">
-      <i style="color: #3F51B5; font-size: 20px" class="fas fa-info-circle"></i>
-      <span>사용 가능</span>
-      </div>
-
-      <div class="type">
-      <i style="color: #3F51B5; font-size: 20px" class="fas fa-plug"></i>
-      <span>DC 차데모 + AC삼</span>
-      </div>
-
-      </div>
-      </div>`;
+      var position  = new kakao.maps.LatLng(37.54699, 127.09598);
 
       // customOverlay.setMap(mapInstance)
-      kakao.maps.event.addListener(marker, 'click', function() {
-        // 커스텀 오버레이가 표시될 위치입니다
-        var position  = new kakao.maps.LatLng(37.54699, 127.09598);
+//       kakao.maps.event.addListener(marker, 'click', function() {
+//         // 커스텀 오버레이가 표시될 위치입니다
+//
+//
+// // 커스텀 오버레이를 생성합니다
+//         var customOverlay = new kakao.maps.CustomOverlay({
+//           map: mapInstance,
+//           position: position,
+//           content: content,
+//           xAnchor: 0.53, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+//           yAnchor: 1.2, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+//           removable: true
+//         });
+//         customOverlay.setMap(mapInstance);
+//       });
 
-// 커스텀 오버레이를 생성합니다
-        var customOverlay = new kakao.maps.CustomOverlay({
-          map: mapInstance,
-          position: position,
-          content: content,
-          xAnchor: 0.53, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
-          yAnchor: 1.2, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
-          removable: true
-        });
-        customOverlay.setMap(mapInstance);
-      });
+      var customOverlay = new kakao.maps.CustomOverlay({
+        position: position,
+        xAnchor: 0.53, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+        yAnchor: 1.2, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+      })
 
-      kakao.maps.event.addListener(marker, 'click', function() {
-        var customOverlay = new kakao.maps.CustomOverlay({
-        });
-        customOverlay.setMap(null);
-      });
+
+      var content = document.createElement('div')
+      content.className = 'overlay_info'
+
+      var title = document.createElement('div')
+      title.className = 'topTitle'
+
+      var info = document.createElement('span')
+      info.appendChild(document.createTextNode('충전소 정보'))
+      content.appendChild(title)
+      title.appendChild(info)
+      title.onclick = function (){
+        customOverlay.setMap(null)
+      }
+
+      var desc = document.createElement('div')
+      desc.className = 'desc'
+
+      var name = document.createElement('span')
+      name.className = 'name'
+
+      var nameLink = document.createElement('a')
+      nameLink.className = 'nameLink'
+      nameLink.appendChild(document.createTextNode('종묘 공영주차장'))
+      name.appendChild(nameLink)
+      desc.appendChild(name)
+      content.appendChild(desc)
+
+      var solid = document.createElement('hr')
+      solid.className = 'solid'
+      desc.appendChild(solid)
+
+      var address = document.createElement('div')
+      address.className = 'address'
+      var markerIcon = document.createElement('i')
+      markerIcon.className = 'fas fa-map-marker-alt'
+      var addressText = document.createElement('span')
+      addressText.appendChild(document.createTextNode('서울특별시 종로구 157 가나다라마바사'))
+      address.appendChild(markerIcon)
+      address.appendChild(addressText)
+      desc.appendChild(address)
+
+      var tel = document.createElement('div')
+      tel.className = 'tel'
+      var telIcon = document.createElement('i')
+      telIcon.className = 'fas fa-phone'
+      var telText = document.createElement('span')
+      telText.appendChild(document.createTextNode('1661-9408'))
+      tel.appendChild(telIcon)
+      tel.appendChild(telText)
+      desc.appendChild(tel)
+
+      var status = document.createElement('div')
+      status.className = 'status'
+      var statusIcon = document.createElement('i')
+      statusIcon.className = 'fas fa-info-circle'
+      var statusText = document.createElement('span')
+      statusText.appendChild(document.createTextNode('사용 가능'))
+      status.appendChild(statusIcon)
+      status.appendChild(statusText)
+      desc.appendChild(status)
+
+      var type = document.createElement('div')
+      type.className = 'type'
+      var typeIcon = document.createElement('i')
+      typeIcon.className = 'fas fa-plug'
+      var typeText = document.createElement('span')
+      typeText.appendChild(document.createTextNode('DC 차데모 + AC삼'))
+      type.appendChild(typeIcon)
+      type.appendChild(typeText)
+      desc.appendChild(type)
+
+
+      console.log(content)
+
+      kakao.maps.event.addListener(marker,'click',function (){
+        customOverlay.setMap(mapInstance)
+        customOverlay.setContent(content)
+      })
+
+
+      // kakao.maps.event.addListener(marker, 'click', function() {
+      //   var customOverlay = new kakao.maps.CustomOverlay({
+      //   });
+      //   customOverlay.setMap(null);
+      // });
 
 
     },
