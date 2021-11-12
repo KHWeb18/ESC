@@ -20,7 +20,7 @@ export default {
         }); //지도 생성 및 객체 리턴
         console.log(mapInstance)
 
-      var imageSrc = 'https://user-images.githubusercontent.com/83811729/141110524-2eb6207b-b3a0-453b-8440-8429673b2cba.png', // 마커이미지의 주소입니다
+      var imageSrc = 'https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/img/map/blue.png', // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(30, 45), // 마커이미지의 크기입니다
           imageOption = {offset: new kakao.maps.Point(20, 42)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
