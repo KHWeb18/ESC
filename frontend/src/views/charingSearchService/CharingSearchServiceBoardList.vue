@@ -171,8 +171,36 @@ export default {
         }); //지도 생성 및 객체 리턴
   
         for (var i = 0 ; i < xml.length ; i ++){
+          var imageSize = new kakao.maps.Size(20, 30), imageOption = {offset: new kakao.maps.Point(5, 20)};
+          var imageSrc
+          switch (xml[i].stat){
+            case '1':
+              imageSrc = 'https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/img/map/blue.png'
+              break
+            case '2':
+              imageSrc = 'https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/img/map/green.png'
+              break
+            case '3':
+              imageSrc = 'https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/img/map/red.png'
+              break
+            case '4':
+              imageSrc = 'https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/img/map/grey.png'
+              break
+            case '5':
+              imageSrc = 'https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/img/map/orange.png'
+              break
+            case '9':
+              imageSrc = 'https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/img/map/blue.png'
+              break
+            default:
+              imageSrc = 'https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/img/map/blue.png'
+          }
+          var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
         var markerPosition  = new kakao.maps.LatLng(xml[i].lat, xml[i].lng);
-        var marker = new kakao.maps.Marker({ position: markerPosition});
+        var marker = new kakao.maps.Marker({
+          position: markerPosition,
+          image: markerImage,
+          clickable: true});
         marker.setMap(this.mapInstance);
         
         var iwContent = `<div class="overlay_info">
@@ -260,9 +288,15 @@ function makeOutListener(infowindow) {
             level,
         }); //지도 생성 및 객체 리턴
 
+
         for (var i = 0 ; i < xml.length ; i ++){
+
         var markerPosition  = new kakao.maps.LatLng(xml[i].lat, xml[i].lng);
-        var marker = new kakao.maps.Marker({ position: markerPosition});
+
+
+        var marker = new kakao.maps.Marker({
+          position: markerPosition,
+          });
         marker.setMap(this.mapInstance);
         
           var iwContent = `<div class="overlay_info">
