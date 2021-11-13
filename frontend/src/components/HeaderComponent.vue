@@ -19,9 +19,9 @@
           <span @click="$router.push('/freeboardListPage')">게시판</span>
           <span @click="$router.push('/apiTest')">api실험</span>
           <span @click="$router.push('/noticeListPage')">공지사항/건의</span>
-          <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/administratorPage')">관리자페이지</span>
           <span  @click="$router.push('/charingSearchServiceBoardList')">충전소찾기</span>
           <span>원하는거 추가</span>
+          <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/administratorPage')">관리자페이지</span>
         </v-toolbar-items>
 
         <v-toolbar-items class="hidden-sm-and-down hidden-lg-only menusSmall">
@@ -38,12 +38,8 @@
         <v-toolbar-items class="memberItems">
 
           <div v-if="!LoginCheck" class="memberContainer hidden-sm-and-down">
-            <router-link to="/loginPage">
-              <span class="text">로그인</span>
-            </router-link>
-            <router-link to="signUpPage">
-              <span class="text">회원가입</span>
-            </router-link>
+            <span class="text" @click="$router.push('/loginPage')">로그인</span>
+            <span class="text" @click="$router.push('/signUpPage')">회원가입</span>
           </div>
 
           <header-member-menu></header-member-menu>
@@ -152,11 +148,12 @@ a{
 .menus{
   margin-top: 80px;
   margin-left: 85px;
-  font-size: 1.2em;
+  font-size: 1.12em;
   cursor: pointer;
+  z-index: 2;
 }
 .menus:hover{
-  color: grey;
+  color: #cfd6da;
 }
 
 .menus span{
@@ -173,7 +170,7 @@ a{
   cursor: pointer;
 }
 .menusSmall:hover{
-  color: grey;
+  color: #cfd6da;
 }
 
 .menusSmall span{
@@ -195,17 +192,19 @@ a{
 .memberContainer{
   font-size: 0.8em;
 }
+.memberContainer:hover{
+  color: #cfd6da;
+}
+.memberContainer span:hover{
+  color: black;
+}
 
 .text{
   font-size: 1em;
   margin-left: 25px;
-  color: black;
+  cursor: pointer;
 }
-.textScroll{
-  font-size: 1em;
-  margin-left: 25px;
-  color: white;
-}
+
 .myPage{
   margin: 0 0 0 20px;
 }
