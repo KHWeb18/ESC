@@ -3,13 +3,20 @@
     <v-app-bar absolute app color="white" hide-on-scroll prominent elevation="0">
       <v-container class="pa-0 fill-height">
 
-        <!-- logo -->
-<!--        <v-toolbar-title class="logoContainer">-->
-<!--          <router-link class="logo" to="/" tag="span">-->
-<!--          </router-link>-->
-<!--        </v-toolbar-title>-->
+          <router-link class="logo" to="/" tag="span">
+          </router-link>
 
         <v-toolbar-items class="hidden-md-and-down menus">
+          <span @click="$router.push('/evinfo')">전기차 정보</span>
+          <span @click="$router.push('/freeboardListPage')">게시판</span>
+          <span @click="$router.push('/apiTest')">api실험</span>
+          <span @click="$router.push('/noticeListPage')">공지사항/건의</span>
+          <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/administratorPage')">관리자페이지</span>
+          <span  @click="$router.push('/charingSearchServiceBoardList')">충전소찾기</span>
+          <span>원하는거 추가</span>
+        </v-toolbar-items>
+
+        <v-toolbar-items class="hidden-sm-and-down hidden-lg-only menusSmall">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">게시판</span>
           <span @click="$router.push('/apiTest')">api실험</span>
@@ -22,12 +29,12 @@
         <v-spacer></v-spacer>
         <v-toolbar-items class="memberItems">
 
-          <div v-if="!LoginCheck">
+          <div v-if="!LoginCheck" class="memberContainer hidden-sm-and-down">
             <router-link to="/loginPage">
-              <span class="hidden-md-and-down text">로그인</span>
+              <span class="text">로그인</span>
             </router-link>
             <router-link to="signUpPage">
-              <span class="hidden-md-and-down text">회원가입</span>
+              <span class="text">회원가입</span>
             </router-link>
           </div>
 
@@ -109,14 +116,10 @@ a{
   text-decoration: none;
 }
 
-.logoContainer{
-  width: 100px;
-}
-
 .logo{
   position: absolute;
   top: 3px;
-  left: 0;
+  left: 42%;
   cursor: pointer;
   background-image: url("https://user-images.githubusercontent.com/83811729/141101367-6f78239a-c8f0-4530-a6d9-7648d6d961a9.png");
   background-size: contain;
@@ -125,40 +128,49 @@ a{
 }
 
 .menus{
-  margin-top: 10px;
-  font-size: 1.5em;
+  margin-top: 80px;
+  font-size: 1.2em;
   cursor: pointer;
 }
 .menus:hover{
   color: grey;
 }
 
-.menusScroll{
-  margin-top: 10px;
-  font-size: 1.8em;
-  color: white;
-  cursor: pointer;
-}
-.menusScroll:hover{
-  color: grey;
-}
-
 .menus span{
   padding: 0 30px
 }
-.menusScroll span{
-  padding: 0 30px
-}
+
 .menus span:hover{
   color: black;
 }
-.menusScroll span:hover{
-  color: white;
+
+.menusSmall{
+  margin-top: 80px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+.menusSmall:hover{
+  color: grey;
 }
 
+.menusSmall span{
+  padding: 0 10px 0 0;
+  margin: 0 30px 0 0;
+}
+
+.menusSmall span:hover{
+  color: black;
+}
+
+
 .memberItems{
-  margin-top: -8px;
-  margin-right: -25px;
+  position: absolute;
+  top: 10px;
+  right: 6%;
+}
+
+.memberContainer{
+  font-size: 0.8em;
 }
 
 .text{

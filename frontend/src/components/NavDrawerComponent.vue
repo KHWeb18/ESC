@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar-nav-icon @click.stop="nav_drawer = !nav_drawer" class="hamburger">
+    <v-app-bar-nav-icon @click.stop="nav_drawer = !nav_drawer" class="hamburger hidden-md-and-up">
     </v-app-bar-nav-icon>
 
     <v-navigation-drawer app v-model="nav_drawer" absolute temporary right>
