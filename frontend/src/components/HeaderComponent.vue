@@ -3,6 +3,8 @@
     <v-app-bar absolute app color="white" hide-on-scroll prominent elevation="0">
       <v-container class="pa-0 fill-height">
 
+        <span class="topTitle hidden-md-and-down"></span>
+
         <router-link class="logo hidden-md-and-down" to="/" tag="span">
         </router-link>
 
@@ -80,30 +82,11 @@ export default {
   },
   data() {
     return {
-      bg: 'transparent',
-      logo: 'logo',
-      text: 'text',
-      menus: 'menus',
+
     }
   },
   methods: {
     ...mapActions(['setIsLogin', 'logout']),
-    changeColor() {
-      if (
-          document.body.scrollTop > 50 ||
-          document.documentElement.scrollTop > 50
-      ) {
-        this.bg = 'blue-grey darken-4'
-        this.logo = 'logoScroll'
-        this.text = 'textScroll'
-        this.menus = 'menusScroll'
-      } else {
-        this.bg = 'transparent';
-        this.logo = 'logo'
-        this.text = 'text'
-        this.menus = 'menus'
-      }
-    },
   },
 }
 </script>
@@ -120,6 +103,17 @@ export default {
 
 a{
   text-decoration: none;
+}
+
+.topTitle{
+  background-image: url("https://user-images.githubusercontent.com/83811729/141649050-85f58ee1-85d7-42cc-a276-1da6fc392508.png");
+  background-size: contain;
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  top: 20px;
+  left: 41%;
+  opacity: 0.9;
 }
 
 .logo{
