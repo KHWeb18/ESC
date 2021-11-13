@@ -3,8 +3,14 @@
     <v-app-bar absolute app color="white" hide-on-scroll prominent elevation="0">
       <v-container class="pa-0 fill-height">
 
-          <router-link class="logo" to="/" tag="span">
-          </router-link>
+        <router-link class="logo hidden-md-and-down" to="/" tag="span">
+        </router-link>
+
+        <router-link class="logoSmall hidden-lg-and-up hidden-sm-and-down" to="/" tag="span">
+        </router-link>
+
+        <router-link class="logoMini hidden-md-and-up" to="/" tag="span">
+        </router-link>
 
         <v-toolbar-items class="hidden-md-and-down menus">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
@@ -118,17 +124,40 @@ a{
 
 .logo{
   position: absolute;
+  top: 12px;
+  left: 3px;
+  cursor: pointer;
+  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/evslogo2.png");
+  background-size: contain;
+  width: 160px;
+  height: 100%;
+}
+
+.logoSmall{
+  position: absolute;
   top: 3px;
   left: 42%;
   cursor: pointer;
-  background-image: url("https://user-images.githubusercontent.com/83811729/141101367-6f78239a-c8f0-4530-a6d9-7648d6d961a9.png");
+  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/evslogo2.png");
   background-size: contain;
-  width: 220px;
+  width: 135px;
+  height: 100%;
+}
+
+.logoMini{
+  position: absolute;
+  top: 10px;
+  left: 39%;
+  cursor: pointer;
+  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/evslogo2.png");
+  background-size: contain;
+  width: 165px;
   height: 100%;
 }
 
 .menus{
   margin-top: 80px;
+  margin-left: 85px;
   font-size: 1.2em;
   cursor: pointer;
 }
