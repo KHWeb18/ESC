@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar-nav-icon @click.stop="nav_drawer = !nav_drawer" :class="hamburger">
+    <v-app-bar-nav-icon @click.stop="nav_drawer = !nav_drawer" class="hamburger">
     </v-app-bar-nav-icon>
 
     <v-navigation-drawer app v-model="nav_drawer" absolute temporary right>
@@ -51,9 +51,6 @@ export default {
     ...mapState(['isLogin', 'session'])
   },
   mounted() {
-    window.onscroll = () => {
-      this.changeColor();
-    };
   },
   data() {
     return {
@@ -71,16 +68,6 @@ export default {
   },
   methods:{
     ...mapActions(['logout', ]),
-    changeColor() {
-      if (
-          document.body.scrollTop > 50 ||
-          document.documentElement.scrollTop > 50
-      ) {
-        this.hamburger = 'hamburger hidden-lg-only white--text'
-      } else {
-        this.hamburger = 'hamburger hidden-lg-only black--text'
-      }
-    },
     goMyPage() {
       this.$router.push('/isMyPage')
     },

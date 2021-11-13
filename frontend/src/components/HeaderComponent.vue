@@ -1,15 +1,15 @@
 <template>
   <div class="nav-container">
-    <v-app-bar app :color="bg" elevation="0">
+    <v-app-bar absolute app color="white" hide-on-scroll prominent elevation="0">
       <v-container class="pa-0 fill-height">
 
         <!-- logo -->
-        <v-toolbar-title class="logoContainer">
-          <router-link :class="logo" to="/" tag="span">
-          </router-link>
-        </v-toolbar-title>
+<!--        <v-toolbar-title class="logoContainer">-->
+<!--          <router-link class="logo" to="/" tag="span">-->
+<!--          </router-link>-->
+<!--        </v-toolbar-title>-->
 
-        <v-toolbar-items :class="menus" class="hidden-md-and-down">
+        <v-toolbar-items class="hidden-md-and-down menus">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">게시판</span>
           <span @click="$router.push('/apiTest')">api실험</span>
@@ -24,10 +24,10 @@
 
           <div v-if="!LoginCheck">
             <router-link to="/loginPage">
-              <span :class="text" class="hidden-md-and-down">로그인</span>
+              <span class="hidden-md-and-down text">로그인</span>
             </router-link>
             <router-link to="signUpPage">
-              <span :class="text" class="hidden-md-and-down">회원가입</span>
+              <span class="hidden-md-and-down text">회원가입</span>
             </router-link>
           </div>
 
@@ -58,9 +58,6 @@ export default {
   name: "HeaderComponent",
   components: {HeaderMemberMenu, NavDrawerComponent},
   mounted() {
-    window.onscroll = () => {
-      this.changeColor();
-    };
   },
   computed: {
     ...mapState(['isLogin', 'session']),
@@ -94,9 +91,6 @@ export default {
         this.menus = 'menus'
       }
     },
-    closeNav(value){
-      this.nav_drawer = value
-    }
   },
 }
 </script>
@@ -130,20 +124,9 @@ a{
   height: 100%;
 }
 
-.logoScroll{
-  position: absolute;
-  top: 3px;
-  left: 0;
-  cursor: pointer;
-  background-image: url("https://user-images.githubusercontent.com/83811729/141103400-55abcd4c-7080-4f4a-97d0-d4749fe971e4.png");
-  background-size: contain;
-  width: 220px;
-  height: 100%;
-}
-
 .menus{
   margin-top: 10px;
-  font-size: 1.8em;
+  font-size: 1.5em;
   cursor: pointer;
 }
 .menus:hover{
