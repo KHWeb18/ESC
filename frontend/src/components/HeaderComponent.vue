@@ -146,8 +146,10 @@ a{
 }
 
 .menus{
-  margin-top: 80px;
+  position: relative;
   margin-left: 85px;
+  top: 40px;
+  max-height: 50px;
   font-size: 1.12em;
   cursor: pointer;
   z-index: 2;
@@ -165,7 +167,9 @@ a{
 }
 
 .menusSmall{
-  margin-top: 80px;
+  position: relative;
+  top: 45px;
+  max-height: 35px;
   font-size: 1.1em;
   cursor: pointer;
 }
