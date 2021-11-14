@@ -146,8 +146,10 @@ a{
 }
 
 .menus{
-  margin-top: 80px;
+  position: relative;
   margin-left: 85px;
+  top: 40px;
+  max-height: 50px;
   font-size: 1.12em;
   cursor: pointer;
   z-index: 2;
