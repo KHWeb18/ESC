@@ -167,7 +167,9 @@ a{
 }
 
 .menusSmall{
-  margin-top: 80px;
+  position: relative;
+  top: 45px;
+  max-height: 35px;
   font-size: 1.1em;
   cursor: pointer;
 }
