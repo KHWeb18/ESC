@@ -713,6 +713,10 @@ button .star:hover{
   position: relative;
   top: 7px;
 }
+.btn-cover{
+  position: relative;
+  right: 10%;
+}
 
 </style>
 <style >
