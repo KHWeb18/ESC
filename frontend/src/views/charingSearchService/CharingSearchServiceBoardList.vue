@@ -1,60 +1,81 @@
 <template>
-
+  <v-container>
     <div>
 
-        
-        <div style="max-width:800px" class="kmap" ref="map">
 
-        </div>
-        
-        <div class="InfoTable">
-        <table>
-            <tr id="headerTr">
-                <td>즐겨찾기</td>
-                <td>지점명</td>
-                <td>주소</td>
-                <td>충전타입</td>
-                <td>사용시간</td>
-                <td>CALL</td>
-            </tr>
-            <tr v-for=" items in paginatedData " :key="items.lat+items.statNm+items.statUpdDt">
-                <td><button @click="addMyState(session,items)"><v-icon>mdi-star</v-icon></button></td>
-                <td>{{items.statNm}}</td>
-                <a @click="goDetial(items)"><td>{{items.addr}}</td></a>
-                <td>{{typeFormatter(items.chgerType)}}</td>
-                <td>{{items.useTime}}</td>
-                <td>{{items.busiCall}}</td>
-            </tr>
-        </table>
-        <div class="btn-cover">
-        <button class="levelControll" @click="levelControll(-1)"><span class="material-icons">zoom_in</span></button>
-        <button class="levelControll" @click="levelControll(1)"><span class="material-icons">zoom_out</span></button>
-          <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on">
-          <span class="profileBtn">지역선택</span>
-          <v-icon>arrow_drop_down</v-icon>
-          </v-btn>
+      <div class="kmap" ref="map">
+
+      </div>
+
+      <v-container>
+        <v-btn text class="levelControll" @click="levelControll(-1)"><span class="material-icons">zoom_in</span></v-btn>
+        <v-btn text class="levelControll" @click="levelControll(1)"><span class="material-icons">zoom_out</span></v-btn>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn text v-bind="attrs" v-on="on" class="profileBtn">
+              <span >지역선택</span>
+              <v-icon>arrow_drop_down</v-icon>
+            </v-btn>
           </template>
           <v-list>
             <v-list-item v-for="location in locationList" :key="location.value" class="pointer" @click="FetchData(location.value)">
               <v-list-item-title>{{location.text}}</v-list-item-title></v-list-item>
-            </v-list>
-          </v-menu>
-            <button  style="margin-left: 20%;" :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
-            <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
-            <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
-            검색
-            <input style="border: 1px; margin-right: 18%" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
-            
-            </div>
+          </v-list>
+        </v-menu>
+        <input class="search hidden-sm-and-down" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
+        <input class="searchSmall hidden-md-and-up" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
+      </v-container>
 
-        
-        
-   
+      <div>
+        <table class="InfoTable hidden-md-and-down">
+          <tr id="headerTr" class="blue darken-3">
+            <td>즐겨찾기</td>
+            <td>지점명</td>
+            <td>주소</td>
+            <td>충전타입</td>
+            <td>현재상태</td>
+            <td>CALL</td>
+          </tr>
+          <tr @click="goDetial(items)" v-for=" items in paginatedData " :key="items.lat+items.statNm+items.statUpdDt" class="infoTr">
+            <td @click.stop><button @click="addMyState(session,items)" class="starBtn">
+              <v-icon class="star">mdi-star</v-icon></button></td>
+            <td>{{items.statNm}}</td>
+            <a class="detailBtn"><td>{{items.addr}}</td></a>
+            <td>{{typeFormatter(items.chgerType)}}</td>
+            <td>{{statFormatter(items.stat)}}</td>
+            <td>{{items.busiCall}}</td>
+          </tr>
+        </table>
+
+        <table class="InfoTableSmall hidden-lg-and-up">
+          <tr class="blue darken-3 headerTrSmall">
+            <td>관심</td>
+            <td>지점명</td>
+            <td>주소</td>
+            <td>CALL</td>
+          </tr>
+          <tr @click="goDetial(items)" v-for=" items in paginatedData "
+              :key="items.lat+items.statNm+items.statUpdDt" class="infoTrSmall">
+            <td @click.stop><button @click="addMyState(session,items)" class="starBtn">
+              <v-icon class="star">mdi-star</v-icon></button></td>
+            <td>{{items.statNm}}</td>
+            <a class="detailBtn"><td>{{items.addr}}</td></a>
+            <td>{{items.busiCall}}</td>
+          </tr>
+        </table>
+
+        <div class="btn-cover">
+          <v-btn text style="margin-left: 20%;" :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></v-btn>
+          <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
+          <v-btn text :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></v-btn>
+
+
         </div>
-        
+      </div>
+
     </div>
+  </v-container>
+
 
 </template>
 
@@ -624,31 +645,83 @@ export default {
     height: 600px;
     float: left;
 }
-button {
+#headerTr{
+  color: white;
+  font-weight: 500;
+  user-select: none;
+}
+.profileBtn{
+  position: relative;
+  left: 20px;
+}
+.search{
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 5px 35px;
+  margin-top: 2px;
+  left: 42%
+}
+.searchSmall{
+  position: absolute;
+  border: 1px solid #ddd;
+  padding: 5px 25px;
+  margin-left: 20px;
+  margin-top: 2px;
+}
+.search::placeholder{
+  color: #ccc;
+  font-size: 0.9em;
+}
+.searchSmall::placeholder{
+  color: #ccc;
+  font-size: 0.9em;
+}
+.search:focus {
+  outline:2px solid #90CAF9;
+}
+.searchSmall:focus {
+  outline:2px solid #90CAF9;
+}
+table button {
     border: 1px solid transparent;
     padding: 6px;
     background-color: #efefefdd;
     border-radius: 6px;
     &:hover{
-        background-color: #ddd;
-        border-color: #ddd;
-    }
-    
-}
-table tr td {
-    &:hover{
-        background-color: #ddd;
-        border-color: #ddd;
+        background-color: #cfd6da;
+        border-color: #cfd6da;
     }
 }
-.InfoTable{
+button .star:hover{
+  color: yellow;
+}
+.infoTr{
+  cursor: pointer;
+}
+.infoTr:hover{
+  background-color: #E1F5FE;
+}
 
-  width: 1100px;
-  float: right;
+.InfoTable{
+  width: 100%;
 }
-input:focus {outline:2px solid #d50000;}
+.infoTrSmall{
+  cursor: pointer;
+}
+.infoTrSmall:hover{
+  background-color: #E1F5FE;
+}
+.headerTrSmall{
+  color: white;
+}
+
 #headerTr{
   background: rgb(93, 128, 233);
+}
+.detailBtn{
+  color: black;
+  position: relative;
+  top: 7px;
 }
 
 </style>
