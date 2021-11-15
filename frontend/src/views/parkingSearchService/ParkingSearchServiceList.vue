@@ -150,6 +150,7 @@ export default {
         
         this.panelLength.unshift(value)
         
+        let kakao = window.kakao
         console.log(value)
         if(value.위도==''){
           alert("해당주차장의 지도정보가없습니다.")

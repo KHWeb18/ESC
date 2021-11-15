@@ -259,15 +259,18 @@ export default {
           content.className = 'overlay_info'
           var title = document.createElement('div')
           title.className = 'topTitle'
+
           var info = document.createElement('span')
           info.appendChild(document.createTextNode('충전소 정보'))
           content.appendChild(title)
           title.appendChild(info)
           title.addEventListener('click',closeOverlay(customOverlay))
+
           var desc = document.createElement('div')
           desc.className = 'desc'
           var name = document.createElement('span')
           name.className = 'name'
+
           var nameLink = document.createElement('a')
           nameLink.className = 'nameLink'
           nameLink.appendChild(document.createTextNode(xml[i].statNm))
@@ -277,6 +280,7 @@ export default {
           var solid = document.createElement('hr')
           solid.className = 'solid'
           desc.appendChild(solid)
+
           var address = document.createElement('div')
           address.className = 'address'
           var markerIcon = document.createElement('i')
@@ -658,6 +662,7 @@ button .star:hover{
 .headerTrSmall{
   color: white;
 }
+
 .infoTrSmall:hover{
   background-color: #E1F5FE;
 }
@@ -672,6 +677,12 @@ button .star:hover{
   position: relative;
   top: 7px;
 }
+
+.btn-cover{
+  position: relative;
+  right: 10%;
+}
+
 </style>
 <style >
 .overlay_info {

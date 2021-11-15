@@ -24,7 +24,7 @@
           <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/administratorPage')">관리자페이지</span>
         </v-toolbar-items>
 
-        <v-toolbar-items class="hidden-sm-and-down hidden-lg-only menusSmall">
+        <v-toolbar-items class="hidden-sm-and-down hidden-lg-and-up menusSmall">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">게시판</span>
           <span @click="$router.push('/apiTest')">api실험</span> 
@@ -171,7 +171,7 @@ a{
   position: relative;
   top: 45px;
   max-height: 35px;
-  font-size: 1.1em;
+  font-size: 1em;
   cursor: pointer;
 }
 .menusSmall:hover{
@@ -179,8 +179,8 @@ a{
 }
 
 .menusSmall span{
-  padding: 0 10px 0 0;
-  margin: 0 30px 0 0;
+  padding: 0 20px 0 0;
+  margin: 0 10px 0 0;
 }
 
 .menusSmall span:hover{
