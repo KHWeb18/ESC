@@ -1,15 +1,30 @@
 <template>
   <div class="nav-container">
-    <v-app-bar app :color="bg" elevation="0">
+    <v-app-bar absolute app color="white" hide-on-scroll prominent elevation="0">
       <v-container class="pa-0 fill-height">
 
-        <!-- logo -->
-        <v-toolbar-title class="logoContainer">
-          <router-link :class="logo" to="/" tag="span">
-          </router-link>
-        </v-toolbar-title>
+        <span class="topTitle hidden-md-and-down"></span>
 
-        <v-toolbar-items :class="menus" class="hidden-md-and-down">
+        <router-link class="logo hidden-md-and-down" to="/" tag="span">
+        </router-link>
+
+        <router-link class="logoSmall hidden-lg-and-up hidden-sm-and-down" to="/" tag="span">
+        </router-link>
+
+        <router-link class="logoMini hidden-md-and-up" to="/" tag="span">
+        </router-link>
+
+        <v-toolbar-items class="hidden-md-and-down menus">
+          <span @click="$router.push('/evinfo')">전기차 정보</span>
+          <span @click="$router.push('/freeboardListPage')">게시판</span>
+          <span @click="$router.push('/apiTest')">api실험</span>
+          <span @click="$router.push('/noticeListPage')">공지사항/건의</span>
+          <span  @click="$router.push('/charingSearchServiceBoardList')">충전소찾기</span>
+          <span>원하는거 추가</span>
+          <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/administratorPage')">관리자페이지</span>
+        </v-toolbar-items>
+
+        <v-toolbar-items class="hidden-sm-and-down hidden-lg-only menusSmall">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">게시판</span>
           <span @click="$router.push('/apiTest')">api실험</span> 
@@ -23,13 +38,9 @@
         <v-spacer></v-spacer>
         <v-toolbar-items class="memberItems">
 
-          <div v-if="!LoginCheck">
-            <router-link to="/loginPage">
-              <span :class="text" class="hidden-md-and-down">로그인</span>
-            </router-link>
-            <router-link to="signUpPage">
-              <span :class="text" class="hidden-md-and-down">회원가입</span>
-            </router-link>
+          <div v-if="!LoginCheck" class="memberContainer hidden-sm-and-down">
+            <span class="text" @click="$router.push('/loginPage')">로그인</span>
+            <span class="text" @click="$router.push('/signUpPage')">회원가입</span>
           </div>
 
           <header-member-menu></header-member-menu>
@@ -59,9 +70,6 @@ export default {
   name: "HeaderComponent",
   components: {HeaderMemberMenu, NavDrawerComponent},
   mounted() {
-    window.onscroll = () => {
-      this.changeColor();
-    };
   },
   computed: {
     ...mapState(['isLogin', 'session']),
@@ -71,33 +79,11 @@ export default {
   },
   data() {
     return {
-      bg: 'transparent',
-      logo: 'logo',
-      text: 'text',
-      menus: 'menus',
+
     }
   },
   methods: {
     ...mapActions(['setIsLogin', 'logout']),
-    changeColor() {
-      if (
-          document.body.scrollTop > 50 ||
-          document.documentElement.scrollTop > 50
-      ) {
-        this.bg = 'blue-grey darken-4'
-        this.logo = 'logoScroll'
-        this.text = 'textScroll'
-        this.menus = 'menusScroll'
-      } else {
-        this.bg = 'transparent';
-        this.logo = 'logo'
-        this.text = 'text'
-        this.menus = 'menus'
-      }
-    },
-    closeNav(value){
-      this.nav_drawer = value
-    }
   },
 }
 </script>
@@ -116,79 +102,114 @@ a{
   text-decoration: none;
 }
 
-.logoContainer{
-  width: 100px;
+.topTitle{
+  background-image: url("https://user-images.githubusercontent.com/83811729/141649050-85f58ee1-85d7-42cc-a276-1da6fc392508.png");
+  background-size: contain;
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  top: 20px;
+  left: 41%;
+  opacity: 0.9;
 }
 
 .logo{
   position: absolute;
-  top: 3px;
-  left: 0;
+  top: 12px;
+  left: 3px;
   cursor: pointer;
-  background-image: url("https://user-images.githubusercontent.com/83811729/141101367-6f78239a-c8f0-4530-a6d9-7648d6d961a9.png");
+  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/evslogo2.png");
   background-size: contain;
-  width: 220px;
+  width: 160px;
   height: 100%;
 }
 
-.logoScroll{
+.logoSmall{
   position: absolute;
   top: 3px;
-  left: 0;
+  left: 42%;
   cursor: pointer;
-  background-image: url("https://user-images.githubusercontent.com/83811729/141103400-55abcd4c-7080-4f4a-97d0-d4749fe971e4.png");
+  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/evslogo2.png");
   background-size: contain;
-  width: 220px;
+  width: 135px;
+  height: 100%;
+}
+
+.logoMini{
+  position: absolute;
+  top: 10px;
+  left: 39%;
+  cursor: pointer;
+  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/evslogo2.png");
+  background-size: contain;
+  width: 165px;
   height: 100%;
 }
 
 .menus{
-  margin-top: 10px;
-  font-size: 1.8em;
+  position: relative;
+  margin-left: 85px;
+  top: 40px;
+  max-height: 50px;
+  font-size: 1.12em;
   cursor: pointer;
+  z-index: 2;
 }
 .menus:hover{
-  color: grey;
-}
-
-.menusScroll{
-  margin-top: 10px;
-  font-size: 1.8em;
-  color: white;
-  cursor: pointer;
-}
-.menusScroll:hover{
-  color: grey;
+  color: #cfd6da;
 }
 
 .menus span{
   padding: 0 30px
 }
-.menusScroll span{
-  padding: 0 30px
-}
+
 .menus span:hover{
   color: black;
 }
-.menusScroll span:hover{
-  color: white;
+
+.menusSmall{
+  position: relative;
+  top: 45px;
+  max-height: 35px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+.menusSmall:hover{
+  color: #cfd6da;
 }
 
+.menusSmall span{
+  padding: 0 10px 0 0;
+  margin: 0 30px 0 0;
+}
+
+.menusSmall span:hover{
+  color: black;
+}
+
+
 .memberItems{
-  margin-top: -8px;
-  margin-right: -25px;
+  position: absolute;
+  top: 10px;
+  right: 6%;
+}
+
+.memberContainer{
+  font-size: 0.8em;
+}
+.memberContainer:hover{
+  color: #cfd6da;
+}
+.memberContainer span:hover{
+  color: black;
 }
 
 .text{
   font-size: 1em;
   margin-left: 25px;
-  color: black;
+  cursor: pointer;
 }
-.textScroll{
-  font-size: 1em;
-  margin-left: 25px;
-  color: white;
-}
+
 .myPage{
   margin: 0 0 0 20px;
 }
