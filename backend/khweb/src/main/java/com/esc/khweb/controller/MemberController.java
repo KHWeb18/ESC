@@ -248,6 +248,14 @@ public class MemberController {
                 return new ResponseEntity<List<MyChargingState>>(service.findByMemberNo(memberNo),HttpStatus.OK);
         }
 
+        @PostMapping("/getMyParkingState/{memberNo}")
+        public ResponseEntity<List<MyParkingState>> getMyParkingState(@PathVariable("memberNo")Long memberNo) throws  Exception {
+
+                List<MyParkingState> list= service.getMyParkingState(memberNo);
+
+                return new ResponseEntity<>(list,HttpStatus.OK);
+        }
+
 
 
 

@@ -25,7 +25,8 @@ import {
   FETCH_MY_BOARD_LIST,
   FETCH_MY_COMMENT_LIST,
   //마이페이지 관심목록 페이지
-  FETCH_MY_LIKE_LIST
+  FETCH_MY_LIKE_LIST,
+  GET_MY_PARKING_STATES
 
 } from './mutation-types'
 
@@ -115,4 +116,7 @@ export default {
   [FETCH_MY_LIKE_LIST](state, myLikeList) {
     state.myLikeList = myLikeList;
   },
+  [GET_MY_PARKING_STATES](state, payload){
+    state.myParkingStates = payload
+  }
 };

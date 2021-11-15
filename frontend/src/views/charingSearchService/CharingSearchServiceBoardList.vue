@@ -123,7 +123,6 @@ export default {
     searchList:[],
     search: '',
     allitem: null,
-
     }
   },
   computed: {
@@ -205,7 +204,6 @@ export default {
     SettingData(){
       axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1&zcode=${this.zcode}`)
           .then((res)=>{
-
             let xml = res.data.items[0].item
         //검색후 마커 및 인포 윈도우 그리기 시작..
             let kakao = window.kakao
@@ -220,7 +218,6 @@ export default {
             center : new kakao.maps.LatLng(center.lat, center.lng),
             level,
         }); //지도 생성 및 객체 리턴
-
         for (var i = 0 ; i < xml.length ; i ++){
           var imageSize = new kakao.maps.Size(20, 30), imageOption = {offset: new kakao.maps.Point(5, 20)};
           var imageSrc
@@ -253,57 +250,33 @@ export default {
           image: markerImage,
           clickable: true});
         marker.setMap(this.mapInstance);
-
           var customOverlay = new kakao.maps.CustomOverlay({
             position: markerPosition,
             xAnchor: 0.48, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
             yAnchor: 1.08, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
           })
-
           var content = document.createElement('div')
           content.className = 'overlay_info'
           var title = document.createElement('div')
           title.className = 'topTitle'
-
-          var content = document.createElement('div')
-          content.className = 'overlay_info'
-
-          var title = document.createElement('div')
-          title.className = 'topTitle'
-
           var info = document.createElement('span')
           info.appendChild(document.createTextNode('충전소 정보'))
           content.appendChild(title)
           title.appendChild(info)
           title.addEventListener('click',closeOverlay(customOverlay))
-
           var desc = document.createElement('div')
           desc.className = 'desc'
           var name = document.createElement('span')
           name.className = 'name'
-
-
-          var desc = document.createElement('div')
-          desc.className = 'desc'
-
-          var name = document.createElement('span')
-          name.className = 'name'
-
           var nameLink = document.createElement('a')
           nameLink.className = 'nameLink'
           nameLink.appendChild(document.createTextNode(xml[i].statNm))
           name.appendChild(nameLink)
           desc.appendChild(name)
           content.appendChild(desc)
-
           var solid = document.createElement('hr')
           solid.className = 'solid'
           desc.appendChild(solid)
-
-          var solid = document.createElement('hr')
-          solid.className = 'solid'
-          desc.appendChild(solid)
-
           var address = document.createElement('div')
           address.className = 'address'
           var markerIcon = document.createElement('i')
@@ -313,7 +286,6 @@ export default {
           address.appendChild(markerIcon)
           address.appendChild(addressText)
           desc.appendChild(address)
-
           var tel = document.createElement('div')
           tel.className = 'tel'
           var telIcon = document.createElement('i')
@@ -323,7 +295,6 @@ export default {
           tel.appendChild(telIcon)
           tel.appendChild(telText)
           desc.appendChild(tel)
-
           var status = document.createElement('div')
           status.className = 'status'
           var statusIcon = document.createElement('i')
@@ -333,7 +304,6 @@ export default {
           status.appendChild(statusIcon)
           status.appendChild(statusText)
           desc.appendChild(status)
-
           var type = document.createElement('div')
           type.className = 'type'
           var typeIcon = document.createElement('i')
@@ -343,16 +313,13 @@ export default {
           type.appendChild(typeIcon)
           type.appendChild(typeText)
           desc.appendChild(type)
-
           // console.log(content)
           kakao.maps.event.addListener(marker, 'click', makeOverListener(this.mapInstance, customOverlay, content));
-
           // kakao.maps.event.addListener(marker,'click',function (){
           //     customOverlay.setMap(this.mapInstance)
           //     customOverlay.setContent(content)
           //
           // })
-
       //   var iwContent = `<div class="overlay_info">
       // <div class="topTitle"><span>충전소 정보</span></div>
       // <div class="desc">
@@ -398,7 +365,6 @@ export default {
           return ()=>{
             customOverlay.setMap(map)
             customOverlay.setContent(content)}
-
 }
       function closeOverlay(customOverlay) {
         return function() {
@@ -431,7 +397,6 @@ export default {
     FetchData(searchzcode){
       axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1&zcode=${searchzcode}`)
           .then((res)=>{
-
             let xml = res.data.items[0].item
         //검색후 마커 및 인포 윈도우 그리기 시작..
             let kakao = window.kakao
@@ -446,10 +411,7 @@ export default {
             center : new kakao.maps.LatLng(center.lat, center.lng),
             level,
         }); //지도 생성 및 객체 리턴
-
-
         for (var i = 0 ; i < xml.length ; i ++){
-
           var imageSize = new kakao.maps.Size(20, 30), imageOption = {offset: new kakao.maps.Point(5, 20)};
           var imageSrc
           switch (xml[i].stat){
@@ -481,40 +443,33 @@ export default {
             image: markerImage,
             clickable: true});
           marker.setMap(this.mapInstance);
-
           var customOverlay = new kakao.maps.CustomOverlay({
             position: markerPosition,
             xAnchor: 0.48, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
             yAnchor: 1.08, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
           })
-
           var content = document.createElement('div')
           content.className = 'overlay_info'
           var title = document.createElement('div')
           title.className = 'topTitle'
-
           var info = document.createElement('span')
           info.appendChild(document.createTextNode('충전소 정보'))
           content.appendChild(title)
           title.appendChild(info)
           title.addEventListener('click',closeOverlay(customOverlay))
-
           var desc = document.createElement('div')
           desc.className = 'desc'
           var name = document.createElement('span')
           name.className = 'name'
-
           var nameLink = document.createElement('a')
           nameLink.className = 'nameLink'
           nameLink.appendChild(document.createTextNode(xml[i].statNm))
           name.appendChild(nameLink)
           desc.appendChild(name)
           content.appendChild(desc)
-
           var solid = document.createElement('hr')
           solid.className = 'solid'
           desc.appendChild(solid)
-
           var address = document.createElement('div')
           address.className = 'address'
           var markerIcon = document.createElement('i')
@@ -524,7 +479,6 @@ export default {
           address.appendChild(markerIcon)
           address.appendChild(addressText)
           desc.appendChild(address)
-
           var tel = document.createElement('div')
           tel.className = 'tel'
           var telIcon = document.createElement('i')
@@ -534,7 +488,6 @@ export default {
           tel.appendChild(telIcon)
           tel.appendChild(telText)
           desc.appendChild(tel)
-
           var status = document.createElement('div')
           status.className = 'status'
           var statusIcon = document.createElement('i')
@@ -544,7 +497,6 @@ export default {
           status.appendChild(statusIcon)
           status.appendChild(statusText)
           desc.appendChild(status)
-
           var type = document.createElement('div')
           type.className = 'type'
           var typeIcon = document.createElement('i')
@@ -554,16 +506,13 @@ export default {
           type.appendChild(typeIcon)
           type.appendChild(typeText)
           desc.appendChild(type)
-
           // console.log(content)
           kakao.maps.event.addListener(marker, 'click', makeOverListener(this.mapInstance, customOverlay, content));
-
         }
             function makeOverListener(map, customOverlay, content) {
               return ()=>{
                 customOverlay.setMap(map)
                 customOverlay.setContent(content)}
-
             }
             function closeOverlay(customOverlay) {
               return function() {
@@ -587,11 +536,9 @@ export default {
 //         infowindow.close();
 //     };
 // }
-
             //검색후 마커 및 인포 윈도우 그리기 끝
             this.item = xml
           })
-
     },
     goDetial(items){
         this.SetitemList(items)
@@ -699,13 +646,11 @@ button .star:hover{
 .infoTr:hover{
   background-color: #E1F5FE;
 }
-
 .InfoTable{
   width: 100%;
 }
 .infoTrSmall{
   cursor: pointer;
-
 }
 .infoTrSmall:hover{
   background-color: #E1F5FE;
@@ -713,16 +658,12 @@ button .star:hover{
 .headerTrSmall{
   color: white;
 }
-
-}
 .infoTrSmall:hover{
   background-color: #E1F5FE;
 }
 .headerTrSmall{
   color: white;
 }
-
-
 #headerTr{
   background: rgb(93, 128, 233);
 }
@@ -731,7 +672,6 @@ button .star:hover{
   position: relative;
   top: 7px;
 }
-
 </style>
 <style >
 .overlay_info {

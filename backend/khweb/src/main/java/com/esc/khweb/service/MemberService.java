@@ -60,4 +60,6 @@ public interface MemberService {
 
     public List<MyChargingState> findByMemberNo(Long memberNo) throws Exception;
 
+    public List<MyParkingState> getMyParkingState (Long memberNo) throws  Exception;
+
 }

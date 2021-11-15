@@ -28,7 +28,7 @@ export default {
       const {memberId , memberPw} = payload
       axios.post('http://localhost:7777/member/login', {memberId , memberPw})
           .then( (res) =>{
-            console.log(res.data)
+            console.log(res.data.memberNo)
             if(res.data.status =="정지"){
               alert("정지된회원입니다.")
               
@@ -37,7 +37,7 @@ export default {
               alert('로그인되었습니다.')
               this.res = res.data
               this.$cookies.set("user", res.data, '1h')
-              this.$cookies.set("userNo", res.data, '1h')
+              this.$cookies.set("userNo", res.data.memberNo, '1h')
               this.cookieToSession()
               this.setIsLogin()
               

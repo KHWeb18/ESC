@@ -286,6 +286,9 @@ public class MemberServiceimpl implements MemberService {
         return myChargingStateList;
     }
 
-
+    @Override
+    public List<MyParkingState> getMyParkingState(Long memberNo) throws Exception {
+        return myParkingStateRepository.findByMemberall(memberNo);
+    }
 }
 
