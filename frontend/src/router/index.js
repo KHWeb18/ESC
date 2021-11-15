@@ -35,6 +35,10 @@ import EvInfoPage from '../views/EvInfo/EvInfoPage'
 import DaumMaptest from '../views/charingSearchService/DaumMaptest'
 import CharingSearchServiceBoardList  from '../views/charingSearchService/CharingSearchServiceBoardList'
 import CharingSearchServiceReadPage from '../views/charingSearchService/CharingSearchServiceReadPage'
+//주차장찾기페이지
+import ParkingSearchServiceList from '../views/parkingSearchService/ParkingSearchServiceList'
+import kakaomapTest from '../views/parkingSearchService/kakaomapTest'
+import ParkingDetail from '../views/parkingSearchService/ParkingDetail'
 // 마이페이지
 import IsMyPage from '../views/myPage/IsMyPage.vue'
 import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
@@ -238,19 +242,42 @@ const routes = [
   {
     path: '/charingSearchServiceBoardList',
     name: CharingSearchServiceBoardList,
-    component: CharingSearchServiceBoardList
+    component: CharingSearchServiceBoardList 
   },
   {
     path: '/charingSearchServiceReadPage/:statNm',
     name: 'CharingSearchServiceReadPage',
     components: {
-      default: CharingSearchServiceReadPage     
+      default: CharingSearchServiceReadPage      
     },
     props: {
       default: true
     },
     
   },
+  {
+    path: '/kakaomapTest',
+    name: kakaomapTest,
+    component: kakaomapTest 
+  },
+// 주차장 찾기 페이지
+
+{
+  path: '/parkingSearchServiceList',
+  name: ParkingSearchServiceList,
+  component: ParkingSearchServiceList  
+},
+{
+  path: '/parkingDetail',
+  name: 'ParkingDetail',
+  components: {
+    default: ParkingDetail      
+  },
+  props: {
+    default: true
+  },
+  
+},
 
 ]
 

@@ -176,21 +176,7 @@ Vue.use(VueMoment)
 //import { mapGetters } from 'vuex'
 Vue.use(cookies)
 export default {
-  props: {
-    /*
-    items: {
-        type:Object,
-        required: true
-    },
-    lat: {
-        type:String,
-        required: true
-    }*/
-    statNm:{
-      type: String,
-      required:true
-    }
-  },
+
   data(){
     return{
       itemsList: null,

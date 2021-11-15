@@ -37,6 +37,9 @@ public class MemberServiceimpl implements MemberService {
     @Autowired
     MyChargingStateRepository myChargingStateRepository;
 
+    @Autowired
+    MyParkingStateRepository myParkingStateRepository;
+
     @Override
     public void memberRegister(Member member) throws Exception {
         //비번 암호화 하기
@@ -249,22 +252,29 @@ public class MemberServiceimpl implements MemberService {
                 myChargingStateRepository.save(myChargingState);
                 return result2;
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
         return "알수없는오류";
 
 
+    }
+
+    @Override
+    public String addMyParkingState(Long memberNo, MyParkingState myParkingState) throws Exception {
+        ArrayList  parkingNmList  = new ArrayList();
+        String result = "이미 즐겨찾기에 등록되어있습니다.";
+        String result2 ="즐겨찾기에 등록되었습니다.";
+        List<MyParkingState> myChargingState1 = myParkingStateRepository.findByMemberall(memberNo);
+        for(int i = 0 ; i<myChargingState1.toArray().length; i++){
+            parkingNmList.add(myChargingState1.get(i).getParkingNm());
+
+        }
+        if (parkingNmList.indexOf(myParkingState.getParkingNm()) >= 0) {
+            return result;
+        } else if (parkingNmList.indexOf(myParkingState.getParkingNm()) < 0) {
+            myParkingState.setMemberNo(memberNo);
+            myParkingStateRepository.save(myParkingState);
+            return result2;
+        }
+        return "null";
     }
 
     @Override

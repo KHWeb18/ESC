@@ -5,6 +5,7 @@ import com.esc.khweb.controller.request.MyChargingStateRequest;
 import com.esc.khweb.entity.Board;
 import com.esc.khweb.entity.Member;
 import com.esc.khweb.entity.MyChargingState;
+import com.esc.khweb.entity.MyParkingState;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +55,8 @@ public interface MemberService {
     public void modify(Long memberNo, MemberRequest memberRequest) throws Exception;
 
     public String addMyState(Long memberNo, MyChargingStateRequest myChargingStateRequest);
+
+    public  String addMyParkingState(Long memberNo , MyParkingState myParkingState) throws  Exception;
 
     public List<MyChargingState> findByMemberNo(Long memberNo) throws Exception;
 

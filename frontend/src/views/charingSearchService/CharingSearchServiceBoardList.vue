@@ -103,7 +103,6 @@ export default {
           {text: '전라남도 ', value:46 },{text: '전라북도', value:45 },{text: '제주특별자치도 ', value: 50},
           {text: '울산광역시', value:31 },{text: '인천광역시', value:28 }
           
-
       ],
       lat: 0,
       lng: 0,
@@ -261,6 +260,10 @@ export default {
             yAnchor: 1.08, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
           })
 
+          var content = document.createElement('div')
+          content.className = 'overlay_info'
+          var title = document.createElement('div')
+          title.className = 'topTitle'
 
           var content = document.createElement('div')
           content.className = 'overlay_info'
@@ -276,6 +279,12 @@ export default {
 
           var desc = document.createElement('div')
           desc.className = 'desc'
+          var name = document.createElement('span')
+          name.className = 'name'
+
+
+          var desc = document.createElement('div')
+          desc.className = 'desc'
 
           var name = document.createElement('span')
           name.className = 'name'
@@ -286,6 +295,10 @@ export default {
           name.appendChild(nameLink)
           desc.appendChild(name)
           content.appendChild(desc)
+
+          var solid = document.createElement('hr')
+          solid.className = 'solid'
+          desc.appendChild(solid)
 
           var solid = document.createElement('hr')
           solid.className = 'solid'
@@ -331,9 +344,7 @@ export default {
           type.appendChild(typeText)
           desc.appendChild(type)
 
-
           // console.log(content)
-
           kakao.maps.event.addListener(marker, 'click', makeOverListener(this.mapInstance, customOverlay, content));
 
           // kakao.maps.event.addListener(marker,'click',function (){
@@ -341,7 +352,6 @@ export default {
           //     customOverlay.setContent(content)
           //
           // })
-
 
       //   var iwContent = `<div class="overlay_info">
       // <div class="topTitle"><span>충전소 정보</span></div>
@@ -413,12 +423,10 @@ export default {
 //     };
 // }
         
-
         //검색후 마커 및 인포 윈도우 그리기 끝
             this.item = xml
             
       })
-
     },
     FetchData(searchzcode){
       axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1&zcode=${searchzcode}`)
@@ -480,10 +488,8 @@ export default {
             yAnchor: 1.08, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
           })
 
-
           var content = document.createElement('div')
           content.className = 'overlay_info'
-
           var title = document.createElement('div')
           title.className = 'topTitle'
 
@@ -495,7 +501,6 @@ export default {
 
           var desc = document.createElement('div')
           desc.className = 'desc'
-
           var name = document.createElement('span')
           name.className = 'name'
 
@@ -550,11 +555,8 @@ export default {
           type.appendChild(typeText)
           desc.appendChild(type)
 
-
           // console.log(content)
-
           kakao.maps.event.addListener(marker, 'click', makeOverListener(this.mapInstance, customOverlay, content));
-
 
         }
             function makeOverListener(map, customOverlay, content) {
@@ -586,10 +588,8 @@ export default {
 //     };
 // }
 
-
             //검색후 마커 및 인포 윈도우 그리기 끝
             this.item = xml
-
           })
 
     },
@@ -632,9 +632,7 @@ export default {
         this.mapInstance.setLevel(cur)
       }
     }
-
   
-
     
 }
 </script>
@@ -707,6 +705,7 @@ button .star:hover{
 }
 .infoTrSmall{
   cursor: pointer;
+
 }
 .infoTrSmall:hover{
   background-color: #E1F5FE;
@@ -714,6 +713,15 @@ button .star:hover{
 .headerTrSmall{
   color: white;
 }
+
+}
+.infoTrSmall:hover{
+  background-color: #E1F5FE;
+}
+.headerTrSmall{
+  color: white;
+}
+
 
 #headerTr{
   background: rgb(93, 128, 233);
@@ -734,7 +742,6 @@ button .star:hover{
   border: 1px solid #ccc;
   border-bottom: 2px solid #ddd;background-color:#fff;
 }
-
 .overlay_info:nth-of-type(n) {
   border:0;
   box-shadow: 0px 1px 2px #888;
@@ -779,7 +786,6 @@ button .star:hover{
 hr.solid {
   border-top: 2px solid #bbb;
 }
-
 .overlay_info .address span{
   font-size: 13px;
   color: #333;
@@ -823,7 +829,6 @@ hr.solid {
   color: #3F51B5;
   font-size: 22px
 }
-
 hr.soft {
   border-top: 0.7px solid #aaa;
 }

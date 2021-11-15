@@ -58,6 +58,12 @@ public class Member {
     @JoinColumn(name = "member_no")
     private Set<MyChargingState> MyChargingStateList = new HashSet<MyChargingState>();
 
+    @OneToMany(cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "member_no")
+    private Set<MyParkingState> MyParkingStateList = new HashSet<MyParkingState>();
+
+
+
 
     public Member (String memberId, String memberPw, String name,
                    String email , String memberCar, Date memberBirthDay ) {
