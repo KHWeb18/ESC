@@ -24,7 +24,7 @@
           <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/administratorPage')">관리자페이지</span>
         </v-toolbar-items>
 
-        <v-toolbar-items class="hidden-sm-and-down hidden-lg-only menusSmall">
+        <v-toolbar-items class="hidden-sm-and-down hidden-lg-and-up menusSmall">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">게시판</span>
           <span @click="$router.push('/apiTest')">api실험</span> 
