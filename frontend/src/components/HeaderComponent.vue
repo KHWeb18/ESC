@@ -171,7 +171,7 @@ a{
   position: relative;
   top: 45px;
   max-height: 35px;
-  font-size: 1.1em;
+  font-size: 1em;
   cursor: pointer;
 }
 .menusSmall:hover{
@@ -179,8 +179,8 @@ a{
 }
 
 .menusSmall span{
-  padding: 0 10px 0 0;
-  margin: 0 30px 0 0;
+  padding: 0 20px 0 0;
+  margin: 0 10px 0 0;
 }
 
 .menusSmall span:hover{
