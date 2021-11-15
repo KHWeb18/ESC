@@ -12,10 +12,11 @@
         <v-toolbar-items :class="menus" class="hidden-md-and-down">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">게시판</span>
-          <span @click="$router.push('/apiTest')">api실험</span>
+          <span @click="$router.push('/apiTest')">api실험</span> 
           <span @click="$router.push('/noticeListPage')">공지사항/건의</span>
-          <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/administratorPage')">관리자페이지</span>
+          <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/memberManagement')">관리자페이지</span>
           <span  @click="$router.push('/charingSearchServiceBoardList')">충전소찾기</span>
+          <span  @click="$router.push('/parkingSearchServiceList')">주차장찾기</span>
           <span>원하는거 추가</span>
         </v-toolbar-items>
 

@@ -44,7 +44,7 @@
             <button  style="margin-left: 20%;" :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
             <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
             <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
-            검색
+            <v-icon style="margin-left: 36%">mdi-magnify</v-icon>
             <input style="border: 1px; margin-right: 18%" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
             
             </div>
@@ -215,7 +215,8 @@ export default {
         kakao.maps.event.addListener(marker, 'click', goReadPage(xml[i].statNm));
        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(this.mapInstance, marker, this.infowindow));
         kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(this.infowindow));
-        } 
+        }
+         
       function makeOverListener(map, marker, infowindow) {
     return function() {
         infowindow.open(map, marker);
@@ -313,7 +314,7 @@ function makeOutListener(infowindow) {
 }
   function goReadPage(statNm) {
     return function(){
-      console.log(statNm)
+      alert(statNm)
     }
   }
 

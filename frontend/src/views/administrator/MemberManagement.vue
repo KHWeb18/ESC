@@ -1,7 +1,8 @@
 <template>
     <div>
         <administrator-memu/>
-        <member-management-form  v-if="memberList" :memberList="memberList"/>
+        <member-management-form  v-if="memberList &&this.$store.state.auth =='관리자' " :memberList="memberList"/>
+        <p v-else> 접근권한이 없습니다</p>
     </div>
 </template>
 
