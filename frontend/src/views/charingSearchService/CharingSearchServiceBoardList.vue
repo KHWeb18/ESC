@@ -21,7 +21,7 @@
                 <td><button @click="addMyState(session,items)"><v-icon>mdi-star</v-icon></button></td>
                 <td>{{items.statNm}}</td>
                 <a @click="goDetial(items)"><td>{{items.addr}}</td></a>
-                <td>{{formatter(items.chgerType)}}</td>
+                <td>{{typeFormatter(items.chgerType)}}</td>
                 <td>{{items.useTime}}</td>
                 <td>{{items.busiCall}}</td>
             </tr>
@@ -132,93 +132,42 @@ export default {
   },
   methods:{
     ...mapActions(['SetitemList']),
-    setCustomOverlay(kakao, position){
-      var customOverlay = new kakao.maps.CustomOverlay({
-        position: position,
-        xAnchor: 0.53, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
-        yAnchor: 1.2, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
-      })
-
-      var content = document.createElement('div')
-      content.className = 'overlay_info'
-
-      var title = document.createElement('div')
-      title.className = 'topTitle'
-
-      var info = document.createElement('span')
-      info.appendChild(document.createTextNode('충전소 정보'))
-      content.appendChild(title)
-      title.appendChild(info)
-      title.onclick = function (){
-        customOverlay.setMap(null)
-      }
-
-      var desc = document.createElement('div')
-      desc.className = 'desc'
-
-      var name = document.createElement('span')
-      name.className = 'name'
-
-      var nameLink = document.createElement('a')
-      nameLink.className = 'nameLink'
-      nameLink.appendChild(document.createTextNode('종묘 공영주차장'))
-      name.appendChild(nameLink)
-      desc.appendChild(name)
-      content.appendChild(desc)
-
-      var solid = document.createElement('hr')
-      solid.className = 'solid'
-      desc.appendChild(solid)
-
-      var address = document.createElement('div')
-      address.className = 'address'
-      var markerIcon = document.createElement('i')
-      markerIcon.className = 'fas fa-map-marker-alt'
-      var addressText = document.createElement('span')
-      addressText.appendChild(document.createTextNode('서울특별시 종로구 157 가나다라마바사'))
-      address.appendChild(markerIcon)
-      address.appendChild(addressText)
-      desc.appendChild(address)
-
-      var tel = document.createElement('div')
-      tel.className = 'tel'
-      var telIcon = document.createElement('i')
-      telIcon.className = 'fas fa-phone'
-      var telText = document.createElement('span')
-      telText.appendChild(document.createTextNode('1661-9408'))
-      tel.appendChild(telIcon)
-      tel.appendChild(telText)
-      desc.appendChild(tel)
-
-      var status = document.createElement('div')
-      status.className = 'status'
-      var statusIcon = document.createElement('i')
-      statusIcon.className = 'fas fa-info-circle'
-      var statusText = document.createElement('span')
-      statusText.appendChild(document.createTextNode('사용 가능'))
-      status.appendChild(statusIcon)
-      status.appendChild(statusText)
-      desc.appendChild(status)
-
-      var type = document.createElement('div')
-      type.className = 'type'
-      var typeIcon = document.createElement('i')
-      typeIcon.className = 'fas fa-plug'
-      var typeText = document.createElement('span')
-      typeText.appendChild(document.createTextNode('DC 차데모 + AC삼'))
-      type.appendChild(typeIcon)
-      type.appendChild(typeText)
-      desc.appendChild(type)
-
-    },
-    formatter(value){
+    typeFormatter(value){
       switch (value){
+        case '01':
+          return 'DC차데모'
+        case '02':
+          return 'AC완속'
         case '03':
-          return '삼번'
+          return 'DC차데모 + AC3상'
+        case '04':
+          return 'DC콤보'
+        case '05':
+          return 'DC차데모 + DC콤보'
         case '06':
-          return '육번'
+          return 'DC차데모 + AC3상 + DC콤보'
+        case '07':
+          return 'AC3상'
         default:
-          return '해당없음'
+          return '확인 불가'
+      }
+    },
+    statFormatter(value){
+      switch (value){
+        case '1':
+          return '통신이상'
+        case '2':
+          return '충전대기'
+        case '3':
+          return '충전중'
+        case '4':
+          return '운영중지'
+        case '5':
+          return '점검중'
+        case '6':
+          return '상태미확인'
+        default:
+          return '상태미확인'
       }
     },
     addMyState(session,items){
@@ -312,7 +261,7 @@ export default {
 
           var nameLink = document.createElement('a')
           nameLink.className = 'nameLink'
-          nameLink.appendChild(document.createTextNode('종묘 공영주차장'))
+          nameLink.appendChild(document.createTextNode(xml[i].statNm))
           name.appendChild(nameLink)
           desc.appendChild(name)
           content.appendChild(desc)
@@ -326,7 +275,7 @@ export default {
           var markerIcon = document.createElement('i')
           markerIcon.className = 'fas fa-map-marker-alt'
           var addressText = document.createElement('span')
-          addressText.appendChild(document.createTextNode('서울특별시 종로구 157 가나다라마바사'))
+          addressText.appendChild(document.createTextNode(xml[i].addr))
           address.appendChild(markerIcon)
           address.appendChild(addressText)
           desc.appendChild(address)
@@ -336,7 +285,7 @@ export default {
           var telIcon = document.createElement('i')
           telIcon.className = 'fas fa-phone'
           var telText = document.createElement('span')
-          telText.appendChild(document.createTextNode('1661-9408'))
+          telText.appendChild(document.createTextNode(xml[i].busiCall))
           tel.appendChild(telIcon)
           tel.appendChild(telText)
           desc.appendChild(tel)
@@ -346,7 +295,7 @@ export default {
           var statusIcon = document.createElement('i')
           statusIcon.className = 'fas fa-info-circle'
           var statusText = document.createElement('span')
-          statusText.appendChild(document.createTextNode('사용 가능'))
+          statusText.appendChild(document.createTextNode(this.statFormatter(xml[i].stat)))
           status.appendChild(statusIcon)
           status.appendChild(statusText)
           desc.appendChild(status)
@@ -356,7 +305,7 @@ export default {
           var typeIcon = document.createElement('i')
           typeIcon.className = 'fas fa-plug'
           var typeText = document.createElement('span')
-          typeText.appendChild(document.createTextNode('DC 차데모 + AC삼'))
+          typeText.appendChild(document.createTextNode(this.typeFormatter(xml[i].chgerType)))
           type.appendChild(typeIcon)
           type.appendChild(typeText)
           desc.appendChild(type)
@@ -531,7 +480,7 @@ export default {
 
           var nameLink = document.createElement('a')
           nameLink.className = 'nameLink'
-          nameLink.appendChild(document.createTextNode('종묘 공영주차장'))
+          nameLink.appendChild(document.createTextNode(xml[i].statNm))
           name.appendChild(nameLink)
           desc.appendChild(name)
           content.appendChild(desc)
@@ -545,7 +494,7 @@ export default {
           var markerIcon = document.createElement('i')
           markerIcon.className = 'fas fa-map-marker-alt'
           var addressText = document.createElement('span')
-          addressText.appendChild(document.createTextNode('서울특별시 종로구 157 가나다라마바사'))
+          addressText.appendChild(document.createTextNode(xml[i].addr))
           address.appendChild(markerIcon)
           address.appendChild(addressText)
           desc.appendChild(address)
@@ -555,7 +504,7 @@ export default {
           var telIcon = document.createElement('i')
           telIcon.className = 'fas fa-phone'
           var telText = document.createElement('span')
-          telText.appendChild(document.createTextNode('1661-9408'))
+          telText.appendChild(document.createTextNode(xml[i].busiCall))
           tel.appendChild(telIcon)
           tel.appendChild(telText)
           desc.appendChild(tel)
@@ -565,7 +514,7 @@ export default {
           var statusIcon = document.createElement('i')
           statusIcon.className = 'fas fa-info-circle'
           var statusText = document.createElement('span')
-          statusText.appendChild(document.createTextNode('사용 가능'))
+          statusText.appendChild(document.createTextNode(this.statFormatter(xml[i].stat)))
           status.appendChild(statusIcon)
           status.appendChild(statusText)
           desc.appendChild(status)
@@ -575,7 +524,7 @@ export default {
           var typeIcon = document.createElement('i')
           typeIcon.className = 'fas fa-plug'
           var typeText = document.createElement('span')
-          typeText.appendChild(document.createTextNode('DC 차데모 + AC삼'))
+          typeText.appendChild(document.createTextNode(this.typeFormatter(xml[i].chgerType)))
           type.appendChild(typeIcon)
           type.appendChild(typeText)
           desc.appendChild(type)
