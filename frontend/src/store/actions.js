@@ -28,7 +28,8 @@ import {
   FETCH_MY_BOARD_LIST,
   FETCH_MY_COMMENT_LIST,
   ////마이페이지 관심목록
-  FETCH_MY_LIKE_LIST
+  FETCH_MY_LIKE_LIST,
+  GET_MY_PARKING_STATES
 
 
   
@@ -60,14 +61,14 @@ export default {
     commit(COOKIE_TO_SESSION, member);
 
     let numData;
-    let memberNo;
+
     if (Vue.$cookies.get("userNo") !== null) {
       numData = Vue.$cookies.get("userNo");
-      memberNo = numData.memberNo;
+      
     } else {
       data = null;
     }
-    commit(SET_MEMBER_NO, memberNo);
+    commit(SET_MEMBER_NO, numData);
 
     // 마이페이지 내 정보
     let memberInfo;
@@ -236,4 +237,11 @@ export default {
           commit(FETCH_MY_LIKE_LIST, res.data);
         });
   },
+  getMyParkingStateList({commit},memberNo){
+    return axios.post(`http://localhost:7777/member/getMyParkingState/${memberNo}`)
+    .then( (res) =>{
+
+      commit(GET_MY_PARKING_STATES,res.data)
+    })
+  }
 };

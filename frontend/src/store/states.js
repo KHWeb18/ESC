@@ -57,6 +57,7 @@ export default {
     myCommentList: [], 
     // 마이페이지 관심목록 
     myLikeList: [],
+    myParkingStates:[],
 
     //자동차 정보 페이지용 JSON 데이터
     carInfo: data,

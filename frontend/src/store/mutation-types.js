@@ -30,3 +30,4 @@ export const FETCH_MY_COMMENT_LIST = 'FETCH_MY_COMMENT_LIST'
 
 //마이페이지 관심목록 페이지
 export const FETCH_MY_LIKE_LIST = 'FETCH_MY_LIKE_LIST'
+export const GET_MY_PARKING_STATES = 'GET_MY_PARKING_STATES'

@@ -1,11 +1,48 @@
 <template>
 <div>
-   <div id="parkingmap" style="max-width:800px" class="kmap" ref="map">
-
-        </div>
-    <div class="InfoTable">
-        <table>
-            <tr id="headerTr">
+<v-row style="width: 286px; position:absolute; margin-top: 300px">
+    <td id="panelsHeader" style="margin-left: 100px">HISTROY</td>
+    <v-expansion-panels inset :color="red">
+      <v-expansion-panel
+        v-for="(item,i) in panelLength"
+        :key="i"
+      >
+        <v-expansion-panel-header>{{item.주차장명}}</v-expansion-panel-header>
+        <v-expansion-panel-content>
+        문의전화:{{item.전화번호}}<br>
+        기본요금:{{item.주차기본요금}}원<br>
+        주차기본시간:{{item.주차기본시간}}분
+        <button @click="goDetail(item)">바로가기</button>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+  </v-row>
+  <v-row style="width: 283px; position:absolute; margin-top: 500px; margin-left: 1455px" >
+    <td id="myparkingState" style="margin-left: 90px">즐겨찾기<button class="levelControll" @click="FETCHDATA()"><v-icon>autorenew</v-icon></button></td>
+    <v-expansion-panels inset :color="red">
+      <v-expansion-panel
+        v-for="(item,i) in myParkingStates"
+        :key="i"
+      >
+        <v-expansion-panel-header>{{item.parkingNm}}</v-expansion-panel-header>
+        <v-expansion-panel-content>
+        문의전화:{{item.call1}}<br>
+        기본요금:{{item.basicsPay}}원<br>
+        주차기본시간:{{item.basicsTime}}분
+        <button @click="goDetail(item)">바로가기</button>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+  </v-row>
+  <v-container style="max-width: 1200px">
+   <div id="parkingmap"  class="kmap" ref="map" > </div>
+  <v-icon>mdi-magnify</v-icon>
+  <input style="border: 1px; margin-right: 75.55%" v-model="search" placeholder="주차장명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
+  <button class="levelControll" @click="levelControll(-1)"><span class="material-icons">zoom_in</span></button>
+  <button class="levelControll" @click="levelControll(1)"><span class="material-icons">zoom_out</span></button>
+    <div >
+        <table class="parkingtable">
+            <tr class="parkingtableheader" style="color:white">
                 <td>즐겨찾기</td>
                 <td>주차장명</td>
                 <td>소재지도로명주소</td>
@@ -16,8 +53,8 @@
             <tr v-for=" (items,idx) in paginatedData " :key="idx">
                 <td><button @click="addMyParkingState(session,items)"><v-icon>mdi-star</v-icon></button></td>
                 <a @click="showMetheMarker(items)"><td>{{items.주차장명}}</td></a>
-                <td @click="goDetail(session,items)" v-if="items.소재지도로명주소 !==''">{{items.소재지도로명주소}}</td>
-                <td  @click="goDetail(session,items)" v-if="items.소재지도로명주소 =='' ">등록된정보가없습니다.</td>
+                <td @click="goDetail(items)" v-if="items.소재지도로명주소 !==''">{{items.소재지도로명주소}}</td>
+                <td  @click="goDetail(items)" v-if="items.소재지도로명주소 =='' ">등록된정보가없습니다.</td>
                <td>{{items.운영요일}}</td>
                 <td v-if="items.전화번호 !==''">{{items.전화번호}}</td>
                 <td v-if="items.전화번호 ==''">미등록</td>
@@ -25,13 +62,10 @@
             </tr>
         </table>
         <div class="btn-cover">
-        <button class="levelControll" @click="levelControll(-1)"><span class="material-icons">zoom_in</span></button>
-        <button class="levelControll" @click="levelControll(1)"><span class="material-icons">zoom_out</span></button>
             <button  style="margin-left: 20%;" :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
             <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
             <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
-            <v-icon>mdi-magnify</v-icon>
-            <input style="border: 1px; margin-right: 18%" v-model="search" placeholder="주차장명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
+            
             
             </div>
 
@@ -39,6 +73,7 @@
         
    
         </div>
+   </v-container>
 </div>
 </template>
 
@@ -53,7 +88,7 @@ export default {
     data() {
     return {
       parkingDataList: parkingData.records,
-      pageSize: 10,
+      pageSize: 5,
     pageNum: 0,           
     search: '',
     infowindow:null,
@@ -65,11 +100,13 @@ export default {
                     lng: 127.02963007,
                 },
                 level: 11
-            }
+            },
+    panelLength:[]    
 
     }
   },
   mounted(){
+     
         let kakao = window.kakao
         console.log(this.$refs.map) // should be not null
         var container = this.$refs.map
@@ -81,7 +118,9 @@ export default {
   },
   computed: {
     
-    ...mapState(['session']),
+
+
+    ...mapState(['session','myParkingStates']),
     pageCount () {
       let listLeng = this.parkingDataList.length,
           listSize = this.pageSize,
@@ -97,7 +136,10 @@ export default {
     }
   },
   methods:{
-
+    FETCHDATA(){
+      this.getMyParkingStateList(this.$store.state.loginMemberNo)
+    },
+    ...mapActions(['getMyParkingStateList']),
     nextPage () {
       this.pageNum += 1;
     },
@@ -105,6 +147,9 @@ export default {
       this.pageNum -= 1;
     },
       showMetheMarker(value){
+        
+        this.panelLength.unshift(value)
+        
         let kakao = window.kakao
         console.log(value)
         if(value.위도==''){
@@ -212,8 +257,8 @@ function makeOutListener(infowindow) {
         alert('로그인후 이용해주세요')
       }
     },
-    goDetail(session,items){
-      console.log(session)
+    goDetail(items){
+
       console.log(items)
 
         this.SetitemList(items)
@@ -242,7 +287,7 @@ function makeOutListener(infowindow) {
           }},
   },
   created(){
-
+     this.getMyParkingStateList(this.$store.state.loginMemberNo)
   },
     watch: {
       'MapOptions.level'(cur, /*prev*/){
@@ -258,9 +303,13 @@ function makeOutListener(infowindow) {
 </script>
 
 <style  lang="scss"  scoped>
+.levelControll{
+  background-color: rgb(255, 255, 255);
+}
+
 #parkingmap{
 
-  height: 800px;
+  height: 400px;
 }
 .kmap{
     width: 100%;
@@ -273,28 +322,56 @@ button {
     background-color: #efefefdd;
     border-radius: 6px;
     &:hover{
+        
         background-color: #ddd;
         border-color: #ddd;
     }
     
 }
-table tr td {
+.parkingtable {
+    border: 2px solid #000000;
+    
+  }
+ tr{
     &:hover{
-        background-color: #ddd;
-        border-color: #ddd;
+        background-color: rgb(101, 102, 91);
+        
     }
+  button {
+    &:hover{
+      background-color: rgb(255, 0, 128);
+      border-color: rgb(238, 255, 2) ;
+    }
+  }
+}
+.parkingtableheader {
+   background-color: rgb(32, 34, 41);
+   
 }
 .InfoTable{
 
   width: 1100px;
   float: right;
 }
-input:focus {outline:2px solid #d50000;}
+input:focus {outline:2px solid #000000;}
 #headerTr{
   background: rgb(93, 128, 233);
 }
 
 </style>
-<style >
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Road+Rage&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Road+Rage&display=swap');
+#panelsHeader{
+ font-family: 'Road Rage', cursive;
+ font-size: 2em
+}
+#myparkingState{
+font-family: 'Noto Sans KR', sans-serif;
+font-size: 2em
+}
+
+
+
 
 </style>
