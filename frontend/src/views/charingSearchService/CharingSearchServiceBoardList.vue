@@ -168,6 +168,7 @@ export default {
     ...mapActions(['SetitemList']),
     getNearestStation(){
       this.done = false
+      this.getCurrLocation()
       axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=9999&pageNo=1`)
           .then((res)=> {
             this.done = true
