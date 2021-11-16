@@ -13,15 +13,15 @@
                   center-active
                   dark
                 >
-                  <v-tab v-for="item in items" :key="item.name">
-                    <span @click="filterBrand(item.name)">{{item.name}}</span>
+                  <v-tab @click="filterBrand(item.name)" v-for="item in items" :key="item.name">
+                    <span >{{item.name}}</span>
                   </v-tab>
                 </v-tabs>
               </tr>
             </table>
           </v-card>
           <v-row>
-            <v-col class="white-space" v-for="(item, idx) in carInfo" :key="idx">
+            <v-col class="white-space" v-for="(item, idx) in filteredItems" :key="idx">
               <v-card
                   class="mx-auto my-12"
                   max-width="400"
@@ -92,13 +92,16 @@ export default {
   name: "EvInfoExample",
   computed: {
     ...mapState(['carInfo', ]),
-
+  },
+  mounted() {
+    this.filteredItems = this.carInfo
+    console.log(this.filteredItems)
   },
   data() {
     return {
       show : false,
       tab: null,
-      filteredItems: [],
+      filteredItems: null,
       items:[
         {name: 'KIA'},
         {name: 'HyundaiMotorCompany'},
@@ -122,6 +125,7 @@ export default {
       let copy = this.carInfo
       // let result = copy.filter(x => x.brand.includes(selected))
       let result = copy.filter(x => x.brand === selected)
+      this.filteredItems = result
       console.log(result)
     }
   }
