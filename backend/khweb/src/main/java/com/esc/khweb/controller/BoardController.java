@@ -35,6 +35,7 @@ public class BoardController {
     {
 
         System.out.println("name = " +name );
+        System.out.println("randomNumToString =" +randomNumToString);
         log.info("requestUploadFile(): " + fileList);
 
         try {
@@ -43,7 +44,7 @@ public class BoardController {
 
             for (MultipartFile multipartFile : fileList) {
                 log.info("requestUploadFile(): Make File");
-                FileOutputStream writer = new FileOutputStream("D:\\proj\\ESC\\frontend\\src\\assets\\게시판/"+randomNumToString+name+"의"+multipartFile.getOriginalFilename());
+                FileOutputStream writer = new FileOutputStream("C:\\proj\\ESC\\frontend\\src\\assets\\게시판/"+randomNumToString+name+"의"+multipartFile.getOriginalFilename());
                 writer.write(multipartFile.getBytes());
                 writer.close();
 
@@ -117,8 +118,8 @@ public class BoardController {
         Long boardNo = boardReportRequest.getBoardNo();
         service.report(boardNo,reportWord);
         // 신고 버튼누를시 카톡 날라감 구현했지만, 파이썬작업진행중으로 막아놓겟습니다 2021/10/29
-    //   String check =  service.KakaotalkAlarm(boardReportRequest);
-      // log.info("check"+check);
+       String check =  service.KakaotalkAlarm(boardReportRequest);
+         log.info("check"+check);
 
         return  new ResponseEntity<>(HttpStatus.OK);
     }
@@ -193,15 +194,7 @@ public class BoardController {
         return new ResponseEntity<>(list, HttpStatus.OK);
 
     }
-    // 마이페이지 내 게시글
-    @PostMapping("/getMemberBoardList/{memberNo)")
-    public ResponseEntity<List<Board>> getMemberBoardList (@PathVariable ("memberNo")Long memberNo) throws  Exception {
 
-        List<Board> list = service.getMemberBoardList();
-
-        return new ResponseEntity<>(list, HttpStatus.OK);
-    }
-    // 내 게시글 조회 예시
     @GetMapping("/getMyBoardList/{memberId}")
     public ResponseEntity<List<Board>> getMyBoardList(@PathVariable("memberId") String memberId) throws Exception{
 

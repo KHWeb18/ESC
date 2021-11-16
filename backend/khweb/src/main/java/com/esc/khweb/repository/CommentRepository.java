@@ -1,5 +1,6 @@
 package com.esc.khweb.repository;
 
+import com.esc.khweb.entity.Board;
 import com.esc.khweb.entity.Comment;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,8 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
 
     @Query("select c from Comment c where c.commentNo = :commentNo")
     Optional<Comment> getRePortedComment(Long commentNo);
+
+    List<Comment> findByMemberId(String memberId);
+
+
 }

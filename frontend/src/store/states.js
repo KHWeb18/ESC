@@ -1,3 +1,5 @@
+import data from '../assets/evinfo/evcarinfo.json'
+
 export default {
   
     emailRules: [
@@ -12,6 +14,9 @@ export default {
     passwordRules: [
         v => !! v || '비밀번호를 작성해주세요.',
         v =>  /^[a-zA-Z0-9]*$/.test(v) || '영문+숫자로만 입력해주세요'
+    ],
+    emailchkRules: [
+        v => !! v || '인증번호를 입력해주세요.',
     ],
     memberList: [],
     session: null,
@@ -47,9 +52,13 @@ export default {
     // 댓글 좋아요
     commentLikes: [],
     
-    // 마이페이지 내 게시글
-    memberBoardList: [],
-    // 내 게시글 예시
+    // 마이페이지
     myBoardList: [],
-}
+    myCommentList: [], 
+    // 마이페이지 관심목록 
+    myLikeList: [],
+    myParkingStates:[],
 
+    //자동차 정보 페이지용 JSON 데이터
+    carInfo: data,
+}

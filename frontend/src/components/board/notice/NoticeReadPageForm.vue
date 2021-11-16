@@ -1,11 +1,17 @@
 <template>
     <div>
          <v-container style="max-width: 1080px">
-          <table>
-            <tr>
-              <td style="text-align: left;"><p>{{notice.title}}</p><v-row><v-dialog  v-model="dialog2" persistent max-width="400">
+         <v-card elevation="1">
+           <v-card-title style="text-align: center;">
+             {{notice.title}}
+           </v-card-title>
+           <v-card-subtitle>
+             [{{$moment(notice.createDate).format('YYYY-MM-DD/hh:mm')}} 분류:{{notice.category}} 조회{{notice.viewcount}}]
+             <v-btn style="margin-left: 81%"  route :to="({name: 'NoticeListPage'})">목록</v-btn>
+             <v-btn  v-if="notice.memberId == session.memberId" @click="modifying(notice.boardNo)">수정</v-btn>
+             <v-dialog  v-model="dialog2" persistent max-width="400">
                <template v-slot:activator="{ on }">
-               <v-btn  v-if="notice.memberId ==session.memberId" color="red"  style="margin-left: 92%; margin-top: 0%"  v-on="on">삭제</v-btn>
+               <v-btn   v-if="session.memberId ==notice.memberId"  v-on="on">삭제</v-btn>
                </template>
                <v-card>
                <v-card-title class="headline">
@@ -19,26 +25,19 @@
                </v-card-actions>
                </v-card>
            </v-dialog>
-              <v-btn class="green" style="margin-left: 92%; margin-top: 1%" v-if="notice.memberId == session.memberId" @click="modifying(notice.boardNo)">수정</v-btn><v-btn class="blue white--text" style="margin-left: 92%; margin-top: 1%"  route :to="({name: 'NoticeListPage'})">목록</v-btn></v-row><br>
-              <p id="boardinfo" align="left">[{{$moment(notice.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{notice.viewcount}}]</p>
-              </td>
-              </tr>
-              <tr>
-                <td style="text-align: left"><img v-if="notice.img != ''" width="300px" :src="require(`@/assets/게시판/${notice.img}`)"/><br>
-                <pre><p id="contentArea">{{notice.content}}</p></pre><br>
-            
-
-
-
-
-                
-                <v-row>
-                </v-row>
-                </td>
-              </tr>
-
-          </table>
-
+           </v-card-subtitle>
+           <v-divider></v-divider>
+           <v-card-text>
+             <img v-if="notice.img != ''" width="300px" :src="require(`@/assets/게시판/${notice.img}`)"/>
+           </v-card-text>
+           <v-card-text>
+             {{notice.content}}
+           </v-card-text>
+           <v-divider></v-divider>
+           <v-card-actions>
+           </v-card-actions>
+         </v-card>
+         
          </v-container>
     </div>
 </template>

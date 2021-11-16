@@ -35,12 +35,19 @@ import EvInfoPage from '../views/EvInfo/EvInfoPage'
 import DaumMaptest from '../views/charingSearchService/DaumMaptest'
 import CharingSearchServiceBoardList  from '../views/charingSearchService/CharingSearchServiceBoardList'
 import CharingSearchServiceReadPage from '../views/charingSearchService/CharingSearchServiceReadPage'
+//주차장찾기페이지
+import ParkingSearchServiceList from '../views/parkingSearchService/ParkingSearchServiceList'
+import kakaomapTest from '../views/parkingSearchService/kakaomapTest'
+import ParkingDetail from '../views/parkingSearchService/ParkingDetail'
 // 마이페이지
 import IsMyPage from '../views/myPage/IsMyPage.vue'
 import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
 import IsLikePage from '../views/myPage/IsLikePage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
 import ApiTestPage from "../views/ApiTestPage";
+
+import IsMyCommentListPage from '../views/myPage/IsMyCommentListPage.vue';
+import ApiTestPage2 from "../views/ApiTestPage2";
 
 Vue.use(VueRouter)
 
@@ -49,14 +56,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
     path: '/signUpPage',
@@ -216,6 +215,12 @@ const routes = [
     name: 'IsEditMemberPage',   
     component: IsEditMemberPage
   },
+  {
+    path: '/isMyCommentListPage',
+    name: 'IsMyCommentListPage',   
+    component: IsMyCommentListPage
+  },
+  
 
     //api test
   {
@@ -223,7 +228,11 @@ const routes = [
     name: ApiTestPage,
     component: ApiTestPage 
   },
-  
+  {
+    path: '/apiTest2',
+    name: ApiTestPage2,
+    component: ApiTestPage2
+  },
   //충전소찾기 페이지
   {
     path: '/daumMaptest',
@@ -233,13 +242,13 @@ const routes = [
   {
     path: '/charingSearchServiceBoardList',
     name: CharingSearchServiceBoardList,
-    component: CharingSearchServiceBoardList
+    component: CharingSearchServiceBoardList 
   },
   {
-    path: '/charingSearchServiceReadPage/',
+    path: '/charingSearchServiceReadPage/:statNm',
     name: 'CharingSearchServiceReadPage',
     components: {
-      default: CharingSearchServiceReadPage     
+      default: CharingSearchServiceReadPage      
     },
 
     props: {
@@ -247,7 +256,29 @@ const routes = [
     },
     
   },
- 
+  {
+    path: '/kakaomapTest',
+    name: kakaomapTest,
+    component: kakaomapTest 
+  },
+// 주차장 찾기 페이지
+
+{
+  path: '/parkingSearchServiceList',
+  name: ParkingSearchServiceList,
+  component: ParkingSearchServiceList  
+},
+{
+  path: '/parkingDetail',
+  name: 'ParkingDetail',
+  components: {
+    default: ParkingDetail      
+  },
+  props: {
+    default: true
+  },
+  
+},
 
 ]
 

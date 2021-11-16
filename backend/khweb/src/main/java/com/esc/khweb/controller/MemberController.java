@@ -2,6 +2,9 @@ package com.esc.khweb.controller;
 
 import com.esc.khweb.controller.request.MyChargingStateRequest;
 import com.esc.khweb.controller.vueCookie.UserInfo;
+import com.esc.khweb.entity.Board;
+import com.esc.khweb.entity.MyChargingState;
+import com.esc.khweb.entity.MyParkingState;
 import com.esc.khweb.service.MemberService;
 import com.esc.khweb.controller.request.MemberRequest;
 import com.esc.khweb.entity.Member;
@@ -223,13 +226,37 @@ public class MemberController {
 
         @PostMapping("/addMyState/{memberNo}")
         public ResponseEntity<String> addMyState (@PathVariable("memberNo")Long memberNo, @Validated @RequestBody MyChargingStateRequest myChargingStateRequest) throws  Exception {
-                String alert = "즐겨찾기에 등록되었습니다. 마이페이지에서 확인해주세요";
-                //log.info("memberNo" + memberNo);
-                //log.info("addr" + myChargingStateRequest.getAddr());
-                service.addMyState(memberNo, myChargingStateRequest);
 
-                return new ResponseEntity<>(alert,HttpStatus.OK);
+                String result =  service.addMyState(memberNo, myChargingStateRequest);
+
+                return new ResponseEntity<>(result,HttpStatus.OK);
         }
+
+        @PostMapping("/addMyParkingState/{memberNo}")
+        public ResponseEntity<String> addMyParkingState (@PathVariable("memberNo")Long memberNo, @Validated @RequestBody MyParkingState myParkingState) throws  Exception {
+
+                String result =  service.addMyParkingState(memberNo, myParkingState);
+
+                return new ResponseEntity<>(result,HttpStatus.OK);
+        }
+
+
+
+        @GetMapping("/getMyState/{memberNo}")
+        public ResponseEntity<List<MyChargingState>> getMyState(@PathVariable("memberNo") Long memberNo) throws Exception{
+
+                return new ResponseEntity<List<MyChargingState>>(service.findByMemberNo(memberNo),HttpStatus.OK);
+        }
+
+        @PostMapping("/getMyParkingState/{memberNo}")
+        public ResponseEntity<List<MyParkingState>> getMyParkingState(@PathVariable("memberNo")Long memberNo) throws  Exception {
+
+                List<MyParkingState> list= service.getMyParkingState(memberNo);
+
+                return new ResponseEntity<>(list,HttpStatus.OK);
+        }
+
+
 
 
 }

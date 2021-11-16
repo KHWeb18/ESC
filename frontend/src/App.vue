@@ -25,9 +25,10 @@ export default {
     this.setIsLogin()
     this.cookieToSession()
     this.setAuth()
+    
   },
   methods:{
-    ...mapActions(['cookieToSession', 'setIsLogin',"setAuth"])
+    ...mapActions(['cookieToSession', 'setIsLogin',"setAuth",])
   }
 };
 </script>

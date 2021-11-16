@@ -1,9 +1,9 @@
 <template>
     <div>
       <administrator-memu/>
-      <v-btn v-if="coin ==0" @click="load">정보받아오기</v-btn>
-      <reported-comment-form v-if="ReportedCommentNoList" :ReportedCommentNoList="ReportedCommentNoList" />
-      <p v-else>YOU HAVE TO FETCH.!</p>
+      <v-btn v-if="coin ==0&& this.$store.state.auth =='관리자'" @click="load">정보받아오기</v-btn>
+      <reported-comment-form v-if="ReportedCommentNoList && this.$store.state.auth =='관리자'" :ReportedCommentNoList="ReportedCommentNoList" />
+      <p v-else>접근권한이없습니다.</p>
     </div>
 </template>
 
@@ -42,12 +42,11 @@ export default {
         },
     },
     mounted(){
-      
+        this.load()
     },
     created(){
         this.getReportedCommentNoList()
-        this.load()
-
+        
     }
     
 }

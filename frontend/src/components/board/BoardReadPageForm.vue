@@ -1,9 +1,10 @@
 <template>
     <div>
+      <!--
          <v-container style="max-width: 1080px">
           <table>
             <tr>
-              <td style="text-align: left;"><p>{{board.title}}</p><v-row><v-dialog  v-model="dialog2" persistent max-width="400">
+              <td style="text-align: center;"><span id="boardTitle">{{board.title}}</span><v-row><v-dialog  v-model="dialog2" persistent max-width="400">
                <template v-slot:activator="{ on }">
                <v-btn  v-if="session.memberId ==board.memberId" color="red"  style="margin-left: 92%; margin-top: 0%"  v-on="on">삭제</v-btn>
                </template>
@@ -58,6 +59,68 @@
           </table>
 
          </v-container>
+         -->
+
+         <v-container style="max-width: 1080px">
+         <v-card  elevation="1">
+           <v-card-title style="text-align: center;">
+             {{board.title}}
+           </v-card-title>
+           <v-card-subtitle>
+             [{{$moment(board.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{board.viewcount}}좋아요:{{board.good}},싫어요:{{board.bad}}]
+
+             <v-btn style="margin-left: 81%" @click="goBack">목록</v-btn>
+              <!--<v-btn style="margin-left: 81%" route :to="({name: 'FreeBoardListPage'})">목록</v-btn> -->
+             <v-btn  v-if="board.memberId == this.$store.state.session.memberId" @click="modifying(board.boardNo)">수정</v-btn>
+
+             <v-dialog  v-model="dialog2" persistent max-width="400">
+               <template v-slot:activator="{ on }">
+               <v-btn   v-if="session.memberId ==board.memberId"  v-on="on">삭제</v-btn>
+               </template>
+               <v-card>
+               <v-card-title class="headline">
+                   정말 삭제하시겟습니까?
+               </v-card-title>
+               
+               <v-card-actions>
+                   <v-spacer></v-spacer>
+                   <v-btn @click="DeleteBoard(board.boardNo)">확인</v-btn>
+               <v-btn @click.native="cancle2">취소</v-btn>
+               </v-card-actions>
+               </v-card>
+           </v-dialog>
+           </v-card-subtitle>
+           <v-divider></v-divider>
+           <v-card-text>
+             <img v-if="board.img != ''" width="300px" :src="require(`@/assets/게시판/${board.img}`)"/>
+           </v-card-text>
+           <v-card-text style="height: 300px;">
+             {{board.content}}
+           </v-card-text>
+           <v-divider></v-divider>
+           <v-card-actions>
+             <v-dialog  v-model="dialog" persistent max-width="400">
+               <template v-slot:activator="{ on }">
+               <v-btn    dark v-on="on">신고</v-btn>
+               </template>
+               <v-card>
+               <v-card-title class="headline">
+                   정말 신고하시겟습니까?
+               </v-card-title>
+               
+               <v-card-actions>
+                   <v-spacer></v-spacer>
+                   <v-btn @click="report(board)">확인</v-btn>
+               <v-btn @click.native="cancle">취소</v-btn>
+               </v-card-actions>
+               </v-card>
+           </v-dialog>
+                <v-btn style="margin-left: 81%" @click="good(board.boardNo)"><v-icon>mdi-thumb-up</v-icon></v-btn> 
+                <v-btn @click="bad(board.boardNo)"><v-icon>mdi-thumb-down</v-icon></v-btn>
+           </v-card-actions>
+         </v-card>
+         
+         </v-container>
     </div>
 </template>
 
@@ -76,13 +139,11 @@ export default {
         }
     },
   computed:{
-    ...mapState(['session','loginMeberNo','memberInfo'])
+    ...mapState(['session','loginMeberNo',])
     
   },
   created(){
-    if(this.$store.state.loginMemberNo != null){
-      this.findMemberInfo(this.$store.state.loginMemberNo)
-    }
+
     
    
   },
@@ -100,9 +161,12 @@ export default {
                 })
 
                   },
+                  goBack() {
+                    this.$router.go(-1)
+                  },
                   good(boardNo){
                     
-                    axios.post(`http://localhost:7777/member/addLikeBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    axios.post(`http://localhost:7777/member/addLikeBoard/${boardNo}`,{memberNo:this.loginMeberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="추천되었습니다."){
@@ -117,7 +181,7 @@ export default {
                   },
                   
                   bad(boardNo){
-                    axios.post(`http://localhost:7777/member/addHateBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    axios.post(`http://localhost:7777/member/addHateBoard/${boardNo}`,{memberNo:this.loginMeberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="비추되었습니다."){
@@ -199,10 +263,13 @@ font-family: 'Noto Sans SC', sans-serif;
     border: 1px dashed rgba(0,0,0, .4);
   }
 #boardinfo{
-  font-size: 0.6em;
+  font-size: 1.6em;
 }
 #contentArea{
   height: 300px;
 }
-
+#boardTitle{
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5em
+}
 </style>

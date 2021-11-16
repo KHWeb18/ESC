@@ -22,10 +22,11 @@ import {
   GET_REPORTED_BOARD_LIST,
   GET_REPORTED_COMMENT_LIST,
   SET_ITEM_LIST,
-  // 마이페이지 내 게시글
-  FETCH_MEMBER_BOARD_LIST,
   FETCH_MY_BOARD_LIST,
-
+  FETCH_MY_COMMENT_LIST,
+  //마이페이지 관심목록 페이지
+  FETCH_MY_LIKE_LIST,
+  GET_MY_PARKING_STATES
 
 } from './mutation-types'
 
@@ -104,12 +105,18 @@ export default {
   [SET_ITEM_LIST] (state,payload){
     state.items =payload
   },
-  // 마이페이지 내 게시글
-  [FETCH_MEMBER_BOARD_LIST](state, memberBoardList) {
-    state.memberBoardList = memberBoardList;
-  },
-  // 내 게시글 예시
+  // 마이페이지
   [FETCH_MY_BOARD_LIST](state, myBoardList) {
     state.myBoardList = myBoardList;
   },
+  [FETCH_MY_COMMENT_LIST](state, myCommentList) {
+    state.myCommentList = myCommentList;
+  },
+  //마이페이지 관심목록 
+  [FETCH_MY_LIKE_LIST](state, myLikeList) {
+    state.myLikeList = myLikeList;
+  },
+  [GET_MY_PARKING_STATES](state, payload){
+    state.myParkingStates = payload
+  }
 };
