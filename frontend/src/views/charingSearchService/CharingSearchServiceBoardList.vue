@@ -8,8 +8,13 @@
       </div>
 
       <v-container>
-        <v-btn text class="levelControll" @click="levelControll(-1)"><span class="material-icons">zoom_in</span></v-btn>
-        <v-btn text class="levelControll" @click="levelControll(1)"><span class="material-icons">zoom_out</span></v-btn>
+        <v-btn text class="levelControll" @click="levelControll(-1)">
+          <span class="material-icons">zoom_in</span></v-btn>
+        <v-btn text class="levelControll" @click="levelControll(1)">
+          <span class="material-icons">zoom_out</span></v-btn>
+        <v-btn @click="getCurrLocation" text class="nearMeBtn">
+          <span class="material-icons nearMe">my_location</span></v-btn>
+
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn text v-bind="attrs" v-on="on" class="profileBtn">
@@ -22,6 +27,7 @@
               <v-list-item-title>{{location.text}}</v-list-item-title></v-list-item>
           </v-list>
         </v-menu>
+
         <input class="search hidden-sm-and-down" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
         <input class="searchSmall hidden-md-and-up" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
       </v-container>
@@ -151,6 +157,29 @@ export default {
   },
   methods:{
     ...mapActions(['SetitemList']),
+    getCurrLocation(){
+      let kakao = window.kakao
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition((position)=>{
+          var lat = position.coords.latitude,
+              lon = position.coords.longitude
+
+          var locPosition = new kakao.maps.LatLng(lat, lon)
+
+          this.displayMarker(locPosition)
+        })
+      }
+    },
+    displayMarker(locPosition){
+      let kakao = window.kakao
+      var marker = new kakao.maps.Marker({
+        map: this.mapInstance,
+        position: locPosition
+      })
+      marker;
+
+      this.mapInstance.setCenter(locPosition)
+    },
     typeFormatter(value){
       switch (value){
         case '01':
@@ -602,6 +631,13 @@ export default {
 .profileBtn{
   position: relative;
   left: 20px;
+  font-size: 1em;
+}
+.nearMeBtn{
+}
+.nearMe{
+  color: #0288D1;
+  margin-bottom: 2px;
 }
 .search{
   position: relative;
