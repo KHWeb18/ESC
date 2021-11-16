@@ -14,6 +14,8 @@
           <span class="material-icons">zoom_out</span></v-btn>
         <v-btn @click="getCurrLocation" text class="nearMeBtn">
           <span class="material-icons nearMe">my_location</span></v-btn>
+        <v-btn @click="getNearestStation" text class="nearMeBtn">
+          <span class="material-icons nearMe">my_location</span>가장가까운녀석</v-btn>
 
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
@@ -112,6 +114,8 @@ export default {
       ],
       lat: 0,
       lng: 0,
+      currLat: 0,
+      currLon: 0,
       pageSize: 7,
       pageNum: 0,
       MapOptions : {
@@ -157,14 +161,43 @@ export default {
   },
   methods:{
     ...mapActions(['SetitemList']),
+    getNearestStation(){
+      axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1`)
+          .then((res)=> {
+            let xml = res.data.items[0].item
+            let kakao = window.kakao
+            var polyline = new kakao.maps.Polyline({
+              path: [new kakao.maps.LatLng(this.currLat, this.currLon), new kakao.maps.LatLng(xml[0].lat, xml[0].lng)]
+            })
+            var minDistance = polyline.getLength()
+            var minIndex = 0
+            for (let i = 0; i < xml.length; i++) {
+              polyline = new kakao.maps.Polyline({
+                path: [new kakao.maps.LatLng(this.currLat, this.currLon), new kakao.maps.LatLng(xml[i].lat, xml[i].lng)]
+              })
+              var distance = polyline.getLength()
+              if(minDistance > distance){
+                minDistance = distance
+                minIndex = i
+              }
+            }
+            var markerPosition  = new kakao.maps.LatLng(xml[minIndex].lat, xml[minIndex].lng);
+            var marker = new kakao.maps.Marker({
+              map: this.mapInstance,
+              position: markerPosition
+            })
+            marker.setMap(this.mapInstance)
+          })
+    },
     getCurrLocation(){
       let kakao = window.kakao
       if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition((position)=>{
-          var lat = position.coords.latitude,
-              lon = position.coords.longitude
 
-          var locPosition = new kakao.maps.LatLng(lat, lon)
+          this.currLat = position.coords.latitude
+          this.currLon = position.coords.longitude
+
+          var locPosition = new kakao.maps.LatLng(this.currLat, this.currLon)
 
           this.displayMarker(locPosition)
         })
