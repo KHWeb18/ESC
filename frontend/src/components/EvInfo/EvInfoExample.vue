@@ -3,10 +3,25 @@
   <section>
     <v-container>
       <v-layout>
-        <v-flex>
+        <v-flex >
+          <v-card>
+            <table>
+              <tr>
+                <v-tabs
+                v-model="tab"
+                  background-color="deep-blue accent-4"
+                  center-active
+                  dark
+                >
+                  <v-tab v-for="item in items" :key="item.name">
+                    {{item.name}}
+                  </v-tab>
+                </v-tabs>
+              </tr>
+            </table>
+          </v-card>
           <v-row>
-
-            <v-col class="white-space" v-for="(item, idx) in carInfo.cars" :key="idx">
+            <v-col class="white-space" v-for="(item, idx) in carInfo" :key="idx">
               <v-card
                   class="mx-auto my-12"
                   max-width="400"
@@ -82,10 +97,27 @@ export default {
   data() {
     return {
       show : false,
+      tab: null,
+      items:[
+        {name: 'KIA'},
+        {name: 'HyundaiMotorCompany'},
+        {name: 'Chevrolet'},
+        {name: 'BMW'},
+        {name: '한불모터스'},
+        {name: 'CEVO MOBILITY'},
+        {name: 'EDISON EV'},
+        {name: 'Jaguar Cars'},
+        {name: 'KST Electric'},
+        {name: 'Mercedes-Benz'},
+        {name: 'RenaultSamsungMotors'},
+        {name: 'SsangYongMotor'},
+        {name: 'Tesla'},
+
+      ]
     }
   },
   methods:{
-
+    
   }
 }
 </script>
