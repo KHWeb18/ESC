@@ -56,10 +56,13 @@ public interface MemberService {
 
     public String addMyState(Long memberNo, MyChargingStateRequest myChargingStateRequest);
 
-    public  String addMyParkingState(Long memberNo , MyParkingState myParkingState) throws  Exception;
-
     public List<MyChargingState> findByMemberNo(Long memberNo) throws Exception;
+
+    public void deleteMyState(Long rowNo) throws Exception;
+
+    public  String addMyParkingState(Long memberNo , MyParkingState myParkingState) throws  Exception;
 
     public List<MyParkingState> getMyParkingState (Long memberNo) throws  Exception;
 
+    public void deleteMyParkingState(Long rowNo) throws Exception;
 }

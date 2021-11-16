@@ -1,143 +1,105 @@
 <template>
-  <div>
-    <my-page-menu />
-
-    <v-card
-      class="mx-auto"
-      max-width="400"
-      min-height="100%"
-      style="margin: 50px;"
-    >
-      <v-list-item two-line>
-        <v-list-item-content>
-          <h3 class="center mt-3">회원정보</h3>
-        </v-list-item-content>
-      </v-list-item>
-      <v-divider></v-divider>
-
-      <v-list>
-        <v-list-item>
-          <div>
-            <v-list-item-icon>
-              <v-icon>
-                mdi-account
-              </v-icon>
-            </v-list-item-icon>
-          </div>
-
-          <v-list-item-content>
-            <v-list-item-title>{{
-              session && session.memberId
-            }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-icon> </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ session && session.name }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon>
-              mdi-email
-            </v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{
-              session && session.email
-            }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon>
-              mdi-cake
-            </v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{
-              session && session.memberBirthDay.split("T", 1)[0]
-            }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon>
-              mdi-car
-            </v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{
-              session && session.memberCar
-            }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <v-divider></v-divider>
-      <v-card-actions>
-        <v-btn color="primary" route :to="{ name: 'IsEditMemberPage' }">
-          회원정보 수정
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn @click="deleteId" color="primary">
-          회원 탈퇴
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+  <div id="wrap">
+    <div id="header">
+      <is-my-page-banner-form />
+    </div>
+    <div id="container">
+      <div id="aside"></div>
+      <div id="content">
+        <v-container>
+          <h1 style="margin: 30px;">즐겨찾기</h1>
+          <my-page-menu />
+          <is-my-like-list :myLikeList="myLikeList" />
+          <v-divider light style="margin-top: 30px;"></v-divider>
+          <h1 style="margin: 30px;">게시글</h1>
+          <is-my-board-page-form :myBoardList="myBoardList" />
+          <v-divider light style="margin-top: 30px;"></v-divider>
+          <h1 style="margin: 30px;">댓글</h1>
+          <is-my-comment-list-form :myCommentList="myCommentList" />
+        </v-container>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-import axios from "axios";
+import IsMyPageBannerForm from "../../components/myPage/IsMyPageBannerForm.vue";
 import MyPageMenu from "../../components/myPage/MyPageMenu.vue";
+import IsMyLikeList from "../../components/myPage/IsMyLikeList.vue";
+import { mapActions, mapState } from "vuex";
+import IsMyBoardPageForm from "../../components/myPage/IsMyBoardPageForm.vue";
+import IsMyCommentListForm from "../../components/myPage/IsMyCommentListForm.vue";
+import Vue from "vue";
 
 export default {
-  computed: {
-    ...mapState(["session"]),
-  },
+  name: "IsMyPage",
   components: {
+    IsMyBoardPageForm,
+    IsMyCommentListForm,
+    IsMyLikeList,
+    IsMyPageBannerForm,
     MyPageMenu,
   },
+  computed: {
+    ...mapState(["session", "myBoardList", "myCommentList", "myLikeList"]),
+  },
   methods: {
-    ...mapActions(["logout"]),
-    deleteId() {
-      var temp;
-      var inputString = prompt("아이디를 입력하세요");
-      if (inputString == this.session.memberId) {
-        temp = true;
-        const { memberNo } = this.session;
-        axios
-          .delete(`http://localhost:7777/member/delete/${memberNo}`)
-          .then(() => {
-            alert("계정 삭제 성공");
-            this.$cookies.remove("user");
-            this.$router.push({ name: "Home" });
-            window.location.reload();
-          })
-          .catch((err) => {
-            alert(err.response.data.message);
-          });
-      } else {
-        alert("계정 삭제 실패");
-        temp = false;
-      }
-      console.log(temp);
-      return temp;
-    },
-    changeInfo() {
-      this.$router.push({ name: "IsMyPage" });
-    },
+    ...mapActions([
+      "fetchMyBoardList",
+      "fetchMyCommentList",
+      "fetchMyLikeList",
+    ]),
+  },
+  mounted() {
+    if (this.session) {
+      this.fetchMyBoardList(this.session.memberId);
+    } else {
+      let data = Vue.$cookies.get("user");
+      let member = data.memberId;
+      this.fetchMyBoardList(member);
+    }
+
+    if (this.session) {
+      this.fetchMyCommentList(this.session.memberId);
+    } else {
+      let data = Vue.$cookies.get("user");
+      let member = data.memberId;
+      this.fetchMyCommentList(member);
+    }
+
+    if (this.session) {
+      this.fetchMyLikeList(this.session.memberNo && this.session.memberNo);
+    } else {
+      let data = Vue.$cookies.get("user");
+      let member = data.memberNo;
+      this.fetchMyLikeList(member);
+    }
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#wrap {
+  width: 100%;
+
+  margin: 0 auto;
+}
+
+#container {
+  height: 100%;
+}
+#aside {
+  margin-top: 60px;
+  background: skyblue;
+  width: 10%;
+  height: 70%;
+  float: left;
+}
+
+#content {
+  width: 80%;
+  height: 30%;
+  float: left;
+  margin-left: 50px;
+}
+</style>

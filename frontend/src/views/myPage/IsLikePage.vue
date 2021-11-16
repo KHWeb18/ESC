@@ -9,41 +9,31 @@
 import { mapActions, mapState } from "vuex";
 import MyPageMenu from "../../components/myPage/MyPageMenu.vue";
 import IsMyLikeList from "../../components/myPage/IsMyLikeList.vue"
-
+import Vue from "vue";
 export default {
 
   components: { MyPageMenu, IsMyLikeList },
   computed: {
     ...mapState([ "session",'myLikeList']),
-    // ...mapState([{
-    //   session: state => state.session
-    // },
-    // {
-    //   myLikeList: state => state.myLikeList
-    // }])
+
   },  
 
 /*   data(){
-    console.log('state')
-    console.log(this.$store.state);
-    console.log('state.session')
-    console.log(this.$store.state.session);
-    console.log('state.loginMemberNO')
-    console.log(this.$store.state.loginMemberNo);
     return{
-      memberNo: this.$store.state.session.memberNo && this.$store.state.session.memberNo
+      memberNo:this.$store.state.session
     }
-  }, */
+  },  */
   methods: {
       ...mapActions(['fetchMyLikeList']),
   },
   mounted() {
-    console.log('mounted')
-    console.log(this.$store.state);
-    console.log(this.$store.state.session);
-    const {sessionData} = this.$store.getters;
-    console.log(sessionData); 
+      if(this.session){
       this.fetchMyLikeList(this.session.memberNo && this.session.memberNo)
+      }else{
+        let data = Vue.$cookies.get("user")
+        let member = data.memberNo
+        this.fetchMyLikeList(member)
+      }
   }
 }
 
