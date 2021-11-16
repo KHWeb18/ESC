@@ -42,7 +42,6 @@ import IsLikePage from '../views/myPage/IsLikePage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
 import ApiTestPage from "../views/ApiTestPage";
 
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -117,7 +116,7 @@ const routes = [
   {
     path: '/loginPage',
     name: 'LoginPage',
-    component: LoginPage
+    component: LoginPage  
   },
   {
     path: '/freeBoardListPage',
@@ -224,6 +223,7 @@ const routes = [
     name: ApiTestPage,
     component: ApiTestPage 
   },
+  
   //충전소찾기 페이지
   {
     path: '/daumMaptest',
@@ -241,11 +241,13 @@ const routes = [
     components: {
       default: CharingSearchServiceReadPage     
     },
+
     props: {
       default: true
     },
     
   },
+ 
 
 ]
 
