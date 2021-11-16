@@ -15,7 +15,11 @@
         <v-btn @click="getCurrLocation" text class="nearMeBtn">
           <span class="material-icons nearMe">my_location</span></v-btn>
         <v-btn @click="getNearestStation" text class="nearMeBtn">
-          <span class="material-icons nearMe">my_location</span>가장가까운녀석</v-btn>
+          <span class="material-icons nearMe" v-if="done === null || done">my_location</span>
+          <v-progress-circular v-if="done === false"
+            indeterminate
+            color="primary"
+        ></v-progress-circular><span v-if="done === null || done">가장가까운녀석</span></v-btn>
 
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
@@ -133,6 +137,7 @@ export default {
     searchList:[],
     search: '',
     allitem: null,
+    done: null,
     }
   },
   computed: {
@@ -162,8 +167,10 @@ export default {
   methods:{
     ...mapActions(['SetitemList']),
     getNearestStation(){
-      axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=${this.numOfRows}&pageNo=1`)
+      this.done = false
+      axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=9999&pageNo=1`)
           .then((res)=> {
+            this.done = true
             let xml = res.data.items[0].item
             let kakao = window.kakao
             var polyline = new kakao.maps.Polyline({
@@ -187,6 +194,83 @@ export default {
               position: markerPosition
             })
             marker.setMap(this.mapInstance)
+            var customOverlay = new kakao.maps.CustomOverlay({
+              position: markerPosition,
+              xAnchor: 0.48, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+              yAnchor: 1.08, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+            })
+            var content = document.createElement('div')
+            content.className = 'overlay_info'
+            var title = document.createElement('div')
+            title.className = 'topTitle'
+
+            var info = document.createElement('span')
+            info.appendChild(document.createTextNode('충전소 정보'))
+            content.appendChild(title)
+            title.appendChild(info)
+            title.addEventListener('click',closeOverlay(customOverlay))
+
+            var desc = document.createElement('div')
+            desc.className = 'desc'
+            var name = document.createElement('span')
+            name.className = 'name'
+
+            var nameLink = document.createElement('a')
+            nameLink.className = 'nameLink'
+            nameLink.appendChild(document.createTextNode(xml[minIndex].statNm))
+            name.appendChild(nameLink)
+            desc.appendChild(name)
+            content.appendChild(desc)
+            var solid = document.createElement('hr')
+            solid.className = 'solid'
+            desc.appendChild(solid)
+
+            var address = document.createElement('div')
+            address.className = 'address'
+            var markerIcon = document.createElement('i')
+            markerIcon.className = 'fas fa-map-marker-alt'
+            var addressText = document.createElement('span')
+            addressText.appendChild(document.createTextNode(xml[minIndex].addr))
+            address.appendChild(markerIcon)
+            address.appendChild(addressText)
+            desc.appendChild(address)
+            var tel = document.createElement('div')
+            tel.className = 'tel'
+            var telIcon = document.createElement('i')
+            telIcon.className = 'fas fa-phone'
+            var telText = document.createElement('span')
+            telText.appendChild(document.createTextNode(xml[minIndex].busiCall))
+            tel.appendChild(telIcon)
+            tel.appendChild(telText)
+            desc.appendChild(tel)
+            var status = document.createElement('div')
+            status.className = 'status'
+            var statusIcon = document.createElement('i')
+            statusIcon.className = 'fas fa-info-circle'
+            var statusText = document.createElement('span')
+            statusText.appendChild(document.createTextNode(this.statFormatter(xml[minIndex].stat)))
+            status.appendChild(statusIcon)
+            status.appendChild(statusText)
+            desc.appendChild(status)
+            var type = document.createElement('div')
+            type.className = 'type'
+            var typeIcon = document.createElement('i')
+            typeIcon.className = 'fas fa-plug'
+            var typeText = document.createElement('span')
+            typeText.appendChild(document.createTextNode(this.typeFormatter(xml[minIndex].chgerType)))
+            type.appendChild(typeIcon)
+            type.appendChild(typeText)
+            desc.appendChild(type)
+
+            customOverlay.setMap(this.mapInstance)
+            customOverlay.setContent(content)
+            this.done = true
+
+            function closeOverlay(customOverlay) {
+              return function() {
+                customOverlay.setMap(null)
+              };
+            }
           })
     },
     getCurrLocation(){
