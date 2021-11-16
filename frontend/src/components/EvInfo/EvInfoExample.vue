@@ -14,7 +14,7 @@
                   dark
                 >
                   <v-tab v-for="item in items" :key="item.name">
-                    {{item.name}}
+                    <span @click="filterBrand(item.name)">{{item.name}}</span>
                   </v-tab>
                 </v-tabs>
               </tr>
@@ -98,6 +98,7 @@ export default {
     return {
       show : false,
       tab: null,
+      filteredItems: [],
       items:[
         {name: 'KIA'},
         {name: 'HyundaiMotorCompany'},
@@ -117,7 +118,11 @@ export default {
     }
   },
   methods:{
-    
+    filterBrand(selected){
+      let copy = this.carInfo
+      let result = copy.filter(x => x.brand.includes(selected))
+      console.log(result)
+    }
   }
 }
 </script>
