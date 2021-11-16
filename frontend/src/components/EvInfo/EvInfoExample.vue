@@ -120,7 +120,8 @@ export default {
   methods:{
     filterBrand(selected){
       let copy = this.carInfo
-      let result = copy.filter(x => x.brand.includes(selected))
+      // let result = copy.filter(x => x.brand.includes(selected))
+      let result = copy.filter(x => x.brand === selected)
       console.log(result)
     }
   }
