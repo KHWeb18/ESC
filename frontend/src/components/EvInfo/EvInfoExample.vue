@@ -58,12 +58,12 @@
                     차량 홈페이지 이동
                   </v-btn>
                   <v-spacer></v-spacer>
-                  <v-btn icon @click="show = idx; show2 = !show2" class="white">
+                  <v-btn icon @click="changeShow(idx)" class="white">
                     <v-icon>{{ show === idx ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                   </v-btn>
                 </v-card-actions>
                 <v-expand-transition>
-                  <div v-show="show === idx && show2">
+                  <div v-show="show === idx">
                     <v-divider></v-divider>
 
                     <v-card-text>
@@ -99,8 +99,7 @@ export default {
   },
   data() {
     return {
-      show : false,
-      show2 : false,
+      show : null,
       tab: null,
       filteredItems: null,
       items:[
@@ -128,6 +127,13 @@ export default {
       let result = copy.filter(x => x.brand === selected)
       this.filteredItems = result
       console.log(result)
+    },
+    changeShow(idx){
+      if(this.show === idx){
+        this.show = null
+      }else{
+        this.show = idx
+      }
     }
   }
 }
