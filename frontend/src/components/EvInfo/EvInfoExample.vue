@@ -58,12 +58,12 @@
                     차량 홈페이지 이동
                   </v-btn>
                   <v-spacer></v-spacer>
-                  <v-btn icon @click="show = idx" class="white">
+                  <v-btn icon @click="show = idx; show2 = !show2" class="white">
                     <v-icon>{{ show === idx ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                   </v-btn>
                 </v-card-actions>
                 <v-expand-transition>
-                  <div v-show="show === idx">
+                  <div v-show="show === idx && show2">
                     <v-divider></v-divider>
 
                     <v-card-text>
@@ -100,6 +100,7 @@ export default {
   data() {
     return {
       show : false,
+      show2 : false,
       tab: null,
       filteredItems: null,
       items:[
