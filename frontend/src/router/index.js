@@ -45,7 +45,7 @@ import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
 import IsLikePage from '../views/myPage/IsLikePage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
 import ApiTestPage from "../views/ApiTestPage";
-/////////////
+
 import IsMyCommentListPage from '../views/myPage/IsMyCommentListPage.vue';
 import ApiTestPage2 from "../views/ApiTestPage2";
 
@@ -115,7 +115,7 @@ const routes = [
   {
     path: '/loginPage',
     name: 'LoginPage',
-    component: LoginPage
+    component: LoginPage  
   },
   {
     path: '/freeBoardListPage',
@@ -250,6 +250,7 @@ const routes = [
     components: {
       default: CharingSearchServiceReadPage      
     },
+
     props: {
       default: true
     },
