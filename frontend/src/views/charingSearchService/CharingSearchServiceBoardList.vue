@@ -15,11 +15,11 @@
         <v-btn @click="getCurrLocation" text class="nearMeBtn">
           <span class="material-icons nearMe">my_location</span></v-btn>
         <v-btn @click="getNearestStation" text class="nearMeBtn">
-          <span class="material-icons nearMe" v-if="done === null || done">my_location</span>
+          <span class="material-icons nearMe nearMeFind" v-if="done === null || done">find_in_page</span>
           <v-progress-circular v-if="done === false"
             indeterminate
             color="primary"
-        ></v-progress-circular><span v-if="done === null || done">가장가까운녀석</span></v-btn>
+        ></v-progress-circular><span v-if="done === null || done">가까운 충전소</span></v-btn>
 
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
@@ -421,6 +421,7 @@ export default {
           var nameLink = document.createElement('a')
           nameLink.className = 'nameLink'
           nameLink.appendChild(document.createTextNode(xml[i].statNm))
+          nameLink.addEventListener('click',goMapLink(xml[i].statNm))
           name.appendChild(nameLink)
           desc.appendChild(name)
           content.appendChild(desc)
@@ -434,6 +435,7 @@ export default {
           markerIcon.className = 'fas fa-map-marker-alt'
           var addressText = document.createElement('span')
           addressText.appendChild(document.createTextNode(xml[i].addr))
+          addressText.addEventListener('click',goMapLink(xml[i].statNm))
           address.appendChild(markerIcon)
           address.appendChild(addressText)
           desc.appendChild(address)
@@ -466,51 +468,7 @@ export default {
           desc.appendChild(type)
           // console.log(content)
           kakao.maps.event.addListener(marker, 'click', makeOverListener(this.mapInstance, customOverlay, content));
-          // kakao.maps.event.addListener(marker,'click',function (){
-          //     customOverlay.setMap(this.mapInstance)
-          //     customOverlay.setContent(content)
-          //
-          // })
-      //   var iwContent = `<div class="overlay_info">
-      // <div class="topTitle"><span>충전소 정보</span></div>
-      // <div class="desc">
-      // <span class="name"><a class="nameLink">${xml[i].statNm}</a></span>
-      // <hr class="solid">
-      //
-      // <div class="address">
-      // <i class="fas fa-map-marker-alt"></i>
-      // <span>${xml[i].addr}</span>
-      // </div>
-      //
-      // <div class="tel">
-      // <i style="color: #3F51B5; font-size: 20px" class="fas fa-phone"></i>
-      // <span>${xml[i].busiCall}</span>
-      // </div>
-      //
-      // <div class="status">
-      // <i style="color: #3F51B5; font-size: 20px" class="fas fa-info-circle"></i>
-      // <span>상태:${xml[i].stat}</span>
-      // </div>
-      //
-      // <div class="type">
-      // <i style="color: #3F51B5; font-size: 20px" class="fas fa-plug"></i>
-      // <span>충전타입:${xml[i].chgerType}</span>
-      // </div>
-      //
-      // </div>
-      // </div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능
-      //   iwPosition = new kakao.maps.LatLng(xml[i].lat, xml[i].lng), //인포윈도우 표시
-      //   iwRemoveable = true;
-      //
-      //       // 인포윈도우를 생성하고 지도에 표시
-      //       this.infowindow = new kakao.maps.InfoWindow({
-      //       // 인포윈도우가 표시될 지도
-      //       position : iwPosition,
-      //       content : iwContent,
-      //       removable : iwRemoveable });
-      //   kakao.maps.event.addListener(marker, 'click', goReadPage(xml[i].statNm));
-      //  kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(this.mapInstance, marker, this.infowindow));
-      //   kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(this.infowindow));
+
         }
       function makeOverListener(map, customOverlay, content) {
           return ()=>{
@@ -522,25 +480,12 @@ export default {
           customOverlay.setMap(null)
         };
       }
-    // function makeOverListener(map, marker, infowindow) {
-    //   return function() {
-    //     infowindow.open(map, marker);
-    //   };
-    // }
-//   function goReadPage(statNm) {
-//     return function(){
-//       console.log(statNm)
-//     }
-//   }
-//
-// // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-// function makeOutListener(infowindow) {
-//     return function() {
-//         infowindow.close();
-//     };
-// }
-        
-        //검색후 마커 및 인포 윈도우 그리기 끝
+      function goMapLink(value){
+          return () =>{
+            window.open(`https://map.kakao.com/link/search/${value}`)
+          }
+      }
+
             this.item = xml
             
       })
@@ -751,18 +696,20 @@ export default {
   left: 20px;
   font-size: 1em;
 }
-.nearMeBtn{
-}
+
 .nearMe{
   color: #0288D1;
   margin-bottom: 2px;
+}
+.nearMeFind{
+  color: #bbbbbb;
 }
 .search{
   position: relative;
   border: 1px solid #ddd;
   padding: 5px 35px;
-  margin-top: 2px;
-  left: 42%
+  margin-top: 3px;
+  left: 135px;
 }
 .searchSmall{
   position: absolute;
@@ -806,6 +753,9 @@ button .star:hover{
 }
 .InfoTable{
   width: 100%;
+  position: relative;
+  top: -10px;
+
 }
 .infoTrSmall{
   cursor: pointer;
