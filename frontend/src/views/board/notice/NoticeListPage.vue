@@ -1,6 +1,7 @@
 <template>
+<div>
+    
     <div>
-        <customer-service-board-menu/>
         <notice-list-page-form :noticeList="noticeList" />
         <v-dialog  v-model="dialog" persistent max-width="400">
                <template v-slot:activator="{ on }">
@@ -22,15 +23,16 @@
                </v-card>
            </v-dialog>
     </div>
+</div>
 </template>
 
 <script>
 import axios from 'axios'
 import { mapActions, mapState } from 'vuex'
 import NoticeListPageForm from '../../../components/board/notice/NoticeListPageForm.vue'
-import CustomerServiceBoardMenu from '../../../components/board/CustomerServiceBoardMenu.vue'
+
 export default {
-  components: { NoticeListPageForm, CustomerServiceBoardMenu },
+  components: { NoticeListPageForm },
     name: 'NoticeListPage',
     computed:{
         ...mapState(['noticeList'])

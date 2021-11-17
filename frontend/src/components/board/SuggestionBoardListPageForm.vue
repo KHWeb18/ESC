@@ -1,10 +1,33 @@
 <template>
 
 <div v-if="coin ==0&&this.tableMode ==1">
-  <v-card elevation="0" style="position:absolute; margin-left: 80%; width:400px">
-    <v-card-title>
-      이자리는 게시판 메뉴를 넣을예정
+  <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
+    <v-card-title > 
     </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
+    </v-card-title>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
   </v-card>
   <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
@@ -45,7 +68,7 @@
     <!--페이지네이션 버튼 -->
     
     <v-container style="max-width: 1000px">
-    <v-card dark id="option" style="max-height: 115px">
+    <v-card dark id="option" style="max-height: 115px;">
       <input style="position: absolute; margin-left: 40%; margin-top:9%" v-model="filterSearch" placeholder="필터검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
        <v-btn style="position:absolute; margin-top:77px" @click="Write()">글쓰기</v-btn>
       <v-card-text>
@@ -70,7 +93,35 @@
 
 <div v-else-if="coin ==1&&tableMode ==1">
   <v-btn style="position: absolute;"  @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
-    <v-container>
+    <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
+    <v-card-title > 
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
+    </v-card-title>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+  </v-card>
+    <v-container style="max-width:1000px">
       <v-simple-table >
         <template v-slot:default>
           <thead>
@@ -126,6 +177,34 @@
 
 <div v-else-if="coin ==0&&cardMode ==1">
    <v-btn style="position: absolute;"  @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
+     <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
+    <v-card-title > 
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
+    </v-card-title>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+  </v-card>
    <v-container style="max-width: 1000px">
   <v-row>
     <v-card class="mx-auto my-12" width="250"  v-for="i in paginatedData" :key="i.boardNo" @click="goDetail(i.boardNo)" outlined hover>
@@ -168,19 +247,49 @@
 
 <div v-else-if="coin ==1&&cardMode ==1">
   <v-btn style="position: absolute;"  @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
+    <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
+    <v-card-title > 
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
+    </v-card-title>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+  </v-card>
+  <v-container style="max-width: 1000px">
   <v-row>
-    <v-card class="mx-auto my-12" width="400" v-for="i in searchpaginatedData" :key="i.boardNo" @click="goDetail(i.boardNo)" outlined hover>
+    <v-card class="mx-auto my-12" width="250" v-for="i in searchpaginatedData" :key="i.boardNo" @click="goDetail(i.boardNo)" outlined hover>
     <v-card-title>{{i.memberId}}</v-card-title>
     <v-card-title>{{i.title}}</v-card-title>
     <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]</v-card-subtitle>
-    <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
-    <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
+    <v-img v-if="i.img != ''" width="250px" height="150" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
+    <v-img v-else-if="i.img == ''" width="250px" height="150" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
     <v-divider class="mx-4"></v-divider>
     <v-card-text>
-      <v-icon color="blue" style="margin-left: 77%" >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
+      <v-icon color="blue"  >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
     </v-card-text>
     </v-card>
   </v-row>
+  </v-container>
     <v-container style="max-width: 1000px">
     <v-card dark id="option" style="max-height: 115px">
       <v-btn style="position:absolute; margin-left: 91.5%" @click="showAllBoard()">검색해제</v-btn>
@@ -197,6 +306,7 @@
         </v-row>
       </form>
     </div>
+
       </v-card-text>
     </v-card>
     </v-container>
@@ -230,7 +340,7 @@ export default {
         {text: '작성자' , value:'작성자'}
       ],
       selectedItem: 1,
-
+      AllBoardLength: null
      
     }
   },
@@ -245,8 +355,16 @@ export default {
       default: 8
     }
   },
+  mounted(){
+    console.log('넘버',Number(this.boardList.length))
+    this.AllBoardLength = Number(this.boardList.length)
+  },
   methods: {
-    ...mapActions(['SetTableMode', 'SetCardMode','fetchTargetList']),
+    chkeccsd(){
+      console.log(this.boardList.length)
+      this.AllBoardLength = Number(this.boardList.length)
+    },
+    ...mapActions(['SetTableMode', 'SetCardMode','fetchTargetList','fetchBoardList']),
     nextPage () {
       this.pageNum += 1;
     },
@@ -400,7 +518,12 @@ export default {
 
   },
   computed: {
-      ...mapState(['tableMode','cardMode']),
+    
+    AllBoardlengths(){
+      let num = Number(this.boardList.length)
+      return num
+    },
+      ...mapState(['tableMode','cardMode','boardList']),
     pageCount () {
       let listLeng = this.TargetList.length,
           listSize = this.pageSize,
@@ -429,6 +552,7 @@ export default {
     },
   },
   created(){
+    this.fetchBoardList()
     if(this.$store.state.tableMode ==null){
       this.SetTableMode()
       this.SetCardMode()
