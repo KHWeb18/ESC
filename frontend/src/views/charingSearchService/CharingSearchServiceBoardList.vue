@@ -219,6 +219,7 @@ export default {
             var nameLink = document.createElement('a')
             nameLink.className = 'nameLink'
             nameLink.appendChild(document.createTextNode(xml[minIndex].statNm))
+            nameLink.addEventListener('click',goMapLink(xml[minIndex].statNm))
             name.appendChild(nameLink)
             desc.appendChild(name)
             content.appendChild(desc)
@@ -231,6 +232,7 @@ export default {
             var markerIcon = document.createElement('i')
             markerIcon.className = 'fas fa-map-marker-alt'
             var addressText = document.createElement('span')
+            addressText.addEventListener('click',goMapLink(xml[minIndex].statNm))
             addressText.appendChild(document.createTextNode(xml[minIndex].addr))
             address.appendChild(markerIcon)
             address.appendChild(addressText)
@@ -271,6 +273,11 @@ export default {
               return function() {
                 customOverlay.setMap(null)
               };
+            }
+            function goMapLink(value){
+              return () =>{
+                window.open(`https://map.kakao.com/link/search/${value}`)
+              }
             }
           })
     },
@@ -560,6 +567,7 @@ export default {
           var nameLink = document.createElement('a')
           nameLink.className = 'nameLink'
           nameLink.appendChild(document.createTextNode(xml[i].statNm))
+          nameLink.addEventListener('click',goMapLink(xml[i].statNm))
           name.appendChild(nameLink)
           desc.appendChild(name)
           content.appendChild(desc)
@@ -572,6 +580,7 @@ export default {
           markerIcon.className = 'fas fa-map-marker-alt'
           var addressText = document.createElement('span')
           addressText.appendChild(document.createTextNode(xml[i].addr))
+          addressText.addEventListener('click',goMapLink(xml[i].statNm))
           address.appendChild(markerIcon)
           address.appendChild(addressText)
           desc.appendChild(address)
@@ -615,22 +624,11 @@ export default {
                 customOverlay.setMap(null)
               };
             }
-            // function makeOverListener(map, marker, infowindow) {
-            //   return function() {
-            //     infowindow.open(map, marker);
-            //   };
-            // }
-//   function goReadPage(statNm) {
-//     return function(){
-//       console.log(statNm)
-//     }
-//   }
-//
-// // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-// function makeOutListener(infowindow) {
-//     return function() {
-//         infowindow.close();
-//     };
+            function goMapLink(value){
+              return () =>{
+                window.open(`https://map.kakao.com/link/search/${value}`)
+              }
+            }
 // }
             //검색후 마커 및 인포 윈도우 그리기 끝
             this.item = xml

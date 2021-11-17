@@ -92,7 +92,8 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Do Hyeon', sans-serif;
+  /*font-family: 'Do Hyeon', sans-serif;*/
+  font-family: "Montserrat", sans-serif;
   user-select: none;
 }
 
@@ -106,7 +107,7 @@ a{
   position: absolute;
   width: 300px;
   height: 100%;
-  top: 20px;
+  top: 10px;
   left: 41%;
   opacity: 0.9;
 }
@@ -149,7 +150,8 @@ a{
   margin-left: 85px;
   top: 40px;
   max-height: 50px;
-  font-size: 1.12em;
+  font-size: 0.8em;
+  font-weight: 600;
   cursor: pointer;
   z-index: 2;
 }
@@ -169,7 +171,8 @@ a{
   position: relative;
   top: 45px;
   max-height: 35px;
-  font-size: 1em;
+  font-size: 0.65em;
+  font-weight: 600;
   cursor: pointer;
 }
 .menusSmall:hover{
@@ -193,7 +196,7 @@ a{
 }
 
 .memberContainer{
-  font-size: 0.8em;
+  font-size: 0.55em;
 }
 .memberContainer:hover{
   color: #cfd6da;
