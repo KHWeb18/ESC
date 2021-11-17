@@ -1,9 +1,44 @@
 <template>
 
 <div v-if="coin ==0&&this.tableMode ==1">
-  <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
-  <input style="border: 1px; margin-left: 1%" v-model="filterSearch" placeholder="필터검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
-    <v-container>
+  <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
+    <v-card-title > 
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
+    </v-card-title>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+  </v-card>
+  <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span v-bind="attrs" v-on="on"><v-btn style="position: absolute;" @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn></span>
+            
+          </template>
+          <span>게시글 형태을 변환합니다!</span>
+        </v-tooltip>
+  
+  
+    <v-container style="max-width:1000px;">
       <v-simple-table >
         <template v-slot:default>
           <thead>
@@ -31,9 +66,11 @@
       </template>
     </v-simple-table>
     <!--페이지네이션 버튼 -->
-     <v-btn style="margin-right: 100%; float:left" @click="Write()">글쓰기</v-btn>
+    
     <v-container style="max-width: 1000px">
-    <v-card dark id="option" style="max-height: 115px">
+    <v-card dark id="option" style="max-height: 115px;">
+      <input style="position: absolute; margin-left: 40%; margin-top:9%" v-model="filterSearch" placeholder="필터검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
+       <v-btn style="position:absolute; margin-top:77px" @click="Write()">글쓰기</v-btn>
       <v-card-text>
   <div class="btn-cover">
     <button :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
@@ -55,8 +92,36 @@
 
 
 <div v-else-if="coin ==1&&tableMode ==1">
-  <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
-    <v-container>
+  <v-btn style="position: absolute;"  @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
+    <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
+    <v-card-title > 
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
+    </v-card-title>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+  </v-card>
+    <v-container style="max-width:1000px">
       <v-simple-table >
         <template v-slot:default>
           <thead>
@@ -83,11 +148,13 @@
           </tbody>
         </template>
       </v-simple-table>
-
-    <v-btn style="margin-right: 100%; float:left" @click="Write()">글쓰기</v-btn>
-    <v-btn style="margin-left: 90%" @click="showAllBoard()">검색해제</v-btn>
+    
+    
+    
     <v-container style="max-width: 1000px">
     <v-card dark id="option" style="max-height: 115px">
+      <v-btn style="position:absolute; margin-left: 91.5%" @click="showAllBoard()">검색해제</v-btn>
+      <v-btn style="position:absolute; margin-top:77px" @click="Write()">글쓰기</v-btn>
       <v-card-text>
   <div class="btn-cover">
     <button :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
@@ -103,31 +170,62 @@
       </v-card-text>
     </v-card>
     </v-container>
+
   </v-container>
 </div>
 
 
 <div v-else-if="coin ==0&&cardMode ==1">
-   <v-btn @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
-   <input style="border: 3px; margin-left: 1% " v-model="search" placeholder="제목검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
+   <v-btn style="position: absolute;"  @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
+     <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
+    <v-card-title > 
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
+    </v-card-title>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+  </v-card>
+   <v-container style="max-width: 1000px">
   <v-row>
-    <v-card class="mx-auto my-12" width="400" v-for="i in paginatedData" :key="i.boardNo" @click="goDetail(i.boardNo)" outlined hover>
+    <v-card class="mx-auto my-12" width="250"  v-for="i in paginatedData" :key="i.boardNo" @click="goDetail(i.boardNo)" outlined hover>
     <v-card-title>{{i.memberId}}</v-card-title>
     <v-divider class="mx-4"></v-divider>
     <v-card-title>{{i.title}}</v-card-title>
     <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]</v-card-subtitle>
-    <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
-    <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
+    <v-img v-if="i.img != ''" width="250px" height="150" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
+    <v-img v-else-if="i.img == ''" width="250px" height="150" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
     <v-divider class="mx-4"></v-divider>
     <v-card-text>
-      <v-icon color="blue" style="margin-left: 77%" >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
+      <v-icon color="blue" style="margin-left: %" >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
     </v-card-text>
     </v-card>
   </v-row>
+   </v-container>
   <!--페이지네이션 버튼 -->
-    <v-btn style="margin-right: 100%; float:left" @click="Write()">글쓰기</v-btn>
     <v-container style="max-width: 1000px">
     <v-card dark id="option" style="max-height: 115px">
+      <input style="position: absolute; margin-left: 40%; margin-top:9%" v-model="filterSearch" placeholder="필터검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
+       <v-btn style="position:absolute; margin-top:77px" @click="Write()">글쓰기</v-btn>
       <v-card-text>
   <div class="btn-cover">
     <button :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
@@ -148,32 +246,70 @@
 
 
 <div v-else-if="coin ==1&&cardMode ==1">
-  <v-btn @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
+  <v-btn style="position: absolute;"  @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
+    <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
+    <v-card-title > 
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
+    </v-card-title>
+    <v-card-title > 
+     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
+    </v-card-title>
+    <v-divider></v-divider>
+  </v-card>
+  <v-container style="max-width: 1000px">
   <v-row>
-    <v-card class="mx-auto my-12" width="400" v-for="i in searchpaginatedData" :key="i.boardNo" @click="goDetail(i.boardNo)" outlined hover>
+    <v-card class="mx-auto my-12" width="250" v-for="i in searchpaginatedData" :key="i.boardNo" @click="goDetail(i.boardNo)" outlined hover>
     <v-card-title>{{i.memberId}}</v-card-title>
     <v-card-title>{{i.title}}</v-card-title>
     <v-card-subtitle>[{{$moment(i.createDate).format('YYYY-MM-DD/hh:mm')}} 조회{{i.viewcount}}]</v-card-subtitle>
-    <v-img v-if="i.img != ''" width="400px" height="350" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
-    <v-img v-else-if="i.img == ''" width="400px" height="350" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
+    <v-img v-if="i.img != ''" width="250px" height="150" :src="require(`@/assets/게시판/${i.img}`)"></v-img>
+    <v-img v-else-if="i.img == ''" width="250px" height="150" :src="require('@/assets/게시판/사진없음.jpg')"></v-img>
     <v-divider class="mx-4"></v-divider>
     <v-card-text>
-      <v-icon color="blue" style="margin-left: 77%" >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
+      <v-icon color="blue"  >mdi-thumb-up</v-icon>{{i.good}}<v-icon color="red">mdi-thumb-down</v-icon>{{i.bad}}
     </v-card-text>
     </v-card>
   </v-row>
-    <div class="btn-cover"><button :disabled="searchpageNum === 0" @click="searchPrevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
-      <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }}</span>
-      <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
-      <form @keyup.enter="searching(searchMenus,search)">
-        <v-btn style="margin-right: 100%" @click="Write()"><v-icon>mdi-pen-plus</v-icon></v-btn>
-        <v-row style="margin-left: 80%">
-          <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
+  </v-container>
+    <v-container style="max-width: 1000px">
+    <v-card dark id="option" style="max-height: 115px">
+      <v-btn style="position:absolute; margin-left: 91.5%" @click="showAllBoard()">검색해제</v-btn>
+      <v-btn style="position:absolute; margin-top:77px" @click="Write()">글쓰기</v-btn>
+      <v-card-text>
+  <div class="btn-cover">
+    <button :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
+    <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
+    <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
+    <form @keyup.enter="searching(searchMenus,search)">
+        <v-row  >
+          <v-select  style="max-width: 100px; margin-left: 570px;" :items="searchMenu" label="검색" v-model="searchMenus"/>
           <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
         </v-row>
-        <v-btn style="margin-left: 90%" @click="showAllBoard()">검색해제</v-btn>
       </form>
     </div>
+
+      </v-card-text>
+    </v-card>
+    </v-container>
 </div>
 
 </template>
@@ -204,7 +340,7 @@ export default {
         {text: '작성자' , value:'작성자'}
       ],
       selectedItem: 1,
-
+      AllBoardLength: null
      
     }
   },
@@ -219,8 +355,16 @@ export default {
       default: 8
     }
   },
+  mounted(){
+    console.log('넘버',Number(this.boardList.length))
+    this.AllBoardLength = Number(this.boardList.length)
+  },
   methods: {
-    ...mapActions(['SetTableMode', 'SetCardMode','fetchTargetList']),
+    chkeccsd(){
+      console.log(this.boardList.length)
+      this.AllBoardLength = Number(this.boardList.length)
+    },
+    ...mapActions(['SetTableMode', 'SetCardMode','fetchTargetList','fetchBoardList']),
     nextPage () {
       this.pageNum += 1;
     },
@@ -270,7 +414,7 @@ export default {
         }
         else{
           for(var i = 0 ; i< res.data.length; i ++) {
-            if(res.data[i].category =="자유게시판"){
+            if(res.data[i].category =="건의게시판"){
               this.searchList.push(res.data[i]) 
             }
           }
@@ -293,7 +437,7 @@ export default {
         }
         else{
           for(var i = 0 ; i< res.data.length; i ++) {
-            if(res.data[i].category =="자유게시판"){
+            if(res.data[i].category =="건의게시판"){
               this.searchList.push(res.data[i]) 
             }
           }
@@ -374,7 +518,12 @@ export default {
 
   },
   computed: {
-      ...mapState(['tableMode','cardMode']),
+    
+    AllBoardlengths(){
+      let num = Number(this.boardList.length)
+      return num
+    },
+      ...mapState(['tableMode','cardMode','boardList']),
     pageCount () {
       let listLeng = this.TargetList.length,
           listSize = this.pageSize,
@@ -403,6 +552,7 @@ export default {
     },
   },
   created(){
+    this.fetchBoardList()
     if(this.$store.state.tableMode ==null){
       this.SetTableMode()
       this.SetCardMode()
@@ -424,5 +574,7 @@ td{
 #option{
   font-family: 'Do Hyeon', sans-serif;
 }
-
+#footerMenuBar{
+ position: absolute;
+}
 </style>

@@ -1,16 +1,14 @@
 <template>
     <div>
-        <customer-service-board-menu/>
         <suggestion-board-list-page-form :TargetList="TargetList"/>
     </div>
 </template>
 
 <script>
 import {mapActions,mapState} from 'vuex'
-import CustomerServiceBoardMenu from '../../components/board/CustomerServiceBoardMenu.vue'
 import SuggestionBoardListPageForm from '../../components/board/SuggestionBoardListPageForm.vue'
 export default {
-  components: { SuggestionBoardListPageForm,CustomerServiceBoardMenu},
+  components: { SuggestionBoardListPageForm},
     name: 'SuggestionBoardListPage',
     
     data(){
