@@ -51,7 +51,7 @@
                 <td>요금정보</td>
             </tr>
             <tr v-for=" (items,idx) in paginatedData " :key="idx">
-                <td><button @click="addMyParkingState(session,items)"><v-icon>mdi-star</v-icon></button></td>
+                <td><v-btn icon color="pink" @click="addMyParkingState(session,items)"><v-icon>mdi-heart</v-icon></v-btn></td>
                 <a @click="showMetheMarker(items)"><td>{{items.주차장명}}</td></a>
                 <td @click="goDetail(items)" v-if="items.소재지도로명주소 !==''">{{items.소재지도로명주소}}</td>
                 <td  @click="goDetail(items)" v-if="items.소재지도로명주소 =='' ">등록된정보가없습니다.</td>
