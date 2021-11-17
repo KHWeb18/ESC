@@ -1,5 +1,3 @@
-{
-	"cars":
 [
 	{
 		"brand":"KIA",
@@ -574,7 +572,7 @@
         "battery":"리튬이온(54.5kWh)",
         "subsidy":"702만원",
 		"carImage":"https://www.automobile-magazine.fr/asset/cms/166918/config/115735/21231701-2019-essais-presse-nouvelle-renault-zoe-en-sardaigne.jpg",
-		"brandImage":"https://lh3.googleusercontent.com/proxy/N3zKlgrdyLKWg1sxkLDRPf61K3L_-UW2uu_295FMGSYFJDQDZIILyqm5TqAf2JALxypcqmh302GF2RiypqnsFhD6NhAqw9bekqh8sWS8opWmGhtdd-_gVoKRUXEtM25skU47he_Vxz_MfHDCduSeJkmxh0G8GcYN14NpqXJnMQzHBTDu2bVaDfVwyay3NtS6BYONSRczgMAI13VVIWYiqassGEnlIXXPA7r0fRa4bgvoywLqbfF6zxftg1jCcB0w5W6BZfTtBPGr3zsF-2ummpooNXbX62E6JSu6v2rLnN_DeAB6qs7Jf5pdvrvi6pUobRn1EZrdXs_3km0O-FI_oDJr5pY",
+		"brandImage":"http://www.autoview.co.kr/picture/promotion_news/2018071911455500_article.jpg",
 		"url":"https://www.renault.co.kr/vehicles/zoe.jsp"
 	},
     {
@@ -586,7 +584,7 @@
         "battery":"리튬이온(54.5kWh)",
         "subsidy":"702만원",
 		"carImage":"https://www.automobile-magazine.fr/asset/cms/166918/config/115735/21231701-2019-essais-presse-nouvelle-renault-zoe-en-sardaigne.jpg",
-		"brandImage":"https://lh3.googleusercontent.com/proxy/N3zKlgrdyLKWg1sxkLDRPf61K3L_-UW2uu_295FMGSYFJDQDZIILyqm5TqAf2JALxypcqmh302GF2RiypqnsFhD6NhAqw9bekqh8sWS8opWmGhtdd-_gVoKRUXEtM25skU47he_Vxz_MfHDCduSeJkmxh0G8GcYN14NpqXJnMQzHBTDu2bVaDfVwyay3NtS6BYONSRczgMAI13VVIWYiqassGEnlIXXPA7r0fRa4bgvoywLqbfF6zxftg1jCcB0w5W6BZfTtBPGr3zsF-2ummpooNXbX62E6JSu6v2rLnN_DeAB6qs7Jf5pdvrvi6pUobRn1EZrdXs_3km0O-FI_oDJr5pY",
+		"brandImage":"http://www.autoview.co.kr/picture/promotion_news/2018071911455500_article.jpg",
 		"url":"https://www.renault.co.kr/vehicles/zoe.jsp"
 	},
 	{
@@ -598,7 +596,7 @@
         "battery":"리튬이온(54.5kWh)",
         "subsidy":"702만원",
 		"carImage":"https://www.automobile-magazine.fr/asset/cms/166918/config/115735/21231701-2019-essais-presse-nouvelle-renault-zoe-en-sardaigne.jpg",
-		"brandImage":"https://lh3.googleusercontent.com/proxy/N3zKlgrdyLKWg1sxkLDRPf61K3L_-UW2uu_295FMGSYFJDQDZIILyqm5TqAf2JALxypcqmh302GF2RiypqnsFhD6NhAqw9bekqh8sWS8opWmGhtdd-_gVoKRUXEtM25skU47he_Vxz_MfHDCduSeJkmxh0G8GcYN14NpqXJnMQzHBTDu2bVaDfVwyay3NtS6BYONSRczgMAI13VVIWYiqassGEnlIXXPA7r0fRa4bgvoywLqbfF6zxftg1jCcB0w5W6BZfTtBPGr3zsF-2ummpooNXbX62E6JSu6v2rLnN_DeAB6qs7Jf5pdvrvi6pUobRn1EZrdXs_3km0O-FI_oDJr5pY",
+		"brandImage":"http://www.autoview.co.kr/picture/promotion_news/2018071911455500_article.jpg",
 		"url":"https://www.renault.co.kr/vehicles/zoe.jsp"
 	},
 	{
@@ -610,7 +608,7 @@
         "battery":"리튬이온(6.77kWh)",
         "subsidy":"400만원",
 		"carImage":"https://assets.website-files.com/5fc8e8216b8bb486b565359f/600691168d365ec6e771280c_twizy_bildegalleri_exterior_1100x720_4.jpg",
-		"brandImage":"https://lh3.googleusercontent.com/proxy/N3zKlgrdyLKWg1sxkLDRPf61K3L_-UW2uu_295FMGSYFJDQDZIILyqm5TqAf2JALxypcqmh302GF2RiypqnsFhD6NhAqw9bekqh8sWS8opWmGhtdd-_gVoKRUXEtM25skU47he_Vxz_MfHDCduSeJkmxh0G8GcYN14NpqXJnMQzHBTDu2bVaDfVwyay3NtS6BYONSRczgMAI13VVIWYiqassGEnlIXXPA7r0fRa4bgvoywLqbfF6zxftg1jCcB0w5W6BZfTtBPGr3zsF-2ummpooNXbX62E6JSu6v2rLnN_DeAB6qs7Jf5pdvrvi6pUobRn1EZrdXs_3km0O-FI_oDJr5pY",
+		"brandImage":"http://www.autoview.co.kr/picture/promotion_news/2018071911455500_article.jpg",
 		"url":"https://www.renault.co.kr/vehicles/twizy.jsp"
 	},
 	{
@@ -621,7 +619,7 @@
         "charge":"(상온)306km(저온)254km",
         "battery":"리튬이온(61.488kWh)",
         "subsidy":"760만원",
-		"carImage":"https://lh3.googleusercontent.com/proxy/X2E4f6em_HVtnipHEZbB1sA8gELWpZgBScwalVxdk7Qmc77yq7uyGRGZIpMfWykm8VyYeoKki-WkCpH9QtgXRMO4odr5WZCB88Tylpxa_8gG5ca7",
+		"carImage":"https://post-phinf.pstatic.net/MjAyMDA1MDRfMjMy/MDAxNTg4NjAwNzk1OTgw.6BI7e7xyKjiiFvnICUsdTVI2Xk2U2HCC_HjxudpTEQMg.EIe6Xdm9PY5luJUrDkUjvTFpRVPEIi_xILG-iO-eYAgg.JPEG/image_9298917021588599565951.jpg?type=w1200",
 		"brandImage":"https://blog.kakaocdn.net/dn/cr7qJj/btqwZi9lkWx/sbcK3Q5ngTEqu1x6TPn0eK/img.jpg",
 		"url":"http://www.smotor.com/kr/showroom/korando/"
 	},
@@ -633,7 +631,7 @@
         "charge":"(상온)307km(저온)252km",
         "battery":"리튬이온(61.488kWh)",
         "subsidy":"768만원",
-		"carImage":"https://lh3.googleusercontent.com/proxy/X2E4f6em_HVtnipHEZbB1sA8gELWpZgBScwalVxdk7Qmc77yq7uyGRGZIpMfWykm8VyYeoKki-WkCpH9QtgXRMO4odr5WZCB88Tylpxa_8gG5ca7",
+		"carImage":"https://post-phinf.pstatic.net/MjAyMDA1MDRfMjMy/MDAxNTg4NjAwNzk1OTgw.6BI7e7xyKjiiFvnICUsdTVI2Xk2U2HCC_HjxudpTEQMg.EIe6Xdm9PY5luJUrDkUjvTFpRVPEIi_xILG-iO-eYAgg.JPEG/image_9298917021588599565951.jpg?type=w1200",
 		"brandImage":"https://blog.kakaocdn.net/dn/cr7qJj/btqwZi9lkWx/sbcK3Q5ngTEqu1x6TPn0eK/img.jpg",
 		"url":"http://www.smotor.com/kr/showroom/korando/"
 	},
@@ -794,4 +792,3 @@
 		"url":"https://www.tesla.com/modely"
 	}
 ]
-}

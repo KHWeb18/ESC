@@ -3,10 +3,25 @@
   <section>
     <v-container>
       <v-layout>
-        <v-flex>
+        <v-flex >
+          <v-card>
+            <table>
+              <tr>
+                <v-tabs
+                v-model="tab"
+                  background-color="deep-blue accent-4"
+                  center-active
+                  dark
+                >
+                  <v-tab @click="filterBrand(item.name)" v-for="item in items" :key="item.name">
+                    <span >{{item.name}}</span>
+                  </v-tab>
+                </v-tabs>
+              </tr>
+            </table>
+          </v-card>
           <v-row>
-
-            <v-col class="white-space" v-for="(item, idx) in carInfo.cars" :key="idx">
+            <v-col class="white-space" v-for="(item, idx) in filteredItems" :key="idx">
               <v-card
                   class="mx-auto my-12"
                   max-width="400"
@@ -43,7 +58,7 @@
                     차량 홈페이지 이동
                   </v-btn>
                   <v-spacer></v-spacer>
-                  <v-btn icon @click="show = idx" class="white">
+                  <v-btn icon @click="changeShow(idx)" class="white">
                     <v-icon>{{ show === idx ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                   </v-btn>
                 </v-card-actions>
@@ -77,15 +92,49 @@ export default {
   name: "EvInfoExample",
   computed: {
     ...mapState(['carInfo', ]),
-
+  },
+  mounted() {
+    this.filteredItems = this.carInfo
+    console.log(this.filteredItems)
   },
   data() {
     return {
-      show : false,
+      show : null,
+      tab: null,
+      filteredItems: null,
+      items:[
+        {name: 'KIA'},
+        {name: 'HyundaiMotorCompany'},
+        {name: 'Chevrolet'},
+        {name: 'BMW'},
+        {name: '한불모터스'},
+        {name: 'CEVO MOBILITY'},
+        {name: 'EDISON EV'},
+        {name: 'Jaguar Cars'},
+        {name: 'KST Electric'},
+        {name: 'Mercedes-Benz'},
+        {name: 'RenaultSamsungMotors'},
+        {name: 'SsangYongMotor'},
+        {name: 'Tesla'},
+
+      ]
     }
   },
   methods:{
-
+    filterBrand(selected){
+      let copy = this.carInfo
+      // let result = copy.filter(x => x.brand.includes(selected))
+      let result = copy.filter(x => x.brand === selected)
+      this.filteredItems = result
+      console.log(result)
+    },
+    changeShow(idx){
+      if(this.show === idx){
+        this.show = null
+      }else{
+        this.show = idx
+      }
+    }
   }
 }
 </script>

@@ -45,9 +45,9 @@ import IsMyBoardPage from '../views/myPage/IsMyBoardPage.vue'
 import IsLikePage from '../views/myPage/IsLikePage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
 import ApiTestPage from "../views/ApiTestPage";
-/////////////
+import IsParkingLikePage from '../views/myPage/IsParkingLikePage.vue'
+
 import IsMyCommentListPage from '../views/myPage/IsMyCommentListPage.vue';
-import ApiTestPage2 from "../views/ApiTestPage2";
 
 Vue.use(VueRouter)
 
@@ -115,7 +115,7 @@ const routes = [
   {
     path: '/loginPage',
     name: 'LoginPage',
-    component: LoginPage
+    component: LoginPage  
   },
   {
     path: '/freeBoardListPage',
@@ -220,18 +220,18 @@ const routes = [
     name: 'IsMyCommentListPage',   
     component: IsMyCommentListPage
   },
-  
+    {
+    path: '/isParkingLikePage',
+    name: 'IsParkingLikePage',   
+    component: IsParkingLikePage
+  },
+
 
     //api test
   {
     path: '/apiTest',
     name: ApiTestPage,
     component: ApiTestPage 
-  },
-  {
-    path: '/apiTest2',
-    name: ApiTestPage2,
-    component: ApiTestPage2
   },
   //충전소찾기 페이지
   {
@@ -245,11 +245,12 @@ const routes = [
     component: CharingSearchServiceBoardList 
   },
   {
-    path: '/charingSearchServiceReadPage/:statNm',
+    path: '/charingSearchServiceReadPage/',
     name: 'CharingSearchServiceReadPage',
     components: {
       default: CharingSearchServiceReadPage      
     },
+
     props: {
       default: true
     },

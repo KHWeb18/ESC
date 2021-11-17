@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-page-menu />
+    <is-my-page-banner-form />
     <v-card
       class="mx-auto"
       max-width="400"
@@ -98,11 +98,12 @@
 <script>
 import axios from "axios";
 import { mapActions, mapState } from "vuex";
-import MyPageMenu from "../../components/myPage/MyPageMenu.vue";
+/* import MyPageMenu from "../../components/myPage/MyPageMenu.vue"; */
+import IsMyPageBannerForm from '../../components/myPage/IsMyPageBannerForm.vue';
 
 export default {
   name: "IsMyBoardPage",
-  components: { MyPageMenu },
+  components: { /* MyPageMenu */ IsMyPageBannerForm },
   computed: {
     ...mapState([
       "member",
@@ -137,7 +138,6 @@ export default {
       this.$router.push({ name: "IsMyPage" });
     },
     done() {
-      console.log(this);
       const { memberNo, memberId, name, email, memberPw, memberCar } = this;
       axios
         .put(`http://localhost:7777/member/modify/${memberNo}`, {

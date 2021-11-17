@@ -57,6 +57,7 @@ export default {
               }
               
             })
+            
             }
             
           })
@@ -64,6 +65,7 @@ export default {
     chk(){
       console.log("쿠키값"+this.$cookies.get('userAuth'))
       console.log("스토어에저장된  auth값"+this.$store.state.auth)
+      console.log('쿠키에저장된 유저No',this.$cookies.get('userNo'))
     }
   },
   data() {

@@ -8,8 +8,19 @@
       </div>
 
       <v-container>
-        <v-btn text class="levelControll" @click="levelControll(-1)"><span class="material-icons">zoom_in</span></v-btn>
-        <v-btn text class="levelControll" @click="levelControll(1)"><span class="material-icons">zoom_out</span></v-btn>
+        <v-btn text class="levelControll" @click="levelControll(-1)">
+          <span class="material-icons">zoom_in</span></v-btn>
+        <v-btn text class="levelControll" @click="levelControll(1)">
+          <span class="material-icons">zoom_out</span></v-btn>
+        <v-btn @click="getCurrLocation" text class="nearMeBtn">
+          <span class="material-icons nearMe">my_location</span></v-btn>
+        <v-btn @click="getNearestStation" text class="nearMeBtn">
+          <span class="material-icons nearMe nearMeFind" v-if="done === null || done">find_in_page</span>
+          <v-progress-circular v-if="done === false"
+            indeterminate
+            color="primary"
+        ></v-progress-circular><span v-if="done === null || done">가까운 충전소</span></v-btn>
+
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn text v-bind="attrs" v-on="on" class="profileBtn">
@@ -22,6 +33,7 @@
               <v-list-item-title>{{location.text}}</v-list-item-title></v-list-item>
           </v-list>
         </v-menu>
+
         <input class="search hidden-sm-and-down" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
         <input class="searchSmall hidden-md-and-up" v-model="search" placeholder="지점명 검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
       </v-container>
@@ -106,6 +118,8 @@ export default {
       ],
       lat: 0,
       lng: 0,
+      currLat: 0,
+      currLon: 0,
       pageSize: 7,
       pageNum: 0,
       MapOptions : {
@@ -123,6 +137,7 @@ export default {
     searchList:[],
     search: '',
     allitem: null,
+    done: null,
     }
   },
   computed: {
@@ -151,6 +166,138 @@ export default {
   },
   methods:{
     ...mapActions(['SetitemList']),
+    getNearestStation(){
+      this.done = false
+      this.getCurrLocation()
+      axios.get(`${this.heroku}${this.requestLink}serviceKey=${this.apiKey}&numOfRows=9999&pageNo=1`)
+          .then((res)=> {
+            this.done = true
+            let xml = res.data.items[0].item
+            let kakao = window.kakao
+            var polyline = new kakao.maps.Polyline({
+              path: [new kakao.maps.LatLng(this.currLat, this.currLon), new kakao.maps.LatLng(xml[0].lat, xml[0].lng)]
+            })
+            var minDistance = polyline.getLength()
+            var minIndex = 0
+            for (let i = 0; i < xml.length; i++) {
+              polyline = new kakao.maps.Polyline({
+                path: [new kakao.maps.LatLng(this.currLat, this.currLon), new kakao.maps.LatLng(xml[i].lat, xml[i].lng)]
+              })
+              var distance = polyline.getLength()
+              if(minDistance > distance){
+                minDistance = distance
+                minIndex = i
+              }
+            }
+            var markerPosition  = new kakao.maps.LatLng(xml[minIndex].lat, xml[minIndex].lng);
+            var marker = new kakao.maps.Marker({
+              map: this.mapInstance,
+              position: markerPosition
+            })
+            marker.setMap(this.mapInstance)
+            var customOverlay = new kakao.maps.CustomOverlay({
+              position: markerPosition,
+              xAnchor: 0.48, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+              yAnchor: 1.08, // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+            })
+            var content = document.createElement('div')
+            content.className = 'overlay_info'
+            var title = document.createElement('div')
+            title.className = 'topTitle'
+
+            var info = document.createElement('span')
+            info.appendChild(document.createTextNode('충전소 정보'))
+            content.appendChild(title)
+            title.appendChild(info)
+            title.addEventListener('click',closeOverlay(customOverlay))
+
+            var desc = document.createElement('div')
+            desc.className = 'desc'
+            var name = document.createElement('span')
+            name.className = 'name'
+
+            var nameLink = document.createElement('a')
+            nameLink.className = 'nameLink'
+            nameLink.appendChild(document.createTextNode(xml[minIndex].statNm))
+            name.appendChild(nameLink)
+            desc.appendChild(name)
+            content.appendChild(desc)
+            var solid = document.createElement('hr')
+            solid.className = 'solid'
+            desc.appendChild(solid)
+
+            var address = document.createElement('div')
+            address.className = 'address'
+            var markerIcon = document.createElement('i')
+            markerIcon.className = 'fas fa-map-marker-alt'
+            var addressText = document.createElement('span')
+            addressText.appendChild(document.createTextNode(xml[minIndex].addr))
+            address.appendChild(markerIcon)
+            address.appendChild(addressText)
+            desc.appendChild(address)
+            var tel = document.createElement('div')
+            tel.className = 'tel'
+            var telIcon = document.createElement('i')
+            telIcon.className = 'fas fa-phone'
+            var telText = document.createElement('span')
+            telText.appendChild(document.createTextNode(xml[minIndex].busiCall))
+            tel.appendChild(telIcon)
+            tel.appendChild(telText)
+            desc.appendChild(tel)
+            var status = document.createElement('div')
+            status.className = 'status'
+            var statusIcon = document.createElement('i')
+            statusIcon.className = 'fas fa-info-circle'
+            var statusText = document.createElement('span')
+            statusText.appendChild(document.createTextNode(this.statFormatter(xml[minIndex].stat)))
+            status.appendChild(statusIcon)
+            status.appendChild(statusText)
+            desc.appendChild(status)
+            var type = document.createElement('div')
+            type.className = 'type'
+            var typeIcon = document.createElement('i')
+            typeIcon.className = 'fas fa-plug'
+            var typeText = document.createElement('span')
+            typeText.appendChild(document.createTextNode(this.typeFormatter(xml[minIndex].chgerType)))
+            type.appendChild(typeIcon)
+            type.appendChild(typeText)
+            desc.appendChild(type)
+
+            customOverlay.setMap(this.mapInstance)
+            customOverlay.setContent(content)
+            this.done = true
+
+            function closeOverlay(customOverlay) {
+              return function() {
+                customOverlay.setMap(null)
+              };
+            }
+          })
+    },
+    getCurrLocation(){
+      let kakao = window.kakao
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition((position)=>{
+
+          this.currLat = position.coords.latitude
+          this.currLon = position.coords.longitude
+
+          var locPosition = new kakao.maps.LatLng(this.currLat, this.currLon)
+
+          this.displayMarker(locPosition)
+        })
+      }
+    },
+    displayMarker(locPosition){
+      let kakao = window.kakao
+      var marker = new kakao.maps.Marker({
+        map: this.mapInstance,
+        position: locPosition
+      })
+      marker;
+
+      this.mapInstance.setCenter(locPosition)
+    },
     typeFormatter(value){
       switch (value){
         case '01':
@@ -259,30 +406,36 @@ export default {
           content.className = 'overlay_info'
           var title = document.createElement('div')
           title.className = 'topTitle'
+
           var info = document.createElement('span')
           info.appendChild(document.createTextNode('충전소 정보'))
           content.appendChild(title)
           title.appendChild(info)
           title.addEventListener('click',closeOverlay(customOverlay))
+
           var desc = document.createElement('div')
           desc.className = 'desc'
           var name = document.createElement('span')
           name.className = 'name'
+
           var nameLink = document.createElement('a')
           nameLink.className = 'nameLink'
           nameLink.appendChild(document.createTextNode(xml[i].statNm))
+          nameLink.addEventListener('click',goMapLink(xml[i].statNm))
           name.appendChild(nameLink)
           desc.appendChild(name)
           content.appendChild(desc)
           var solid = document.createElement('hr')
           solid.className = 'solid'
           desc.appendChild(solid)
+
           var address = document.createElement('div')
           address.className = 'address'
           var markerIcon = document.createElement('i')
           markerIcon.className = 'fas fa-map-marker-alt'
           var addressText = document.createElement('span')
           addressText.appendChild(document.createTextNode(xml[i].addr))
+          addressText.addEventListener('click',goMapLink(xml[i].statNm))
           address.appendChild(markerIcon)
           address.appendChild(addressText)
           desc.appendChild(address)
@@ -315,51 +468,7 @@ export default {
           desc.appendChild(type)
           // console.log(content)
           kakao.maps.event.addListener(marker, 'click', makeOverListener(this.mapInstance, customOverlay, content));
-          // kakao.maps.event.addListener(marker,'click',function (){
-          //     customOverlay.setMap(this.mapInstance)
-          //     customOverlay.setContent(content)
-          //
-          // })
-      //   var iwContent = `<div class="overlay_info">
-      // <div class="topTitle"><span>충전소 정보</span></div>
-      // <div class="desc">
-      // <span class="name"><a class="nameLink">${xml[i].statNm}</a></span>
-      // <hr class="solid">
-      //
-      // <div class="address">
-      // <i class="fas fa-map-marker-alt"></i>
-      // <span>${xml[i].addr}</span>
-      // </div>
-      //
-      // <div class="tel">
-      // <i style="color: #3F51B5; font-size: 20px" class="fas fa-phone"></i>
-      // <span>${xml[i].busiCall}</span>
-      // </div>
-      //
-      // <div class="status">
-      // <i style="color: #3F51B5; font-size: 20px" class="fas fa-info-circle"></i>
-      // <span>상태:${xml[i].stat}</span>
-      // </div>
-      //
-      // <div class="type">
-      // <i style="color: #3F51B5; font-size: 20px" class="fas fa-plug"></i>
-      // <span>충전타입:${xml[i].chgerType}</span>
-      // </div>
-      //
-      // </div>
-      // </div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능
-      //   iwPosition = new kakao.maps.LatLng(xml[i].lat, xml[i].lng), //인포윈도우 표시
-      //   iwRemoveable = true;
-      //
-      //       // 인포윈도우를 생성하고 지도에 표시
-      //       this.infowindow = new kakao.maps.InfoWindow({
-      //       // 인포윈도우가 표시될 지도
-      //       position : iwPosition,
-      //       content : iwContent,
-      //       removable : iwRemoveable });
-      //   kakao.maps.event.addListener(marker, 'click', goReadPage(xml[i].statNm));
-      //  kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(this.mapInstance, marker, this.infowindow));
-      //   kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(this.infowindow));
+
         }
       function makeOverListener(map, customOverlay, content) {
           return ()=>{
@@ -371,25 +480,12 @@ export default {
           customOverlay.setMap(null)
         };
       }
-    // function makeOverListener(map, marker, infowindow) {
-    //   return function() {
-    //     infowindow.open(map, marker);
-    //   };
-    // }
-//   function goReadPage(statNm) {
-//     return function(){
-//       console.log(statNm)
-//     }
-//   }
-//
-// // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-// function makeOutListener(infowindow) {
-//     return function() {
-//         infowindow.close();
-//     };
-// }
-        
-        //검색후 마커 및 인포 윈도우 그리기 끝
+      function goMapLink(value){
+          return () =>{
+            window.open(`https://map.kakao.com/link/search/${value}`)
+          }
+      }
+
             this.item = xml
             
       })
@@ -598,13 +694,22 @@ export default {
 .profileBtn{
   position: relative;
   left: 20px;
+  font-size: 1em;
+}
+
+.nearMe{
+  color: #0288D1;
+  margin-bottom: 2px;
+}
+.nearMeFind{
+  color: #bbbbbb;
 }
 .search{
   position: relative;
   border: 1px solid #ddd;
   padding: 5px 35px;
-  margin-top: 2px;
-  left: 42%
+  margin-top: 3px;
+  left: 135px;
 }
 .searchSmall{
   position: absolute;
@@ -648,6 +753,9 @@ button .star:hover{
 }
 .InfoTable{
   width: 100%;
+  position: relative;
+  top: -10px;
+
 }
 .infoTrSmall{
   cursor: pointer;
@@ -658,6 +766,7 @@ button .star:hover{
 .headerTrSmall{
   color: white;
 }
+
 .infoTrSmall:hover{
   background-color: #E1F5FE;
 }
@@ -672,6 +781,12 @@ button .star:hover{
   position: relative;
   top: 7px;
 }
+
+.btn-cover{
+  position: relative;
+  right: 10%;
+}
+
 </style>
 <style >
 .overlay_info {
