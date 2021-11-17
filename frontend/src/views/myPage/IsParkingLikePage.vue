@@ -9,7 +9,7 @@
         <v-container>
           <h1 style="margin: 30px;">즐겨찾기</h1>
           <my-page-menu />
-          <is-my-like-list :myLikeList="myLikeList" />
+          <is-my-parking-like-list :myParkingStates="myParkingStates" />
           <v-divider light style="margin-top: 30px;"></v-divider>
           <h1 style="margin: 30px;">게시글</h1>
           <is-my-board-page-form :myBoardList="myBoardList" />
@@ -25,28 +25,30 @@
 <script>
 import IsMyPageBannerForm from "../../components/myPage/IsMyPageBannerForm.vue";
 import MyPageMenu from "../../components/myPage/MyPageMenu.vue";
-import IsMyLikeList from "../../components/myPage/IsMyLikeList.vue";
+import IsMyParkingLikeList from "../../components/myPage/IsMyParkingLikeList.vue";
 import { mapActions, mapState } from "vuex";
 import IsMyBoardPageForm from "../../components/myPage/IsMyBoardPageForm.vue";
 import IsMyCommentListForm from "../../components/myPage/IsMyCommentListForm.vue";
 import Vue from "vue";
+
 export default {
   name: "IsMyPage",
   components: {
     IsMyBoardPageForm,
     IsMyCommentListForm,
-    IsMyLikeList,
+    IsMyParkingLikeList,
     IsMyPageBannerForm,
     MyPageMenu,
   },
   computed: {
-    ...mapState(["session", "myBoardList", "myCommentList", "myLikeList"]),
+    ...mapState(["session", "myBoardList", "myCommentList", "myParkingStates"]),
   },
   methods: {
     ...mapActions([
       "fetchMyBoardList",
       "fetchMyCommentList",
       "fetchMyLikeList",
+      "getMyParkingStateList",
     ]),
   },
   mounted() {
@@ -57,6 +59,7 @@ export default {
       let member = data.memberId;
       this.fetchMyBoardList(member);
     }
+
     if (this.session) {
       this.fetchMyCommentList(this.session.memberId);
     } else {
@@ -64,12 +67,15 @@ export default {
       let member = data.memberId;
       this.fetchMyCommentList(member);
     }
+
     if (this.session) {
-      this.fetchMyLikeList(this.session.memberNo && this.session.memberNo);
+      this.getMyParkingStateList(
+        this.session.memberNo && this.session.memberNo
+      );
     } else {
       let data = Vue.$cookies.get("user");
       let member = data.memberNo;
-      this.fetchMyLikeList(member);
+      this.getMyParkingStateList(member);
     }
   },
 };
@@ -78,8 +84,10 @@ export default {
 <style scoped>
 #wrap {
   width: 100%;
+
   margin: 0 auto;
 }
+
 #container {
   height: 100%;
 }
