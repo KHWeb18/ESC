@@ -166,7 +166,7 @@ export default {
                   },
                   good(boardNo){
                     
-                    axios.post(`http://localhost:7777/member/addLikeBoard/${boardNo}`,{memberNo:this.loginMeberNo})
+                    axios.post(`http://localhost:7777/member/addLikeBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="추천되었습니다."){
@@ -181,7 +181,7 @@ export default {
                   },
                   
                   bad(boardNo){
-                    axios.post(`http://localhost:7777/member/addHateBoard/${boardNo}`,{memberNo:this.loginMeberNo})
+                    axios.post(`http://localhost:7777/member/addHateBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="비추되었습니다."){

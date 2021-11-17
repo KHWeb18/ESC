@@ -21,7 +21,7 @@ export default {
     memberList: [],
     session: null,
     isLogin: false,
-    loginMemberNo: [],
+    loginMemberNo: null,
     auth: null,
 
     //게시판
