@@ -16,4 +16,5 @@ public class UserInfo {
     private String name;
     private String memberCar;
     private Date memberBirthDay;
+    private Date regDate;
 }

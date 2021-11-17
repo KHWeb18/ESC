@@ -55,7 +55,7 @@ export default {
     // 마이페이지
     myBoardList: [],
     myCommentList: [], 
-    // 마이페이지 관심목록 
+    // 마이페이지 즐겨찾기 
     myLikeList: [],
     myParkingStates:[],
 

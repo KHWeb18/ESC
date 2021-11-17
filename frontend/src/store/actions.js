@@ -61,14 +61,14 @@ export default {
     commit(COOKIE_TO_SESSION, member);
 
     let numData;
-
+    let memberNo;
     if (Vue.$cookies.get("userNo") !== null) {
       numData = Vue.$cookies.get("userNo");
-      
+      memberNo = numData.memberNo;
     } else {
       data = null;
     }
-    commit(SET_MEMBER_NO, numData);
+    commit(SET_MEMBER_NO, memberNo);
 
     // 마이페이지 내 정보
     let memberInfo;
@@ -228,7 +228,7 @@ export default {
           commit(FETCH_MY_COMMENT_LIST, res.data);
         });
   },
-  //마이페이지 관심목록 
+
   fetchMyLikeList({ commit }, memberNo) {
     return axios
         .get(`http://localhost:7777/member/getMyState/${memberNo}`)

@@ -1,7 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="18cf1bc4-14e7-48e0-88a4-8b67fb293bca" name="Default Changelist" comment="" />
+    <list default="true" id="18cf1bc4-14e7-48e0-88a4-8b67fb293bca" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/controller/vueCookie/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/controller/vueCookie/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/entity/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/entity/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/repository/MyChargingStateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/repository/MyChargingStateRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/service/MemberServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/esc/khweb/service/MemberServiceimpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/HeaderComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/HeaderComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/administrator/MemberManagementForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/administrator/MemberManagementForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/administrator/ReportedBoardForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/administrator/ReportedBoardForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/administrator/ReportedCommentForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/administrator/ReportedCommentForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/board/BoardRegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/board/BoardRegisterForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/footer/footerComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/footer/footerComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/member/DeleteMemberForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/member/DeleteMemberForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/member/LoginPageForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/member/LoginPageForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/member/SignupPageForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/member/SignupPageForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/myPage/IsEditMemberForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/myPage/IsMyBoardForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/myPage/IsMyBoardMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/myPage/IsMyBoardMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/myPage/IsMyLikeList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/myPage/IsMyLikeList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/myPage/IsMyPageForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/myPage/MyPageMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/myPage/MyPageMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/getters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/administrator/ReportedComment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/administrator/ReportedComment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/charingSearchService/CharingSearchServiceBoardList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/charingSearchService/CharingSearchServiceBoardList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/member/DeleteMember.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/member/DeleteMember.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/myPage/IsEditMemberPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/myPage/IsEditMemberPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/myPage/IsLikePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/myPage/IsLikePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/myPage/IsMyCommentListPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/myPage/IsMyCommentListPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/myPage/IsMyPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/myPage/IsMyPage.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -33,7 +33,7 @@ public class MyChargingState {
     @Column(length = 32 ,nullable = false)
     private String busiCall;
 
-    public  MyChargingState (Long memberNo, String statNm, String chgerType ,String addr, String lat, String lng, String useTime, String busiCall) {
+    public MyChargingState (Long memberNo, String statNm, String chgerType ,String addr, String lat, String lng, String useTime, String busiCall) {
         this.memberNo = memberNo;
         this.statNm = statNm;
         this.chgerType = chgerType;
