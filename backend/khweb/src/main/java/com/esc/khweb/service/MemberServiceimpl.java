@@ -252,9 +252,37 @@ public class MemberServiceimpl implements MemberService {
                 myChargingStateRepository.save(myChargingState);
                 return result2;
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
         return "알수없는오류";
 
 
+    }
+
+    @Override
+    public List<MyChargingState> findByMemberNo(Long memberNo) throws Exception {
+        List<MyChargingState> myChargingStateList = myChargingStateRepository.findByMemberNo(memberNo);
+
+        // System.out.println(myChargingStateList);
+
+        return myChargingStateList;
+    }
+
+    @Override
+    public void deleteMyState(Long rowNo) throws Exception {
+        System.out.println(rowNo);
+        myChargingStateRepository.deleteById(rowNo);
     }
 
     @Override
@@ -278,17 +306,14 @@ public class MemberServiceimpl implements MemberService {
     }
 
     @Override
-    public List<MyChargingState> findByMemberNo(Long memberNo) throws Exception {
-        List<MyChargingState> myChargingStateList = myChargingStateRepository.findByMemberNo(memberNo);
-
-        // System.out.println(myChargingStateList);
-
-        return myChargingStateList;
+    public List<MyParkingState> getMyParkingState(Long memberNo) throws Exception {
+        return myParkingStateRepository.findByMemberall(memberNo);
     }
 
     @Override
-    public List<MyParkingState> getMyParkingState(Long memberNo) throws Exception {
-        return myParkingStateRepository.findByMemberall(memberNo);
+    public void deleteMyParkingState(Long rowNo) throws Exception {
+        System.out.println(rowNo);
+        myParkingStateRepository.deleteById(rowNo);
     }
 }
 

@@ -12,5 +12,4 @@ public interface MyParkingStateRepository extends JpaRepository<MyParkingState,L
     @Query("select i from MyParkingState i where i.memberNo = :memberNo")
     List<MyParkingState> findByMemberall (Long memberNo);
 
-
 }

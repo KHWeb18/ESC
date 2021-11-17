@@ -114,6 +114,7 @@ public class MemberController {
                         info.setName(memberInfo.get().getName());
                         info.setEmail(memberInfo.get().getEmail());
                         info.setMemberBirthDay(memberInfo.get().getMemberBirthDay());
+                        info.setRegDate(memberInfo.get().getRegDate());
                 }
                 else {
                         info.setMemberId(null);
@@ -232,20 +233,27 @@ public class MemberController {
                 return new ResponseEntity<>(result,HttpStatus.OK);
         }
 
+        @GetMapping("/getMyState/{memberNo}")
+        public ResponseEntity<List<MyChargingState>> getMyState(@PathVariable("memberNo") Long memberNo) throws Exception{
+
+                return new ResponseEntity<List<MyChargingState>>(service.findByMemberNo(memberNo),HttpStatus.OK);
+        }
+
+
+        @PostMapping("/deleteMyState/{rowNo}")
+        public ResponseEntity<Void> deleteMyState(@PathVariable("rowNo")Long rowNo) throws  Exception {
+
+                service.deleteMyState(rowNo);
+
+                return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+
         @PostMapping("/addMyParkingState/{memberNo}")
         public ResponseEntity<String> addMyParkingState (@PathVariable("memberNo")Long memberNo, @Validated @RequestBody MyParkingState myParkingState) throws  Exception {
 
                 String result =  service.addMyParkingState(memberNo, myParkingState);
 
                 return new ResponseEntity<>(result,HttpStatus.OK);
-        }
-
-
-
-        @GetMapping("/getMyState/{memberNo}")
-        public ResponseEntity<List<MyChargingState>> getMyState(@PathVariable("memberNo") Long memberNo) throws Exception{
-
-                return new ResponseEntity<List<MyChargingState>>(service.findByMemberNo(memberNo),HttpStatus.OK);
         }
 
         @PostMapping("/getMyParkingState/{memberNo}")
@@ -256,7 +264,11 @@ public class MemberController {
                 return new ResponseEntity<>(list,HttpStatus.OK);
         }
 
+        @PostMapping("/deleteMyParkingState/{rowNo}")
+        public ResponseEntity<Void> deleteMyParkingState(@PathVariable("rowNo")Long rowNo) throws  Exception {
 
+                service.deleteMyParkingState(rowNo);
 
-
+                return new ResponseEntity<Void>(HttpStatus.OK);
+        }
 }

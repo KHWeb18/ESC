@@ -59,15 +59,20 @@ export default {
       data = null;
     }
     commit(COOKIE_TO_SESSION, member);
-
   
     if (Vue.$cookies.get("userNo") !== null) {
       commit(SET_MEMBER_NO, Vue.$cookies.get("userNo"));
       
+    let numData;
+    let memberNo;
+    if (Vue.$cookies.get("userNo") !== null) {
+      numData = Vue.$cookies.get("userNo");
+      memberNo = numData.memberNo;
     } else {
       return null;
     }
-    
+
+    commit(SET_MEMBER_NO, memberNo);
 
     // 마이페이지 내 정보
     let memberInfo;
