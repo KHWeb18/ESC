@@ -1,13 +1,15 @@
 <template>
 <div>
+  <parking-page-menu/>
 <v-row style="width: 286px; position:absolute; margin-top: 300px">
     <td id="panelsHeader" style="margin-left: 100px">HISTROY</td>
     <v-expansion-panels inset :color="red">
       <v-expansion-panel
         v-for="(item,i) in panelLength"
         :key="i"
+        dark
       >
-        <v-expansion-panel-header>{{item.주차장명}}</v-expansion-panel-header>
+        <v-expansion-panel-header >{{item.주차장명}}</v-expansion-panel-header>
         <v-expansion-panel-content>
         문의전화:{{item.전화번호}}<br>
         기본요금:{{item.주차기본요금}}원<br>
@@ -17,23 +19,7 @@
       </v-expansion-panel>
     </v-expansion-panels>
   </v-row>
-  <v-row style="width: 283px; position:absolute; margin-top: 500px; margin-left: 1455px" >
-    <td id="myparkingState" style="margin-left: 90px">즐겨찾기<button class="levelControll" @click="FETCHDATA()"><v-icon>autorenew</v-icon></button></td>
-    <v-expansion-panels inset :color="red">
-      <v-expansion-panel
-        v-for="(item,i) in myParkingStates"
-        :key="i"
-      >
-        <v-expansion-panel-header>{{item.parkingNm}}</v-expansion-panel-header>
-        <v-expansion-panel-content>
-        문의전화:{{item.call1}}<br>
-        기본요금:{{item.basicsPay}}원<br>
-        주차기본시간:{{item.basicsTime}}분
-        <button @click="goDetail(item)">바로가기</button>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
-  </v-row>
+
   <v-container style="max-width: 1200px">
    <div id="parkingmap"  class="kmap" ref="map" > </div>
   <v-icon>mdi-magnify</v-icon>
@@ -62,7 +48,7 @@
             </tr>
         </table>
         <div class="btn-cover">
-            <button  style="margin-left: 20%;" :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
+            <button  style="margin-left:0" :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
             <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
             <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
             
@@ -83,8 +69,10 @@ import Vue from 'vue'
 import cookies from 'vue-cookies'
 import axios from 'axios'
 import { mapActions, mapState } from 'vuex';
+import ParkingPageMenu from '../../components/parkingPageMenu/ParkingPageMenu.vue'
 Vue.use(cookies)
 export default {
+  components: { ParkingPageMenu },
     data() {
     return {
       parkingDataList: parkingData.records,

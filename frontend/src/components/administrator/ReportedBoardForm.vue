@@ -1,8 +1,7 @@
 <template>
-
+<v-container style="max-width:1000px">
 <div v-if="coin ==0&&this.tableMode ==1">
   <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
-    <v-container>
       <v-simple-table >
         <template v-slot:default>
           <thead>
@@ -43,13 +42,11 @@
         </v-row>
       </form>
     </div>
-  </v-container>
 </div>
 
 
 <div v-else-if="coin ==1&&tableMode ==1">
   <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
-    <v-container>
       <v-simple-table >
         <template v-slot:default>
           <thead>
@@ -91,7 +88,6 @@
         <v-btn style="margin-left: 90%" @click="showAllBoard()">검색해제</v-btn>
       </form>
     </div>
-  </v-container>
 </div>
 
 
@@ -154,7 +150,7 @@
       </form>
     </div>
 </div>
-  
+</v-container>
 </template>
 
 <script>

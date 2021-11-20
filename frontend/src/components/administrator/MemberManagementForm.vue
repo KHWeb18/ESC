@@ -1,7 +1,6 @@
 <template>
+<v-container style="max-width:1000px">
   <div v-if="coin ==0">
-      <v-container>
-       <!-- <v-btn @click="chk">확인</v-btn> -->
             <table>
             <tr>
                 <td>회원번호</td>
@@ -40,10 +39,8 @@
 
             </form>
             </div>
-        </v-container>
   </div>
    <div v-else-if="coin ==1">
-      <v-container>
         <v-btn @click="chk">확인</v-btn>
             <table>
             <tr>
@@ -84,8 +81,9 @@
                 <v-btn @click="showAll()">검색해제</v-btn>
             </form> 
             </div>
-        </v-container>
-  </div> 
+
+  </div>
+</v-container>
 </template>
 
 <script>
