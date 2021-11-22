@@ -1,12 +1,22 @@
 <template>
-  <v-card-actions v-if="this.$store.state.isLogin && this.board">
+  <div>
+    <v-card-actions v-if="this.$store.state.isLogin && this.board" class="hidden-xl-only small">
 
-    <v-textarea @focus="setMemberId" solo auto-grow class="commentBox"
-                rows="3" row-height="20" placeholder="댓글 작성" v-model="content">
-    </v-textarea>
-    <v-btn @click="onClick" depressed color="primary" class="commentBtn">댓글 등록</v-btn>
+      <v-textarea @focus="setMemberId" solo auto-grow class="commentBox"
+                  rows="3" row-height="20" placeholder="댓글 작성" v-model="content">
+      </v-textarea>
+      <v-btn @click="onClick" depressed color="primary" class="commentBtn">댓글 등록</v-btn>
 
-  </v-card-actions>
+    </v-card-actions>
+    <v-card-actions v-if="this.$store.state.isLogin && this.board" class="hidden-lg-and-down big">
+
+      <v-textarea @focus="setMemberId" solo auto-grow class="commentBox"
+                  rows="3" row-height="20" placeholder="댓글 작성" v-model="content">
+      </v-textarea>
+      <v-btn @click="onClick" depressed color="primary" class="commentBtn">댓글 등록</v-btn>
+
+    </v-card-actions>
+  </div>
 </template>
 
 <script>
@@ -63,7 +73,7 @@ export default {
 </script>
 
 <style scoped>
-.commentBox{
+.small .commentBox{
   position: relative;
   top: 50px;
   width: 50%;
@@ -73,11 +83,25 @@ export default {
   box-sizing: border-box;
   border-radius: 5px;
 }
-
-.commentBtn{
+.small .commentBtn{
   position: relative;
   top: 35px;
   margin: 0 auto;
   min-height: 50px;
+}
+
+.big .commentBox{
+  position: relative;
+  top: 50px;
+  right: 23px;
+  padding: 0 380px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.big .commentBtn{
+  position: relative;
+  min-height: 50px;
+  top: 35px;
+  right: 360px;
 }
 </style>
