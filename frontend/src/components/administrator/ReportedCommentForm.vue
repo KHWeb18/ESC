@@ -1,6 +1,6 @@
 <template>
-  <div v-if="coin ==0">
-      <v-container>
+  <div >
+      <v-container style="max-width:1000px">
             <table>
             <tr>
                 <td>댓글번호</td>
@@ -35,18 +35,19 @@
 
 
 <script>
+import {mapActions,mapState} from 'vuex'
 import axios from 'axios'
 export default {
   name: 'paginated-list',
   data () {
     return {
+      pageSize:10,
         isDeleted: true,
       search:'',
       pageNum: 0,
       searchpageNum: 0,
       dialog: false,
       dialog2: false,
-      coin: 0,
       searchMenus: '',
       searchMenu: [
         {text: '회원번호', value: '회원번호'},
@@ -54,28 +55,17 @@ export default {
         {text: '아이디', value: '아이디'},
       ],
       searchList: [],
-    }
-  },
-  props: {
-    ReportedCommentNoList: {
-      type: Array,
-      required: true
-    },
-    pageSize: {
-      type: Number,
-      required: false,
-      default: 10
+      
     }
   },
   methods: {
-      chk(){
-          console.log(this.memberList[0].memberAuthList[0].auth)
-      },
+    ...mapActions(['getReportedCommentNoList']),
         hold(commentInfo){
             axios.post(`http://localhost:7777/comment/reportedCommentDelete/${commentInfo.commentNo}`)
             .then( ()=>{
                 alert("해당댓글은 보류되었습니다.")
-                this.$router.go()
+                this.$router.go();
+                
             })           
         },
         deleteComment(commentInfo) {
@@ -86,8 +76,9 @@ export default {
             axios.put(`http://localhost:7777/comment/delete/${commentInfo.commentNo}`,
                 { memberId : commentInfo.memberId, isDeleted })
                 .then(() => {
-                    alert('삭제 성공!')
-                    this.$router.go()
+                    alert('해당댓글은 삭제되었습니다.')
+                    this.$router.go();
+
 
                 })
                 .catch(err => {
@@ -108,8 +99,9 @@ export default {
     },
   },
   computed: {
+    ...mapState(['reportedCommentList']),
     pageCount () {
-      let listLeng = this.ReportedCommentNoList.length,
+      let listLeng = Number(this.reportedCommentList.length),
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
       if (listLeng % listSize > 0) page += 1;
@@ -125,7 +117,7 @@ export default {
     paginatedData () {
       const start = this.pageNum * this.pageSize,
             end = start + this.pageSize;
-      return this.ReportedCommentNoList.slice(start, end);
+      return this.reportedCommentList.slice(start, end);
     },
     searchpaginatedData () {
       const start = this.searchpageNum * this.pageSize,
@@ -133,6 +125,9 @@ export default {
       return this.searchList.slice(start, end);
     },
     
+  },
+  created(){
+    this.getReportedCommentNoList()
   }
 }
 </script>

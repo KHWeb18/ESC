@@ -37,7 +37,7 @@ import CharingSearchServiceBoardList  from '../views/charingSearchService/Charin
 import CharingSearchServiceReadPage from '../views/charingSearchService/CharingSearchServiceReadPage'
 //주차장찾기페이지
 import ParkingSearchServiceList from '../views/parkingSearchService/ParkingSearchServiceList'
-import kakaomapTest from '../views/parkingSearchService/kakaomapTest'
+import KakaomapService from '../views/parkingSearchService/KakaomapService'
 import ParkingDetail from '../views/parkingSearchService/ParkingDetail'
 // 마이페이지
 import IsMyPage from '../views/myPage/IsMyPage.vue'
@@ -257,9 +257,9 @@ const routes = [
     
   },
   {
-    path: '/kakaomapTest',
-    name: kakaomapTest,
-    component: kakaomapTest 
+    path: '/kakaomapService',
+    name: KakaomapService,
+    component: KakaomapService 
   },
 // 주차장 찾기 페이지
 

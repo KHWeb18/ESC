@@ -1,6 +1,6 @@
 <template>
-<div style="margin-left: 500px">
-        
+<div >
+        <!--
         <form @submit.prevent="OnSubmit">
             <v-row><v-select  outlined style="max-width:300px" :items="boardCategory"  v-model="category" label="카테고리"> </v-select>
            <v-text-field style="max-width:700px" outlined label="제목을입력하세요"  v-model="title"></v-text-field></v-row>
@@ -12,7 +12,29 @@
            <v-btn class="blue white--text" style="margin-left: 44.2%" type="submit" v-on:click="submitFiles()">등록</v-btn>
            </v-row>
         </form>
-        
+        -->
+        <v-container style="max-width:1000px;">
+        <form @submit.prevent="OnSubmit">
+            <v-card >
+                <v-divider></v-divider>
+                <v-card-title>
+                   <v-select  outlined style="max-width:150px" :items="boardCategory"  v-model="category" label="카테고리"> </v-select>
+                    <v-text-field style="max-width:850px;" outlined label="제목을입력하세요"  v-model="title"></v-text-field>
+                </v-card-title>
+                <v-divider></v-divider>
+                <v-card-title>
+                    <textarea  name="contentText" id="contentText" cols="30" rows="10" v-model="content"></textarea>
+                </v-card-title>
+                <v-divider></v-divider>
+                <v-card-title>
+                    <v-row>
+                    <input type="file" id="files" ref="files" multiple v-on:change="handleFileUpload()">
+                    <v-btn depressed style="margin-left: 46.7%" type="submit" v-on:click="submitFiles()">등록</v-btn><v-btn @click="cancle()"  depressed>취소</v-btn>
+                    </v-row>
+                </v-card-title>
+            </v-card>
+        </form>
+        </v-container>
 </div>
         
     
@@ -89,6 +111,9 @@ export default {
             
             
         },
+        cancle(){
+            this.$router.back()
+        }
             
            
         },
@@ -110,7 +135,7 @@ border-style:solid;
 /*   resize: horizontal; */
 padding: 10px;
 			box-sizing: border-box;
-			border: solid 2px green;
+			border: solid 2px black;
 			border-radius: 5px;
 			font-size: 16px;
 			resize: both;
@@ -121,7 +146,7 @@ border-style:solid;
 /*   resize: horizontal; */
  padding: 10px;
 			box-sizing: border-box;
-			border: solid 2px green;
+			border: solid 2px black;
 			border-radius: 5px;
 			font-size: 16px;
 			resize: both;

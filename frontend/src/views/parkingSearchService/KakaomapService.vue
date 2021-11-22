@@ -1,36 +1,30 @@
 <template>
+<div>
+    <parking-page-menu/>
+
     <div class="map_wrap">
-        <div id="map" style="width:500px;height:500px;"></div>
+        
+        <span  style="margin-left:37%" id="header-text">카카오에서제공하는 충전소/주차장 찾기페이지입니다.</span> 
         <ul id="category">
-            <li id="BK9" data-order="0"> 
-                <span class="category_bg bank"></span>
-               은행
-            </li>
-            <li id="MT1" data-order="1"> 
-               마트
-            </li>
-            <li id="PM9" data-order="2"> 
-                <span class="category_bg pharmacy"></span>
-               약국
-            </li>
-            <li id="OL7" data-order="3"> 
-                <span class="category_bg oil"></span>
-              주유소
-            </li>
-            <li id="CE7" data-order="4"> 
-                <span class="category_bg cafe"></span>
-                카페
-            </li>
-            <li id="PK6" data-order="5"> 
-                <span class="category_bg store"></span>
+            <li  id="PK6" data-order="1"> 
+                <span><v-icon>mdi-car</v-icon></span>
                주차장
             </li>
+            <li id="OL7" data-order="3"> 
+                <span><v-icon>mdi-ev-station</v-icon><v-icon>mdi-gas-station</v-icon></span>
+               충전소
+            </li>
         </ul>
+        <div id="map" style="height:500px;"></div>
+        
     </div>
+</div>
 </template>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
+import ParkingPageMenu from '../../components/parkingPageMenu/ParkingPageMenu.vue';
 export default {
+  components: { ParkingPageMenu },
 
     mounted(){
 
@@ -44,7 +38,7 @@ export default {
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
+        level: 8 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    
@@ -234,12 +228,18 @@ function changeCategoryClass(el) {
 
     ///잠시보류
  </script>
-
+<style lang="scss"  scoped>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Road+Rage&display=swap');
+#header-text{
+font-family: 'Noto Sans KR', sans-serif;
+font-size: 2em
+}
+</style>
  <style >
- .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+.map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap {position:relative;width:100%;height:350px;}
 #category {position:absolute;top:10px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
-#category li {float:left;list-style: none;width:50px;border-right:1px solid #acacac;padding:6px 0;text-align: center; cursor: pointer;}
+#category li {float:left;list-style: none;width:100px;border-right:0px solid #acacac;padding:6px 0; cursor: pointer;}
 #category li.on {background: #eee;}
 #category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
 #category li:last-child{margin-right:0;border-right:0;}

@@ -3,6 +3,7 @@ package com.esc.khweb.controller;
 import com.esc.khweb.controller.request.CommentLikeRequest;
 import com.esc.khweb.controller.request.CommentReportRequest;
 import com.esc.khweb.controller.request.CommentRequest;
+import com.esc.khweb.entity.Comment;
 import com.esc.khweb.entity.CommentLikes;
 import com.esc.khweb.entity.CommentReport;
 import com.esc.khweb.service.CommentLikeService;
@@ -80,9 +81,9 @@ public class CommentLikeReportController {
         return new ResponseEntity<Boolean>(containsMember, HttpStatus.OK);
     }
     @PostMapping("/getReportedCommentNoList")
-    public  ResponseEntity<List<CommentReport>> getReportedCommentNoList () throws  Exception {
+    public  ResponseEntity<List<Comment>> getReportedCommentNoList () throws  Exception {
 
-        List<CommentReport> list = commentReportService.getReportedCommentNoList();
+        List<Comment> list = commentReportService.getReportedCommentNoList();
 
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
