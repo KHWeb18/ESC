@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import SignupPage from '../views/member/SignupPage'
 import FindByIdPage from '../views/member/FindByIdPage'
 import FindByPwPage from '../views/member/FindByPwPage'
@@ -54,8 +53,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'MainHomePage',
+    component: MainHomePage
   },
   {
     path: '/signUpPage',
@@ -71,11 +70,6 @@ const routes = [
     path: '/findByPwPage',
     name: 'FindByPwPage',
     component: FindByPwPage
-  },
-  {
-    path: '/mainHomePage',
-    name: 'MainHomePage',
-    component: MainHomePage
   },
   {
     path: '/deleteMember',
