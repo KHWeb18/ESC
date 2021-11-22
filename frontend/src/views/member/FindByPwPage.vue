@@ -106,7 +106,7 @@ export default {
                     axios.post('http://localhost:7777/member/ModifyPassword/',{memberNo, memberId, name, memberBirthDay,email,memberPw,regDate,memberCar})
                     .then( () =>{
                         alert('비밀번호가변경되었습니다')
-                        this.$router.go()
+                        this.$router.push('/loginpage')
                     })
 
             }

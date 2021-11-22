@@ -2,8 +2,8 @@
   <div>
     <login-page-form v-if="session ==null" @submit="OnSubmit"/>
     <p v-else-if="session !=null"> 환영합니다 여기는 EVS입니다</p>
-    <v-btn @click="chk()">확인</v-btn>
-    {{session}}
+    <v-btn v-if="session !==null" @click="chk()">확인</v-btn>
+   <p v-if="session !==null"> 회원정보:{{session}} </p>
   </div>
 </template>
 
@@ -40,6 +40,7 @@ export default {
               this.$cookies.set("userNo", res.data.memberNo, '1h')
               this.cookieToSession()
               this.setIsLogin()
+              this.$router.push('/mainHomePage')
               
             }else{
               alert('비밀번호가 틀렸습니다.')

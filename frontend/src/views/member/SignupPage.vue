@@ -24,6 +24,7 @@ export default {
             axios.post('http://localhost:7777/member/register', {memberId, memberPw , name, email, memberCar,memberBirthDay})
             .then( () => {
                 alert('회원가입 완료')
+                this.$router.push('/mainHomePage')
             })
         }
     },
