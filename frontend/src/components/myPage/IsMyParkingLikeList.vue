@@ -90,8 +90,8 @@ goDetail(items){
 
         this.SetitemList(items)
         this.$cookies.set('itemsList', items, '1h')
-        this.$cookies.set('itemslat', items.위도, '1h')
-        this.$cookies.set('itemslng', items.경도, '1h')
+        this.$cookies.set('itemslat', items.lat, '1h')
+        this.$cookies.set('itemslng', items.lng, '1h')
         this.$router.push({name: 'ParkingDetail',})
 
     },
