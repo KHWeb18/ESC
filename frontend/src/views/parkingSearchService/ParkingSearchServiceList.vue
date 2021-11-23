@@ -1,8 +1,6 @@
 <template>
 <div>
-  <v-container style="max-width: 1200px">
   <parking-page-menu/>
-  </v-container>
 <v-row style="width: 286px; position:absolute; margin-top: 300px">
     <td id="panelsHeader" style="margin-left: 100px">HISTROY</td>
     <v-expansion-panels inset :color="red">
