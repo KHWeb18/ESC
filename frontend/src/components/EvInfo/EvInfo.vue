@@ -12,11 +12,25 @@
                   background-color="deep-blue accent-4"
                   center-active
                   dark
+                  class="hidden-md-and-down"
                 >
-                  <v-tab @click="filterBrand(item.name)" v-for="item in items" :key="item.name">
+                  <v-tab @click="filterBrand(item.name)" v-for="item in items" :key="item.name" >
                     <span >{{item.name}}</span>
                   </v-tab>
                 </v-tabs>
+
+                <v-tabs
+                v-model="tab"
+                  background-color="deep-blue accent-4"
+                  center-active
+                  dark
+                  class="hidden-sm-and-down hidden-lg-and-up"
+                >
+                  <v-tab @click="filterBrand(item.name)" v-for="item in items" :key="item.name" >
+                    <span >{{item.name}}</span>
+                  </v-tab>
+                </v-tabs>
+
               </tr>
             </table>
           </v-card>
