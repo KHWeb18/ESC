@@ -82,6 +82,9 @@ export default {
 </script>
 
 <style scoped>
+*{
+  font-family: "Montserrat", sans-serif;
+}
 #wrap {
   width: 100%;
 

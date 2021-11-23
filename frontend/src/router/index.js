@@ -45,6 +45,7 @@ import IsLikePage from '../views/myPage/IsLikePage.vue'
 import IsEditMemberPage from '../views/myPage/IsEditMemberPage.vue'
 import ApiTestPage from "../views/ApiTestPage";
 import IsParkingLikePage from '../views/myPage/IsParkingLikePage.vue'
+import MyParkingDetail from '../views/myPage/MyParkingDetail.vue'
 
 import IsMyCommentListPage from '../views/myPage/IsMyCommentListPage.vue';
 
@@ -219,6 +220,17 @@ const routes = [
     name: 'IsParkingLikePage',   
     component: IsParkingLikePage
   },
+  {
+    path: '/myParkingDetail',
+    name: 'MyParkingDetail',
+    components:{
+      default: MyParkingDetail 
+    },
+      props: {
+        default: true
+      },
+  },
+  
 
 
     //api test
@@ -271,9 +283,7 @@ const routes = [
   props: {
     default: true
   },
-  
 },
-
 ]
 
 const router = new VueRouter({
