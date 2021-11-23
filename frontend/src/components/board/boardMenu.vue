@@ -1,6 +1,6 @@
 <template>
 <div>
-    <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
+    <v-card  dark elevation="0" style="float:left; margin-top: 13px; margin-left: 250px; width:180px">
     <v-card-title > 
      
     </v-card-title>
@@ -33,23 +33,18 @@
 </template>
 
 <script>
-import { mapActions ,mapState } from 'vuex'
-export default {
-    data(){
-        return{
-            AllBoardLength:Number(this.boardList.length)
-        }
-    },
-computed: {
-    ...mapState(['boardList'])
-},
-methods:{
-    ...mapActions(['fetchBoardList'])
-},
-created(){
-    this.fetchBoardList()
-}
 
+export default {
+   props:{
+       boardList: {
+           required: true
+       }
+   },
+   data(){
+       return{
+           AllBoardLength: this.boardList.length
+       }
+   }
 
 }
 </script>
