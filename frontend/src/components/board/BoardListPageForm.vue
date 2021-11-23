@@ -129,7 +129,7 @@
     </div>
       </v-card-text>
     </v-card>
-    <v-card  dark class="hidden-xl-only">
+    <v-card  dark class="hidden-xl-only hidden-md-only hidden-lg-only hidden-sm-only">
        <v-btn  @click="Write()">글쓰기</v-btn>
         <button style="margin-left: 23%" :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
     <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
