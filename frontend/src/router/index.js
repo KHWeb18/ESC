@@ -223,7 +223,7 @@ const routes = [
     path: '/myParkingDetail',
     name: 'MyParkingDetail',
     components: {
-      default: MyParkingDetail      
+      default: MyParkingDetail
     },
     props: {
       default: true
@@ -280,6 +280,7 @@ const routes = [
   props: {
     default: true
   },
+  
 },
 
 ]
