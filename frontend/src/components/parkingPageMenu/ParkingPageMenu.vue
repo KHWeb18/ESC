@@ -2,7 +2,7 @@
     <div>
         <v-card dark>
             <v-card-subtitle>
-                <v-btn style="margin-left: 44%" @click="GoParkingSearchServiceList()" >
+                <v-btn style="margin-left: 36%" @click="GoParkingSearchServiceList()" >
                     주차장표준데이터   
                 </v-btn>
                 <v-btn @click="GokakaomapTest()">

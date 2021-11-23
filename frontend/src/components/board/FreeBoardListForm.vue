@@ -7,7 +7,7 @@
           <span>게시글 형태을 변환합니다!</span>
         </v-tooltip>
   <board-menu class="hidden-xs-only" :boardList="boardList"/>
-  <board-menu-of-xs class="hidden-xl-only" :boardList="boardList"/>
+  <board-menu-of-xs  :boardList="boardList"/>
 <div v-if="coin ==0&&this.tableMode ==1">
     <v-container style="max-width:1000px;">
       <v-simple-table >
@@ -132,7 +132,7 @@
     </div>
       </v-card-text>
     </v-card>
-    <v-card  dark class="hidden-xl-only">
+    <v-card  dark class="hidden-xl-only hidden-md-only hidden-lg-only hidden-sm-only">
        <v-btn  @click="Write()">글쓰기</v-btn>
         <button style="margin-left: 23%" :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
     <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
