@@ -1,7 +1,8 @@
 <template>
     <div>
         <administrator-memu/>
-        <reported-board-form :ReportedBoardList="ReportedBoardList"/>
+        <reported-board-form v-if="this.$store.state.auth =='관리자'" :ReportedBoardList="ReportedBoardList"/>
+        <p v-else >접근권한이없습니다</p>
     </div>
 </template>
 

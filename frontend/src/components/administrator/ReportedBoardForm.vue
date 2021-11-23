@@ -1,8 +1,7 @@
 <template>
-
+<v-container style="max-width:1000px">
 <div v-if="coin ==0&&this.tableMode ==1">
   <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
-    <v-container>
       <v-simple-table >
         <template v-slot:default>
           <thead>
@@ -43,13 +42,11 @@
         </v-row>
       </form>
     </div>
-  </v-container>
 </div>
 
 
 <div v-else-if="coin ==1&&tableMode ==1">
   <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
-    <v-container>
       <v-simple-table >
         <template v-slot:default>
           <thead>
@@ -91,7 +88,6 @@
         <v-btn style="margin-left: 90%" @click="showAllBoard()">검색해제</v-btn>
       </form>
     </div>
-  </v-container>
 </div>
 
 
@@ -117,7 +113,6 @@
       <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
       <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
       <form @keyup.enter="searching(searchMenus,search)">
-        <v-btn style="margin-right: 100%" @click="Write()"><v-icon>mdi-pen-plus</v-icon></v-btn>
         <v-row style="margin-left: 80%">
           <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
           <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
@@ -147,7 +142,6 @@
       <span class="page-count">{{ searchpageNum + 1 }} / {{ searchpageCount }}</span>
       <button :disabled="searchpageNum >= searchpageCount - 1" @click="searchNextPage" class="page-btn"><v-icon>mdi-arrow-right-bold</v-icon></button>
       <form @keyup.enter="searching(searchMenus,search)">
-        <v-btn style="margin-right: 100%" @click="Write()"><v-icon>mdi-pen-plus</v-icon></v-btn>
         <v-row style="margin-left: 80%">
           <v-select  style="max-width: 100px" :items="searchMenu" label="검색" v-model="searchMenus"/>
           <v-text-field  style="max-width: 300px" v-model="search" label="검색란"></v-text-field>
@@ -156,7 +150,7 @@
       </form>
     </div>
 </div>
-  
+</v-container>
 </template>
 
 <script>

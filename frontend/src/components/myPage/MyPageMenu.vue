@@ -1,10 +1,11 @@
 <template>
-  <v-card>
+<div>
+
     <div>
-      <div id="wrapper">
+<!--       <div id="wrapper">
         <p id="text" contenteditable="true" spellcheck="false">MY PAGE</p>
         <p id="animation"></p>
-      </div>
+      </div> -->
 
       <div style="padding-bottom: 3%;"></div>
       <v-tabs background-color="transparent" color="blue" grow>
@@ -14,34 +15,36 @@
         </v-tab>
       </v-tabs>
     </div>
-  </v-card>
+
+</div>
 </template>
 
+
 <script>
+
 export default {
   name: "MyPageMenu",
-
   data() {
     return {
       links: [
         {
-          icon: "account_circle",
-          text: "프로필",
-          name: "profile",
+          icon: "ev_station",
+          text: "충전소",
+          name: "MyChargingList",
           route: "/IsMyPage",
         },
         {
-          icon: "content_paste_search",
-          text: "게시글",
-          name: "myBoard",
-          route: "/IsMyBoardPage",
+          icon: "P",
+          text: "주차장",
+          name: "MyParkingList",
+          route: "/IsParkingLikePage",
         },
-        {
+/*         {
           icon: "manage_accounts",
           text: "관심목록",
           name: "likeContents",
           route: "/IsLikePage",
-        },
+        }, */
       ],
     };
   },

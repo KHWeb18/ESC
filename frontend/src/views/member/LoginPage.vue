@@ -2,8 +2,8 @@
   <div>
     <login-page-form v-if="session ==null" @submit="OnSubmit"/>
     <p v-else-if="session !=null"> 환영합니다 여기는 EVS입니다</p>
-    <v-btn @click="chk()">확인</v-btn>
-    {{session}}
+    <v-btn v-if="session !==null" @click="chk()">확인</v-btn>
+   <p v-if="session !==null"> 회원정보:{{session}} </p>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
       const {memberId , memberPw} = payload
       axios.post('http://localhost:7777/member/login', {memberId , memberPw})
           .then( (res) =>{
-            console.log(res.data)
+            console.log(res.data.memberNo)
             if(res.data.status =="정지"){
               alert("정지된회원입니다.")
               
@@ -37,9 +37,10 @@ export default {
               alert('로그인되었습니다.')
               this.res = res.data
               this.$cookies.set("user", res.data, '1h')
-              this.$cookies.set("userNo", res.data, '1h')
+              this.$cookies.set("userNo", res.data.memberNo, '1h')
               this.cookieToSession()
               this.setIsLogin()
+              this.$router.push('/mainHomePage')
               
             }else{
               alert('비밀번호가 틀렸습니다.')
@@ -57,6 +58,7 @@ export default {
               }
               
             })
+            
             }
             
           })
@@ -64,6 +66,7 @@ export default {
     chk(){
       console.log("쿠키값"+this.$cookies.get('userAuth'))
       console.log("스토어에저장된  auth값"+this.$store.state.auth)
+      console.log('쿠키에저장된 유저No',this.$cookies.get('userNo'))
     }
   },
   data() {

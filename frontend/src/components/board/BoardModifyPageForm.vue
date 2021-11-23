@@ -113,7 +113,7 @@ export default {
             else{
                 let formData = new FormData()
             for (var idx = 0; idx < this.files.length; idx++) {
-                this.files.name = this.img
+                this.files.name = this.img2
                 formData.append('fileList', this.files[idx])
             }
             axios.post(`http://localhost:7777/board/uploadImg/${this.memberId}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })

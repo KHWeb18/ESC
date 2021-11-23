@@ -39,6 +39,9 @@
     "env": {
       "node": true
     },
+    "globals": {
+      "kakao": false
+    },
     "extends": [
       "plugin:vue/essential",
       "eslint:recommended"

@@ -1,13 +1,16 @@
 package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.CommentReportRequest;
+import com.esc.khweb.entity.Comment;
 import com.esc.khweb.entity.CommentLikes;
 import com.esc.khweb.entity.CommentReport;
 import com.esc.khweb.repository.CommentReportRepository;
+import com.esc.khweb.repository.CommentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +20,9 @@ public class CommentReportServiceImpl implements CommentReportService{
 
     @Autowired
     private CommentReportRepository commentReportRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Override
     public void registerReport(CommentReportRequest commentReportRequest) throws Exception {
@@ -43,8 +49,20 @@ public class CommentReportServiceImpl implements CommentReportService{
         return maybeMember.isPresent();
     }
     @Override
-    public List<CommentReport> getReportedCommentNoList() throws Exception {
-        return commentReportRepository.findAll();
+    public List<Comment> getReportedCommentNoList() throws Exception {
+
+        List<CommentReport> list = commentReportRepository.findAll();
+        List<Comment> list2 = new ArrayList<>();
+        for(int i = 0; i< list.toArray().length; i++ ){
+            Long IdNo = list.get(i).getCommentNo();
+            System.out.println("IdNo:"+IdNo);
+           Optional<Comment>  maybeReportedComment = commentRepository.findById(IdNo);
+           Comment comment = maybeReportedComment.get();
+            list2.add(comment);
+
+        }
+
+        return list2;
     }
 
     @Override
