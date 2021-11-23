@@ -97,7 +97,7 @@ goDetail(items){
     },
     deleteMyParkingState(rowNo) {
       axios
-        .post(`http://localhost:7777/member/deleteMyParkingState/${rowNo}`)
+        .post(`https://evsbackend.herokuapp.com/member/deleteMyParkingState/${rowNo}`)
         .then(() => {
           this.$router.go();
         });

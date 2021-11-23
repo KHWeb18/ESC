@@ -42,7 +42,7 @@ export default {
         getManageAuth(inputcode){
 
             if(inputcode ==this.code){
-                if(this.$store.state.auth =="일반유저"){axios.post(`http://localhost:7777/member/getManageAuth/${this.$store.state.loginMemberNo}`)
+                if(this.$store.state.auth =="일반유저"){axios.post(`https://evsbackend.herokuapp.com/member/getManageAuth/${this.$store.state.loginMemberNo}`)
             .then( () =>{
                 alert('관리자 등급을받았습니다. 다시로그인해주세요')
                 this.logout()

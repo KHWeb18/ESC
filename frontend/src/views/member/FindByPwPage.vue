@@ -66,7 +66,7 @@ export default {
     methods:{
             OnSubmit(){
                     const {memberId} =this
-                    axios.post('http://localhost:7777/member/FindBymemberImp',{memberId})
+                    axios.post('https://evsbackend.herokuapp.com/member/FindBymemberImp',{memberId})
                     .then((res)=>{
                         console.log(res.data)
                         if(res.data ==''){
@@ -89,7 +89,7 @@ export default {
 
             idMatchedBirthday(){
                const {memberId,maybeBirthday} = this
-               axios.post('http://localhost:7777/member/IdMatchedBirthday/',{memberId,maybeBirthday})
+               axios.post('https://evsbackend.herokuapp.com/member/IdMatchedBirthday/',{memberId,maybeBirthday})
                .then( (res) => {
                    if(res.data == true){
                        this.e1 = 3
@@ -103,7 +103,7 @@ export default {
             PasswordReset(){
 
                     const {memberNo, memberId, name, memberBirthDay,email,memberPw,regDate,memberCar } = this
-                    axios.post('http://localhost:7777/member/ModifyPassword/',{memberNo, memberId, name, memberBirthDay,email,memberPw,regDate,memberCar})
+                    axios.post('https://evsbackend.herokuapp.com/member/ModifyPassword/',{memberNo, memberId, name, memberBirthDay,email,memberPw,regDate,memberCar})
                     .then( () =>{
                         alert('비밀번호가변경되었습니다')
                         this.$router.push('/loginpage')

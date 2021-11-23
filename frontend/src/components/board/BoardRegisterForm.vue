@@ -100,7 +100,7 @@ export default {
                 this.files.name = this.img
                 formData.append('fileList', this.files[idx])
             }
-            axios.post(`http://localhost:7777/board/uploadImg/${this.session.memberId}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
+            axios.post(`https://evsbackend.herokuapp.com/board/uploadImg/${this.session.memberId}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
             .then (res => {
                 this.response = res.data
             })

@@ -14,7 +14,7 @@ export default {
     methods:{   
         OnSubmit(payload){
             const {memberId, title, content, img, category} = payload
-            axios.post('http://localhost:7777/notice/register',{memberId, title, content, img, category})
+            axios.post('https://evsbackend.herokuapp.com/notice/register',{memberId, title, content, img, category})
             .then ( () =>{
                 alert("공지가 등록되었습니다.")
                 this.$router.go()

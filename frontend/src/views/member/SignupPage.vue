@@ -21,7 +21,7 @@ export default {
         OnSubmit(payload) {
             const  {memberId, memberPw , name, email, memberCar,memberBirthDay} = payload
             
-            axios.post('http://localhost:7777/member/register', {memberId, memberPw , name, email, memberCar,memberBirthDay})
+            axios.post('https://evsbackend.herokuapp.com/member/register', {memberId, memberPw , name, email, memberCar,memberBirthDay})
             .then( () => {
                 alert('회원가입 완료')
                 this.$router.push('/mainHomePage')

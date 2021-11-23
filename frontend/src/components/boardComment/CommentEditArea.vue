@@ -41,7 +41,7 @@ export default {
     },
     editComment(){
       const { editContent, comment } = this
-      axios.put(`http://localhost:7777/comment/edit/${comment.commentNo}`,
+      axios.put(`https://evsbackend.herokuapp.com/comment/edit/${comment.commentNo}`,
           { memberId : comment.memberId, content : editContent })
           .then(() => {
             alert('수정 성공!')

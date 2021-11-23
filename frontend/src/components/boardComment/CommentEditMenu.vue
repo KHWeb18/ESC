@@ -60,7 +60,7 @@ export default {
     ...mapActions(['fetchCommentList']),
     deleteComment(commentInfo) {
       const { isDeleted } = this
-      axios.put(`http://localhost:7777/comment/delete/${commentInfo.commentNo}`,
+      axios.put(`https://evsbackend.herokuapp.com/comment/delete/${commentInfo.commentNo}`,
           { memberId : commentInfo.memberId, isDeleted })
           .then(() => {
             alert('삭제 성공!')
@@ -72,7 +72,7 @@ export default {
     },
     editComment(commentInfo) {
       const { content } = this
-      axios.put(`http://localhost:7777/comment/edit/${commentInfo.commentNo}`,
+      axios.put(`https://evsbackend.herokuapp.com/comment/edit/${commentInfo.commentNo}`,
           { memberId : commentInfo.memberId, content })
           .then(() => {
             alert('수정 성공!')
@@ -84,7 +84,7 @@ export default {
     },
     reportComment(commentInfo){
       const memberId = commentInfo.memberId
-      axios.post(`http://localhost:7777/comment/report/${commentInfo.commentNo}`, {memberId})
+      axios.post(`https://evsbackend.herokuapp.com/comment/report/${commentInfo.commentNo}`, {memberId})
           .then(() => {
             alert("신고 완료!")
             this.fetchCommentList(this.boardNo)
@@ -98,7 +98,7 @@ export default {
       const memberId = commentInfo.memberId
       const commentNo = commentInfo.commentNo
       let temp;
-      axios.get(`http://localhost:7777/comment/report/check/${commentNo}/${memberId}`)
+      axios.get(`https://evsbackend.herokuapp.com/comment/report/check/${commentNo}/${memberId}`)
           .then(res => {
             temp = res.data
             this.dup = temp

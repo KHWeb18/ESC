@@ -75,7 +75,7 @@ export default {
                   },
                   DeleteBoard(boardNo){
                       
-                      axios.post(`http://localhost:7777/notice/DeleteBoard/${boardNo}`)
+                      axios.post(`https://evsbackend.herokuapp.com/notice/DeleteBoard/${boardNo}`)
                       .then( () =>{
                           alert('글이 삭제되었습니다')
                           this.$router.push({name: 'NoticeListPage'})
