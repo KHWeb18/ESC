@@ -5,10 +5,9 @@
       <v-layout>
         <v-flex >
           <v-card>
-            <table>
-              <tr>
+            
                 <v-tabs
-                v-model="tab"
+                  v-model="tab"
                   background-color="deep-blue accent-4"
                   center-active
                   dark
@@ -20,19 +19,19 @@
                 </v-tabs>
 
                 <v-tabs
-                v-model="tab"
+                  v-model="tab"
                   background-color="deep-blue accent-4"
                   center-active
                   dark
-                  class="hidden-sm-and-down hidden-lg-and-up"
+                  show-arrows
+                  class="hidden-xs-and-down hidden-lg-and-up"
                 >
                   <v-tab @click="filterBrand(item.name)" v-for="item in items" :key="item.name" >
                     <span >{{item.name}}</span>
                   </v-tab>
                 </v-tabs>
 
-              </tr>
-            </table>
+              
           </v-card>
           <v-row>
             <v-col class="white-space" v-for="(item, idx) in filteredItems" :key="idx">
@@ -154,5 +153,11 @@ export default {
 </script>
 
 <style scoped>
-
+*{
+  margin: 1;
+  padding: 1;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  user-select: none;
+}
 </style>
