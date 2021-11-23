@@ -1,34 +1,7 @@
 <template>
-
+<div>
+  <board-menu :boardList="boardList"/>
 <div v-if="coin ==0&&this.tableMode ==1">
-  <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
-    <v-card-title > 
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
-    </v-card-title>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-  </v-card>
   <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <span v-bind="attrs" v-on="on"><v-btn style="position: absolute;" @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn></span>
@@ -93,34 +66,6 @@
 
 <div v-else-if="coin ==1&&tableMode ==1">
   <v-btn style="position: absolute;"  @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
-    <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
-    <v-card-title > 
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
-    </v-card-title>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-  </v-card>
     <v-container style="max-width:1000px">
       <v-simple-table >
         <template v-slot:default>
@@ -177,34 +122,6 @@
 
 <div v-else-if="coin ==0&&cardMode ==1">
    <v-btn style="position: absolute;"  @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
-     <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
-    <v-card-title > 
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
-    </v-card-title>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-  </v-card>
    <v-container style="max-width: 1000px">
   <v-row>
     <v-card class="mx-auto my-12" width="250"  v-for="i in paginatedData" :key="i.boardNo" @click="goDetail(i.boardNo)" outlined hover>
@@ -247,34 +164,6 @@
 
 <div v-else-if="coin ==1&&cardMode ==1">
   <v-btn style="position: absolute;"  @click="ModeChange()"><v-icon>mdi-format-list-bulleted</v-icon></v-btn>
-    <v-card  dark elevation="0" style="position:absolute; margin-top: 13px; margin-left: 250px; width:180px">
-    <v-card-title > 
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'ChargingBoardListPage'}"> 충전소게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'ParkingBoardListPage'}"> 주차장게시판</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'SuggestionBoardListPage'}"> 건의게시판</v-btn>
-    </v-card-title>
-    <v-card-title > 
-     <v-btn width="130" outlined route :to="{ name: 'NoticeListPage'}"> 공지사항</v-btn>
-    </v-card-title>
-    <v-divider></v-divider>
-  </v-card>
   <v-container style="max-width: 1000px">
   <v-row>
     <v-card class="mx-auto my-12" width="250" v-for="i in searchpaginatedData" :key="i.boardNo" @click="goDetail(i.boardNo)" outlined hover>
@@ -311,7 +200,7 @@
     </v-card>
     </v-container>
 </div>
-
+</div>
 </template>
 
 <script>
@@ -319,8 +208,12 @@ import Vue from 'vue'
 import cookies from 'vue-cookies'
 import axios from 'axios';
 import { mapActions, mapState } from 'vuex';
+import BoardMenu from './boardMenu.vue';
 Vue.use(cookies)
 export default {
+  components: {
+    BoardMenu
+  },
   name: 'FreeBoardListForm',
   data () {
     return {
