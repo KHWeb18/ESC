@@ -1,20 +1,17 @@
 <template>
     <div>
-<!--         <ev-info-form @submit="OnSubmit"/>-->
-      <ev-info-example></ev-info-example>
+      <ev-info></ev-info>
     </div>
 </template>
 
 <script>
 
-// import EvInfoForm from '../../components/EvInfo/EvInfoForm.vue'
-import EvInfoExample from "../../components/EvInfo/EvInfoExample";
+import EvInfo from "../../components/EvInfo/EvInfo";
 
 export default {
     name: 'EvInfoPage',
     components: {
-      EvInfoExample,
-        // EvInfoForm
+      EvInfo,
     },
 
     
