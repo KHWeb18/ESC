@@ -38,7 +38,7 @@ export default {
     likeComment() {
       const {memberId} = this
       const {commentNo} = this.comment
-      axios.post(`http://localhost:7777/comment/like/${commentNo}`, {memberId})
+      axios.post(`https://evsbackend.herokuapp.com/comment/like/${commentNo}`, {memberId})
           .then(() => {
             this.fetchCommentList(this.boardNo)
           })
@@ -50,7 +50,7 @@ export default {
     removeLike() {
       const {memberId} = this
       const {commentNo} = this.comment
-      axios.delete(`http://localhost:7777/comment/like/delete/${commentNo}/${memberId}`)
+      axios.delete(`https://evsbackend.herokuapp.com/comment/like/delete/${commentNo}/${memberId}`)
           .then(() => {
             this.fetchCommentList(this.boardNo)
           })
@@ -62,7 +62,7 @@ export default {
       const {commentNo} = this.comment
       const {memberId} = this
       let temp;
-      axios.get(`http://localhost:7777/comment/like/check/${commentNo}/${memberId}`)
+      axios.get(`https://evsbackend.herokuapp.com/comment/like/check/${commentNo}/${memberId}`)
           .then(res => {
             temp = res.data
             this.dup = temp

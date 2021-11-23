@@ -208,7 +208,7 @@ export default {
         else{
           this.$router.push({name: 'NoticeReadPage', params:{boardNo}})
 
-        axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
+        axios.post(`https://evsbackend.herokuapp.com/board/viewcount/${boardNo}`)
         .then( () =>{
 
         })
@@ -217,7 +217,7 @@ export default {
     },
     viewcount(boardNo){
       console.log("동작")
-      axios.post(`http://localhost:7777/notice/viewcount/${boardNo}`)
+      axios.post(`https://evsbackend.herokuapp.com/notice/viewcount/${boardNo}`)
         .then( () =>{
 
         })
@@ -229,7 +229,7 @@ export default {
       if(searchMenus =="글제목"){
         this.searchList.length = 0
         console.log('동작')
-      axios.post(`http://localhost:7777/notice/titleSearchList/${search}`)
+      axios.post(`https://evsbackend.herokuapp.com/notice/titleSearchList/${search}`)
       .then( (res)=> {
         if(res.data == ''){
           alert("해당검색어로 검색되는 글이 존재하지않습니다.")
@@ -252,7 +252,7 @@ export default {
 
       if(searchMenus =="분류"){
         this.searchList.length = 0
-        axios.post(`http://localhost:7777/notice/categorySearchList/${search}`)
+        axios.post(`https://evsbackend.herokuapp.com/notice/categorySearchList/${search}`)
       .then( (res)=>{
         if(res.data == ''){
            alert("해당검색어로 검색되는 글이 존재하지않습니다.")

@@ -129,7 +129,7 @@ export default {
       },
       ban(memberNo){
           console.log(memberNo)
-          axios.post(`http://localhost:7777/member/IDban/${memberNo}`)
+          axios.post(`https://evsbackend.herokuapp.com/member/IDban/${memberNo}`)
           .then( () =>{
               alert("해당아이디는 정지 하였습니다.")
               this.$router.go()
@@ -137,7 +137,7 @@ export default {
       },
       jailbreak(memberNo){
           console.log(memberNo)
-          axios.post(`http://localhost:7777/member/jailbreak/${memberNo}`)
+          axios.post(`https://evsbackend.herokuapp.com/member/jailbreak/${memberNo}`)
           .then( () =>{
               alert("정지 해제 되었습니다.")
               this.$router.go()
@@ -149,7 +149,7 @@ export default {
         }
         if(searchMenus == '회원번호'){
           
-          axios.post(`http://localhost:7777/member/findALLByNo/${search}`)
+          axios.post(`https://evsbackend.herokuapp.com/member/findALLByNo/${search}`)
           .then( (res) =>{
               if(res.data ==""){
                 alert("해당 회원번호는 존재하지않습니다.")
@@ -163,7 +163,7 @@ export default {
           })
         }
         else if(searchMenus =='회원이름'){
-          axios.post(`http://localhost:7777/member/findALLByName/${search}`)
+          axios.post(`https://evsbackend.herokuapp.com/member/findALLByName/${search}`)
           .then( (res) =>{
               if(res.data ==""){
                 alert("해당 회원이름는 존재하지않습니다.")
@@ -173,7 +173,7 @@ export default {
           } )
         }
         else if (searchMenus == '아이디')
-        axios.post(`http://localhost:7777/member/findALLById/${search}`)
+        axios.post(`https://evsbackend.herokuapp.com/member/findALLById/${search}`)
           .then( (res) =>{
               if(res.data ==""){
                 alert("해당 아이디는 존재하지않습니다.")

@@ -231,7 +231,7 @@ function makeOutListener(infowindow) {
     addMyParkingState(session,items){
       if(session !== null){
 
-        axios.post(`http://localhost:7777/member/addMyParkingState/${session.memberNo}`,{memberNo:session.memberNo ,  paymethod:items.결제방법, lng:items.경도 ,
+        axios.post(`https://evsbackend.herokuapp.com/member/addMyParkingState/${session.memberNo}`,{memberNo:session.memberNo ,  paymethod:items.결제방법, lng:items.경도 ,
          holiStart1:items.공휴일운영시작시각 , holiEnd:items.공휴일운영종료시각, adminiNm:items.관리기관명,addr1:items.소재지도로명주소,addr2:items.소재지지번주소,
          operatingday:items.운영요일,monthPay:items.월정기권요금,lat:items.위도,call1:items.전화번호,parkingNum:items.주차구획수,basicsTime:items.주차기본시간,
          basicsPay:items.주차기본요금,kind1:items.주차장구분,parkingNm:items.주차장명,ParkingType:items.주차장유형,addtimeUnit:items.추가단위시간,addpayUnit:items.추가단위요금,

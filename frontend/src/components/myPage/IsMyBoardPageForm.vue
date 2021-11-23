@@ -380,7 +380,7 @@ export default {
     goDetail(boardNo) {
       this.$router.push({ name: "BoardReadPage", params: { boardNo } });
 
-      axios.post(`http://localhost:7777/board/${boardNo}`).then(() => {});
+      axios.post(`https://evsbackend.herokuapp.com/board/${boardNo}`).then(() => {});
     },
     reserve() {
       this.loading = true;
@@ -394,7 +394,7 @@ export default {
         this.searchList.length = 0;
         console.log("동작");
         axios
-          .post(`http://localhost:7777/board/titleSearchList/${search}`)
+          .post(`https://evsbackend.herokuapp.com/board/titleSearchList/${search}`)
           .then((res) => {
             if (res.data == "") {
               alert("해당검색어로 검색되는 글이 존재하지않습니다.");

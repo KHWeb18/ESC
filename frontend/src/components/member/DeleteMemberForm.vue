@@ -46,7 +46,7 @@ export default {
          this.dialog = false
         },
          MemberEnd(memberNo){
-            axios.delete(`http://localhost:7777/jpamemberManage/deleteMember/${memberNo}`)
+            axios.delete(`https://evsbackend.herokuapp.com/jpamemberManage/deleteMember/${memberNo}`)
             .then( ()=>{
                 alert('회원탈퇴가 정상적으로 처리되었습니다.')
                 this.$cookies.remove('memberId')

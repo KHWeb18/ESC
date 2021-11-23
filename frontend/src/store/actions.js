@@ -38,7 +38,7 @@ import {
 export default {
   fetchMemberList({ commit }) {
     return axios
-      .post("http://localhost:7777/member/getMemberList")
+      .post("https://evsbackend.herokuapp.com/member/getMemberList")
       .then((res) => {
         console.log(res.data);
         commit(FETCH_MEMBER_LIST, res.data);
@@ -107,14 +107,14 @@ export default {
   //게시판
   fetchBoardList({ commit }) {
     return axios
-      .post("http://localhost:7777/board/getBoardList")
+      .post("https://evsbackend.herokuapp.com/board/getBoardList")
       .then((res) => {
         commit(FETCH_BOARD_LIST, res.data);
       });
   },
   fetchBoard({ commit }, boardNo) {
     return axios
-      .post(`http://localhost:7777/board/getBoard/${boardNo}`)
+      .post(`https://evsbackend.herokuapp.com/board/getBoard/${boardNo}`)
       .then((res) => {
         console.log(res.data);
         commit(FETCH_BOARD, res.data);
@@ -122,14 +122,14 @@ export default {
   },
   fetchTargetList({ commit }, target) {
     return axios
-      .post(`http://localhost:7777/board/getTargetList/${target}`)
+      .post(`https://evsbackend.herokuapp.com/board/getTargetList/${target}`)
       .then((res) => {
         commit(FETCH_TARGET_LIST, res.data);
       });
   },
   findMemberInfo({ commit }, memberNo) {
     return axios
-      .post(`http://localhost:7777/member/findByMemberInfo/${memberNo}`)
+      .post(`https://evsbackend.herokuapp.com/member/findByMemberInfo/${memberNo}`)
       .then((res) => {
         commit(FIND_MEMBER_INFO, res.data);
       });
@@ -137,42 +137,42 @@ export default {
   // 댓글
   fetchCommentList({ commit }, boardNo) {
     return axios
-      .get(`http://localhost:7777/comment/lists/${boardNo}`)
+      .get(`https://evsbackend.herokuapp.com/comment/lists/${boardNo}`)
       .then((res) => {
         commit(FETCH_COMMENT_LIST, res.data);
       });
   },
   fetchComment({ commit }, commentNo) {
     return axios
-      .get(`http://localhost:7777/comment/${commentNo}`)
+      .get(`https://evsbackend.herokuapp.com/comment/${commentNo}`)
       .then((res) => {
         commit(FETCH_COMMENT, res.data);
       });
   },
   fetchReplies({ commit }, commentNo) {
     return axios
-      .get(`http://localhost:7777/reply/lists/${commentNo}`)
+      .get(`https://evsbackend.herokuapp.com/reply/lists/${commentNo}`)
       .then((res) => {
         commit(FETCH_REPLY_LIST, res.data);
       });
   },
   fetchCommentLikes({ commit }, commentNo) {
     return axios
-      .get(`http://localhost:7777/comment/like/lists/${commentNo}`)
+      .get(`https://evsbackend.herokuapp.com/comment/like/lists/${commentNo}`)
       .then((res) => {
         commit(FETCH_COMMENT_LIKES, res.data);
       });
   },
   GetNoitceList({ commit }) {
     return axios
-      .post("http://localhost:7777/notice/getNoitceList")
+      .post("https://evsbackend.herokuapp.com/notice/getNoitceList")
       .then((res) => {
         commit(GET_NOTICE_LIST, res.data);
       });
   },
   GetNotice({ commit }, boardNo) {
     return axios
-      .post(`http://localhost:7777/notice/getNotice/${boardNo}`)
+      .post(`https://evsbackend.herokuapp.com/notice/getNotice/${boardNo}`)
       .then((res) => {
         commit(GET_NOTICE, res.data);
       });
@@ -194,7 +194,7 @@ export default {
   },
   getReportedBoardList({ commit }) {
     return axios
-      .post("http://localhost:7777/board/getReportedBoardList")
+      .post("https://evsbackend.herokuapp.com/board/getReportedBoardList")
       .then((res) => {
         commit(GET_REPORTED_BOARD_LIST, res.data);
       });
@@ -202,7 +202,7 @@ export default {
 
   getReportedCommentNoList({ commit }) {
     return axios
-      .post("http://localhost:7777/comment/getReportedCommentNoList")
+      .post("https://evsbackend.herokuapp.com/comment/getReportedCommentNoList")
       .then((res) => {
         commit(GET_REPORTED_COMMENT_LIST, res.data);
       });
@@ -214,14 +214,14 @@ export default {
   // 마이페이지 게시글
   fetchMyBoardList({ commit }, memberId) {
     return axios
-        .get(`http://localhost:7777/board/getMyBoardList/${memberId}`)
+        .get(`https://evsbackend.herokuapp.com/board/getMyBoardList/${memberId}`)
         .then((res) => {
           commit(FETCH_MY_BOARD_LIST, res.data);
         });
   },
   fetchMyCommentList({ commit }, memberId) {
     return axios
-        .get(`http://localhost:7777/comment/getMyCommentLists/${memberId}`)
+        .get(`https://evsbackend.herokuapp.com/comment/getMyCommentLists/${memberId}`)
         .then((res) => {
         
           commit(FETCH_MY_COMMENT_LIST, res.data);
@@ -230,14 +230,14 @@ export default {
 
   fetchMyLikeList({ commit }, memberNo) {
     return axios
-        .get(`http://localhost:7777/member/getMyState/${memberNo}`)
+        .get(`https://evsbackend.herokuapp.com/member/getMyState/${memberNo}`)
         .then((res) => {
         
           commit(FETCH_MY_LIKE_LIST, res.data);
         });
   },
   getMyParkingStateList({commit},memberNo){
-    return axios.post(`http://localhost:7777/member/getMyParkingState/${memberNo}`)
+    return axios.post(`https://evsbackend.herokuapp.com/member/getMyParkingState/${memberNo}`)
     .then( (res) =>{
 
       commit(GET_MY_PARKING_STATES,res.data)

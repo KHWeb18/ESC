@@ -60,7 +60,7 @@ export default {
         temp = true;
         const { memberNo } = this.session;
         axios
-          .delete(`http://localhost:7777/member/delete/${memberNo}`)
+          .delete(`https://evsbackend.herokuapp.com/member/delete/${memberNo}`)
           .then(() => {
             alert("계정 삭제 성공");
             this.$cookies.remove("user");

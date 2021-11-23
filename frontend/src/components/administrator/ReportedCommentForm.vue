@@ -61,7 +61,7 @@ export default {
   methods: {
     ...mapActions(['getReportedCommentNoList']),
         hold(commentInfo){
-            axios.post(`http://localhost:7777/comment/reportedCommentDelete/${commentInfo.commentNo}`)
+            axios.post(`https://evsbackend.herokuapp.com/comment/reportedCommentDelete/${commentInfo.commentNo}`)
             .then( ()=>{
                 alert("해당댓글은 보류되었습니다.")
                 this.$router.go();
@@ -69,11 +69,11 @@ export default {
             })           
         },
         deleteComment(commentInfo) {
-            axios.post(`http://localhost:7777/comment/reportedCommentDelete/${commentInfo.commentNo}`)
+            axios.post(`https://evsbackend.herokuapp.com/comment/reportedCommentDelete/${commentInfo.commentNo}`)
             .then( ()=>{
             }) 
             const { isDeleted } = this
-            axios.put(`http://localhost:7777/comment/delete/${commentInfo.commentNo}`,
+            axios.put(`https://evsbackend.herokuapp.com/comment/delete/${commentInfo.commentNo}`,
                 { memberId : commentInfo.memberId, isDeleted })
                 .then(() => {
                     alert('해당댓글은 삭제되었습니다.')

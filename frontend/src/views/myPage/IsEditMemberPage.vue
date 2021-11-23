@@ -140,7 +140,7 @@ export default {
     done() {
       const { memberNo, memberId, name, email, memberPw, memberCar } = this;
       axios
-        .put(`http://localhost:7777/member/modify/${memberNo}`, {
+        .put(`https://evsbackend.herokuapp.com/member/modify/${memberNo}`, {
           memberId,
           name,
           email,

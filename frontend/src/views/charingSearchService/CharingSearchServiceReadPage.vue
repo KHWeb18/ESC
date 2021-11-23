@@ -239,7 +239,7 @@ export default {
     addMyState(session,itemsList){
       if(session !== null){
         const {addr , busiCall, chgerType, lat , lng , statNm, useTime } = itemsList
-        axios.post(`http://localhost:7777/member/addMyState/${session.memberNo}`,{addr , busiCall, chgerType, lat , lng , statNm, useTime})
+        axios.post(`https://evsbackend.herokuapp.com/member/addMyState/${session.memberNo}`,{addr , busiCall, chgerType, lat , lng , statNm, useTime})
             .then( (res) => {
               alert(res.data)
             })

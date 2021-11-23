@@ -43,7 +43,7 @@ export default {
     methods:{
         MatchedEmail(){
             const {email} = this
-            axios.post('http://localhost:7777/member/FindById',{email})
+            axios.post('https://evsbackend.herokuapp.com/member/FindById',{email})
             .then( (res) =>{
                     this.userid = res.data
                     if(res.data == ''){

@@ -76,7 +76,7 @@ export default {
         goDetail(boardNo) {
       this.$router.push({ name: "BoardReadPage", params: { boardNo } });
 
-      axios.post(`http://localhost:7777/board/${boardNo}`).then(() => {});
+      axios.post(`https://evsbackend.herokuapp.com/board/${boardNo}`).then(() => {});
     },
      
      nextPage () {

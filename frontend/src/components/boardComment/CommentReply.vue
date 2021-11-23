@@ -61,7 +61,7 @@ export default {
       const { memberId, content } = this
       const { commentNo } = this.comment
       const isDeleted = false
-      axios.post(`http://localhost:7777/reply/register/${commentNo}`, { memberId, content, isDeleted })
+      axios.post(`https://evsbackend.herokuapp.com/reply/register/${commentNo}`, { memberId, content, isDeleted })
           .then(() => {
             alert('답글 등록 완료!')
             this.fetchReplies(this.comment.commentNo)
@@ -77,7 +77,7 @@ export default {
     },
     deleteReply(item) {
       //const { content } = this
-      axios.put(`http://localhost:7777/reply/${item.replyNo}`,
+      axios.put(`https://evsbackend.herokuapp.com/reply/${item.replyNo}`,
           { memberId : item.memberId, isDeleted : true })
           .then(() => {
             alert('삭제 성공!')

@@ -49,7 +49,7 @@ export default {
       const { boardNo } = this.board
 
       if(content !== '') {
-        axios.post(`http://localhost:7777/comment/register/${boardNo}`, { memberId, content })
+        axios.post(`https://evsbackend.herokuapp.com/comment/register/${boardNo}`, { memberId, content })
             .then(() => {
               alert('댓글 등록 성공!')
               this.fetchCommentList(this.board.boardNo)

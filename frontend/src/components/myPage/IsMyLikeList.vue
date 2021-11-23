@@ -98,7 +98,7 @@ export default {
     },
     deleteMyState(rowNo) {
       axios
-        .post(`http://localhost:7777/member/deleteMyState/${rowNo}`)
+        .post(`https://evsbackend.herokuapp.com/member/deleteMyState/${rowNo}`)
         .then(() => {
           this.$router.go();
         });

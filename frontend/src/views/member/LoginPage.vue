@@ -26,7 +26,7 @@ export default {
     OnSubmit(payload){
       //console.log(payload)
       const {memberId , memberPw} = payload
-      axios.post('http://localhost:7777/member/login', {memberId , memberPw})
+      axios.post('https://evsbackend.herokuapp.com/member/login', {memberId , memberPw})
           .then( (res) =>{
             console.log(res.data.memberNo)
             if(res.data.status =="정지"){
@@ -45,7 +45,7 @@ export default {
             }else{
               alert('비밀번호가 틀렸습니다.')
             }
-            axios.post(`http://localhost:7777/member/getAuth/${this.$store.state.loginMemberNo}`)
+            axios.post(`https://evsbackend.herokuapp.com/member/getAuth/${this.$store.state.loginMemberNo}`)
             .then( (res) =>{
               if(res.data ==""){
                 const user  = "일반유저"
