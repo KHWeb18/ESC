@@ -57,7 +57,7 @@
                 하실 수 있습니다.
               </p>
               <v-card-actions>
-                <v-btn color="blue" outlined rounded href="#">
+                <v-btn color="blue" outlined rounded href="https://namu.wiki/w/%EC%A0%84%EA%B8%B0%EC%9E%90%EB%8F%99%EC%B0%A8">
                   전기자동차 원리 및 구조 >
                 </v-btn>
               </v-card-actions>
@@ -348,7 +348,6 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-
 export default {
   computed: {
     ...mapState(["isLogin", "session"]),
@@ -363,21 +362,21 @@ export default {
     return {
       cards: [
         {
-          url: "/",
+          url: "/parkingSearchServiceList",
           title: "주차장 찾기",
           subtitle: "Parking",
           content: "주변 주차장을 찾아보자",
           image: require("@/assets/img/Parking.png"),
         },
         {
-          url: "/",
+          url: "/charingSearchServiceBoardList",
           title: "충전소 찾기",
           subtitle: "EV-Charging St",
           content: "주변 충전소 정보 바로 확인하세요.",
           image: require("@/assets/img/EV-Station.png"),
         },
         {
-          url: "/",
+          url: "/suggestionBoardListPage",
           title: "고객센터",
           subtitle: "Service Center",
           content: "어떤 서비스를 도와드릴까요?",
@@ -401,7 +400,7 @@ export default {
         },
         {
           image: require("@/assets/img/notice_icon.png"),
-          url: "/",
+          url: "/noticeListPage",
           title: "공지사항",
           content: "공지사항 보러가기",
         },
@@ -420,11 +419,13 @@ export default {
 </script>
 
 <style scoped>
+*{
+  font-family: "Montserrat", sans-serif;
+}
 .btn .v-btn {
   margin-right: 7px;
-  font-family: "Do Hyeon", sans-serif;
+  /* font-family: "Do Hyeon", sans-serif; */
 }
-
 .v-card {
   border-radius: 14px;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
@@ -450,13 +451,12 @@ h2 {
   color: black;
   font-weight: 700;
   font-size: 70px;
-  font-family: "Montserrat", sans-serif;
+ /*  font-family: "Montserrat", sans-serif; */
   text-align: center;
 }
 .noSelect {
   user-select: none;
 }
-
 .info_car {
   display: table;
   width: 100%;
@@ -473,7 +473,7 @@ h2 {
   line-height: 1.3;
   color: white;
   font-size: 70px;
-  font-family: "Do Hyeon", sans-serif;
+  /* font-family: "Do Hyeon", sans-serif; */
   justify-content: center;
 }
 .info_car .info_car_body {
@@ -484,17 +484,15 @@ h2 {
 }
 .info_car .info_car_body .info_car_text {
   font-size: 25px;
-  font-family: "Do Hyeon", sans-serif;
+ /*  font-family: "Do Hyeon", sans-serif; */
   text-align: center;
 }
-
 #what-ev {
   padding-bottom: 10%;
   display: grid;
   place-content: center;
   position: relative;
 }
-
 .white-space {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -507,7 +505,7 @@ h2 {
   position: relative;
 }
 h1 {
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
   font-weight: 700;
   font-size: 70px;
 }
@@ -515,10 +513,9 @@ h3 {
   color: black;
   font-weight: 700;
   font-size: 70px;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
   text-align: center;
 }
-
 h3:after {
   content: "";
   width: 200px;
@@ -528,11 +525,9 @@ h3:after {
   margin: 15px auto;
   transition: all 0.2s ease-in-out;
 }
-
 h3:hover:after {
   width: 570px;
 }
-
 .subText {
   text-align: center;
   color: #616161;
@@ -540,7 +535,6 @@ h3:hover:after {
   margin-top: 10px;
   line-height: 1.7;
 }
-
 .intro {
   display: table;
   width: 100%;
@@ -551,27 +545,23 @@ h3:hover:after {
     no-repeat center scroll;
   background-size: cover;
 }
-
 .intro .intro-body {
   display: table-cell;
   vertical-align: middle;
   padding: 17.2% 0;
   background: rgba(0, 0, 0, 0.5);
 }
-
 .intro .intro-body .intro-text {
   font-size: 25px;
-  font-family: "Do Hyeon", sans-serif;
+  /* font-family: "Do Hyeon", sans-serif; */
   text-align: left;
 }
-
 span.name {
   background-color: #40e0d0;
   color: #fff;
   border-radius: 4px;
   width: 15px;
 }
-
 @media (min-width: 768px) {
   .intro {
     height: 100%;
@@ -581,21 +571,18 @@ span.name {
     font-size: 35px;
   }
 }
-
 .mouse-warp {
   margin: 40px auto;
   display: block;
   width: 28px;
   opacity: 0.5;
 }
-
 .mouse {
   width: 28px;
   height: 50px;
   border: 2px solid #fff;
   border-radius: 14px;
 }
-
 .scroll {
   width: 4px;
   height: 4px;
@@ -605,7 +592,6 @@ span.name {
   left: 10px;
   animation: scrolls 1.3s ease-out infinite;
 }
-
 @keyframes scrolls {
   0% {
     top: 8px;
