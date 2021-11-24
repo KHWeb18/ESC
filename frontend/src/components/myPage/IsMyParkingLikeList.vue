@@ -16,7 +16,7 @@
                 <td  @click="goDetail(items)" v-if="items.addr1 =='' ">등록된정보가없습니다</td>
                 <td>{{items.operatingday}}</td>
                 <td v-if="items.call1 !==''">{{items.call1}}</td>
-                <td v-if="items.call1 ==''">미등록</td>
+                <td v-if="items.call1 ==''">미등록!!!</td>
                 <td>{{items.kind1}}</td>
           <td>
             <v-btn @click="deleteMyParkingState(items.rowNo)">삭제</v-btn>
@@ -92,7 +92,7 @@ goDetail(items){
         this.$cookies.set('itemsList', items, '1h')
         this.$cookies.set('itemslat', items.lat, '1h')
         this.$cookies.set('itemslng', items.lng, '1h')
-        this.$router.push({name: 'ParkingDetail',})
+        this.$router.push({name: 'MyParkingDetail',})
 
     },
     deleteMyParkingState(rowNo) {
