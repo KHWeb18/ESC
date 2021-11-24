@@ -67,12 +67,12 @@ export default {
             this.fetchReplies(this.comment.commentNo)
             this.content = ""
           })
-          .catch(res => {
-            alert(res.response.data.message)
+          .catch(err => {
+            alert(err)
           })
     },
     setWriter() {
-      const temp = this.$store.state.session
+      const temp = this.$store.state.session.memberId
       this.memberId = temp
     },
     deleteReply(item) {
