@@ -219,18 +219,15 @@ export default {
     },
     goDetail(boardNo){
 
-        if(this.$store.state.session == null){
-          alert("로그인후 이용해주세요")
-          this.$router.push({name: 'LoginPage'})
-        }
-        else{
+        
+        
           this.$router.push({name: 'BoardReadPage', params:{boardNo}})
 
         axios.post(`https://evsbackend.herokuapp.com/board/viewcount/${boardNo}`)
         .then( () =>{
 
         })
-        }
+       
         
     },
     viewcount(boardNo){
