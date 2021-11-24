@@ -231,7 +231,7 @@ export default {
     addMyParkingState(session,items){
       if(session !== null){
 
-        axios.post(`http://localhost:7777/member/addMyParkingState/${session.memberNo}`,{memberNo:session.memberNo ,  paymethod:items.paymethod, lng:items.lng ,
+        axios.post(`http://evsbackend.herokuapp.com/member/addMyParkingState/${session.memberNo}`,{memberNo:session.memberNo ,  paymethod:items.paymethod, lng:items.lng ,
          holiStart1:items.holiStart1 , holiEnd:items.holiEnd, adminiNm:items.adminiNm,addr1:items.addr1,addr2:items.addr2,
          operatingday:items.operatingday,monthPay:items.monthPay,lat:items.lat,call1:items.call1,parkingNum:items.parkingNum,basicsTime:items.basicsTime,
          basicsPay:items.basicsPay,kind1:items.kind1,parkingNm:items.parkingNm,ParkingType:items.ParkingType,addtimeUnit:items.addtimeUnit,addpayUnit:items.addpayUnit,
