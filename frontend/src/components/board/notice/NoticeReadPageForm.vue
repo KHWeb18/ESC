@@ -8,10 +8,10 @@
            <v-card-subtitle>
              [{{$moment(notice.createDate).format('YYYY-MM-DD/hh:mm')}} 분류:{{notice.category}} 조회{{notice.viewcount}}]
              <v-btn style="margin-left: 81%"  route :to="({name: 'NoticeListPage'})">목록</v-btn>
-             <v-btn  v-if="notice.memberId == session.memberId" @click="modifying(notice.boardNo)">수정</v-btn>
+             <v-btn  v-if="session" @click="modifying(notice.boardNo)">수정</v-btn>
              <v-dialog  v-model="dialog2" persistent max-width="400">
                <template v-slot:activator="{ on }">
-               <v-btn   v-if="session.memberId ==notice.memberId"  v-on="on">삭제</v-btn>
+               <v-btn   v-if="session"  v-on="on">삭제</v-btn>
                </template>
                <v-card>
                <v-card-title class="headline">
@@ -71,15 +71,27 @@ export default {
         ...mapActions(['findMemberInfo']),
                   
                   modifying(boardNo) {
-                      this.$router.push({name: 'NoticeModifyPage', params:{boardNo} })
+                    if(this.session.memberId ==this.notice.memberId) {
+                        this.$router.push({name: 'NoticeModifyPage', params:{boardNo} })
+                    }
+                    else{
+                      alert("작성자 외 수정할 수 없습니다.")
+                    }
+                      
                   },
                   DeleteBoard(boardNo){
-                      
-                      axios.post(`https://evsbackend.herokuapp.com/notice/DeleteBoard/${boardNo}`)
+                    
+                      if(this.session.memberId ==this.notice.memberId){
+                           axios.post(`http://localhost:7777/notice/DeleteBoard/${boardNo}`)
                       .then( () =>{
                           alert('글이 삭제되었습니다')
                           this.$router.push({name: 'NoticeListPage'})
                       })
+                      }
+                      else{
+                        alert("작성자 외 삭제할 수 없습니다.")
+                      }
+                     
                   },
                   cancle(){
                     this.dialog= false
