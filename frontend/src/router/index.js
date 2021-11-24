@@ -47,6 +47,7 @@ import ApiTestPage from "../views/ApiTestPage";
 import IsParkingLikePage from '../views/myPage/IsParkingLikePage.vue'
 import MyParkingDetail from '../views/myPage/MyParkingDetail.vue'
 import IsMyCommentListPage from '../views/myPage/IsMyCommentListPage.vue';
+import ApiTestPage2 from "../views/ApiTestPage2";
 
 Vue.use(VueRouter)
 
@@ -235,6 +236,11 @@ const routes = [
     path: '/apiTest',
     name: ApiTestPage,
     component: ApiTestPage 
+  },
+  {
+    path: '/apiTest2',
+    name: ApiTestPage2,
+    component: ApiTestPage2
   },
   //충전소찾기 페이지
   {
