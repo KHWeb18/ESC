@@ -11,6 +11,7 @@
                   background-color="deep-blue accent-4"
                   center-active
                   dark
+                  show-arrows
                   class="hidden-md-and-down"
                 >
                   <v-tab @click="filterBrand(item.name)" v-for="item in items" :key="item.name" >
