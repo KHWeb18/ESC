@@ -138,4 +138,10 @@ public class BoardServiceimpl implements  BoardService {
     public List<Board> findByMemberId(String memberId) throws Exception {
         return boardRepository.findByMemberId(memberId);
     }
+
+    @Override
+    public void ReportPass(Long boardNo) throws Exception {
+        String  word = "클린";
+        boardRepository.passReporting(boardNo, word);
+    }
 }

@@ -43,4 +43,6 @@ public interface BoardService {
     public  List<Board> reportedMemberIdSearchList (String search) throws  Exception;
 
     public List<Board> findByMemberId(String memberId) throws Exception;
+
+    public  void ReportPass (Long boardNo) throws  Exception ;
 }
