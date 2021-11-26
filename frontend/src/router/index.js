@@ -49,6 +49,9 @@ import MyParkingDetail from '../views/myPage/MyParkingDetail.vue'
 import IsMyCommentListPage from '../views/myPage/IsMyCommentListPage.vue';
 import ApiTestPage2 from "../views/ApiTestPage2";
 
+// 푸터 
+import Personalinfo from '../views/footerMenus/Personalinfo'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -287,6 +290,16 @@ const routes = [
     default: true
   },
   
+},
+{
+  path: '/personalinfo',
+  name: 'Personalinfo',
+  components: {
+    default: Personalinfo      
+  },
+  props: {
+    default: true
+  },
 },
 
 ]
