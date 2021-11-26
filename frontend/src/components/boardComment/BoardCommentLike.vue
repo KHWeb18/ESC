@@ -66,7 +66,9 @@ export default {
           .then(res => {
             temp = res.data
             this.dup = temp
-          })
+          }).catch((err)=>{
+            console.log(err)
+      })
       return this.dup
     },
   }

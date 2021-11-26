@@ -20,10 +20,10 @@
                            v-if="commentIdx === idx" v-show="editBox"></comment-edit-area>
 
         <!-- 좋아요 -->
-        <BoardCommentLike :comment="item" :boardNo="boardNo"></BoardCommentLike>
+        <BoardCommentLike v-if=!item.isDeleted :comment="item" :boardNo="boardNo"></BoardCommentLike>
 
         <!-- 답글 보이기 -->
-        <v-btn class="replyBtn" text @click="onReply(item.commentNo), showIt = !showIt">
+        <v-btn class="replyBtn" text @click="onReply(item.commentNo), showIt = !showIt" >
           답글{{item.commentReply.length}}</v-btn>
 
         <v-divider></v-divider>
