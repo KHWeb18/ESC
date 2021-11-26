@@ -11,6 +11,7 @@
               <td>글쓴이</td>
               <td><v-icon>mdi-clock-outline</v-icon></td>
               <td>상태</td>
+              <td>여부</td>
               <td><v-icon>mdi-eye</v-icon></td>
               <td><v-icon color="blue">mdi-thumb-up</v-icon></td>
               <td><v-icon color="red">mdi-thumb-down</v-icon></td>
@@ -23,6 +24,7 @@
             <td>{{p.memberId}}</td>
             <td>{{$moment(p.createDate).format('YYYY-MM-DD/hh')}}</td>
             <td>{{p.report}}</td>
+            <td><v-btn @click="DeleteBoard(p.boardNo)">삭제</v-btn><v-btn @click="pass(p.boardNo)">보류</v-btn></td>
             <td>{{p.viewcount}}</td>
             <td style="width:70px">{{p.good}}</td>
             <td style="width:70px">{{p.bad}}</td>
@@ -210,14 +212,14 @@ export default {
     goDetail(boardNo){
         this.$router.push({name: 'BoardReadPage', params:{boardNo}})
 
-        axios.post(`https://evsbackend.herokuapp.com/board/viewcount/${boardNo}`)
+        axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
         .then( () =>{
 
         })
     },
     viewcount(boardNo){
       console.log("동작")
-      axios.post(`https://evsbackend.herokuapp.com/board/viewcount/${boardNo}`)
+      axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
         .then( () =>{
 
         })
@@ -228,7 +230,7 @@ export default {
       }
       if(searchMenus =="글제목"){
         console.log('동작')
-      axios.post(`https://evsbackend.herokuapp.com/board/reportedTitleSearchList/${search}`)
+      axios.post(`http://localhost:7777/board/reportedTitleSearchList/${search}`)
       .then( (res)=> {
         this.searchList = []
         if(res.data == ''){
@@ -249,7 +251,7 @@ export default {
         )
       }
 
-      if(searchMenus =="작성자"){axios.post(`https://evsbackend.herokuapp.com/board/reportedMemberIdSearchList/${search}`)
+      if(searchMenus =="작성자"){axios.post(`http://localhost:7777/board/reportedMemberIdSearchList/${search}`)
       .then( (res)=>{
         this.searchList = []
         if(res.data == ''){
@@ -316,8 +318,24 @@ export default {
       else{
         this.$router.push({name: "BoardRegister"})
       }
-    }
+    },
+ DeleteBoard(boardNo){
 
+          axios.post(`http://localhost:7777/board/DeleteBoard/${boardNo}`)
+          .then( () =>{
+          alert('글이 삭제되었습니다')
+          this.$router.go()
+          })
+                                
+          },
+  pass(boardNo) {
+    axios.post(`http://localhost:7777/board/ReportPass/${boardNo}`)
+    .then( ( ) => {
+      alert( "글이 보류되었습니다.")
+      this.$router.go()
+    })
+
+  }
   },
   computed: {
       ...mapState(['tableMode','cardMode']),

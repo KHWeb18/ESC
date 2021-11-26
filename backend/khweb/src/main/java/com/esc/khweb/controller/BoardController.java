@@ -200,4 +200,12 @@ public class BoardController {
 
         return new ResponseEntity<List<Board>>(service.findByMemberId(memberId),HttpStatus.OK);
     }
+
+    @PostMapping("/ReportPass/{boardNo}")
+    public ResponseEntity<Void> ReportPass (@PathVariable("boardNo") Long boardNo) throws  Exception {
+
+        service.ReportPass(boardNo);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
  }

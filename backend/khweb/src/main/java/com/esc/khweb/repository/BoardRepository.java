@@ -66,7 +66,9 @@ public interface BoardRepository extends JpaRepository<Board,Long>  {
 
     List<Board> findByMemberId(String memberId);
 
-
-
+    @Transactional
+    @Modifying
+    @Query("UPDATE Board b set b.report = :word where b.boardNo = :boardNo")
+    void passReporting(Long boardNo , String word);
 
 }
