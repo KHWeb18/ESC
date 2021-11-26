@@ -90,28 +90,16 @@ export default {
   },
     methods: {
         ...mapActions(['findMemberInfo']),
-        OnSubmit() {
-
-                const {ui , comments } = this
-                axios.post(`http://localhost:9999/jpaBoard/comment/${this.board.boardNo}`, {ui, comments})
-                .then( res => {
-                    alert('등록성공' +res) 
-                    this.$router.go()
-                }).catch(err => {
-                    alert(err.response.data.message)
-                })
-
-                  },
                   goBack() {
                     this.$router.go(-1)
                   },
                   good(boardNo){
                     
-                    axios.post(`http://localhost:7777/member/addLikeBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    axios.post(`https://evsbackend.herokuapp.com//member/addLikeBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="추천되었습니다."){
-                          axios.post(`http://localhost:7777/board/goodCount/${boardNo}`)
+                          axios.post(`https://evsbackend.herokuapp.com//board/goodCount/${boardNo}`)
                           .then( () =>{
                            
                             this.$router.go()
@@ -122,11 +110,11 @@ export default {
                   },
                   
                   bad(boardNo){
-                    axios.post(`http://localhost:7777/member/addHateBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    axios.post(`https://evsbackend.herokuapp.com//member/addHateBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="비추되었습니다."){
-                        axios.post(`http://localhost:7777/board/badCount/${boardNo}`)
+                        axios.post(`https://evsbackend.herokuapp.com//board/badCount/${boardNo}`)
                         .then( () =>{
                           this.$router.go()
                         })
@@ -137,7 +125,7 @@ export default {
                   report(board){
                       
                       const {reportWord} =  this
-                      axios.post(`http://localhost:7777/board/report/${reportWord}`,{boardNo: board.boardNo, memberId: board.memberId,})
+                      axios.post(`https://evsbackend.herokuapp.com//board/report/${reportWord}`,{boardNo: board.boardNo, memberId: board.memberId,})
                       .then( () =>{
                           alert('게시글이 신고되었습니다.')
                           this.dialog =false
@@ -156,7 +144,7 @@ export default {
                   },
                   DeleteBoard(boardNo){
                       if(this.session.memberId ==this.board.memberId){
-                        axios.post(`http://localhost:7777/board/DeleteBoard/${boardNo}`)
+                        axios.post(`https://evsbackend.herokuapp.com//board/DeleteBoard/${boardNo}`)
                       .then( () =>{
                           alert('글이 삭제되었습니다')
                           this.$router.push({name: 'FreeBoardListPage'})
