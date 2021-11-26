@@ -82,7 +82,7 @@ export default {
                   DeleteBoard(boardNo){
                     
                       if(this.session.memberId ==this.notice.memberId){
-                           axios.post(`http://localhost:7777/notice/DeleteBoard/${boardNo}`)
+                           axios.post(`https://evsbackend.herokuapp.com//notice/DeleteBoard/${boardNo}`)
                       .then( () =>{
                           alert('글이 삭제되었습니다')
                           this.$router.push({name: 'NoticeListPage'})

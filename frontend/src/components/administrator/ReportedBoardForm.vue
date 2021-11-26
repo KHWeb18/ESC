@@ -212,14 +212,14 @@ export default {
     goDetail(boardNo){
         this.$router.push({name: 'BoardReadPage', params:{boardNo}})
 
-        axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
+        axios.post(`https://evsbackend.herokuapp.com//board/viewcount/${boardNo}`)
         .then( () =>{
 
         })
     },
     viewcount(boardNo){
       console.log("동작")
-      axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
+      axios.post(`https://evsbackend.herokuapp.com//board/viewcount/${boardNo}`)
         .then( () =>{
 
         })
@@ -230,7 +230,7 @@ export default {
       }
       if(searchMenus =="글제목"){
         console.log('동작')
-      axios.post(`http://localhost:7777/board/reportedTitleSearchList/${search}`)
+      axios.post(`https://evsbackend.herokuapp.com//board/reportedTitleSearchList/${search}`)
       .then( (res)=> {
         this.searchList = []
         if(res.data == ''){
@@ -251,7 +251,7 @@ export default {
         )
       }
 
-      if(searchMenus =="작성자"){axios.post(`http://localhost:7777/board/reportedMemberIdSearchList/${search}`)
+      if(searchMenus =="작성자"){axios.post(`https://evsbackend.herokuapp.com//board/reportedMemberIdSearchList/${search}`)
       .then( (res)=>{
         this.searchList = []
         if(res.data == ''){
@@ -321,7 +321,7 @@ export default {
     },
  DeleteBoard(boardNo){
 
-          axios.post(`http://localhost:7777/board/DeleteBoard/${boardNo}`)
+          axios.post(`https://evsbackend.herokuapp.com//board/DeleteBoard/${boardNo}`)
           .then( () =>{
           alert('글이 삭제되었습니다')
           this.$router.go()
@@ -329,7 +329,7 @@ export default {
                                 
           },
   pass(boardNo) {
-    axios.post(`http://localhost:7777/board/ReportPass/${boardNo}`)
+    axios.post(`https://evsbackend.herokuapp.com//board/ReportPass/${boardNo}`)
     .then( ( ) => {
       alert( "글이 보류되었습니다.")
       this.$router.go()
