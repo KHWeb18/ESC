@@ -18,7 +18,7 @@ export default {
             axios.post('https://evsbackend.herokuapp.com/board/boardRegister',{memberId, title, content, img,category})
             .then( () =>{
                 alert('글이등록되었습니다.')
-              //  this.$router.push({name:"FreeBoardListPage"})
+                this.$router.push({name:"boardListPage"})
             })
         }
     }

@@ -25,7 +25,7 @@ import AdministratorPage from '../views/administrator/AdministratorPage'
 import MemberManagement from '../views/administrator/MemberManagement'
 import ReportedBoard from '../views/administrator/ReportedBoard'
 import ReportedComment from '../views/administrator/ReportedComment'
-
+import BoardManageMentPage from '../views/administrator/BoardManageMentPage'
 import LoginPage from '../views/member/LoginPage'
 
 import EvInfoPage from '../views/EvInfo/EvInfoPage'
@@ -296,6 +296,16 @@ const routes = [
   name: 'Personalinfo',
   components: {
     default: Personalinfo      
+  },
+  props: {
+    default: true
+  },
+},
+{
+  path: '/boardManageMentPage',
+  name: 'BoardManageMentPage',
+  components: {
+    default: BoardManageMentPage      
   },
   props: {
     default: true
