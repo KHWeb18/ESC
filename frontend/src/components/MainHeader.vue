@@ -1,14 +1,11 @@
 <template>
   <div class="nav-container">
-    <v-app-bar absolute app color="white" hide-on-scroll prominent elevation="0">
-      <v-container class="pa-0 fill-height">
+    <v-app-bar absolute app color="white" hide-on-scroll elevation="0" height="80">
+
 
         <span class="topTitle hidden-md-and-down"></span>
 
         <router-link class="logo hidden-md-and-down" to="/" tag="span">
-        </router-link>
-
-        <router-link class="logoSmall hidden-lg-and-up hidden-sm-and-down" to="/" tag="span">
         </router-link>
 
         <router-link class="logoMini hidden-md-and-up" to="/" tag="span">
@@ -26,7 +23,7 @@
         <v-toolbar-items class="hidden-sm-and-down hidden-lg-and-up menusSmall">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">어울림마당</span>
-          <span @click="$router.push('/apiTest')">api실험</span> 
+          <span @click="$router.push('/apiTest')">api실험</span>
           <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/memberManagement')">관리자페이지</span>
           <span  @click="$router.push('/charingSearchServiceBoardList')">충전소찾기</span>
           <span  @click="$router.push('/parkingSearchServiceList')">주차장찾기</span>
@@ -52,7 +49,6 @@
         <!-- nav-drawer if mobile -->
         <nav-drawer-component></nav-drawer-component>
 
-      </v-container>
 
 
     </v-app-bar>
@@ -65,7 +61,7 @@ import NavDrawerComponent from "./NavDrawerComponent";
 import HeaderMemberMenu from "./header/HeaderMemberMenu";
 
 export default {
-  name: "HeaderComponent",
+  name: "MainHeader",
   components: {HeaderMemberMenu, NavDrawerComponent},
   mounted() {
   },
@@ -92,7 +88,6 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /*font-family: 'Do Hyeon', sans-serif;*/
   font-family: "Montserrat", sans-serif;
   user-select: none;
 }
@@ -107,60 +102,51 @@ a{
   position: absolute;
   width: 300px;
   height: 100%;
-  top: 10px;
+  top: 0;
   left: 41%;
   opacity: 0.9;
 }
 
 .logo{
   position: absolute;
-  top: 12px;
-  left: 3px;
-  cursor: pointer;
-  background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/evslogo2.png");
-  background-size: contain;
-  width: 160px;
-  height: 100%;
-}
-
-.logoSmall{
-  position: absolute;
   top: 3px;
-  left: 42%;
+  left: 13px;
   cursor: pointer;
   background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/evslogo2.png");
   background-size: contain;
-  width: 135px;
-  height: 100%;
+  width: 100%;
+  height: 95%;
 }
 
 .logoMini{
   position: absolute;
-  top: 10px;
-  left: 39%;
+  top: 2px;
+  left: 40%;
   cursor: pointer;
   background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/evslogo2.png");
   background-size: contain;
-  width: 165px;
-  height: 100%;
+  width: 100%;
+  height: 98%;
 }
 
 .menus{
+  z-index: 10;
   position: relative;
-  margin-left: 85px;
-  top: 40px;
+  align-items: center;
+  left: 210px;
+  top: 25px;
   max-height: 50px;
-  font-size: 0.8em;
+  font-size: 1.1em;
   font-weight: 600;
   cursor: pointer;
-  z-index: 2;
 }
 .menus:hover{
   color: #cfd6da;
 }
 
 .menus span{
-  padding: 0 30px
+  padding: 20px 30px;
+  margin: 0 10px
 }
 
 .menus span:hover{
@@ -168,10 +154,12 @@ a{
 }
 
 .menusSmall{
+  z-index: 1;
   position: relative;
-  top: 45px;
+  top: 20px;
+  left: 60px;
   max-height: 35px;
-  font-size: 0.65em;
+  font-size: 1.3em;
   font-weight: 600;
   cursor: pointer;
 }
@@ -181,7 +169,7 @@ a{
 
 .menusSmall span{
   padding: 0 20px 0 0;
-  margin: 0 10px 0 0;
+  margin: 0 20px 0 0;
 }
 
 .menusSmall span:hover{
@@ -196,7 +184,7 @@ a{
 }
 
 .memberContainer{
-  font-size: 0.55em;
+  font-size: 0.8em;
 }
 .memberContainer:hover{
   color: #cfd6da;

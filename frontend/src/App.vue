@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <HeaderComponent></HeaderComponent>
+    <MainHeader/>
     <v-main>
       <router-view/>
     </v-main>
@@ -10,12 +10,12 @@
 
 <script>
 import footerComponent from './components/footer/footerComponent.vue'
-import HeaderComponent from "./components/HeaderComponent";
 import {mapActions} from "vuex";
+import MainHeader from "./components/MainHeader";
 export default {
   name: 'App',
   components: {
-    HeaderComponent,
+    MainHeader,
     footerComponent
   },
   data: () => ({
