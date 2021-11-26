@@ -1,6 +1,6 @@
 <template>
 <div>
-    <v-card  dark>
+    <v-card  dark class="hidden-xl-only hidden-lg-only hidden-md-only">
     <v-card-title > 
      <v-btn width="130" outlined route :to="{ name: 'BoardListPage'}"> 전체글({{AllBoardLength}})</v-btn>
      <v-btn width="130" outlined route :to="{ name: 'FreeBoardListPage'}"> 자유게시판</v-btn>

@@ -32,8 +32,8 @@
       </v-card-text>
       -->
       <v-card-text>
-        <p style="margin-right:"> <a style="color: white" href="https://www.naver.com">이용약관</a><a style="color: white" href="https://www.naver.com"> 사이트안내</a> 
-        <a style="color: white" href="https://www.naver.com"> 개인정보처리방침</a> <a style="color: white" href="https://www.naver.com">공지사항</a></p>
+        <p style="margin-right:"> <a style="color: white" @click="gopersonalinfo()">이용약관</a><a style="color: white" href="https://www.naver.com"> 사이트안내</a> 
+        <a style="color: white" @click="gopersonalinfo()"> 개인정보처리방침</a> <a style="color: white" @click="goNoticeListPage()">공지사항</a></p>
         <p> &copy;ElectricVehicleService.</p>
         
       </v-card-text>
@@ -53,6 +53,14 @@ export default {
         return{
 
         }
+    },
+    methods:{
+      goNoticeListPage(){
+        this.$router.push({name: 'NoticeListPage'})
+      },
+      gopersonalinfo(){
+        this.$router.push({name: 'Personalinfo'})
+      }
     }
 }
 </script>
