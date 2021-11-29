@@ -442,7 +442,7 @@ export default {
             this.randumNum =  Math.floor(Math.random() * 99999) +1
             let randomNum2 = this.randumNum
             console.log(email)
-            axios.post('http://localhost:5000/sendNaverEamil',{randomNum2})
+            axios.post('http://https://evsbackend.herokuapp.com/:5000/sendNaverEamil',{randomNum2})
             .then( (res) =>{
                 alert("인증번호를 보냈습니다."+res.data)
             }).catch(e=>{alert(e.response.data.message)})

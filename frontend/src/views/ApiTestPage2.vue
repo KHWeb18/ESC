@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     dataTest(){
-      axios.get(`http://localhost:5000/news`)
+      axios.get(`http://https://evsbackend.herokuapp.com/:5000/news`)
           .then((res)=>{
             let stringify = JSON.stringify(res.data.items)
             let replace = stringify.replace(/<b>/g, "").replace(/<\/b>/g, "")

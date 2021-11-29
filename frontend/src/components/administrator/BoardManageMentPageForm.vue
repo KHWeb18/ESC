@@ -199,7 +199,7 @@ export default {
   methods: {
       DeleteBoard(boardNo){
                       
-                        axios.post(`http://localhost:7777/board/DeleteBoard/${boardNo}`)
+                        axios.post(`http://https://evsbackend.herokuapp.com/board/DeleteBoard/${boardNo}`)
                       .then( () =>{
                           alert('글이 삭제되었습니다')
                           this.$router.go()
@@ -232,7 +232,7 @@ export default {
         else{
           this.$router.push({name: 'BoardReadPage', params:{boardNo}})
 
-        axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
+        axios.post(`http://https://evsbackend.herokuapp.com/board/viewcount/${boardNo}`)
         .then( () =>{
 
         })
@@ -241,7 +241,7 @@ export default {
     },
     viewcount(boardNo){
       console.log("동작")
-      axios.post(`http://localhost:7777/board/viewcount/${boardNo}`)
+      axios.post(`http://https://evsbackend.herokuapp.com/board/viewcount/${boardNo}`)
         .then( () =>{
 
         })
@@ -253,7 +253,7 @@ export default {
       if(searchMenus =="글제목"){
         this.searchList.length = 0
         console.log('동작')
-      axios.post(`http://localhost:7777/board/titleSearchList/${search}`)
+      axios.post(`http://https://evsbackend.herokuapp.com/board/titleSearchList/${search}`)
       .then( (res)=> {
         if(res.data == ''){
           alert("해당검색어로 검색되는 글이 존재하지않습니다.")
@@ -276,7 +276,7 @@ export default {
 
       if(searchMenus =="작성자"){
         this.searchList.length = 0
-        axios.post(`http://localhost:7777/board/memberIdSearchList/${search}`)
+        axios.post(`http://https://evsbackend.herokuapp.com/board/memberIdSearchList/${search}`)
       .then( (res)=>{
         if(res.data == ''){
            alert("해당검색어로 검색되는 글이 존재하지않습니다.")
