@@ -25,7 +25,7 @@ import {
   FETCH_MY_BOARD_LIST,
   FETCH_MY_COMMENT_LIST,
   FETCH_MY_LIKE_LIST,
-  GET_MY_PARKING_STATES
+  GET_MY_PARKING_STATES, FETCH_NEWS
 
 } from './mutation-types'
 
@@ -118,4 +118,7 @@ export default {
   [GET_MY_PARKING_STATES](state, payload){
     state.myParkingStates = payload
   },
+  [FETCH_NEWS](state, payload){
+    state.newsList = payload
+  }
 };

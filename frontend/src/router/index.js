@@ -51,6 +51,7 @@ import ApiTestPage2 from "../views/ApiTestPage2";
 
 // 푸터 
 import Personalinfo from '../views/footerMenus/Personalinfo'
+import NewsPage from "../views/EvInfo/NewsPage";
 
 Vue.use(VueRouter)
 
@@ -191,7 +192,12 @@ const routes = [
     path: '/evinfo',
     name: 'EvInfoPage',   
     component: EvInfoPage
-  }, 
+  },
+  {
+    path: '/news',
+    name: 'NewsPage',
+    component: NewsPage
+  },
   //---------- 마이페이지 ---------------
   {
     path: '/isMyPage',

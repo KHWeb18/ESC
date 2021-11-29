@@ -29,10 +29,9 @@ import {
   FETCH_MY_COMMENT_LIST,
   ////마이페이지 관심목록
   FETCH_MY_LIKE_LIST,
-  GET_MY_PARKING_STATES
+  GET_MY_PARKING_STATES, FETCH_NEWS
 
 
-  
 } from "./mutation-types";
 
 export default {
@@ -242,5 +241,14 @@ export default {
 
       commit(GET_MY_PARKING_STATES,res.data)
     })
+  },
+  fetchNews({commit}){
+    return axios.get(`http://localhost:5000/news`)
+        .then((res) => {
+          let stringify = JSON.stringify(res.data.items)
+          let replace = stringify.replace(/<b>/g, "").replace(/<\/b>/g, "")
+          let news = JSON.parse(replace)
+          commit(FETCH_NEWS, news)
+        })
   }
 };
