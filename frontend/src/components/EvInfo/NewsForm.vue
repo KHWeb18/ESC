@@ -41,9 +41,6 @@ export default {
       type: Array
     }
   },
-  mounted() {
-    this.filterDate()
-  },
   data () {
     return {
       search: '',
@@ -62,9 +59,6 @@ export default {
     goNews(event, idx) {
       window.open(idx.item.link, '_blank');
     },
-    filterDate(){
-      console.log(this.newsList.pubDate)
-    }
   }
 }
 </script>

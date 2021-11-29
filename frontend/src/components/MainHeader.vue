@@ -14,7 +14,7 @@
         <v-toolbar-items class="hidden-md-and-down menus">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">어울림마당</span>
-          <span @click="$router.push('/apiTest')">api실험</span>
+          <span @click="$router.push('/news')">전가치 뉴스</span>
           <span  @click="$router.push('/charingSearchServiceBoardList')">충전소찾기</span>
           <span  @click="$router.push('/parkingSearchServiceList')">주차장찾기</span>
           <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/memberManagement')">관리자페이지</span>
@@ -23,7 +23,7 @@
         <v-toolbar-items class="hidden-sm-and-down hidden-lg-and-up menusSmall">
           <span @click="$router.push('/evinfo')">전기차 정보</span>
           <span @click="$router.push('/freeboardListPage')">어울림마당</span>
-          <span @click="$router.push('/apiTest')">api실험</span>
+          <span @click="$router.push('/news')">전가치 뉴스</span>
           <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/memberManagement')">관리자페이지</span>
           <span  @click="$router.push('/charingSearchServiceBoardList')">충전소찾기</span>
           <span  @click="$router.push('/parkingSearchServiceList')">주차장찾기</span>
