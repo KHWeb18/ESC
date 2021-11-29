@@ -247,6 +247,7 @@ export default {
         .then((res) => {
           let stringify = JSON.stringify(res.data.items)
           let replace = stringify.replace(/<b>/g, "").replace(/<\/b>/g, "")
+              .replace(/\+0900/g, "").replace(/:00/g,"")
           let news = JSON.parse(replace)
           commit(FETCH_NEWS, news)
         })
