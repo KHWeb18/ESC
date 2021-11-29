@@ -2,7 +2,7 @@
   <div>
     <v-card>
       <v-card-title>
-        <h4>Recommendations</h4>
+        <h4>오늘의 전기차 뉴스</h4>
         <v-spacer></v-spacer>
         <v-text-field
             v-model="search"
@@ -59,6 +59,7 @@ export default {
     goNews(event, idx) {
       window.open(idx.item.link, '_blank');
     },
+
   }
 }
 </script>

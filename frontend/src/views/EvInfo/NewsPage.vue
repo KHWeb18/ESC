@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h3>뉴스</h3>
-    <news-form :newsList="newsList"></news-form>
+    <v-container style="max-width: 1200px">
+      <news-form :newsList="newsList"></news-form>
+    </v-container>
   </div>
 </template>
 
