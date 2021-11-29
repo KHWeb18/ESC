@@ -243,11 +243,12 @@ export default {
     })
   },
   fetchNews({commit}){
-    return axios.get(`http://localhost:5000/news`)
+    return axios.get(`https://escpy.herokuapp.com/news`)
         .then((res) => {
           let stringify = JSON.stringify(res.data.items)
           let replace = stringify.replace(/<b>/g, "").replace(/<\/b>/g, "")
-              .replace(/\+0900/g, "").replace(/:00/g,"")
+              .replace(/&quot;/g, "").replace(/\+0900/g, "")
+              .replace(/:00/g,"")
           let news = JSON.parse(replace)
           commit(FETCH_NEWS, news)
         })
