@@ -61,4 +61,5 @@ export default {
 
     //자동차 정보 페이지용 JSON 데이터
     carInfo: data,
+    newsList: [],
 }
