@@ -112,6 +112,7 @@
     </v-container>
 </div>
 <v-container style="max-width: 1000px">
+<v-btn v-if="coin ==1" @click="coin =0">검색해제</v-btn>
     <v-card dark id="option" style="max-height: 115px;" class="hidden-xs-only">
       <input style="position: absolute; margin-left: 40%; margin-top:9%" v-model="filterSearch" placeholder="필터검색" @input="handleSearchInput" @keydown.tab="KeydownTab"/>
        <v-btn style="position:absolute; margin-top:77px" @click="Write()">글쓰기</v-btn>
@@ -353,7 +354,7 @@ export default {
       let num = Number(this.boardList.length)
       return num
     },
-      ...mapState(['tableMode','cardMode','boardList']),
+      ...mapState(['tableMode','cardMode']),
     pageCount () {
       let listLeng = this.boardList.length,
           listSize = this.pageSize,
@@ -406,5 +407,11 @@ td{
 }
 #footerMenuBar{
  position: absolute;
+}
+input {
+    outline: 1px solid white;
+}
+input:focus{
+    outline: 1px solid green;
 }
 </style>

@@ -414,4 +414,10 @@ td{
 #footerMenuBar{
  position: absolute;
 }
+input {
+    outline: 1px solid white;
+}
+input:focus{
+    outline: 1px solid green;
+}
 </style>

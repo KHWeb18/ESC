@@ -2,7 +2,7 @@
 <div>
     <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <span v-bind="attrs" v-on="on"><v-btn style="position: absolute;" @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn></span>
+            <span v-bind="attrs" v-on="on"><v-btn  @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn></span>
           </template>
           <span>게시글 형태을 변환합니다!</span>
         </v-tooltip>
@@ -375,5 +375,10 @@ td{
 }
 #footerMenuBar{
  position: absolute;
+}input {
+    outline: 1px solid white;
+}
+input:focus{
+    outline: 1px solid green;
 }
 </style>

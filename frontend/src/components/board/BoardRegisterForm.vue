@@ -1,21 +1,12 @@
 <template>
 <div >
-        <!--
-        <form @submit.prevent="OnSubmit">
-            <v-row><v-select  outlined style="max-width:300px" :items="boardCategory"  v-model="category" label="카테고리"> </v-select>
-           <v-text-field style="max-width:700px" outlined label="제목을입력하세요"  v-model="title"></v-text-field></v-row>
-           <v-row>
-              <textarea  name="contentText" id="contentText" cols="30" rows="10" v-model="content"></textarea>
-           </v-row>
-           <v-row>
-             <input type="file" id="files" ref="files" multiple v-on:change="handleFileUpload()">
-           <v-btn class="blue white--text" style="margin-left: 44.2%" type="submit" v-on:click="submitFiles()">등록</v-btn>
-           </v-row>
-        </form>
-        -->
+
         <v-container style="max-width:1000px;">
         <form @submit.prevent="OnSubmit">
             <v-card >
+                <v-card-title>
+                    EVS의 회원들과 소통해보세요!
+                </v-card-title>
                 <v-divider></v-divider>
                 <v-card-title>
                    <v-select  outlined style="max-width:150px" :items="boardCategory"  v-model="category" label="카테고리"> </v-select>
