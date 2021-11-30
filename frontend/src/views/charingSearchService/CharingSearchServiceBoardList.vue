@@ -344,14 +344,14 @@ export default {
       }
     },
     addMyState(session,items){
-      if(session !== null){
+      if(session !== undefined){
         const {addr , busiCall, chgerType, lat , lng , statNm, useTime } = items
         axios.post(`https://evsbackend.herokuapp.com/member/addMyState/${session.memberNo}`,{addr , busiCall, chgerType, lat , lng , statNm, useTime})
         .then( (res) => {
           alert(res.data)
         }) 
       }
-      else if(session == null){
+      else if(session == undefined){
         alert('로그인후 이용해주세요')
       }
     },

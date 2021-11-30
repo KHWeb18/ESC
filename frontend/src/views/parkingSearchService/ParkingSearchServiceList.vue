@@ -1,7 +1,7 @@
 <template>
 <div>
   <parking-page-menu/>
-<v-row style="width: 286px; position:absolute; margin-top: 300px">
+<!-- <v-row style="width: 286px; position:absolute; margin-top: 300px">
     <td id="panelsHeader" style="margin-left: 100px">HISTROY</td>
     <v-expansion-panels inset :color="red">
       <v-expansion-panel
@@ -18,7 +18,7 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-  </v-row>
+  </v-row> -->
 
   <v-container style="max-width: 1200px">
    <div id="parkingmap"  class="kmap" ref="map" > </div>
@@ -229,7 +229,7 @@ function makeOutListener(infowindow) {
     },
 
     addMyParkingState(session,items){
-      if(session !== null){
+      if(session !== undefined){
 
         axios.post(`https://evsbackend.herokuapp.com/member/addMyParkingState/${session.memberNo}`,{memberNo:session.memberNo ,  paymethod:items.결제방법, lng:items.경도 ,
          holiStart1:items.공휴일운영시작시각 , holiEnd:items.공휴일운영종료시각, adminiNm:items.관리기관명,addr1:items.소재지도로명주소,addr2:items.소재지지번주소,
@@ -241,7 +241,7 @@ function makeOutListener(infowindow) {
           alert(res.data)
         }) 
       }
-      else if(session == null){
+      else if(session == undefined){
         alert('로그인후 이용해주세요')
       }
     },
