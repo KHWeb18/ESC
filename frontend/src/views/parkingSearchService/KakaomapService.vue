@@ -1,23 +1,30 @@
 <template>
-<div>
-    <parking-page-menu/>
 
-    <div class="map_wrap">
-        
-        <span  style="margin-left:37%" id="header-text">카카오에서제공하는 충전소/주차장 찾기페이지입니다.</span> 
+<div >
+    <v-card elevation="0" >
+    <v-container style="max-width:1200px;">
+    <parking-page-menu/>
+    <div >
         <ul id="category">
             <li  id="PK6" data-order="1"> 
                 <span><v-icon>mdi-car</v-icon></span>
-               주차장
+                주차장
             </li>
             <li id="OL7" data-order="3"> 
                 <span><v-icon>mdi-ev-station</v-icon><v-icon>mdi-gas-station</v-icon></span>
-               충전소
+                충전소
             </li>
         </ul>
         <div id="map" style="height:500px;"></div>
-        
     </div>
+    
+    <v-divider></v-divider>
+    <v-card-title >
+        <img src="../../assets/카카오로고/카카오맵로고.jpg"/>
+    </v-card-title>
+    </v-container>
+    </v-card>
+
 </div>
 </template>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -238,19 +245,14 @@ font-size: 2em
  <style >
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap {position:relative;width:100%;height:350px;}
-#category {position:absolute;top:10px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
+#category {position:absolute;top:80px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
 #category li {float:left;list-style: none;width:100px;border-right:0px solid #acacac;padding:6px 0; cursor: pointer;}
 #category li.on {background: #eee;}
-#category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
+#category li:hover {background: #edf859;border-left:1px solid #acacac;margin-left: -1px;}
 #category li:last-child{margin-right:0;border-right:0;}
-#category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
+#category li span {display: block;margin:0 auto 3px;width:100px;height: 50px;}
 #category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
-#category li .bank {background-position: -10px 0;}
-#category li .mart {background-position: -10px -36px;}
-#category li .pharmacy {background-position: -10px -72px;}
 #category li .oil {background-position: -10px -108px;}
-#category li .cafe {background-position: -10px -144px;}
-#category li .store {background-position: -10px -180px;}
 #category li.on .category_bg {background-position-x:-46px;}
 .placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
 .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
