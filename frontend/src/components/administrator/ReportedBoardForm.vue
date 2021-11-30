@@ -1,6 +1,6 @@
 <template>
 <v-container style="max-width:1000px">
-<div v-if="coin ==0&&this.tableMode ==1">
+<div v-if="coin ==0&&this.tableMode ==1" style="min-height:460px;">
   <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
       <v-simple-table >
         <template v-slot:default>
@@ -47,7 +47,7 @@
 </div>
 
 
-<div v-else-if="coin ==1&&tableMode ==1">
+<div v-else-if="coin ==1&&tableMode ==1" style="min-height:460px;">
   <v-btn @click="ModeChange()"><v-icon>mdi-table</v-icon></v-btn>
       <v-simple-table >
         <template v-slot:default>
