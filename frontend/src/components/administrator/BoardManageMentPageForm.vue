@@ -11,7 +11,7 @@
         </v-tooltip>
         <board-menu-of-xs :boardList="boardList" class="hidden-xl-only"/>
         <board-menu :boardList="boardList" class="hidden-xs-only"/>
-<div v-if="coin ==0&&this.tableMode ==1">
+<div v-if="coin ==0&&this.tableMode ==1" style="min-height:460px;">
   
     <v-container style="max-width:1000px;">
       <v-simple-table >
@@ -46,7 +46,7 @@
 </div>
 
 
-<div v-else-if="coin ==1&&tableMode ==1">
+<div v-else-if="coin ==1&&tableMode ==1" style="min-height:460px;">
     <v-container style="max-width:1000px">
       <v-simple-table >
         <template v-slot:default>

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="hidden-md-only hidden-sm-only hidden-xs-only" >
     <v-card  dark elevation="0" style="float:left; margin-top: 13px; margin-left: 250px; width:180px">
     <v-card-title > 
      

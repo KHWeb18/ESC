@@ -8,7 +8,7 @@
         </v-tooltip>
   <board-menu class="hidden-xs-only" :boardList="boardList"/>
   <board-menu-of-xs class="hidden-xl-only" :boardList="boardList"/>
-<div v-if="coin ==0&&this.tableMode ==1">
+<div v-if="coin ==0&&this.tableMode ==1" style="min-height:460px;">
     <v-container style="max-width:1000px;">
       <v-simple-table >
         <template v-slot:default>
@@ -43,7 +43,7 @@
 </div>
 
 
-<div v-else-if="coin ==1&&tableMode ==1">
+<div v-else-if="coin ==1&&tableMode ==1" style="min-height:460px;">
     <v-container style="max-width:1000px">
       <v-simple-table >
         <template v-slot:default>
@@ -131,8 +131,8 @@
       </form>
     </div>
       </v-card-text>
-    </v-card>
-    <v-card  dark class="hidden-xl-only">
+    </v-card> 
+    <v-card  dark class="hidden-xl-only hidden-lg-only hidden-md-only hidden-sm-only">
        <v-btn  @click="Write()">글쓰기</v-btn>
         <button style="margin-left: 23%" :disabled="pageNum === 0" @click="prevPage" class="page-btn"><v-icon>mdi-arrow-left-bold</v-icon></button>
     <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }}</span>
