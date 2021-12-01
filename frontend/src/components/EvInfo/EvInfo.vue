@@ -84,7 +84,7 @@
                       최고속도출력 : {{item.speed}}<br/>
                       1회충전주행거리 : {{item.charge}}<br/>
                       배터리 : {{item.battery}}<br/>
-                      즐겨찾기 : <button @click="addMyCar(session,items)" class="starBtn">
+                      즐겨찾기 : <button @click="addMyCar(items)" class="starBtn">
                                   <v-icon class="star">mdi-star</v-icon></button>
                       </v-card-text>
                   </div>
@@ -108,7 +108,7 @@ Vue.use(cookies)
 import {mapState} from "vuex";
 
 export default {
-  name: "EvInfoExample",
+  name: "EvInfo",
   computed: {
     ...mapState(['carInfo', 'session' ]),
     
@@ -155,15 +155,15 @@ export default {
         this.show = idx
       }
     },
-    addMyCar(session,items){
-      if(session !== null){
+    addMyCar(items){
+      if(this.session){
         const {brand , carType, personnel, speed , charge , battery, subsidy } = items
-        axios.post(`https://evsbackend.herokuapp.com/member/addMyCar/${session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
+        axios.post(`https://evsbackend.herokuapp.com/member/addMyCar/${this.session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
         .then( (res) => {
           alert(res.data)
-        }) 
+        })
       }
-      else if(session == null){
+      else if(!this.session){
         alert('로그인후 이용해주세요')
       }
     },
