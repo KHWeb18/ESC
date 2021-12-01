@@ -159,7 +159,7 @@ export default {
       if(this.session){
         const {brand , carType, personnel, speed , charge , battery, subsidy } = item
         console.log(item)
-        axios.post(`http://localhost:7777/member/addMyCar/${this.session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
+        axios.post(`https://evsbackend.herokuapp.com/member/addMyCar/${this.session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
         .then( (res) => {
           alert(res.data)
         })
@@ -175,8 +175,8 @@ export default {
 
 <style scoped>
 *{
-  margin: 1;
-  padding: 1;
+  margin: 1px;
+  padding: 1px;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
   user-select: none;
