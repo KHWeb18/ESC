@@ -84,7 +84,7 @@
                       최고속도출력 : {{item.speed}}<br/>
                       1회충전주행거리 : {{item.charge}}<br/>
                       배터리 : {{item.battery}}<br/>
-                      즐겨찾기 : <button @click="addMyCar(items)" class="starBtn">
+                      즐겨찾기 : <button @click="addMyCar(item)" class="starBtn">
                                   <v-icon class="star">mdi-star</v-icon></button>
                       </v-card-text>
                   </div>
@@ -155,10 +155,11 @@ export default {
         this.show = idx
       }
     },
-    addMyCar(items){
+    addMyCar(item){
       if(this.session){
-        const {brand , carType, personnel, speed , charge , battery, subsidy } = items
-        axios.post(`https://evsbackend.herokuapp.com/member/addMyCar/${this.session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
+        const {brand , carType, personnel, speed , charge , battery, subsidy } = item
+        console.log(item)
+        axios.post(`http://localhost:7777/member/addMyCar/${this.session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
         .then( (res) => {
           alert(res.data)
         })
