@@ -1,13 +1,11 @@
 package com.esc.khweb.controller;
 
+import com.esc.khweb.controller.request.MyCarStateRequest;
 import com.esc.khweb.controller.request.MyChargingStateRequest;
 import com.esc.khweb.controller.vueCookie.UserInfo;
-import com.esc.khweb.entity.Board;
-import com.esc.khweb.entity.MyChargingState;
-import com.esc.khweb.entity.MyParkingState;
+import com.esc.khweb.entity.*;
 import com.esc.khweb.service.MemberService;
 import com.esc.khweb.controller.request.MemberRequest;
-import com.esc.khweb.entity.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -268,6 +266,30 @@ public class MemberController {
         public ResponseEntity<Void> deleteMyParkingState(@PathVariable("rowNo")Long rowNo) throws  Exception {
 
                 service.deleteMyParkingState(rowNo);
+
+                return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+
+        @PostMapping("/addMyCar/{memberNo}")
+        public ResponseEntity<String> addMyCar (@PathVariable("memberNo")Long memberNo, @Validated @RequestBody MyCarStateRequest myCarStateRequest) throws  Exception {
+
+                String result =  service.addMyCar(memberNo, myCarStateRequest);
+
+                return new ResponseEntity<>(result,HttpStatus.OK);
+        }
+
+        @PostMapping("/getMyCarState/{memberNo}")
+        public ResponseEntity<List<MyCarState>> getMyCarState(@PathVariable("memberNo")Long memberNo) throws  Exception {
+
+                List<MyCarState> list = service.getMyCarState(memberNo);
+
+                return new ResponseEntity<>(list, HttpStatus.OK);
+        }
+
+        @PostMapping("/deleteMyCar/{rowNo}")
+        public ResponseEntity<Void> deleteMyCar(@PathVariable("rowNo")Long rowNo) throws  Exception {
+
+                service.deleteMyCar(rowNo);
 
                 return new ResponseEntity<Void>(HttpStatus.OK);
         }

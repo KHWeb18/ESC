@@ -1,11 +1,9 @@
 package com.esc.khweb.service;
 
 import com.esc.khweb.controller.request.MemberRequest;
+import com.esc.khweb.controller.request.MyCarStateRequest;
 import com.esc.khweb.controller.request.MyChargingStateRequest;
-import com.esc.khweb.entity.Board;
-import com.esc.khweb.entity.Member;
-import com.esc.khweb.entity.MyChargingState;
-import com.esc.khweb.entity.MyParkingState;
+import com.esc.khweb.entity.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,4 +63,10 @@ public interface MemberService {
     public List<MyParkingState> getMyParkingState (Long memberNo) throws  Exception;
 
     public void deleteMyParkingState(Long rowNo) throws Exception;
+
+    public String addMyCar(Long memberNo, MyCarStateRequest myCarStateRequest);
+
+    public List<MyCarState> getMyCarState(Long memberNo) throws Exception;
+
+    public void deleteMyCar(Long rowNo) throws Exception;
 }
