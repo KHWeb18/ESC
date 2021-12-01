@@ -5,7 +5,6 @@
       <v-layout>
         <v-flex >
           <v-card>
-            
                 <v-tabs
                   v-model="tab"
                   background-color="deep-blue accent-4"
@@ -30,10 +29,9 @@
                   <v-tab @click="filterBrand(item.name)" v-for="item in items" :key="item.name" >
                     <span >{{item.name}}</span>
                   </v-tab>
-                </v-tabs>
-
-              
+                </v-tabs>   
           </v-card>
+          
           <v-row>
             <v-col class="white-space" v-for="(item, idx) in filteredItems" :key="idx">
               <v-card
@@ -72,6 +70,7 @@
                     차량 홈페이지 이동
                   </v-btn>
                   <v-spacer></v-spacer>
+                  
                   <v-btn icon @click="changeShow(idx)" class="white">
                     <v-icon>{{ show === idx ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                   </v-btn>
@@ -85,7 +84,9 @@
                       최고속도출력 : {{item.speed}}<br/>
                       1회충전주행거리 : {{item.charge}}<br/>
                       배터리 : {{item.battery}}<br/>
-                    </v-card-text>
+                      즐겨찾기 : <button @click="addMyCar(session,items)" class="starBtn">
+                                  <v-icon class="star">mdi-star</v-icon></button>
+                      </v-card-text>
                   </div>
                 </v-expand-transition>
               </v-card>
@@ -100,12 +101,17 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import cookies from 'vue-cookies'
+import axios from 'axios'
+Vue.use(cookies)
 import {mapState} from "vuex";
 
 export default {
   name: "EvInfoExample",
   computed: {
-    ...mapState(['carInfo', ]),
+    ...mapState(['carInfo', 'session' ]),
+    
   },
   mounted() {
     this.filteredItems = this.carInfo
@@ -148,8 +154,21 @@ export default {
       }else{
         this.show = idx
       }
-    }
-  }
+    },
+    addMyCar(session,items){
+      if(session !== null){
+        const {brand , carType, personnel, speed , charge , battery, subsidy } = items
+        axios.post(`https://evsbackend.herokuapp.com/member/addMyCar/${session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
+        .then( (res) => {
+          alert(res.data)
+        }) 
+      }
+      else if(session == null){
+        alert('로그인후 이용해주세요')
+      }
+    },
+  },
+ 
 }
 </script>
 
