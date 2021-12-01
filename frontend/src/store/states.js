@@ -58,6 +58,7 @@ export default {
     // 마이페이지 즐겨찾기 
     myLikeList: [],
     myParkingStates:[],
+    myCar:[],
 
     //자동차 정보 페이지용 JSON 데이터
     carInfo: data,

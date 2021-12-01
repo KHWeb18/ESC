@@ -29,7 +29,10 @@ import {
   FETCH_MY_COMMENT_LIST,
   ////마이페이지 관심목록
   FETCH_MY_LIKE_LIST,
-  GET_MY_PARKING_STATES, FETCH_NEWS
+  GET_MY_PARKING_STATES, 
+  FETCH_NEWS,
+  FETCH_MY_CAR
+  
 
 
 } from "./mutation-types";
@@ -242,6 +245,7 @@ export default {
       commit(GET_MY_PARKING_STATES,res.data)
     })
   },
+  
   fetchNews({commit}){
     return axios.get(`https://escpy.herokuapp.com/news`)
         .then((res) => {
@@ -252,5 +256,14 @@ export default {
           let news = JSON.parse(replace)
           commit(FETCH_NEWS, news)
         })
-  }
+  },
+
+  fetchMyCar({ commit }, memberNo) {
+    return axios
+        .get(`https://evsbackend.herokuapp.com/member/getMyCar/${memberNo}`)
+        .then((res) => {
+        
+          commit(FETCH_MY_CAR, res.data);
+        });
+  },
 };
