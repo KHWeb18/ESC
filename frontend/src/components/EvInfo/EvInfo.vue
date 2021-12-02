@@ -46,7 +46,7 @@
                 >
                 <v-card-title >
                   <div>
-                    {{ item.cartype }}
+                    {{ item.carType }}
                   </div>
                 </v-card-title>
                 </v-img>
@@ -62,7 +62,7 @@
                   <div class="my-4 text-subtitle-1 d-flex jusify-space-between">
                     국고보조금 : {{ item.subsidy }}
                     <v-spacer></v-spacer>
-                    즐겨찾기 추가 : <button @click="addMyCar(items)" class="starBtn">
+                    즐겨찾기 추가 : <button @click="addMyCar(item)" class="starBtn">
                                       <v-icon class="star">mdi-star</v-icon></button>
                     </div>
                 </v-card-text>
@@ -81,7 +81,6 @@
                 <v-expand-transition>
                   <div v-show="show === idx">
                     <v-divider></v-divider>
-
                     <v-card-text>
                       승차인원 : {{item.personnel}}<br/>
                       최고속도출력 : {{item.speed}}<br/>
@@ -107,7 +106,6 @@ import cookies from 'vue-cookies'
 import axios from 'axios'
 Vue.use(cookies)
 import {mapState} from "vuex";
-
 export default {
   name: "EvInfo",
   computed: {
@@ -137,7 +135,6 @@ export default {
         {name: 'RenaultSamsungMotors'},
         {name: 'SsangYongMotor'},
         {name: 'Tesla'},
-
       ]
     }
   },
@@ -157,9 +154,11 @@ export default {
       }
     },
     addMyCar(items){
+      /* console.log(items) */
       if(this.session){
         const {brand , carType, personnel, speed , charge , battery, subsidy } = items
-        axios.post(`https://evsbackend.herokuapp.com/member/addMyCar/${this.session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
+        /* console.log(carType) */
+        axios.post(`http://localhost:7777/member/addMyCar/${this.session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
         .then( (res) => {
           alert(res.data)
         })
