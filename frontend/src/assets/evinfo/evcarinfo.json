@@ -1,7 +1,7 @@
 [
 	{
 		"brand":"KIA",
-		"cartype":"EV6 롱레인지 2WD 19인치",
+		"carType":"EV6 롱레인지 2WD 19인치",
 		"personnel":"5인승",
 		"speed":"185km/h",
         "charge":"(상온)483km(저온)446km",
@@ -13,7 +13,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"EV6 롱레인지 2WD 20인치",
+		"carType":"EV6 롱레인지 2WD 20인치",
 		"personnel":"5인승",
 		"speed":"185km/h",
         "charge":"(상온)445km(저온)411km",
@@ -25,7 +25,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"EV6 롱레인지 4WD 19인치",
+		"carType":"EV6 롱레인지 4WD 19인치",
 		"personnel":"5인승",
 		"speed":"188km/h",
         "charge":"(상온)458km(저온)414km",
@@ -37,7 +37,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"EV6 롱레인지 4WD 20인치",
+		"carType":"EV6 롱레인지 4WD 20인치",
 		"personnel":"5인승",
 		"speed":"188km/h",
         "charge":"(상온)407km(저온)380km",
@@ -49,7 +49,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"EV6 스텐다드 2WD 19인치",
+		"carType":"EV6 스텐다드 2WD 19인치",
 		"personnel":"5인승",
 		"speed":"185km",
         "charge":"(상온)377km(저온)347km",
@@ -61,7 +61,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"EV6 스텐다드 4WD 19인치",
+		"carType":"EV6 스텐다드 4WD 19인치",
 		"personnel":"5인승",
 		"speed":"188km",
         "charge":"(상온)362km(저온)324km",
@@ -73,7 +73,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"니로 EV(HP, 노블레스)",
+		"carType":"니로 EV(HP, 노블레스)",
 		"personnel":"5인승",
 		"speed":"167km",
         "charge":"(상온)385km(저온)345.5km",
@@ -85,7 +85,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"니로 EV(HP, 프레스티지)",
+		"carType":"니로 EV(HP, 프레스티지)",
 		"personnel":"5인승",
 		"speed":"167km",
         "charge":"(상온)385km(저온)345.5km",
@@ -97,7 +97,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"니로 EV(PTC, 노블레스)",
+		"carType":"니로 EV(PTC, 노블레스)",
 		"personnel":"5인승",
 		"speed":"167km",
         "charge":"(상온)385km(저온)303km",
@@ -109,7 +109,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"니로 EV(PTC, 프레스티지)",
+		"carType":"니로 EV(PTC, 프레스티지)",
 		"personnel":"5인승",
 		"speed":"167km",
         "charge":"(상온)385km(저온)303km",
@@ -121,7 +121,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"니로 EV(경제형, 노블레스)",
+		"carType":"니로 EV(경제형, 노블레스)",
 		"personnel":"5인승",
 		"speed":"167km",
         "charge":"(상온)247.7km(저온)187.2km",
@@ -133,7 +133,7 @@
 	},
 	{
 		"brand":"KIA",
-		"cartype":"니로 EV(경제형, 프레스티지)",
+		"carType":"니로 EV(경제형, 프레스티지)",
 		"personnel":"5인승",
 		"speed":"167km",
         "charge":"(상온)247.7km(저온)187.2km",
@@ -145,7 +145,7 @@
 	},
 	{
 		"brand":"HyundaiMotorCompany",
-		"cartype":"G80",
+		"carType":"G80",
 		"personnel":"5인승",
 		"speed":"225km/h",
         "charge":"(상온)433km(저온)411km",
@@ -157,7 +157,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"GV60 스탠다드 2WD 19인치",
+		"carType":"GV60 스탠다드 2WD 19인치",
 		"personnel":"5인승",
 		"speed":"185km/h",
         "charge":"(상온)470km(저온)416km",
@@ -169,7 +169,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"GV60 스탠다드 AWD 19인치",
+		"carType":"GV60 스탠다드 AWD 19인치",
 		"personnel":"5인승",
 		"speed":"200km/h",
         "charge":"(상온)403km(저온)378km",
@@ -181,7 +181,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"GV60 스탠다드 AWD 20인치",
+		"carType":"GV60 스탠다드 AWD 20인치",
 		"personnel":"5인승",
 		"speed":"200km/h",
         "charge":"(상온)386km(저온)358km",
@@ -193,7 +193,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"GV60 퍼포먼스 AWD 21인치",
+		"carType":"GV60 퍼포먼스 AWD 21인치",
 		"personnel":"5인승",
 		"speed":"235km/h",
         "charge":"(상온)372km(저온)302km",
@@ -205,7 +205,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"아이오닉5(롱레인지 2WD, 익스클루시브)",
+		"carType":"아이오닉5(롱레인지 2WD, 익스클루시브)",
 		"personnel":"5인승",
 		"speed":"185km/h",
         "charge":"(상온)423km(저온)345km",
@@ -217,7 +217,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"아이오닉5(롱레인지 2WD, 익스클루시브, 빌트인 캠 미적용)",
+		"carType":"아이오닉5(롱레인지 2WD, 익스클루시브, 빌트인 캠 미적용)",
 		"personnel":"5인승",
 		"speed":"185km/h",
         "charge":"(상온)429km(저온)364km",
@@ -229,7 +229,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"아이오닉5(롱레인지 2WD, 프레스티지)",
+		"carType":"아이오닉5(롱레인지 2WD, 프레스티지)",
 		"personnel":"5인승",
 		"speed":"185km/h",
         "charge":"(상온)405km(저온)354km",
@@ -241,7 +241,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"아이오닉5(롱레인지 AWD, 익스클루시브)",
+		"carType":"아이오닉5(롱레인지 AWD, 익스클루시브)",
 		"personnel":"5인승",
 		"speed":"185km/h",
         "charge":"(상온)390km(저온)340km",
@@ -253,7 +253,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"아이오닉5(롱레인지 AWD, 프레스티지)",
+		"carType":"아이오닉5(롱레인지 AWD, 프레스티지)",
 		"personnel":"5인승",
 		"speed":"185km/h",
         "charge":"(상온)370km(저온)344km",
@@ -265,7 +265,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"아이오닉5(스탠다드 2WD)",
+		"carType":"아이오닉5(스탠다드 2WD)",
 		"personnel":"5인승",
 		"speed":"185km/h",
         "charge":"(상온)342km(저온)292km",
@@ -277,7 +277,7 @@
 	},
     {
 		"brand":"HyundaiMotorCompany",
-		"cartype":"아이오닉5(스탠다드 AWD)",
+		"carType":"아이오닉5(스탠다드 AWD)",
 		"personnel":"5인승",
 		"speed":"185km/h",
         "charge":"(상온)319km(저온)280km",
@@ -289,7 +289,7 @@
 	},
 	{
 		"brand":"Chevrolet",
-		"cartype":"BOLT EV",
+		"carType":"BOLT EV",
 		"personnel":"5인승",
 		"speed":"148.6km/h",
         "charge":"(상온)414km(저온)273km",
@@ -301,7 +301,7 @@
 	},
     {
 		"brand":"Chevrolet",
-		"cartype":"BOLT EUV",
+		"carType":"BOLT EUV",
 		"personnel":"5인승",
 		"speed":"148km/h",
         "charge":"(상온)403km(저온)279km",
@@ -313,7 +313,7 @@
 	},
 	{
 		"brand":"BMW",
-		"cartype":"i3 120Ah Lux",
+		"carType":"i3 120Ah Lux",
 		"personnel":"4인승",
 		"speed":"150km/h",
         "charge":"(상온)248km(저온)160km",
@@ -325,7 +325,7 @@
 	},
     {
 		"brand":"BMW",
-		"cartype":"i3 120Ah SoL+",
+		"carType":"i3 120Ah SoL+",
 		"personnel":"4인승",
 		"speed":"148km/h",
         "charge":"(상온)248km(저온)160km",
@@ -337,7 +337,7 @@
 	},
 	{
 		"brand":"한불모터스",
-		"cartype":"DS3 E-tense Grand Chic",
+		"carType":"DS3 E-tense Grand Chic",
 		"personnel":"5인승",
 		"speed":"150km/h",
         "charge":"(상온)237km(저온)187km",
@@ -349,7 +349,7 @@
 	},
     {
 		"brand":"한불모터스",
-		"cartype":"DS3 E-tense So Chic",
+		"carType":"DS3 E-tense So Chic",
 		"personnel":"5인승",
 		"speed":"150km/h",
         "charge":"(상온)237km(저온)187km",
@@ -361,7 +361,7 @@
 	},
     {
 		"brand":"한불모터스",
-		"cartype":"Peugeot e-2008 SUV Allure",
+		"carType":"Peugeot e-2008 SUV Allure",
 		"personnel":"5인승",
 		"speed":"150km/h",
         "charge":"(상온)237km(저온)187km",
@@ -373,7 +373,7 @@
 	},
     {
 		"brand":"한불모터스",
-		"cartype":"Peugeot e-2008 SUV GT Line",
+		"carType":"Peugeot e-2008 SUV GT Line",
 		"personnel":"5인승",
 		"speed":"150km/h",
         "charge":"(상온)237km(저온)187km",
@@ -385,7 +385,7 @@
 	},
     {
 		"brand":"한불모터스",
-		"cartype":"Peugeot e-208 Allure",
+		"carType":"Peugeot e-208 Allure",
 		"personnel":"5인승",
 		"speed":"150km/h",
         "charge":"(상온)244km(저온)215km",
@@ -397,7 +397,7 @@
 	},
     {
 		"brand":"한불모터스",
-		"cartype":"Peugeot e-208 GT Line",
+		"carType":"Peugeot e-208 GT Line",
 		"personnel":"5인승",
 		"speed":"150km/h",
         "charge":"(상온)244km(저온)215km",
@@ -409,7 +409,7 @@
 	},
 	{
 		"brand":"CEVO MOBILITY",
-		"cartype":"CEVO-C",
+		"carType":"CEVO-C",
 		"personnel":"2인승",
 		"speed":"80km/h",
         "charge":"(상온)66.7km(저온)70.4km",
@@ -421,7 +421,7 @@
 	},
     {
 		"brand":"CEVO MOBILITY",
-		"cartype":"CEVO-C SE",
+		"carType":"CEVO-C SE",
 		"personnel":"2인승",
 		"speed":"80km/h",
         "charge":"(상온)75.4km(저온)63.8km",
@@ -433,7 +433,7 @@
 	},
 	{
 		"brand":"EDISON EV",
-		"cartype":"SMART EV Z",
+		"carType":"SMART EV Z",
 		"personnel":"2인승",
 		"speed":"106.6km/h",
         "charge":"(상온)150km(저온)133.7km",
@@ -445,7 +445,7 @@
 	},
 	{
 		"brand":"Jaguar Cars",
-		"cartype":"I-PACE EV400 HSE",
+		"carType":"I-PACE EV400 HSE",
 		"personnel":"5인승",
 		"speed":"200km/h",
         "charge":"(상온)333km(저온)227km",
@@ -457,7 +457,7 @@
 	},
     {
 		"brand":"Jaguar Cars",
-		"cartype":"I-PACE EV400 SE",
+		"carType":"I-PACE EV400 SE",
 		"personnel":"5인승",
 		"speed":"200km/h",
         "charge":"(상온)333km(저온)227km",
@@ -469,7 +469,7 @@
 	},
 	{
 		"brand":"KST Electric",
-		"cartype":"마이브 M1",
+		"carType":"마이브 M1",
 		"personnel":"2인승",
 		"speed":"80km/h",
         "charge":"(상온)56.9km(저온)52.9km",
@@ -481,7 +481,7 @@
 	},
 	{
 		"brand":"Mercedes-Benz",
-		"cartype":"EQA250",
+		"carType":"EQA250",
 		"personnel":"5인승",
 		"speed":"160km/h",
         "charge":"(상온)302.760km(저온)204.205km",
@@ -493,7 +493,7 @@
 	},
     {
 		"brand":"Mercedes-Benz",
-		"cartype":"EQA250(MY22)",
+		"carType":"EQA250(MY22)",
 		"personnel":"5인승",
 		"speed":"160km/h",
         "charge":"(상온)302.644km(저온)244.662km",
@@ -505,7 +505,7 @@
 	},
 	{
 		"brand":"Mercedes-Benz",
-		"cartype":"EQC 400 4M",
+		"carType":"EQC 400 4M",
 		"personnel":"5인승",
 		"speed":"180km/h",
         "charge":"(상온)308.7km(저온)270.7km",
@@ -517,7 +517,7 @@
 	},
 	{
 		"brand":"Mercedes-Benz",
-		"cartype":"EQC 400 4MATIC",
+		"carType":"EQC 400 4MATIC",
 		"personnel":"5인승",
 		"speed":"180km/h",
         "charge":"(상온)308.7km(저온)270.7km",
@@ -529,7 +529,7 @@
 	},
     {
 		"brand":"Mercedes-Benz",
-		"cartype":"EQC 400 4MATIC AMG Line",
+		"carType":"EQC 400 4MATIC AMG Line",
 		"personnel":"5인승",
 		"speed":"180km/h",
         "charge":"(상온)308.7km(저온)270.7km",
@@ -541,7 +541,7 @@
 	},
     {
 		"brand":"Mercedes-Benz",
-		"cartype":"EQC 400 4MATIC Premium",
+		"carType":"EQC 400 4MATIC Premium",
 		"personnel":"5인승",
 		"speed":"180km/h",
         "charge":"(상온)308.7km(저온)270.7km",
@@ -553,7 +553,7 @@
 	},
     {
 		"brand":"Mercedes-Benz",
-		"cartype":"EQC 400 4MATIC(1886)",
+		"carType":"EQC 400 4MATIC(1886)",
 		"personnel":"5인승",
 		"speed":"180km/h",
         "charge":"(상온)308.7km(저온)270.7km",
@@ -565,7 +565,7 @@
 	},
 	{
 		"brand":"RenaultSamsungMotors",
-		"cartype":"ZOE INTENS",
+		"carType":"ZOE INTENS",
 		"personnel":"5인승",
 		"speed":"140km/h",
         "charge":"(상온)309km(저온)236km",
@@ -577,7 +577,7 @@
 	},
     {
 		"brand":"RenaultSamsungMotors",
-		"cartype":"ZOE INTENS ECO",
+		"carType":"ZOE INTENS ECO",
 		"personnel":"5인승",
 		"speed":"140km/h",
         "charge":"(상온)309km(저온)236km",
@@ -589,7 +589,7 @@
 	},
 	{
 		"brand":"RenaultSamsungMotors",
-		"cartype":"ZOE ZEN",
+		"carType":"ZOE ZEN",
 		"personnel":"5인승",
 		"speed":"140km/h",
         "charge":"(상온)309km(저온)236km",
@@ -601,7 +601,7 @@
 	},
 	{
 		"brand":"RenaultSamsungMotors",
-		"cartype":"TWIZY(K1J05)",
+		"carType":"TWIZY(K1J05)",
 		"personnel":"2인승",
 		"speed":"80km/h",
         "charge":"(상온)84.1km(저온)83.8km",
@@ -613,7 +613,7 @@
 	},
 	{
 		"brand":"SsangYongMotor",
-		"cartype":"코란도 e-motion 2Wd",
+		"carType":"코란도 e-motion 2Wd",
 		"personnel":"5인승",
 		"speed":"163km/h",
         "charge":"(상온)306km(저온)254km",
@@ -625,7 +625,7 @@
 	},
     {
 		"brand":"SsangYongMotor",
-		"cartype":"코란도 e-motion 2Wd Heat Pump",
+		"carType":"코란도 e-motion 2Wd Heat Pump",
 		"personnel":"5인승",
 		"speed":"163km/h",
         "charge":"(상온)307km(저온)252km",
@@ -637,7 +637,7 @@
 	},
 	{
 		"brand":"Tesla",
-		"cartype":"Model 3(Long Range HPC)",
+		"carType":"Model 3(Long Range HPC)",
 		"personnel":"5인승",
 		"speed":"233km/h",
         "charge":"(상온)495.7km(저온)438km",
@@ -649,7 +649,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model 3(Long Range HPL)",
+		"carType":"Model 3(Long Range HPL)",
 		"personnel":"5인승",
 		"speed":"233km/h",
         "charge":"(상온)527.9km(저온)440.1km",
@@ -661,7 +661,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model 3(Long Range)",
+		"carType":"Model 3(Long Range)",
 		"personnel":"5인승",
 		"speed":"233km/h",
         "charge":"(상온)446.1km(저온)273.1km",
@@ -673,7 +673,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model 3(Performance HPL)",
+		"carType":"Model 3(Performance HPL)",
 		"personnel":"5인승",
 		"speed":"261km/h",
         "charge":"(상온)480.1km(저온)415.8km",
@@ -685,7 +685,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model 3(Performance)",
+		"carType":"Model 3(Performance)",
 		"personnel":"5인승",
 		"speed":"261km/h",
         "charge":"(상온)414.8km(저온)250.8km",
@@ -697,7 +697,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model 3(Performance)",
+		"carType":"Model 3(Performance)",
 		"personnel":"5인승",
 		"speed":"261km/h",
         "charge":"(상온)414.8km(저온)250.8km",
@@ -709,7 +709,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model 3(SRP RWD HPL)",
+		"carType":"Model 3(SRP RWD HPL)",
 		"personnel":"5인승",
 		"speed":"225km/h",
         "charge":"(상온)383.6km(저온)304.8km",
@@ -721,7 +721,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model 3(SRP RWD)",
+		"carType":"Model 3(SRP RWD)",
 		"personnel":"5인승",
 		"speed":"225km/h",
         "charge":"(상온)352.1km(저온)212.9km",
@@ -733,7 +733,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model S(Long Range)",
+		"carType":"Model S(Long Range)",
 		"personnel":"5인승",
 		"speed":"250km/h",
         "charge":"(상온)487km(저온)401.8km",
@@ -745,7 +745,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model S(Performance)",
+		"carType":"Model S(Performance)",
 		"personnel":"5인승",
 		"speed":"250km/h",
         "charge":"(상온)479.9km(저온)427.7km",
@@ -757,7 +757,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model Y(Long Range)",
+		"carType":"Model Y(Long Range)",
 		"personnel":"5인승",
 		"speed":"217km/h",
         "charge":"(상온)511.4km(저온)432.5km",
@@ -769,7 +769,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model Y(Performance)",
+		"carType":"Model Y(Performance)",
 		"personnel":"5인승",
 		"speed":"250km/h",
         "charge":"(상온)447.9km(저온)393.9km",
@@ -781,7 +781,7 @@
 	},
     {
 		"brand":"Tesla",
-		"cartype":"Model Y(Standard Range)",
+		"carType":"Model Y(Standard Range)",
 		"personnel":"5인승",
 		"speed":"217km/h",
         "charge":"(상온)348.6km(저온)279.3km",
