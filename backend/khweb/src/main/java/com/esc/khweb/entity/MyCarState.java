@@ -24,9 +24,9 @@ public class MyCarState {
     private String carType;
     @Column(length = 32 ,nullable = false)
     private String personnel;
-    @Column(length = 32 ,nullable = false)
+    @Column(length = 32 ,nullable = true)
     private String speed;
-    @Column(length = 32 ,nullable = false)
+    @Column(length = 32 ,nullable = true)
     private String charge;
     @Column(length = 32 ,nullable = false)
     private String battery;

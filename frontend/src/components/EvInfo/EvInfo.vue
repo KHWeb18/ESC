@@ -158,7 +158,7 @@ export default {
       if(this.session){
         const {brand , carType, personnel, speed , charge , battery, subsidy } = items
         /* console.log(carType) */
-        axios.post(`http://localhost:7777/member/addMyCar/${this.session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
+        axios.post(`https://evsbackend.herokuapp.com/addMyCar/${this.session.memberNo}`,{brand , carType, personnel, speed , charge , battery, subsidy})
         .then( (res) => {
           alert(res.data)
         })
