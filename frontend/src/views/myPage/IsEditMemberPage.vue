@@ -88,6 +88,7 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-btn color="primary" @click="done">수정완료</v-btn>
+        
         <v-spacer></v-spacer>
         <v-btn color="primary" @click="cancel">취소</v-btn>
       </v-card-actions>
