@@ -51,16 +51,20 @@
                 </v-card-title>
                 </v-img>
 
-                <v-img max-height="100" max-width="130" class="ml-5 mb-n3" :src="item.brandImage"></v-img>
-
+          
+                <v-img max-height="100" max-width="130" class="ml-5 mb-n3"  :src="item.brandImage">
+                </v-img>
                 
 
                 <v-card-text>
-                  <v-row align="center" class="mx-0">    
+                  <v-row align="center" class="mx-0" >    
                   </v-row>
-                  <div class="my-4 text-subtitle-1">
+                  <div class="my-4 text-subtitle-1 d-flex jusify-space-between">
                     국고보조금 : {{ item.subsidy }}
-                  </div>
+                    <v-spacer></v-spacer>
+                    즐겨찾기 추가 : <button @click="addMyCar(items)" class="starBtn">
+                                      <v-icon class="star">mdi-star</v-icon></button>
+                    </div>
                 </v-card-text>
                 <v-divider class="mx-4"></v-divider>
 
@@ -70,7 +74,6 @@
                     차량 홈페이지 이동
                   </v-btn>
                   <v-spacer></v-spacer>
-                  
                   <v-btn icon @click="changeShow(idx)" class="white">
                     <v-icon>{{ show === idx ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                   </v-btn>
@@ -84,8 +87,6 @@
                       최고속도출력 : {{item.speed}}<br/>
                       1회충전주행거리 : {{item.charge}}<br/>
                       배터리 : {{item.battery}}<br/>
-                      즐겨찾기 : <button @click="addMyCar(items)" class="starBtn">
-                                  <v-icon class="star">mdi-star</v-icon></button>
                       </v-card-text>
                   </div>
                 </v-expand-transition>
