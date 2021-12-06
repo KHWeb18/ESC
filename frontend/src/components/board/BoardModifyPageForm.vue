@@ -77,7 +77,7 @@ export default {
         OnSubmit(coin){
             if (coin == 1){
                 const  {title, content ,img2} =this
-                axios.post(`http://localhost:7777/board/boardModify/${this.board.boardNo}`,{title, content ,img: img2})
+                axios.post(`https://evsbackend.herokuapp.com/board/boardModify/${this.board.boardNo}`,{title, content ,img: img2})
                 .then( () =>{
                     alert("수정이 완료되었습니다.")
                     this.$router.go(-1)
@@ -86,7 +86,7 @@ export default {
             else{
                 const  {title, content } =this
                 
-                axios.post(`http://localhost:7777/board/boardModify/${this.board.boardNo}`,{title, content,img: this.board.img})
+                axios.post(`https://evsbackend.herokuapp.com/board/boardModify/${this.board.boardNo}`,{title, content,img: this.board.img})
                 .then( () =>{
                     alert("수정이 완료되었습니다.")
                     this.$router.go(-1)
@@ -104,7 +104,7 @@ export default {
                 this.files.name = this.img2
                 formData.append('fileList', this.files[idx])
             }
-            axios.post(`http://localhost:7777/board/uploadImg/${this.memberId}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
+            axios.post(`https://evsbackend.herokuapp.com/board/uploadImg/${this.memberId}/${this.randomNumToString}`, formData,{ headers: {'Content-Type': 'multipart/form-data'} })
             .then (res => {
                 this.response = res.data
             })
