@@ -20,7 +20,7 @@ public class CommentReply {
     @Column
     private Long replyNo;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long commentNo;
 
     @Column(nullable = false)
