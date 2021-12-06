@@ -21,7 +21,7 @@ public class CommentReport {
     @Column(nullable = false)
     private Long reportNo;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long commentNo;
 
     @Column(nullable = false)

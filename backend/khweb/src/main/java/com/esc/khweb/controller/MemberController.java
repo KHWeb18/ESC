@@ -62,8 +62,6 @@ public class MemberController {
         @PostMapping("/IdMatchedBirthday")
         public ResponseEntity<Boolean> IdMatchedBirthday (@Validated @RequestBody MemberRequest memberRequest) throws  Exception {
 
-
-
                 Boolean result = service.IdMatchedBirthday(memberRequest);
 
                 return new ResponseEntity<>(result,HttpStatus.OK);

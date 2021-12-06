@@ -18,13 +18,13 @@ public class CommentLikes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long likeNo;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long commentNo;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String memberId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")

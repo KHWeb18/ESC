@@ -252,7 +252,9 @@ public class MemberServiceimpl implements MemberService {
             if (addrList.indexOf(myChargingStateRequest.getAddr()) >= 0) {
                 return result;
              } else if (addrList.indexOf(myChargingStateRequest.getAddr()) < 0) {
-                MyChargingState myChargingState = new MyChargingState(memberNo,myChargingStateRequest.getStatNm(),myChargingStateRequest.getChgerType(), myChargingStateRequest.getAddr(), myChargingStateRequest.getLat(), myChargingStateRequest.getLng(), myChargingStateRequest.getUseTime(), myChargingStateRequest.getBusiCall());
+                MyChargingState myChargingState = new MyChargingState(memberNo,myChargingStateRequest.getStatNm(),myChargingStateRequest.getChgerType(),
+                        myChargingStateRequest.getAddr(), myChargingStateRequest.getLat(), myChargingStateRequest.getLng(), myChargingStateRequest.getUseTime(),
+                        myChargingStateRequest.getBusiCall());
                 myChargingStateRepository.save(myChargingState);
                 return result2;
                 }

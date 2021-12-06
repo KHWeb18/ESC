@@ -39,8 +39,6 @@ public class BoardController {
         log.info("requestUploadFile(): " + fileList);
 
         try {
-            // 결국 저장되는 위치가 images/사진파일명.확장자
-            // images/아이디/사진파일명.확장자
 
             for (MultipartFile multipartFile : fileList) {
                 log.info("requestUploadFile(): Make File");
@@ -62,14 +60,7 @@ public class BoardController {
     }
     @PostMapping("/boardRegister")
     public ResponseEntity<Void> boardRegister (@Validated @RequestBody BoardRequest boardRequest) throws  Exception{
-        /*
-        System.out.println("memberId:" + boardRequest.getMemberId());
-        System.out.println("title:" +boardRequest.getTitle());
-        System.out.println("content" +boardRequest.getContent());
-        System.out.println("img" + boardRequest.getImg());
-        System.out.println("category" +boardRequest.getCategory());
 
-         */
         service.boardRegister(boardRequest);
 
             return new ResponseEntity<>(HttpStatus.OK);
@@ -117,7 +108,7 @@ public class BoardController {
 
         Long boardNo = boardReportRequest.getBoardNo();
         service.report(boardNo,reportWord);
-        // 신고 버튼누를시 카톡 날라감 구현했지만, 파이썬작업진행중으로 막아놓겟습니다 2021/10/29
+
        String check =  service.KakaotalkAlarm(boardReportRequest);
          log.info("check"+check);
 

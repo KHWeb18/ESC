@@ -18,7 +18,7 @@ import java.util.*;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long commentNo;
 
     @Column(nullable = true)
