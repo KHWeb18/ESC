@@ -94,32 +94,43 @@ export default {
                     this.$router.go(-1)
                   },
                   good(boardNo){
-                    
-                    axios.post(`https://evsbackend.herokuapp.com/member/addLikeBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    if(this.session ==undefined){
+                      alert('로그인 이후 가능합니다.')
+                    }
+                    else{
+                    axios.post(`http://localhost:7777/member/addLikeBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="추천되었습니다."){
-                          axios.post(`https://evsbackend.herokuapp.com/board/goodCount/${boardNo}`)
+                          axios.post(`http://localhost:7777/board/goodCount/${boardNo}`)
                           .then( () =>{
                            
                             this.$router.go()
                     })
                       }
 
-                    }) 
+                    })  
+                    }
+                    
                   },
                   
                   bad(boardNo){
-                    axios.post(`https://evsbackend.herokuapp.com/member/addHateBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    if(this.session ==undefined){
+                      alert('로그인 이후 가능합니다.')
+                    }
+                    else{
+                        axios.post(`http://localhost:7777/member/addHateBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="비추되었습니다."){
-                        axios.post(`https://evsbackend.herokuapp.com/board/badCount/${boardNo}`)
+                        axios.post(`http://localhost:7777/board/badCount/${boardNo}`)
                         .then( () =>{
                           this.$router.go()
                         })
                       }
                     })
+                    }
+                    
                   },
                   
                   report(board){
