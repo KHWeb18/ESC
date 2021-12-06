@@ -21,13 +21,12 @@
         </v-toolbar-items>
 
         <v-toolbar-items class="hidden-sm-and-down hidden-lg-and-up menusSmall">
-          <span @click="$router.push('/evinfo')">전기차 정보</span>
-          <span @click="$router.push('/freeboardListPage')">어울림마당</span>
-          <span @click="$router.push('/news')">전가치 뉴스</span>
-          <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/memberManagement')">관리자페이지</span>
           <span  @click="$router.push('/charingSearchServiceBoardList')">충전소찾기</span>
           <span  @click="$router.push('/parkingSearchServiceList')">주차장찾기</span>
-          <span>원하는거 추가</span>
+          <span @click="$router.push('/freeboardListPage')">어울림마당</span>
+          <span @click="$router.push('/evinfo')">전기차 정보</span>
+          <span @click="$router.push('/news')">전기차 뉴스</span>
+          <span v-if="this.$store.state.auth =='관리자'" @click="$router.push('/memberManagement')">관리자페이지</span>
         </v-toolbar-items>
 
         <v-spacer></v-spacer>
@@ -119,10 +118,10 @@ a{
 }
 
 .logoMini{
-  position: absolute;
-  top: 2px;
-  left: 40%;
+  display: block;
+  margin: 0 auto;
   cursor: pointer;
+
   background-image: url("https://raw.githubusercontent.com/KHWeb18/ESC/main/frontend/src/assets/logo/evslogo2.png");
   background-size: contain;
   width: 100%;
@@ -133,7 +132,7 @@ a{
   z-index: 10;
   position: relative;
   align-items: center;
-  left: 210px;
+  left: 25%;
   top: 25px;
   max-height: 50px;
   font-size: 1.1em;
@@ -157,7 +156,7 @@ a{
   z-index: 1;
   position: relative;
   top: 20px;
-  left: 60px;
+  left: 10%;
   max-height: 35px;
   font-size: 1.3em;
   font-weight: 600;
