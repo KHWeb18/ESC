@@ -26,17 +26,37 @@
       <v-divider></v-divider>
 
       <v-list dense>
-        <v-list-item @click="item.method" v-for="item in items" :key="item.title" link>
 
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+        <div v-if="!session">
+          <v-list-item @click="item.method" v-for="item in items"  :key="item.title" link>
 
-          <v-list-item-content class="text-button">
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
 
-        </v-list-item>
+            <v-list-item-content class="text-button">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+
+          </v-list-item>
+        </div>
+
+        <div v-if="session">
+          <v-list-item @click="item.method" v-for="item in itemsLogin" :key="item.title" link>
+
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content class="text-button">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+
+          </v-list-item>
+        </div>
+
+
+
       </v-list>
     </v-navigation-drawer>
   </div>
@@ -58,6 +78,11 @@ export default {
       hamburger: 'hamburger hidden-lg-only black--text',
       color: '',
       items: [
+        { title: '홈으로', icon: 'home', method: this.goHome},
+        { title: '게시판', icon: 'mdi-view-dashboard', method: this.goBoard},
+        { title: '자동차 정보', icon: 'directions_car', method: this.evInfo},
+      ],
+      itemsLogin: [
         { title: '홈으로', icon: 'home', method: this.goHome},
         { title: '마이페이지', icon: 'account_box', method: this.goMyPage},
         { title: '게시판', icon: 'mdi-view-dashboard', method: this.goBoard},
