@@ -98,11 +98,11 @@ export default {
                       alert('로그인 이후 가능합니다.')
                     }
                     else{
-                    axios.post(`http://localhost:7777/member/addLikeBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                    axios.post(`https://evsbackend.herokuapp.com/member/addLikeBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="추천되었습니다."){
-                          axios.post(`http://localhost:7777/board/goodCount/${boardNo}`)
+                          axios.post(`https://evsbackend.herokuapp.com/board/goodCount/${boardNo}`)
                           .then( () =>{
                            
                             this.$router.go()
@@ -119,11 +119,11 @@ export default {
                       alert('로그인 이후 가능합니다.')
                     }
                     else{
-                        axios.post(`http://localhost:7777/member/addHateBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
+                        axios.post(`https://evsbackend.herokuapp.com/member/addHateBoard/${boardNo}`,{memberNo:this.$store.state.loginMemberNo})
                     .then( (res) =>{
                       alert(res.data)
                       if(res.data =="비추되었습니다."){
-                        axios.post(`http://localhost:7777/board/badCount/${boardNo}`)
+                        axios.post(`https://evsbackend.herokuapp.com/board/badCount/${boardNo}`)
                         .then( () =>{
                           this.$router.go()
                         })
