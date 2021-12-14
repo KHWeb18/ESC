@@ -1,6 +1,5 @@
 # EVS
 
----------------------------------
 ```
 a web service for electric vehicle users
 ```
@@ -8,15 +7,13 @@ a web service for electric vehicle users
 <img width="80%" src="https://user-images.githubusercontent.com/83811729/145990101-76c0cb92-cf8d-436e-86ca-f4bda78574dd.png" title="Main" alt="Main"/>
 </p>
 
----------------------------------
 
-* Demo Link (with Firebase Frontend & Heroku Backend)
+##  Demo Link
 
     * **EVS: [Demo][Demo]**
 
 [Demo]: https://esvfront.web.app/
 
----------------------------------
 
 ##  Languages and Tools:
 <p align="center">
@@ -24,19 +21,17 @@ a web service for electric vehicle users
 <img src="https://cdn.worldvectorlogo.com/logos/vue-js-1.svg" alt="Vue" height="40" style="vertical-align:top; margin:4px"/>
 <img src="https://cdn.worldvectorlogo.com/logos/java.svg" alt="Vue" height="40" style="vertical-align:top; margin:4px"/>
 <img src="https://cdn.worldvectorlogo.com/logos/spring-3.svg" alt="Vue" height="40" style="vertical-align:top; margin:4px"/>
+<img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" alt="Vue" height="40" style="vertical-align:top; margin:4px"/>
 </p>
 
----------------------------------
-
-###  기능 소개
+##  기능 소개
 
 <p align="center">
 <img width="90%" src="https://user-images.githubusercontent.com/83811729/145991280-a9277e50-6e82-411d-bb08-da4c08c52a45.png" title="Main" alt="Main"/>
 </p>
 
----------------------------------
 
-###  Members
+##  Members
 
 **[임익환][임익환]**, **[한상우][한상우]**, **[유종현][유종현]**,
 **[고재권][고재권]**, **[김도연][김도연]**,
@@ -47,11 +42,10 @@ a web service for electric vehicle users
 [고재권]: https://github.com/KoJaeKwon
 [김도연]: https://github.com/ms109420
 
----------------------------------
 
-## Issues
+# Issues
 
-### 임익환
+## 임익환
 
 * 공공 API CORS policy 오류
     * [원인 & 해결방법][해결법링크]
@@ -88,8 +82,8 @@ a web service for electric vehicle users
     }
 </code>
 </pre>
----------------------------------
-### 내용 추가
+
+## 홍길동
 
 ---------------------------------
 
