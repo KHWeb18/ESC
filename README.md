@@ -10,24 +10,29 @@ a web service for electric vehicle users
 
 ##  Demo Link
 
-    * **EVS: [Demo][Demo]**
+* **EVS: [Demo Link][Demo]**
+  
+  [Demo]: https://esvfront.web.app/
+  
+<p align="center" style="margin-top: -50px">
+  <img src="https://cdn.worldvectorlogo.com/logos/firebase-1.svg" alt="Javascript" height="40" style="margin:4px">
+  <img src="https://cdn.worldvectorlogo.com/logos/heroku-4.svg" alt="Javascript" height="40" style="margin:4px">
+</p>
 
-[Demo]: https://esvfront.web.app/
-
-
+  
 ##  Languages and Tools:
 <p align="center">
 <img src="https://cdn.worldvectorlogo.com/logos/logo-javascript.svg" alt="Javascript" height="40" style="vertical-align:top; margin:4px">
 <img src="https://cdn.worldvectorlogo.com/logos/vue-js-1.svg" alt="Vue" height="40" style="vertical-align:top; margin:4px"/>
-<img src="https://cdn.worldvectorlogo.com/logos/java.svg" alt="Vue" height="40" style="vertical-align:top; margin:4px"/>
-<img src="https://cdn.worldvectorlogo.com/logos/spring-3.svg" alt="Vue" height="40" style="vertical-align:top; margin:4px"/>
-<img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" alt="Vue" height="40" style="vertical-align:top; margin:4px"/>
+<img src="https://cdn.worldvectorlogo.com/logos/java.svg" alt="Java" height="40" style="vertical-align:top; margin:4px"/>
+<img src="https://cdn.worldvectorlogo.com/logos/spring-3.svg" alt="Spring" height="40" style="vertical-align:top; margin:4px"/>
+<img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" alt="Python" height="40" style="vertical-align:top; margin:4px"/>
 </p>
 
 ##  기능 소개
 
 <p align="center">
-<img width="90%" src="https://user-images.githubusercontent.com/83811729/145991280-a9277e50-6e82-411d-bb08-da4c08c52a45.png" title="Main" alt="Main"/>
+<img width="100%" src="https://user-images.githubusercontent.com/83811729/145991280-a9277e50-6e82-411d-bb08-da4c08c52a45.png" title="Main" alt="Main"/>
 </p>
 
 
@@ -83,7 +88,7 @@ a web service for electric vehicle users
 </code>
 </pre>
 
-## 홍길동
+## 추가
 
 ---------------------------------
 
