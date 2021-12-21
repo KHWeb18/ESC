@@ -10,7 +10,8 @@ a web service for electric vehicle users
 
 ##  Demo Link
 
-* **EVS: [Demo Link][Demo]**
+* **EVS: [Demo Link][Demo]** 
+<br>(초기 진입시 로딩이 느림)
   
   [Demo]: https://esvfront.web.app/
   
@@ -35,7 +36,6 @@ a web service for electric vehicle users
 <img width="100%" src="https://user-images.githubusercontent.com/83811729/145991280-a9277e50-6e82-411d-bb08-da4c08c52a45.png" title="Main" alt="Main"/>
 </p>
 
-
 ##  Members
 
 **[임익환][임익환]**, **[한상우][한상우]**, **[유종현][유종현]**,
@@ -47,6 +47,11 @@ a web service for electric vehicle users
 [고재권]: https://github.com/KoJaeKwon
 [김도연]: https://github.com/ms109420
 
+##  역할 분담
+
+<p align="center">
+<img width="100%" src="https://user-images.githubusercontent.com/83811729/146918294-8982cedd-f0fa-4dc5-96ca-0574d19d828e.png" title="Main" alt="Main"/>
+</p>
 
 # Issues
 
@@ -92,8 +97,7 @@ a web service for electric vehicle users
 
 ---------------------------------
 
-* Main
-    * login dialog
+* Main Page
 
 <p align="center">
 <img width="60%" src="https://user-images.githubusercontent.com/83811729/145992558-336519b1-3ef3-48b4-98f4-823ebe414c26.png" title="Login" alt="Login"/>
